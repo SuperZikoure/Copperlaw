@@ -66,11 +66,12 @@ all:	build_libs message $(NAME)
 
 message:
 	@$(LINE_RETURN)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"____  ____   ____ "$(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"|  _ \|  _ \ / ___|"$(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |_) | |_) | |  _ "$(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"|  _ <|  __/| |_| |"$(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"|_| \_\_|    \____|"$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"  ____                            _                   "$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)" / ___|___  _ __  _ __   ___ _ __| |    __ ___      __"$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |   / _ \| '_ \| '_ \ / _ \ '__| |   / _\` \ \ /\ / /"$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |__| (_) | |_) | |_) |  __/ |  | |__| (_| |\ V  V / "$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)" \____\___/| .__/| .__/ \___|_|  |_____\__,_| \_/\_/  "$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"           |_|   |_|                                  "$(DEFAULT)
 	@$(LINE_RETURN)
 
 $(NAME): $(OBJ)

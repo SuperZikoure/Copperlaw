@@ -24,7 +24,7 @@ image_t *create_image(char *path, window_t *window)
 void display_image(image_t *img, sfVector2f pos)
 {
     sfSprite_setPosition(img->sprite, pos);
-    sfRenderWindow_drawSprite(image->window->window, img->sprite, NULL);
+    sfRenderWindow_drawSprite(img->window->window, img->sprite, NULL);
 }
 
 void destroy_image(image_t *image)

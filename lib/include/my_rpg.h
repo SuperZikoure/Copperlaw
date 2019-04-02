@@ -18,6 +18,8 @@
 
 #define BUTTON_AMOUNT 0
 
+typedef struct game_s game_t;
+
 enum enum_scene_e {
     MENU,
     CREATE,
@@ -80,15 +82,23 @@ typedef struct my_clock_s {
     void *parent;
 } my_clock_t;
 
-typedef struct game_s {
+typedef struct option_s {
+    unsigned short int resolution;
+    unsigned short int fullscreen;
+    unsigned short int music;
+    unsigned short int sound;
+} option_t;
+
+struct game_s {
     window_t *window;
     my_clock_t *clock;
     view_t *view;
     gui_t *gui;
     input_t *input;
+    option_t *option;
     int exit;
     int scene;
-} game_t;
+};
 
 /*
 game->window = create_frame(WINDOW_SIZE_X, WINDOW_SIZE_Y, "Window");

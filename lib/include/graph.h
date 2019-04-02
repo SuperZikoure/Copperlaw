@@ -13,6 +13,15 @@
 #include <SFML/Window.h>
 #include <SFML/System.h>
 
+typedef struct window_s
+{
+    int width;
+    int height;
+    sfVideoMode mode;
+    sfRenderWindow *window;
+    sfEvent event;
+} window_t;
+
 typedef struct text_s
 {
     sfFont *font;
@@ -52,15 +61,6 @@ typedef struct loop_s
     sound_t *loop;
     int mode;
 } loop_t;
-
-typedef struct window_s
-{
-    int width;
-    int height;
-    sfVideoMode mode;
-    sfRenderWindow *window;
-    sfEvent event;
-} window_t;
 
 typedef struct keypress_s
 {

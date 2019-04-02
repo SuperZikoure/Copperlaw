@@ -43,7 +43,7 @@ void update_anim(anim_t *anim)
 
 void display_anim(anim_t *anim, sfVector2f pos)
 {
-    display_image(anim->sheet, pos, anim->window);
+    display_image(anim->sheet, pos);
 }
 
 void destroy_anim(anim_t *anim)

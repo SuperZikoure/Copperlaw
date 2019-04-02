@@ -17,6 +17,7 @@ typedef struct text_s
 {
     sfFont *font;
     sfText *text;
+    window_t *window;
 } text_t;
 
 typedef struct image_s
@@ -24,6 +25,7 @@ typedef struct image_s
     sfSprite *sprite;
     sfTexture *texture;
     sfImage *image;
+    window_t *window;
 } image_t;
 
 typedef struct anim_s
@@ -35,6 +37,7 @@ typedef struct anim_s
     sfIntRect frame;
     sfVector2i size;
     image_t *sheet;
+    window_t *window;
 } anim_t;
 
 typedef struct sound_s
@@ -98,21 +101,21 @@ void destroy_input(input_t *input);
 
 /* TEXT */
 
-text_t *create_text(int fontsize, char *font);
-void display_text(char *str, sfVector2f pos, text_t *text, window_t *window);
+text_t *create_text(int fontsize, char *font, window_t *window);
+void display_text(char *str, sfVector2f pos, text_t *text);
 void destroy_text(text_t *text);
 
 /* IMAGE */
 
-image_t *create_image(char *path, sfVector2f scale);
-void display_image(image_t *img, sfVector2f pos, window_t *window);
+image_t *create_image(char *path, window_t *window);
+void display_image(image_t *img, sfVector2f pos);
 void destroy_image(image_t *image);
 
 /* ANIMATION */
 
-anim_t *create_anim(int frames, int speed, sfVector2i size, char *sheet);
+anim_t *create_anim(sfVector2f fps, sfVector2i size, char *path, window_t *wd);
 void update_anim(anim_t *anim);
-void display_anim(anim_t *anim, sfVector2f pos, window_t *window);
+void display_anim(anim_t *anim, sfVector2f pos);
 void destroy_anim(anim_t *anim);
 
 /* SOUND */

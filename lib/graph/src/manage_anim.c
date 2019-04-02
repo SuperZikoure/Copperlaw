@@ -9,13 +9,14 @@
 #include <stdlib.h>
 #include "graph.h"
 
-anim_t *create_anim(int frames, int speed, sfVector2i size, char *sheet)
+anim_t *create_anim(sfVector2f fps, sfVector2i size, char *sheet, window_t *wd)
 {
     anim_t *anim = malloc(sizeof(anim_t));
 
-    anim->sheet = create_image(sheet, (sfVector2f){1, 1});
-    anim->frames = frames;
-    anim->speed = pow(speed, -1) * 60;
+    anim->sheet = create_image(sheet, wd);
+    anim->window = wd;
+    anim->frames = fps.x;
+    anim->speed = pow(fps.y, -1) * 60;
     anim->img = 0;
     anim->frame.top = 0;
     anim->frame.left = 0;
@@ -40,9 +41,9 @@ void update_anim(anim_t *anim)
     sfSprite_setTextureRect(anim->sheet->sprite, anim->frame);
 }
 
-void display_anim(anim_t *anim, sfVector2f pos, window_t *window)
+void display_anim(anim_t *anim, sfVector2f pos)
 {
-    display_image(anim->sheet, pos, window);
+    display_image(anim->sheet, pos, anim->window);
 }
 
 void destroy_anim(anim_t *anim)

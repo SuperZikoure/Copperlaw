@@ -44,11 +44,11 @@ TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
 SRC	=	
 
-SRC_LIB	=	stdio my string \
+SRC_LIB	=	stdio my string graph \
 			csfml-graphics csfml-system csfml-audio \
 			m
 
-LIB_PATHS	=	lib/stdio lib/my lib/string
+LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)

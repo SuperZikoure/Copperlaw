@@ -42,11 +42,16 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-SRC	=	
+SRC	=	inventory/delete_item.c	\
+		inventory/add_item.c	\
+		inventory/get_id.c	\
+		inventory/remplace_item.c	\
+		inventory/create_inventory.c	\
+		inventory/flood_inventory.c
 
 SRC_LIB	=	stdio my string \
-			csfml-graphics csfml-system csfml-audio \
-			m
+		csfml-graphics csfml-system csfml-audio \
+		m
 
 LIB_PATHS	=	lib/stdio lib/my lib/string
 

@@ -43,11 +43,16 @@ INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
 SRC	=	inventory/delete_item.c	\
+		inventory/add_item_with_index.c	\
 		inventory/add_item.c	\
-		inventory/get_id.c	\
+		inventory/remplace_item_with_index.c	\
 		inventory/remplace_item.c	\
 		inventory/create_inventory.c	\
-		inventory/flood_inventory.c
+		inventory/tools/get_id.c	\
+		inventory/tools/add_in_new_stack.c	\
+		inventory/tools/stack_item.c	\
+		inventory/tools/check_index.c	\
+		inventory/tools/flood_inventory.c
 
 SRC_LIB	=	stdio my string \
 		csfml-graphics csfml-system csfml-audio \

@@ -7,27 +7,6 @@
 
 #include "inventory.h"
 
-static int stack_item(int index, inventory_t *inv)
-{
-    if (inv->amount[index] < MAX_STACK) {
-        inv->amount[index]++;
-        return (0);
-    }
-    return (-2);
-}
-
-static int add_in_new_stack(int id, int index, inventory_t *inv)
-{
-    int error = 0;
-
-    if (index != -1) {
-        inv->id[index] = id;
-        error = stack_item(index, inv);
-        return (error);
-    }
-    return (-2);
-}
-
 int add_item(int id, inventory_t *inv)
 {
     int error = 0;

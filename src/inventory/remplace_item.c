@@ -13,10 +13,17 @@ int remplace_item(int id, inventory_t *inv)
 
     if (i != -1) {
         inv->id[i] = inv->tmp_id;
-        inv->amount[i] = inv->tmp_amount;
-        inv->tmp_id = 0;
-        inv->tmp_amount = 0;
-        return (0);
+        if (inv->tmp_amount <= MAX_STACK) {
+            inv->amount[i] = inv->tmp_amount;
+            inv->tmp_id = 0;
+            inv->tmp_amount = 0;
+            return (0);
+        }
+        else {
+            inv->amount[i] = MAX_STACK;
+            inv->tmp_amount = inv->tmp_amount - MAX_STACK;
+            return (0);
+        }
     }
     return (-1);
 }

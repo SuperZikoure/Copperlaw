@@ -7,6 +7,23 @@
 
 #include "inventory.h"
 
+static int add_item_with_index_(int id, inventory_t *inv)
+{
+    int error = 0;
+    int i = get_id(0, inv);
+
+    if (i != -1) {
+        error = add_in_new_stack(id, i, inv);
+        return (error);
+    }
+    else {
+        inv->tmp_id = id;
+        inv->tmp_amount++;
+        return (-1);
+    }
+    return (-1);
+}
+
 int add_item_with_index(int id, int i, inventory_t *inv)
 {
     int error = 0;
@@ -20,17 +37,8 @@ int add_item_with_index(int id, int i, inventory_t *inv)
             return (error);
         }
     }
-    i = get_id(0, inv);
-    if (i != -1) {
-        error = add_in_new_stack(id, i, inv);
-        return (error);
-    }
-    else {
-        inv->tmp_id = id;
-        inv->tmp_amount++;
-        return (-1);
-    }
-    return (-1);
+    error = add_item_with_index_(id, inv);
+    return (error);
 }
 
 int add_stack_with_index(int id, int amount, int i, inventory_t *inv)

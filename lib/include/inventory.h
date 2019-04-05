@@ -18,6 +18,11 @@ typedef struct inventory_s {
     int tmp_amount;
 } inventory_t;
 
+/* defined functions */
+
+#define AMOUNT_IDX(index, inv) (inv->amount[index])
+#define ID_IDX(index, inv) (inv->id[index])
+
 /*
  * Every functions return -1 if the function failed
  * You probably don't need to use functions in the tools dir
@@ -50,6 +55,15 @@ int remplace_item_with_index(int i, inventory_t *inv);
 int delete_item(int id, inventory_t *inv);
 int delete_stack(int id, int amount, inventory_t *inv);
 
+/* delete_item_with_index.c */
+
+int delete_item_with_index(int index, inventory_t *inv);
+int delete_stack_with_index(int index, int amount, inventory_t *inv);
+
+/* get_amount.c */
+
+int get_amount(int id, inventory_t *inv);
+
 /* tools/get_id.c */
 
 int get_id_free(int id, inventory_t *inv);
@@ -70,5 +84,9 @@ int stack_item(int index, inventory_t *inv);
 /* tools/check_index.c */
 
 int check_index(int index);
+
+/* tools/get_all_id.c */
+
+int *get_all_id(int id, inventory_t *inv);
 
 #endif /*!INVENTORY */

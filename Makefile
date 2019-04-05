@@ -42,7 +42,9 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-SRC	=	inventory/delete_item.c	\
+SRC	=	inventory/get_amount.c	\
+		inventory/delete_item_with_index.c	\
+		inventory/delete_item.c	\
 		inventory/add_item_with_index.c	\
 		inventory/add_item.c	\
 		inventory/remplace_item_with_index.c	\
@@ -51,6 +53,7 @@ SRC	=	inventory/delete_item.c	\
 		inventory/tools/get_id.c	\
 		inventory/tools/add_in_new_stack.c	\
 		inventory/tools/stack_item.c	\
+		inventory/tools/get_all_id.c	\
 		inventory/tools/check_index.c	\
 		inventory/tools/flood_inventory.c
 

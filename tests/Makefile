@@ -35,7 +35,9 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-SRC_TESTS	=	inventory_tests/create_inventory.c	\
+SRC_TESTS	=	inventory_tests/delete_stack_with_index.c	\
+			inventory_tests/delete_item_with_index.c\
+			inventory_tests/create_inventory.c	\
 			inventory_tests/add_item_with_index.c	\
 			inventory_tests/add_stack_with_index.c	\
 			inventory_tests/remplace_item.c	\

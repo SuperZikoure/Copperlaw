@@ -44,15 +44,3 @@ Test(delete_stack, delete_a_stack_bigger_than_max_stack)
     cr_assert_eq(inv->id[1], 1600);
     cr_assert_eq(inv->amount[1], 63);
 }
-
-Test(delete_stack, item_not_found)
-{
-    inventory_t *inv = create_inventory();
-    int item_id = 1600;
-    int amount = 2;
-    int error;
-
-    flood_inventory(1, inv);
-    error = delete_stack(item_id, amount, inv);
-    cr_assert_eq(error, -1);
-}

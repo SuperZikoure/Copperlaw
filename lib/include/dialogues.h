@@ -11,23 +11,13 @@
 #include <SFML/Graphics.h>
 #include "graph.h"
 
-#define CHARS_MAX
+#define FAILURE -1
+#define SUCCESS 0
+#define NO_DIALOG 401
+#define CHARS_MAX 50
 
-enum text_speed {
-    NORMAL,
-    SLOW,
-    FAST,
-    INSTANT,
-    TEXT_SPEED_MAX
-};
-
-enum text_mode {
-    BASIC,
-    NARRATIVE,
-    EXCLAMATION,
-    THINKING,
-    MODE_MAX
-};
+enum text_speed {NORMAL, SLOW, FAST, INSTANT, TEXT_SPEED_MAX};
+enum text_mode {BASIC, NARRATIVE, EXCLAMATION, THINKING, MODE_MAX};
 
 typedef unsigned int author_id_t;
 
@@ -44,9 +34,8 @@ struct dialogue_script_s {
     struct dialogue_s *script;
 };
 
-/*
-struct avec le fond (ou tableau de fonds)
-liste totale des dialogues
-*/
+/* Dialogue canvas */
+sfSprite *fetch_dialogue_canvas(void);
+void destroy_dialogue_canvas(void);
 
 #endif /* !DIALOGUES_H_ */

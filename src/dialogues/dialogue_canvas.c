@@ -9,17 +9,18 @@
 #include "macros.h"
 /* macros.h useless */
 
-const char *canvas_text_path = "";
+const char *textute_path = "white.png";
 
 static sfSprite *create_dialogue_canvas(void)
 {
     sfSprite *canvas = sfSprite_create();
-    sfTexture *canvas_text = sfTexture_createFromFile(canvas_text_path, NULL);
+    sfTexture *texture = sfTexture_createFromFile(textute_path, NULL);
 
-    if (!canvas || !canvas_text)
+    if (!canvas || !texture)
         return NULL;
-    sfSprite_setTexture(canvas, canvas_text, sfFalse);
-    sfSprite_setPosition(canvas, V2F(0, 0));
+    sfSprite_setTexture(canvas, texture, sfFalse);
+    sfSprite_setPosition(canvas, V2F(100, 450));
+    sfSprite_setColor(canvas, COLOR(0, 0, 0, 255));
     return canvas;
 }
 

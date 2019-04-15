@@ -98,9 +98,9 @@ void destroy_input(input_t *input);
 
 /* TEXT */
 
-text_t *create_text(int fontsize, char *font);
+text_t create_text(int fontsize, char *font);
 void display_text(char *str, sfVector2f pos, text_t *text, window_t *window);
-void destroy_text(text_t *text);
+void destroy_text(text_t text);
 
 /* IMAGE */
 

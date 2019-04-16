@@ -9,7 +9,7 @@
 
 int delete_item(int id, inventory_t *inv)
 {
-    int i = get_id(id, inv);
+    int i = get_id_last(id, inv);
 
     if (i != -1 && inv->amount[i] != 0) {
         inv->amount[i]--;

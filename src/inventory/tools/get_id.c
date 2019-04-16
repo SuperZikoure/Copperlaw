@@ -24,3 +24,12 @@ int get_id(int id, inventory_t *inv)
     }
     return (-1);
 }
+
+int get_id_last(int id, inventory_t *inv)
+{
+    for (int i = INV_SIZE; i > 0; i++) {
+        if (inv->id[i] == id)
+            return (i);
+    }
+    return (-1);
+}

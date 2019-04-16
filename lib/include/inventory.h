@@ -24,9 +24,9 @@ typedef struct inventory_s {
 #define ID_IDX(index, inv) (inv->id[index])
 
 /*
- * Every functions return -1 if the function failed
- * You probably don't need to use functions in the tools dir
- */
+** Every functions return -1 if the function failed
+** You probably don't need to use functions in the tools dir
+*/
 
 /* create_inventory.c */
 
@@ -68,6 +68,7 @@ int get_amount(int id, inventory_t *inv);
 
 int get_id_free(int id, inventory_t *inv);
 int get_id(int id, inventory_t *inv);
+int get_id_last(int id, inventory_t *inv);
 
 /* tools/flood_inventory.c */
 

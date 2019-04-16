@@ -8,14 +8,14 @@
 #include <stdlib.h>
 #include "graph.h"
 
-text_t *create_text(int fontsize, char *font)
+text_t create_text(int fontsize, char *font)
 {
-    text_t *text = malloc(sizeof(text_t));
+    text_t text;
 
-    text->text = sfText_create();
-    text->font = sfFont_createFromFile(font);
-    sfText_setFont(text->text, text->font);
-    sfText_setCharacterSize(text->text, fontsize);
+    text.text = sfText_create();
+    text.font = sfFont_createFromFile(font);
+    sfText_setFont(text.text, text.font);
+    sfText_setCharacterSize(text.text, fontsize);
     return (text);
 }
 
@@ -26,9 +26,8 @@ void display_text(char *str, sfVector2f pos, text_t *text, window_t *window)
     sfRenderWindow_drawText(window->window, text->text, NULL);
 }
 
-void destroy_text(text_t *text)
+void destroy_text(text_t text)
 {
-    sfText_destroy(text->text);
-    sfFont_destroy(text->font);
-    free(text);
+    sfText_destroy(text.text);
+    sfFont_destroy(text.font);
 }

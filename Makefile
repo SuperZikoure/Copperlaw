@@ -42,7 +42,17 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-SRC	=	
+UTILS	=	utils
+DIALOGUES	=	dialogues
+
+SRC	=	$(DIALOGUES)/create_dialogue_script.c \
+		$(DIALOGUES)/create_dialogue.c \
+		$(DIALOGUES)/destroy_dialogue.c \
+		$(DIALOGUES)/dialogue_canvas.c \
+		$(DIALOGUES)/dialogue_list.c \
+		$(DIALOGUES)/display_dialogue.c \
+		$(DIALOGUES)/text_speed.c \
+		$(UTILS)/get_line.c
 
 SRC_LIB	=	stdio my string graph \
 			csfml-graphics csfml-system csfml-audio \

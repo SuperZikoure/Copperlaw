@@ -46,8 +46,6 @@ static char *write_script(char *str)
     return script;
 }
 
-#define BLA(s) create_dialogue(my_strdup(s.script), s.author);
-
 struct dialogue_s *create_dialogue_script(void)
 {
     struct dialogue_s *head = NULL;

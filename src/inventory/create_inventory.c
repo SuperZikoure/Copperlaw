@@ -6,6 +6,8 @@
 */
 
 #include "inventory.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 inventory_t *create_inventory(void)
 {
@@ -17,5 +19,7 @@ inventory_t *create_inventory(void)
         inv->id[i] = 0;
         inv->amount[i] = 0;
     }
+    inv->tmp_id = 0;
+    inv->tmp_amount = 0;
     return (inv);
 }

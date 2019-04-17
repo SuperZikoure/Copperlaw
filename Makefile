@@ -42,8 +42,10 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
+
 UTILS	=	utils
 DIALOGUES	=	dialogues
+INVENTORY	=	inventory
 
 SRC	=	$(DIALOGUES)/create_dialogue_script.c \
 		$(DIALOGUES)/create_dialogue.c \
@@ -55,8 +57,8 @@ SRC	=	$(DIALOGUES)/create_dialogue_script.c \
 		$(UTILS)/get_line.c
 
 SRC_LIB	=	stdio my string graph \
-			csfml-graphics csfml-system csfml-audio \
-			m
+		csfml-graphics csfml-system csfml-audio \
+		m
 
 LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph
 

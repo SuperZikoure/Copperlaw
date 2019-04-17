@@ -52,7 +52,7 @@ message:
 	@$(LINE_RETURN)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"  ____                 _     "$(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)" / ___|_ __ __ _ _ __ | |__  "$(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |  _| '__/ _` | '_ \| '_ \ "$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |  _| '__/ _\` | '_ \| '_ \ "$(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |_| | | | (_| | |_) | | | |"$(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)" \____|_|  \__,_| .__/|_| |_|"$(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"                |_|          "$(DEFAULT)

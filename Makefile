@@ -75,8 +75,8 @@ SRC	=	$(SCRIPTS)/intro.c \
 		$(UTILS)/get_line.c
 
 SRC_LIB	=	stdio my string graph \
-		csfml-graphics csfml-system csfml-audio \
-		m
+			csfml-graphics csfml-system csfml-audio \
+			m
 
 LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph
 

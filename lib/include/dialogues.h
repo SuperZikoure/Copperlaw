@@ -18,6 +18,9 @@
 
 #define LINE_MAX 50
 
+extern const char *dialogue_font_path;
+extern const char *texture_path;
+
 enum text_speed {
     INSTANT, // 0
     FAST, // 1
@@ -28,13 +31,9 @@ enum text_speed {
 enum text_speed get_text_speed(void);
 void change_text_speed(int modifier);
 
-enum script_ids {
-    INTRO
-};
-
 // enum text_mode {BASIC, NARRATIVE, EXCLAMATION, THINKING, MODE_MAX};
 
-typedef unsigned int scene_t;
+// typedef unsigned int scene_t;
 typedef unsigned int author_t;
 
 struct dialogue_s {
@@ -51,7 +50,6 @@ int display_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue,
                         size_t frames);
 
 struct dialogue_s *create_dialogue(char *script, author_t author);
-struct dialogue_s *create_dialogue_script(void);
 void destroy_dialogue(struct dialogue_s *dialogue);
 
 /* Dialogue canvas */

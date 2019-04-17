@@ -46,11 +46,14 @@ TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 UTILS	=	utils
 DIALOGUES	=	dialogues
 INVENTORY	=	inventory
+SCRIPTS	=	$(DIALOGUES)/scripts
 
-SRC	=	$(DIALOGUES)/create_dialogue_script.c \
+SRC	=	$(SCRIPTS)/intro.c \
+		$(DIALOGUES)/create_dialogue_script.c \
 		$(DIALOGUES)/create_dialogue.c \
 		$(DIALOGUES)/destroy_dialogue.c \
 		$(DIALOGUES)/dialogue_canvas.c \
+		$(DIALOGUES)/dialogue_constants.c \
 		$(DIALOGUES)/dialogue_list.c \
 		$(DIALOGUES)/display_dialogue.c \
 		$(DIALOGUES)/text_speed.c \

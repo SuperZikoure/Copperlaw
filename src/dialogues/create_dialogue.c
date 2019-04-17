@@ -11,8 +11,6 @@
 #include "dialogues.h"
 #include "macros.h"
 
-char const *dialogue_font_path = "pixelmix.ttf";
-
 struct dialogue_s *create_dialogue(char *script, author_t author)
 {
     struct dialogue_s *dialogue = malloc(sizeof(struct dialogue_s));

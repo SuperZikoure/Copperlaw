@@ -11,6 +11,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include "dialogues.h"
+#include "scripts.h"
 
 const char *script_paths[] = {
     "src/dialogues/scripts/intro"
@@ -20,14 +21,11 @@ static struct dialogue_s **create_scene_dialogues()
 {
     struct dialogue_s **ptr = NULL;
     // scene_t id = get_current_scene_id();
-    // int fd = open(script_paths[id], O_RDONLY);
 
-    // if (fd == -1)
-    //     return NULL;
-    // close(fd);
-    ptr = malloc(sizeof(struct dialogue_s *) * 2);
-    ptr[0] = create_dialogue_script();
-    ptr[1] = NULL;
+    ptr = malloc(sizeof(struct dialogue_s *) * 3);
+    ptr[0] = create_dialogue_script(test_script_1);
+    ptr[1] = create_dialogue_script(test_script_2);
+    ptr[2] = NULL;
     return ptr;
 }
 

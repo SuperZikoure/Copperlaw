@@ -9,12 +9,10 @@
 #include "macros.h"
 /* macros.h useless */
 
-const char *textute_path = "white.png";
-
 static sfSprite *create_dialogue_canvas(void)
 {
     sfSprite *canvas = sfSprite_create();
-    sfTexture *texture = sfTexture_createFromFile(textute_path, NULL);
+    sfTexture *texture = sfTexture_createFromFile(texture_path, NULL);
 
     if (!canvas || !texture)
         return NULL;

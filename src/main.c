@@ -36,9 +36,10 @@ int main(void)
                         } else
                             dialogue->speed = INSTANT;
                     }
-                } else if (event.key.code == sfKeyE) {
+                } else if (event.key.code == sfKeyE)
                     dialogue = fetch_dialogue_script(0);
-                }
+                else if (event.key.code == sfKeyR)
+                    dialogue = fetch_dialogue_script(1);
             }
         }
         sfRenderWindow_clear(window, sfBlue);

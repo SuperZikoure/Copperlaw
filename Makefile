@@ -46,6 +46,7 @@ TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 UTILS	=	utils
 DIALOGUES	=	dialogues
 INVENTORY	=	inventory
+INV_TOOLS	=	$(INVENTORY)/tools
 SCRIPTS	=	$(DIALOGUES)/scripts
 
 SRC	=	$(SCRIPTS)/intro.c \
@@ -57,6 +58,20 @@ SRC	=	$(SCRIPTS)/intro.c \
 		$(DIALOGUES)/dialogue_list.c \
 		$(DIALOGUES)/display_dialogue.c \
 		$(DIALOGUES)/text_speed.c \
+		$(INV_TOOLS)/add_in_new_stack.c \
+		$(INV_TOOLS)/check_index.c \
+		$(INV_TOOLS)/flood_inventory.c \
+		$(INV_TOOLS)/get_all_id.c \
+		$(INV_TOOLS)/get_id.c \
+		$(INV_TOOLS)/stack_item.c \
+		$(INVENTORY)/add_item_with_index.c \
+		$(INVENTORY)/add_item.c \
+		$(INVENTORY)/create_inventory.c \
+		$(INVENTORY)/delete_item_with_index.c \
+		$(INVENTORY)/delete_item.c \
+		$(INVENTORY)/get_amount.c \
+		$(INVENTORY)/remplace_item_with_index.c \
+		$(INVENTORY)/remplace_item.c \
 		$(UTILS)/get_line.c
 
 SRC_LIB	=	stdio my string graph \

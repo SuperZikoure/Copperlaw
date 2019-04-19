@@ -24,6 +24,9 @@
 #define STRLEN_EQ(s1, s2) (my_strlen(s1) == my_strlen(s2))
 #define STR_EQ(s1, s2) (!my_strcmp(s1, s2))
 
-#define SPEED_TO_FRAMES(s) (int) s + (int) s - 1
+#define IS_TEXT_ENDED(d) STRLEN_EQ(d->script, d->said)
+
+#define SET_SELECTED_CHOISE_COLOR(s, c) \
+            sfText_setColor(s->texts[s->selected].text, c)
 
 #endif /* !MACROS_H_ */

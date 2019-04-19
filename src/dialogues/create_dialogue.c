@@ -11,7 +11,8 @@
 #include "dialogues.h"
 #include "macros.h"
 
-struct dialogue_s *create_dialogue(char *script, author_t author)
+struct dialogue_s *create_dialogue(char *script, author_t author,
+                                    struct selection *choises)
 {
     struct dialogue_s *dialogue = malloc(sizeof(struct dialogue_s));
     size_t len = my_strlen(script) + 1;
@@ -28,6 +29,7 @@ struct dialogue_s *create_dialogue(char *script, author_t author)
     dialogue->text = create_text(30, (char *) dialogue_font_path);
     sfText_setPosition(dialogue->text.text, V2F(0, 0));
     sfText_setString(dialogue->text.text, dialogue->said);
+    dialogue->choises = choises;
     dialogue->next = NULL;
     return dialogue;
 }

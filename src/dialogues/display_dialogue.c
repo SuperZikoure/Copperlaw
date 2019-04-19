@@ -10,7 +10,22 @@
 #include "dialogues.h"
 #include "macros.h"
 
-#define IS_TEXT_ENDED(d) STRLEN_EQ(d->script, d->said)
+static int draw_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue)
+{
+    sfSprite *canvas;
+
+    canvas = fetch_dialogue_canvas();
+    if (!canvas)
+        return FAILURE;
+    sfRenderWindow_drawSprite(window, canvas, NULL);
+    sfRenderWindow_drawText(window, dialogue->text.text, NULL);
+    if (dialogue->choises && dialogue->n_frames == -1) {
+        for (int i = 0; i < dialogue->choises->total; i++)
+            sfRenderWindow_drawText(window, dialogue->choises->texts[i].text,
+NULL);
+    }
+    return SUCCESS;
+}
 
 static void update_text_content(struct dialogue_s *dialogue)
 {
@@ -28,13 +43,8 @@ static void update_text_content(struct dialogue_s *dialogue)
 int display_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue,
                         size_t frames)
 {
-    sfSprite *canvas;
-
     if (!dialogue)
         return NO_DIALOG;
-    canvas = fetch_dialogue_canvas();
-    if (!canvas)
-        return FAILURE;
     dialogue->n_frames += frames;
     if (IS_TEXT_ENDED(dialogue))
         dialogue->n_frames = -1;
@@ -43,7 +53,5 @@ dialogue->n_frames >= SPEED_TO_FRAMES(dialogue->speed)) {
         dialogue->n_frames -= SPEED_TO_FRAMES(dialogue->speed);
         update_text_content(dialogue);
     }
-    sfRenderWindow_drawSprite(window, canvas, NULL);
-    sfRenderWindow_drawText(window, dialogue->text.text, NULL);
-    return SUCCESS;
+    return draw_dialogue(window, dialogue);
 }

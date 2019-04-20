@@ -22,7 +22,7 @@ static char *write_script(char *str, int line_max)
     if (!script)
         return NULL;
     for (size_t i = 0; str[i]; i++) {
-        if (i >= LINE_MAX * line_nb && str[i] == ' ') {
+        if (i >= line_max * line_nb && str[i] == ' ') {
             script[j++] = '\n';
             line_nb++;
             continue;
@@ -38,6 +38,7 @@ static struct selection *init_choises(struct script_s *script)
 {
     struct selection *choises = malloc(sizeof(struct selection));
     text_t *text_array = malloc(sizeof(text_t) * script->choise_nb);
+    char *choise_tmp;
 
     if (!choises)
         return NULL;
@@ -45,8 +46,11 @@ static struct selection *init_choises(struct script_s *script)
     choises->selected = 0;
     for (int i = 0; i < choises->total; i++) {
         text_array[i] = create_text(30, (char *) dialogue_font_path);
+        choise_tmp = write_script(script->choise[i], CHOISE_MAX);
+        if (!choise_tmp)
+            return NULL;
         sfText_setPosition(text_array[i].text, V2F(100 + 300 * i, 250));
-        sfText_setString(text_array[i].text, script->choise[i]);
+        sfText_setString(text_array[i].text, choise_tmp);
     }
     sfText_setColor(text_array[choises->selected].text, sfYellow);
     choises->texts = text_array;

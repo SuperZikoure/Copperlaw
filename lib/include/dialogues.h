@@ -16,6 +16,7 @@
 #define NO_DIALOG 400
 
 #define LINE_MAX 50
+#define CHOISE_MAX 15
 
 extern const char *dialogue_font_path;
 extern const char *texture_path;

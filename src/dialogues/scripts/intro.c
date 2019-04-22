@@ -7,6 +7,11 @@
 
 #include "scripts.h"
 
+NEW_SCRIPT(blank) = {
+    SAY("...", NARRATOR)
+    END
+};
+
 NEW_SCRIPT(test_script_1) = {
     SAY("Whoa je veux une pomme.", PLAYER)
     SAY("eh beh bas moi j'en ai des bonnes", USR)
@@ -34,4 +39,10 @@ NEW_SCRIPT(test_script_2) = {
     CHOSE3("le nutella c'est quoi a ton avis ???????", "bon", "Bon", "Super mega bon tu peux pas test mon gars",
 NARRATOR)
     END
+};
+
+const struct script_s *intro_scripts[] = {
+    test_script_1,
+    test_script_2,
+    0
 };

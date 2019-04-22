@@ -24,6 +24,16 @@ struct dialogue_s *switch_dialogue(struct dialogue_s *dialogue)
     return dialogue->next;
 }
 
+enum zone_ids get_current_scene_id(int action)
+{
+    static enum zone_ids id = INTRO;
+
+    if (action == 0)
+        return id;
+    id = id == INTRO ? VILLAGE : INTRO;
+    return id;
+}
+
 int main(void)
 {
     sfVideoMode vidmode = {1600, 900, 32};
@@ -31,6 +41,8 @@ int main(void)
     sfEvent event;
     struct dialogue_s *dialogue = NULL;
 
+    if (load_dialogue_scene(get_current_scene_id(0)) == -1)
+        return 84;
     sfRenderWindow_setFramerateLimit(window, 60);
     sfRenderWindow_display(window);
     while (sfRenderWindow_isOpen(window)) {
@@ -65,15 +77,21 @@ int main(void)
                         }
                     }
                 } else if (event.key.code == sfKeyE)
-                    dialogue = fetch_dialogue_script(0);
+                    dialogue = get_dialogue(0);
                 else if (event.key.code == sfKeyR)
-                    dialogue = fetch_dialogue_script(1);
+                    dialogue = get_dialogue(1);
+                else if (event.key.code == sfKeyC) {
+                    destroy_current_dialogue_script();
+                    if (load_dialogue_scene(get_current_scene_id(1)) == -1)
+                        return 84;
+                }
             }
         }
         sfRenderWindow_clear(window, sfBlue);
         display_dialogue(window, dialogue, 1);
         sfRenderWindow_display(window);
     }
+    destroy_current_dialogue_script();
     sfRenderWindow_destroy(window);
     return (0);
 }

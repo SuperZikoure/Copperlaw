@@ -50,13 +50,15 @@ INV_TOOLS	=	$(INVENTORY)/tools
 SCRIPTS	=	$(DIALOGUES)/scripts
 
 SRC	=	$(SCRIPTS)/intro.c \
+		$(SCRIPTS)/village.c \
 		$(DIALOGUES)/create_dialogue_script.c \
 		$(DIALOGUES)/create_dialogue.c \
 		$(DIALOGUES)/destroy_dialogue.c \
+		$(DIALOGUES)/dialogue_actions.c \
 		$(DIALOGUES)/dialogue_canvas.c \
 		$(DIALOGUES)/dialogue_constants.c \
-		$(DIALOGUES)/dialogue_list.c \
 		$(DIALOGUES)/display_dialogue.c \
+		$(DIALOGUES)/load_dialogue_scene.c \
 		$(DIALOGUES)/text_speed.c \
 		$(INV_TOOLS)/add_in_new_stack.c \
 		$(INV_TOOLS)/check_index.c \

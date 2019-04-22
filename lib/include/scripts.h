@@ -13,7 +13,7 @@
 #define MAX_CHOSE 4
 
 #define NEW_SCRIPT(name) const struct script_s name[]
-#define EXPORT(name) extern const struct script_s name[];
+#define EXPORT(name) extern const struct script_s *name[];
 #define SAY(sentence, who) {sentence, 0, {0}, who},
 #define CHOSE1(sentence, c1, who) {sentence, 1, {c1, 0}, who},
 #define CHOSE2(sentence, c1, c2, who) {sentence, 2, {c1, c2, 0}, who},
@@ -27,11 +27,6 @@ struct script_s {
     author_t author;
 };
 
-enum script_ids {
-    INTRO,
-    VILLAGE
-};
-
 enum author_list {
     NARRATOR,
     PLAYER,
@@ -39,12 +34,10 @@ enum author_list {
     PLAYER_NB
 };
 
-struct dialogue_s *create_dialogue_script(const struct script_s *script);
+struct dialogue_s *create_dialogue_from_script(const struct script_s *script);
 
-/* INTRO */
-EXPORT(test_script_1);
-EXPORT(test_script_2);
-
-/* VILLAGE */
+/* SCRIPTS */
+EXPORT(intro_scripts)
+EXPORT(village_scripts)
 
 #endif /* !SCRIPTS_H_ */

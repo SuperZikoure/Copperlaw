@@ -24,8 +24,10 @@
 #define STRLEN_EQ(s1, s2) (my_strlen(s1) == my_strlen(s2))
 #define STR_EQ(s1, s2) (!my_strcmp(s1, s2))
 
+/* used to know if a dialogue has been fully displayed or not */
 #define IS_TEXT_ENDED(d) STRLEN_EQ(d->script, d->said)
 
+/* used to change the selected "dialogue selection" color */
 #define SET_SELECTED_CHOISE_COLOR(s, c) \
             sfText_setColor(s->texts[s->selected].text, c)
 

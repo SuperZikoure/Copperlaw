@@ -57,7 +57,7 @@ static struct selection *init_choises(struct script_s *script)
     return choises;
 }
 
-static struct dialogue_s *create_dialogue_from_script(struct script_s *script)
+static struct dialogue_s *create_dialogue_script(struct script_s *script)
 {
     struct selection *choises = NULL;
     char *script_tmp;
@@ -73,7 +73,7 @@ static struct dialogue_s *create_dialogue_from_script(struct script_s *script)
     return create_dialogue(script_tmp, script->author, choises);
 }
 
-struct dialogue_s *create_dialogue_script(const struct script_s *script)
+struct dialogue_s *create_dialogue_from_script(const struct script_s *script)
 {
     struct dialogue_s *head = NULL;
     struct dialogue_s *next = NULL;
@@ -82,7 +82,7 @@ struct dialogue_s *create_dialogue_script(const struct script_s *script)
     while (script[len].script)
         len++;
     for (size_t i = len - 1; i < len; i--) {
-        next = create_dialogue_from_script((struct script_s *) &script[i]);
+        next = create_dialogue_script((struct script_s *) &script[i]);
         if (!next)
             return NULL;
         next->next = head;

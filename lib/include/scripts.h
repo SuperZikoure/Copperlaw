@@ -39,5 +39,6 @@ struct dialogue_s *create_dialogue_from_script(const struct script_s *script);
 /* SCRIPTS */
 EXPORT(intro_scripts)
 EXPORT(village_scripts)
+extern const struct script_s **script_list[];
 
 #endif /* !SCRIPTS_H_ */

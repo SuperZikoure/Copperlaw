@@ -25,7 +25,7 @@ void reset_velocity(sfVector2f *velocity, float rate)
         velocity->y = 0;
 }
 
-sfBool mouse_pressed_once(window_t *window)
+sfBool mouse_pressed_once(void)
 {
     static sfBool press = 0;
     static sfBool click = 0;
@@ -136,7 +136,7 @@ void manage_michel(monster_t *michel, ball_t *balls[BALL_AMOUNT], sfVector2f pos
     for (int i = 0; i < BALL_AMOUNT; i++) {
         if (!balls[i]->exist)
             continue;
-        if (michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hurt) || !(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal)) {
+        if ((michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hurt)) || (!(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal))) {
             michel->speed = (sfVector2f){balls[i]->speed.x / 5, balls[i]->speed.y / 5};
             balls[i]->exist = 0;
             printf("Michel a été frappé\n");
@@ -222,7 +222,7 @@ void manage_game(game_t *game)
 
     distance = get_distance(game->game.player_pos, view_pos[3]);
 
-    if (mouse_pressed_once(game->window))
+    if (mouse_pressed_once())
         fire_ball(game->game.player_pos, game->game.balls, dir);
     manage_dash(game->input, &game->game.dash, game->game.player_speed, dir);
     manage_inputs(game->input, &game->game.player_speed);

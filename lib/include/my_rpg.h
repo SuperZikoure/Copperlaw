@@ -20,6 +20,10 @@
 #define VIEW_SIZE_Y (270 * ZOOM) //405
 #define SIZE 10
 
+#define V2F(x, y) (sfVector2f) {x, y}
+
+#define STATS_AMOUNT 21
+
 #define BALL_AMOUNT 200
 
 #define BUTTON_AMOUNT 4
@@ -31,6 +35,11 @@
 
 #define KEY_PRESSED(c) (input->keys[c]->pressed)
 #define KEY_HELD(c) (input->keys[c]->held)
+
+#define WINDOW game->window
+#define VIEW game->view
+#define CURSOR game->gui->cursor
+#define GUI game->gui
 
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
@@ -47,12 +56,32 @@ extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_AMOUNT];
 
 enum enum_scene_e {
-    MENU,
-    CREATE,
-    LOAD,
-    HELP,
+    MAIN_MENU,
     OPTIONS,
-    GAME
+    GAME,
+    PAUSE,
+    INVENTORY,
+    SKILLS,
+    STATS,
+    MENU
+};
+
+enum direction_e {
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT
+};
+
+enum direction_extented_e {
+    NORTH,
+    NORTH_EAST,
+    EAST,
+    SOUTH_EAST,
+    SOUTH,
+    SOUTH_WEST,
+    WEST,
+    NORTH_WEST
 };
 
 enum enum_stats_e {
@@ -64,7 +93,19 @@ enum enum_stats_e {
     CURRENT_SP,
     MOVE_SPEED,
     DASH_COOLDOWN,
-    ATTACK_SPEED
+    ATTACK_SPEED,
+    ATTACK_COOLDOW,
+    ATTACK_RANGE,
+    DAMAGE,
+    DEFENSE,
+    CURRENT_XP,
+    MAX_XP,
+    CURRENT_LEVEL,
+    MAX_LEVEL,
+    SP_POINTS,
+    SKILL_SET,
+    SKILL_1_COOLDOWN,
+    SKILL_2_COOLDOWN
 };
 
 enum enum_key_e {
@@ -195,7 +236,7 @@ typedef struct player_s {
     anim_t **hurt;
     anim_t *idle;
     anim_t *display;
-    float *stats;
+    float stats[STATS_AMOUNT];
 } player_t;
 
 struct game_s {
@@ -206,6 +247,7 @@ struct game_s {
     input_t *input;
     option_t option;
     sfVector2i mouse_pos;
+    int frames;
     int exit;
     int scene;
     scene_t game;
@@ -223,18 +265,11 @@ sfVector2f global_to_view(sfVector2f pos, view_t *view);
 sfVector2f global_to_view_fx(sfVector2f pos, view_t *view);
 sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view);
 
-cursor_t *create_cursor(game_t *game);
-void manage_cursor(game_t *game, sfVector2i pos);
 gui_t *create_gui(view_t *view);
 
-sfIntRect f_to_i_sfrect(sfFloatRect rect_f);
-sfVector2f i_to_f(sfVector2i vec);
 int point_intersect(image_t *img, float x, float y);
 int image_intersect(image_t *img1, image_t *img2);
 
-button_t *create_button(char *p, sfVector3f o, view_t *v, void (*t)(game_t*));
-void manage_button2(button_t *button, game_t *game);
-void manage_button(button_t *button, game_t *game);
 void update_gui(game_t *game, sfVector2i pos);
 
 void manage_game(game_t *game);
@@ -242,6 +277,10 @@ void manage_game(game_t *game);
 input_t *create_input(void);
 void destroy_input(input_t *input);
 void process_input(window_t *window, input_t *input);
+
+/* create_game.c */
+
+game_t create_game(void);
 
 
 #endif

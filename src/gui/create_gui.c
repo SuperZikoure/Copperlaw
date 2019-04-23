@@ -12,8 +12,9 @@
 #include <stdlib.h>
 #include "graph.h"
 #include "my_rpg.h"
+#include "my_string.h"
 
-cursor_t *create_cursor(game_t *game)
+static cursor_t *create_cursor(game_t *game)
 {
     cursor_t *cursor = malloc(sizeof(cursor_t));
 
@@ -31,27 +32,29 @@ cursor_t *create_cursor(game_t *game)
     return (cursor);
 }
 
-void manage_cursor(game_t *game, sfVector2i pos)
+static button_t *create_button(char *path, sfVector3f pos, view_t *view,
+void (*trigger)(game_t*))
 {
-    window_t *window = game->window;
-    cursor_t *cursor = game->gui->cursor;
-    view_t *view = game->view;
+    button_t *button = malloc(sizeof(button_t));
+    window_t *window = view->window;
 
-    cursor->pos.x = global_to_view_mouse(i_to_f(pos), view).x - 16;
-    cursor->pos.y = global_to_view_mouse(i_to_f(pos), view).y - 16;
-    update_anim(cursor->idle);
-    update_anim(cursor->build);
-    update_anim(cursor->inspect);
-    sfSprite_setPosition(cursor->base->sheet->sprite, cursor->pos);
-    if (cursor->mode == 0)
-        cursor->display = cursor->base;
-    if (cursor->mode == 1)
-        cursor->display = cursor->idle;
-    if (cursor->mode == 2)
-        cursor->display = cursor->inspect;
-    if (cursor->mode == 3)
-        cursor->display = cursor->build;
-    display_anim(cursor->display, cursor->pos);
+    button->base = create_image(my_strcat_no_free(BUTTON_PATH,
+    my_strcat_no_free(path, "_base.png")), window);
+    button->hover = create_image(my_strcat_no_free(BUTTON_PATH,
+    my_strcat_no_free(path, "_hover.png")), window);
+    button->click = create_image(my_strcat_no_free(BUTTON_PATH,
+    my_strcat_no_free(path, "_click.png")), window);
+    button->scene = (int)(pos.z);
+    button->display = button->base;
+    button->trigger = trigger;
+    button->hover_sound = create_sound("assets/sounds/hover.wav");
+    button->click_sound = create_sound("assets/sounds/click.wav");
+    button->mouse_hover = 0;
+    button->mouse_click = 0;
+    button->pos = (sfVector2f){pos.x, pos.y};
+    button->display_pos.x = global_to_view((sfVector2f){pos.x, pos.y}, view).x;
+    button->display_pos.x = global_to_view((sfVector2f){pos.x, pos.y}, view).y;
+    return (button);
 }
 
 gui_t *create_gui(view_t *view)

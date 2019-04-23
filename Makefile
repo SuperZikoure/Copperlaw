@@ -44,11 +44,12 @@ TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
 SRC	=	global_info.c \
 		manage_view.c \
-		manage_gui.c \
 		button_functions/menu_functions.c \
-		manage_button.c	\
 		scenes/game_scene.c \
-		manage_inputs.c
+		manage_inputs.c \
+		create_game.c \
+		gui/create_gui.c \
+		gui/update_gui.c
 
 
 SRC_LIB	=	stdio my string graph \

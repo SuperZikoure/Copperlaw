@@ -43,9 +43,16 @@ INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
 SRC	=	global_info.c \
+		manage_view.c \
+		manage_gui.c \
+		button_functions/menu_functions.c \
+		manage_button.c	\
+		scenes/game_scene.c \
+		manage_inputs.c
+
 
 SRC_LIB	=	stdio my string graph \
-			csfml-graphics csfml-system csfml-audio \
+			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
 LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph

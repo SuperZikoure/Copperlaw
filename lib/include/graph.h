@@ -19,6 +19,7 @@ typedef struct window_s
     int height;
     sfVideoMode mode;
     sfRenderWindow *window;
+    char *title;
     sfEvent event;
 } window_t;
 
@@ -55,13 +56,6 @@ typedef struct sound_s
     sfSoundBuffer *buffer;
 } sound_t;
 
-typedef struct loop_s
-{
-    sound_t *intro;
-    sound_t *loop;
-    int mode;
-} loop_t;
-
 typedef struct keypress_s
 {
     int held;
@@ -69,35 +63,16 @@ typedef struct keypress_s
     sfKeyCode key;
 } keypress_t;
 
-typedef struct input_s
-{
-    keypress_t *up;
-    keypress_t *down;
-    keypress_t *left;
-    keypress_t *right;
-    keypress_t *escape;
-    keypress_t *space;
-} input_t;
-
-typedef struct map_s
-{
-    image_t *bg;
-    image_t *col;
-    image_t *fg;
-} map_t;
-
 /* WINDOW */
 
-window_t *create_frame(int width, int height, char *str);
+window_t *create_window(int size, char *str);
+void change_window(window_t *window, int size, int fullscreen);
 void destroy_window(window_t *window);
 
 /* INPUT */
 
 keypress_t *create_key(sfKeyCode key);
-input_t *create_input(void);
 void process_key(keypress_t *key);
-void process_input(window_t *window, input_t *input);
-void destroy_input(input_t *input);
 
 /* TEXT */
 
@@ -121,8 +96,6 @@ void destroy_anim(anim_t *anim);
 /* SOUND */
 
 sound_t *create_sound(char *path);
-loop_t *create_loop(char *intro_path, char *loop_path);
 void destroy_sound(sound_t *sound);
-void destroy_loop(loop_t *loop);
 
 #endif

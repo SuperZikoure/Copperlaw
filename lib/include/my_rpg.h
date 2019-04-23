@@ -10,15 +10,41 @@
 
 #include "graph.h"
 
-#define VIEW_SIZE_X 480
-#define VIEW_SIZE_Y 270
-#define GLOBAL_ZOOM 1
-#define WINDOW_SIZE_X 1280
-#define WINDOW_SIZE_Y 720
+#define BUTTON_PATH ("assets/buttons/")
 
-#define BUTTON_AMOUNT 0
+#define ABS(a) ((a) < 0 ? (-a) : (a))
+#define CAM(a, b, c) ((c * a + b) / (c + 1))
+
+#define ZOOM 1.5
+#define VIEW_SIZE_X (480 * ZOOM) //720
+#define VIEW_SIZE_Y (270 * ZOOM) //405
+#define SIZE 10
+
+#define BALL_AMOUNT 200
+
+#define BUTTON_AMOUNT 4
+
+#define KEY_AMOUNT 13
+
+#define DEFAULT_SCREENSIZE 4
+#define RESOLUTIONS 6
+
+#define KEY_PRESSED(c) (input->keys[c]->pressed)
+#define KEY_HELD(c) (input->keys[c]->held)
 
 typedef struct game_s game_t;
+typedef struct info_button_s info_button_t;
+
+struct info_button_s
+{
+    sfVector3f pos;
+    char *path;
+    void (*trigger)(game_t*);
+};
+
+extern const sfVideoMode window_size[RESOLUTIONS];
+extern const info_button_t info[BUTTON_AMOUNT];
+extern const sfKeyCode input_key[KEY_AMOUNT];
 
 enum enum_scene_e {
     MENU,
@@ -27,6 +53,34 @@ enum enum_scene_e {
     HELP,
     OPTIONS,
     GAME
+};
+
+enum enum_stats_e {
+    MAX_HP,
+    CURRENT_HP,
+    MAX_MP,
+    CURRENT_MP,
+    MAX_SP,
+    CURRENT_SP,
+    MOVE_SPEED,
+    DASH_COOLDOWN,
+    ATTACK_SPEED
+};
+
+enum enum_key_e {
+    UP_KEY,
+    RIGHT_KEY,
+    DOWN_KEY,
+    LEFT_KEY,
+    ENTER_KEY,
+    ESCAPE_KEY,
+    SPACE_KEY,
+    ACTION_KEY,
+    ITEM_KEY,
+    MENU_KEY,
+    SKILL_1_KEY,
+    SKILL_2_KEY,
+    SKILL_3_KEY
 };
 
 typedef struct button_s
@@ -89,27 +143,105 @@ typedef struct option_s {
     unsigned short int sound;
 } option_t;
 
+typedef struct ball_s {
+    sfVector2f pos;
+    sfVector2f speed;
+    sfVector2f *target;
+    float distance;
+    int damage;
+    int exist;
+    int type;
+    image_t *ball;
+} ball_t;
+
+typedef struct monster_s {
+    sfVector2f pos;
+    sfVector2f speed;
+    int aggro;
+    image_t *normal;
+    image_t *hurt;
+} monster_t;
+
+typedef struct map_s {
+    int **map;
+    sfVector2f size;
+    image_t bg;
+    image_t fg;
+} map_t;
+
+typedef struct scene_s {
+    sfVector2f player_pos;
+    sfVector2f player_speed;
+    sfVector2f dash;
+    image_t *map;
+    image_t *player_image;
+    ball_t *balls[BALL_AMOUNT];
+    monster_t *michel;
+    image_t *test1;
+    image_t *test2;
+} scene_t;
+
+typedef struct input_s {
+    keypress_t *keys[KEY_AMOUNT];
+} input_t;
+
+typedef struct player_s {
+    sfVector2f pos;
+    sfVector2f speed;
+    sfVector2f dash;
+    sfVector2f bump;
+    sfVector2f vel;
+    anim_t **move;
+    anim_t **hurt;
+    anim_t *idle;
+    anim_t *display;
+    float *stats;
+} player_t;
+
 struct game_s {
     window_t *window;
     my_clock_t *clock;
     view_t *view;
     gui_t *gui;
     input_t *input;
-    option_t *option;
+    option_t option;
+    sfVector2i mouse_pos;
     int exit;
     int scene;
+    scene_t game;
 };
 
-/*
-game->window = create_frame(WINDOW_SIZE_X, WINDOW_SIZE_Y, "Window");
-    game->input = create_input();
-    game->view = create_view((sfVector2f){0, 0}, 15, GLOBAL_ZOOM);
-    game->interface = create_gui(game->view);
-    game->exit = 0;
-    game->scene = MENU;
-    game->clock = create_clock();
-    game->data = create_data();
-    game->win = 0;
-    */
+void change_cursor(game_t *game);
+void put_game_scene(game_t *game);
+void exit_game(game_t *game);
+void res_moins(game_t *game);
+void res_plus(game_t *game);
+void put_fs(game_t *game);
+
+view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
+sfVector2f global_to_view(sfVector2f pos, view_t *view);
+sfVector2f global_to_view_fx(sfVector2f pos, view_t *view);
+sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view);
+
+cursor_t *create_cursor(game_t *game);
+void manage_cursor(game_t *game, sfVector2i pos);
+gui_t *create_gui(view_t *view);
+
+sfIntRect f_to_i_sfrect(sfFloatRect rect_f);
+sfVector2f i_to_f(sfVector2i vec);
+int point_intersect(image_t *img, float x, float y);
+int image_intersect(image_t *img1, image_t *img2);
+
+button_t *create_button(char *p, sfVector3f o, view_t *v, void (*t)(game_t*));
+void manage_button2(button_t *button, game_t *game);
+void manage_button(button_t *button, game_t *game);
+void update_gui(game_t *game, sfVector2i pos);
+
+void manage_game(game_t *game);
+
+input_t *create_input(void);
+void destroy_input(input_t *input);
+void process_input(window_t *window, input_t *input);
+
 
 #endif

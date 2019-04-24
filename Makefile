@@ -43,13 +43,17 @@ INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
 
-UTILS	=	utils
+BUTTONS		=	button_functions
 DIALOGUES	=	dialogues
+SCRIPTS		=	$(DIALOGUES)/scripts
+GUI			=	gui
 INVENTORY	=	inventory
 INV_TOOLS	=	$(INVENTORY)/tools
-SCRIPTS	=	$(DIALOGUES)/scripts
+SCENES		=	scenes
+UTILS		=	utils
 
-SRC	=	$(SCRIPTS)/intro.c \
+SRC	=	$(BUTTONS)/menu_functions.c \
+		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/village.c \
 		$(DIALOGUES)/create_dialogue_script.c \
 		$(DIALOGUES)/create_dialogue.c \
@@ -66,6 +70,8 @@ SRC	=	$(SCRIPTS)/intro.c \
 		$(INV_TOOLS)/get_all_id.c \
 		$(INV_TOOLS)/get_id.c \
 		$(INV_TOOLS)/stack_item.c \
+		$(GUI)/create_gui.c \
+		$(GUI)/update_gui.c \
 		$(INVENTORY)/add_item_with_index.c \
 		$(INVENTORY)/add_item.c \
 		$(INVENTORY)/create_inventory.c \
@@ -74,16 +80,13 @@ SRC	=	$(SCRIPTS)/intro.c \
 		$(INVENTORY)/get_amount.c \
 		$(INVENTORY)/remplace_item_with_index.c \
 		$(INVENTORY)/remplace_item.c \
+		$(SCENES)/game_scene.c \
 		$(UTILS)/get_line.c \
-		global_info.c \
-		manage_view.c \
-		button_functions/menu_functions.c \
-		scenes/game_scene.c \
-		manage_inputs.c \
+		$(UTILS)/quick_sftext_create.c \
 		create_game.c \
-		gui/create_gui.c \
-		gui/update_gui.c
-
+		global_info.c \
+		manage_inputs.c \
+		manage_view.c
 
 SRC_LIB	=	stdio my string graph \
 			csfml-graphics csfml-system csfml-window csfml-audio \
@@ -96,14 +99,14 @@ OBJ	=	$(SRCS:.c=.o)
 LIBRARIES	=	$(SRC_LIB:%=-l%)
 LIB_PATHS_FLAG	=	$(LIB_PATHS:%=-L$(ROOT_PATH)%)
 
-CFLAGS	=	-Wall -Wextra -I $(INCL_PATH)
+CFLAGS	=	-Wall -Wextra -Werror -I $(INCL_PATH)
 LDFLAGS	=	$(LIB_PATHS_FLAG) $(LIBRARIES)
 DEBUG_FLAGS	=	-g3 -gdwarf-4
 
 MAKE_RULE	=	all
 CLEAN_RULE	=	clean
 
-all:	build_libs message $(NAME)
+all:	build_libs $(NAME)
 
 message:
 	@$(LINE_RETURN)

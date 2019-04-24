@@ -9,3 +9,8 @@
 #include <math.h>
 #include "graph.h"
 #include "my_rpg.h"
+
+void compute_col(col_t *col, int current_map)
+{
+    
+}

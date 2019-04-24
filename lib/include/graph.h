@@ -79,6 +79,8 @@ void process_key(keypress_t *key);
 text_t *create_text(int fontsize, char *font, window_t *window);
 void display_text(char *str, sfVector2f pos, text_t *text);
 void destroy_text(text_t *text);
+/* quick sfText creator */
+sfText *quick_text_create(unsigned int char_size, const char *fontpath);
 
 /* IMAGE */
 

@@ -23,25 +23,22 @@ extern const char *dialogue_font_path;
 extern const char *texture_path;
 
 enum text_speed {
-    INSTANT, // 0
-    FAST, // 1
-    NORMAL, // 3
-    SLOW, // 5
+    INSTANT,
+    FAST,
+    NORMAL,
+    SLOW,
     SPEED_MAX
 };
 enum text_speed get_text_speed(void);
 void change_text_speed(int modifier);
 #define SPEED_TO_FRAMES(s) (int) s + (int) s - 1
 
-// enum text_mode {BASIC, NARRATIVE, EXCLAMATION, THINKING, MODE_MAX};
-
-// typedef unsigned int scene_t;
 typedef unsigned int author_t;
 
 struct selection {
     int total;
     int selected;
-    text_t *texts;
+    sfText **texts;
 };
 
 struct dialogue_s {
@@ -50,13 +47,13 @@ struct dialogue_s {
     long n_frames;
     author_t author;
     enum text_speed speed;
-    text_t text;
+    sfText *text;
     struct selection *choises;
     struct dialogue_s *next;
 };
 
 /* function called in the game loop */
-int display_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue,
+int display_dialogue(window_t *window, struct dialogue_s *dialogue,
                         size_t frames);
 
 /* Dialogue structure */

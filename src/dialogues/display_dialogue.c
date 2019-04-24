@@ -18,10 +18,10 @@ static int draw_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue)
     if (!canvas)
         return FAILURE;
     sfRenderWindow_drawSprite(window, canvas, NULL);
-    sfRenderWindow_drawText(window, dialogue->text.text, NULL);
+    sfRenderWindow_drawText(window, dialogue->text, NULL);
     if (dialogue->choises && dialogue->n_frames == -1) {
         for (int i = 0; i < dialogue->choises->total; i++)
-            sfRenderWindow_drawText(window, dialogue->choises->texts[i].text,
+            sfRenderWindow_drawText(window, dialogue->choises->texts[i],
 NULL);
     }
     return SUCCESS;
@@ -37,10 +37,10 @@ static void update_text_content(struct dialogue_s *dialogue)
     }
     dialogue->said[len] = dialogue->script[len];
     dialogue->said[len + 1] = '\0';
-    sfText_setString(dialogue->text.text, dialogue->said);
+    sfText_setString(dialogue->text, dialogue->said);
 }
 
-int display_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue,
+int display_dialogue(window_t *window, struct dialogue_s *dialogue,
                         size_t frames)
 {
     if (!dialogue)
@@ -53,5 +53,5 @@ dialogue->n_frames >= SPEED_TO_FRAMES(dialogue->speed)) {
         dialogue->n_frames -= SPEED_TO_FRAMES(dialogue->speed);
         update_text_content(dialogue);
     }
-    return draw_dialogue(window, dialogue);
+    return draw_dialogue(window->window, dialogue);
 }

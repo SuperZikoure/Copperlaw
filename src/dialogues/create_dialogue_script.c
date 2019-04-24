@@ -37,7 +37,7 @@ static char *write_script(char *str, int line_max)
 static struct selection *init_choises(struct script_s *script)
 {
     struct selection *choises = malloc(sizeof(struct selection));
-    text_t *text_array = malloc(sizeof(text_t) * script->choise_nb);
+    sfText **text_array = malloc(sizeof(sfText *) * script->choise_nb);
     char *choise_tmp;
 
     if (!choises)
@@ -45,14 +45,14 @@ static struct selection *init_choises(struct script_s *script)
     choises->total = script->choise_nb;
     choises->selected = 0;
     for (int i = 0; i < choises->total; i++) {
-        text_array[i] = create_text(30, (char *) dialogue_font_path);
+        text_array[i] = quick_text_create(30, dialogue_font_path);
         choise_tmp = write_script(script->choise[i], CHOISE_MAX);
         if (!choise_tmp)
             return NULL;
-        sfText_setPosition(text_array[i].text, V2F(100 + 300 * i, 250));
-        sfText_setString(text_array[i].text, choise_tmp);
+        sfText_setPosition(text_array[i], V2F(100 + 300 * i, 250));
+        sfText_setString(text_array[i], choise_tmp);
     }
-    sfText_setColor(text_array[choises->selected].text, sfYellow);
+    sfText_setColor(text_array[choises->selected], sfYellow);
     choises->texts = text_array;
     return choises;
 }

@@ -29,6 +29,6 @@
 
 /* used to change the selected "dialogue selection" color */
 #define SET_SELECTED_CHOISE_COLOR(s, c) \
-            sfText_setColor(s->texts[s->selected].text, c)
+            sfText_setColor(s->texts[s->selected], c)
 
 #endif /* !MACROS_H_ */

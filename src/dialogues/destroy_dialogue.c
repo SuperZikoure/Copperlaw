@@ -8,11 +8,13 @@
 #include <stdlib.h>
 #include "graph.h"
 #include "dialogues.h"
+#include "macros.h"
 
 void destroy_dialogue(struct dialogue_s *dialogue)
 {
     free(dialogue->script);
     free(dialogue->said);
-    destroy_text(dialogue->text);
+    DESTROY_TEXT_FONT(dialogue->text);
+    sfText_destroy(dialogue->text);
     free(dialogue);
 }

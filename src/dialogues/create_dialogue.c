@@ -26,9 +26,9 @@ struct dialogue_s *create_dialogue(char *script, author_t author,
     dialogue->n_frames = 0;
     dialogue->author = author;
     dialogue->speed = get_text_speed();
-    dialogue->text = create_text(30, (char *) dialogue_font_path);
-    sfText_setPosition(dialogue->text.text, V2F(0, 0));
-    sfText_setString(dialogue->text.text, dialogue->said);
+    dialogue->text = quick_text_create(30, dialogue_font_path);
+    sfText_setPosition(dialogue->text, V2F(0, 0));
+    sfText_setString(dialogue->text, dialogue->said);
     dialogue->choises = choises;
     dialogue->next = NULL;
     return dialogue;

@@ -25,22 +25,22 @@ void reset_velocity(sfVector2f *velocity, float rate)
         velocity->y = 0;
 }
 
-sfBool mouse_pressed_once(void)
+sfBool mouse_pressed_once(int mouse_button)
 {
-    static sfBool press = 0;
-    static sfBool click = 0;
+    static sfBool press[3] = {0, 0, 0};
+    static sfBool click[3] = {0, 0, 0};
 
-    if (sfMouse_isButtonPressed(sfMouseLeft) && !click) {
-        press = 1;
-        click = 1;
+    if (sfMouse_isButtonPressed(mouse_button) && !click[mouse_button]) {
+        press[mouse_button] = 1;
+        click[mouse_button] = 1;
     } else {
-        press = 0;
+        press[mouse_button] = 0;
     }
-    if (!sfMouse_isButtonPressed(sfMouseLeft)){
-        press = 0;
-        click = 0;
+    if (!sfMouse_isButtonPressed(mouse_button)){
+        press[mouse_button] = 0;
+        click[mouse_button] = 0;
     }
-    return (press);
+    return (press[mouse_button]);
 }
 
 void manage_view(sfVector2f pos, view_t *view)
@@ -113,9 +113,6 @@ void manage_dash(input_t *input, sfVector2f *dash, sfVector2f velocity, sfVector
         dash->x = 0;
     if (dash->y <= 1.01 && dash->y >= -1.01)
         dash->y = 0;
-    //printf("DX : %f\n", dash->x);
-    //printf("DY : %f\n", dash->y);
-    //printf("TIMER : %d\n", timer);
     if (timer > 0)
         timer--;
 }
@@ -129,14 +126,14 @@ sfVector2f ball_dir(game_t *game)
     return ((sfVector2f){vx / total, vy / total});
 }
 
-void manage_michel(monster_t *michel, ball_t *balls[BALL_AMOUNT], sfVector2f pos)
+void manage_michel(monster_t *michel, ball_t *balls[PLAYER_BALLS], sfVector2f pos)
 {
         sfVector2f diff = (sfVector2f){michel->pos.x - pos.x, michel->pos.y - pos.y};
 
-    for (int i = 0; i < BALL_AMOUNT; i++) {
+    for (int i = 0; i < PLAYER_BALLS; i++) {
         if (!balls[i]->exist)
             continue;
-        if ((michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hurt)) || (!(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal))) {
+        if ((michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hit)) || (!(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal))) {
             michel->speed = (sfVector2f){balls[i]->speed.x / 5, balls[i]->speed.y / 5};
             balls[i]->exist = 0;
             printf("Michel a été frappé\n");
@@ -158,14 +155,14 @@ void manage_michel(monster_t *michel, ball_t *balls[BALL_AMOUNT], sfVector2f pos
     if (michel->speed.y <= 1.01 && michel->speed.y >= -1.01)
         michel->speed.y = 0;
     if (michel->speed.x + michel->speed.y)
-        display_image(michel->hurt, michel->pos);
+        display_image(michel->hit, michel->pos);
     else
         display_image(michel->normal, michel->pos);
 }
 
-void manage_balls(ball_t *balls[BALL_AMOUNT])
+void manage_balls(ball_t *balls[PLAYER_BALLS])
 {
-    for (int i = 0; i < BALL_AMOUNT; i++) {
+    for (int i = 0; i < PLAYER_BALLS; i++) {
         if (!balls[i]->exist)
             continue;
         balls[i]->pos.x += balls[i]->speed.x;
@@ -174,13 +171,13 @@ void manage_balls(ball_t *balls[BALL_AMOUNT])
     }
 }
 
-void fire_ball(sfVector2f pos, ball_t *balls[BALL_AMOUNT], sfVector2f dir)
+void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir)
 {
     int x = pos.x + 16;
     int y = pos.y + 16;
     static int ball = 0;
 
-    for (int i = 0; i < BALL_AMOUNT; i++) {
+    for (int i = 0; i < PLAYER_BALLS; i++) {
         if (balls[i]->exist)
             continue;
         balls[i]->exist = 1;
@@ -196,7 +193,7 @@ void fire_ball(sfVector2f pos, ball_t *balls[BALL_AMOUNT], sfVector2f dir)
     balls[ball]->speed.x = dir.x * 20;
     balls[ball]->speed.y = dir.y * 20;
     ball++;
-    if (ball >= BALL_AMOUNT)
+    if (ball >= PLAYER_BALLS)
         ball = 0;
 }
 
@@ -222,7 +219,7 @@ void manage_game(game_t *game)
 
     distance = get_distance(game->game.player_pos, view_pos[3]);
 
-    if (mouse_pressed_once())
+    if (mouse_pressed_once(sfMouseLeft))
         fire_ball(game->game.player_pos, game->game.balls, dir);
     manage_dash(game->input, &game->game.dash, game->game.player_speed, dir);
     manage_inputs(game->input, &game->game.player_speed);
@@ -231,7 +228,7 @@ void manage_game(game_t *game)
     game->game.player_pos.y += game->game.player_speed.y + game->game.dash.y;
 
     manage_view(view_pos[3], game->view);
-    display_image(game->game.map, (sfVector2f){0, 0});
+    display_image(game->maps[game->current_map]->bg, (sfVector2f){0, 0});
     manage_balls(game->game.balls);
     manage_michel(game->game.michel, game->game.balls, game->game.player_pos);
     display_image(game->game.player_image, game->game.player_pos);

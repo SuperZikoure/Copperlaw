@@ -21,20 +21,27 @@
 #define SIZE 10
 
 #define V2F(x, y) (sfVector2f) {x, y}
+#define V2I(x, y) (sfVector2i) {x, y}
 
 #define STATS_AMOUNT 21
 
-#define BALL_AMOUNT 200
+#define PLAYER_BALLS 200
+#define MONSTER_BALLS 25
 
 #define BUTTON_AMOUNT 4
 
 #define KEY_AMOUNT 13
+
+#define MAP_AMOUNT 1
 
 #define DEFAULT_SCREENSIZE 4
 #define RESOLUTIONS 6
 
 #define KEY_PRESSED(c) (input->keys[c]->pressed)
 #define KEY_HELD(c) (input->keys[c]->held)
+
+#define MOUSE_PRESSED(c) (mouse_pressed_once(c))
+#define MOUSE_HELD(c) (fMouse_isButtonPressed(c))
 
 #define WINDOW game->window
 #define VIEW game->view
@@ -184,6 +191,21 @@ typedef struct option_s {
     unsigned short int sound;
 } option_t;
 
+typedef struct map_s {
+    char **map;
+    sfVector2i size;
+    image_t *bg;
+    image_t *fg;
+} map_t;
+
+typedef struct col_s {
+    float max[4];
+    sfVector2f *pos;
+    sfIntRect hitbox;
+    int current_map;
+    map_t *maps[MAP_AMOUNT];
+} col_t;
+
 typedef struct ball_s {
     sfVector2f pos;
     sfVector2f speed;
@@ -192,23 +214,27 @@ typedef struct ball_s {
     int damage;
     int exist;
     int type;
+    int timer;
     image_t *ball;
+    col_t col;
 } ball_t;
 
 typedef struct monster_s {
     sfVector2f pos;
     sfVector2f speed;
+    sfVector2f bump;
+    sfVector2f vel;
     int aggro;
-    image_t *normal;
-    image_t *hurt;
+    anim_t **move;
+    anim_t **hurt;
+    anim_t *idle;
+    anim_t *display;
+    image_t *normal; //FUCK
+    image_t *hit; //FUCK
+    float stats[STATS_AMOUNT];
+    ball_t *attacks[MONSTER_BALLS];
+    col_t col;
 } monster_t;
-
-typedef struct map_s {
-    int **map;
-    sfVector2f size;
-    image_t bg;
-    image_t fg;
-} map_t;
 
 typedef struct scene_s {
     sfVector2f player_pos;
@@ -216,7 +242,7 @@ typedef struct scene_s {
     sfVector2f dash;
     image_t *map;
     image_t *player_image;
-    ball_t *balls[BALL_AMOUNT];
+    ball_t *balls[PLAYER_BALLS];
     monster_t *michel;
     image_t *test1;
     image_t *test2;
@@ -232,11 +258,18 @@ typedef struct player_s {
     sfVector2f dash;
     sfVector2f bump;
     sfVector2f vel;
-    anim_t **move;
-    anim_t **hurt;
+    int direction;
+    int direction_2;
+    sfVector2f dir;
+    float mouse_distance;
+    anim_t *move;
+    anim_t *hurt[4];
     anim_t *idle;
     anim_t *display;
     float stats[STATS_AMOUNT];
+    float boost[STATS_AMOUNT];
+    ball_t *attacks[PLAYER_BALLS];
+    col_t col;
 } player_t;
 
 struct game_s {
@@ -246,12 +279,46 @@ struct game_s {
     gui_t *gui;
     input_t *input;
     option_t option;
+    player_t *player;
+    int current_map;
+    map_t *maps[MAP_AMOUNT];
     sfVector2i mouse_pos;
     int frames;
     int exit;
     int scene;
     scene_t game;
 };
+
+/* gui/create_gui.c */
+
+gui_t *create_gui(view_t *view);
+
+/* gui/update_gui.c */
+
+void update_gui(game_t *game, sfVector2i pos);
+
+/* manage_intersections.c */
+
+int point_intersect(image_t *img, float x, float y);
+int image_intersect(image_t *img1, image_t *img2);
+
+/* create_game.c */
+
+game_t create_game(void);
+
+/* scenes/game/manage_game.c */
+
+void manage_game(game_t *game);
+
+/* maps/create_map.c */
+
+map_t *create_map(char *filepath, window_t *window);
+
+/* create_player.c */
+
+player_t *create_player(game_t *game);
+
+/* BUTTON FUNCTIONS */
 
 void change_cursor(game_t *game);
 void put_game_scene(game_t *game);
@@ -260,27 +327,17 @@ void res_moins(game_t *game);
 void res_plus(game_t *game);
 void put_fs(game_t *game);
 
-view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
-sfVector2f global_to_view(sfVector2f pos, view_t *view);
-sfVector2f global_to_view_fx(sfVector2f pos, view_t *view);
-sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view);
-
-gui_t *create_gui(view_t *view);
-
-int point_intersect(image_t *img, float x, float y);
-int image_intersect(image_t *img1, image_t *img2);
-
-void update_gui(game_t *game, sfVector2i pos);
-
-void manage_game(game_t *game);
+////////////////////////////////////
 
 input_t *create_input(void);
 void destroy_input(input_t *input);
 void process_input(window_t *window, input_t *input);
 
-/* create_game.c */
 
-game_t create_game(void);
+view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
+sfVector2f global_to_view(sfVector2f pos, view_t *view);
+sfVector2f global_to_view_fx(sfVector2f pos, view_t *view);
+sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view);
 
 
 #endif

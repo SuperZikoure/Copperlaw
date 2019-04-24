@@ -42,13 +42,13 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-
 BUTTONS		=	button_functions
 DIALOGUES	=	dialogues
 SCRIPTS		=	$(DIALOGUES)/scripts
 GUI			=	gui
 INVENTORY	=	inventory
 INV_TOOLS	=	$(INVENTORY)/tools
+MAPS		=	maps
 SCENES		=	scenes
 UTILS		=	utils
 
@@ -80,12 +80,15 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(INVENTORY)/get_amount.c \
 		$(INVENTORY)/remplace_item_with_index.c \
 		$(INVENTORY)/remplace_item.c \
+		$(MAPS)/create_map.c \
 		$(SCENES)/game_scene.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		create_game.c \
+		create_player.c \
 		global_info.c \
 		manage_inputs.c \
+		manage_intersections.c \
 		manage_view.c
 
 SRC_LIB	=	stdio my string graph \

@@ -87,6 +87,7 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		create_game.c \
 		create_player.c \
 		global_info.c \
+		main_test_dialogues.c \
 		manage_inputs.c \
 		manage_intersections.c \
 		manage_view.c

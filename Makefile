@@ -49,7 +49,10 @@ SRC	=	global_info.c \
 		manage_inputs.c \
 		create_game.c \
 		gui/create_gui.c \
-		gui/update_gui.c
+		gui/update_gui.c \
+		manage_intersections.c \
+		maps/create_map.c \
+		create_player.c
 
 
 SRC_LIB	=	stdio my string graph \

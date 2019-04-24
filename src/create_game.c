@@ -70,7 +70,7 @@ game_t create_game(void)
     game.exit = 0;
     game.frames = 0;
     game.game = init_scene(game);
-    game.maps[0] = create_map("data/maps/testmdr", game.window);
+    game.maps[0] = create_map("src/data/maps/testmdr", game.window);
     game.current_map = 0;
     game.player = create_player(&game);
     return (game);

@@ -74,10 +74,19 @@ SRC	=	$(SCRIPTS)/intro.c \
 		$(INVENTORY)/get_amount.c \
 		$(INVENTORY)/remplace_item_with_index.c \
 		$(INVENTORY)/remplace_item.c \
-		$(UTILS)/get_line.c
+		$(UTILS)/get_line.c \
+		global_info.c \
+		manage_view.c \
+		button_functions/menu_functions.c \
+		scenes/game_scene.c \
+		manage_inputs.c \
+		create_game.c \
+		gui/create_gui.c \
+		gui/update_gui.c
+
 
 SRC_LIB	=	stdio my string graph \
-			csfml-graphics csfml-system csfml-audio \
+			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
 LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph

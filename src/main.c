@@ -5,93 +5,59 @@
 ** Main function
 */
 
-#include <stdio.h>
-#include <SFML/Graphics.h>
-#include "dialogues.h"
-#include "macros.h"
+#include "graph.h"
+#include "my_rpg.h"
+#include "stdlib.h"
 
-struct dialogue_s *switch_dialogue(struct dialogue_s *dialogue)
+void game_loop(game_t *game)
 {
-    dialogue->said[0] = '\0';
-    sfText_setString(dialogue->text.text, dialogue->said);
-    dialogue->n_frames = 0;
-    dialogue->speed = get_text_speed();
-    if (dialogue->choises) {
-        SET_SELECTED_CHOISE_COLOR(dialogue->choises, sfWhite);
-        dialogue->choises->selected = 0;
-        SET_SELECTED_CHOISE_COLOR(dialogue->choises, sfYellow);
+    while (sfRenderWindow_isOpen(game->window->window) && game->exit == 0) {
+        game->clock->time = sfClock_getElapsedTime(game->clock->clock);
+        if (game->clock->time.microseconds >= 1 / 60) {
+            process_input(game->window, game->input);
+            sfRenderWindow_clear(game->window->window, sfBlack);
+            game->mouse_pos =
+            sfMouse_getPositionRenderWindow(game->window->window);
+            //scene_manager(game, game->scene);
+            if (game->scene == GAME)
+                manage_game(game);
+            update_gui(game, game->mouse_pos);
+            sfRenderWindow_setView(game->window->window, game->view->camera);
+            sfRenderWindow_display(game->window->window);
+            sfClock_restart(game->clock->clock);
+        }
     }
-    return dialogue->next;
 }
 
-enum zone_ids get_current_scene_id(int action)
+int point_intersect(image_t *img, float x, float y)
 {
-    static enum zone_ids id = INTRO;
+    sfFloatRect rect = sfSprite_getGlobalBounds(img->sprite);
 
-    if (action == 0)
-        return id;
-    id = id == INTRO ? VILLAGE : INTRO;
-    return id;
+    if (sfFloatRect_contains(&rect, x, y) == 1)
+        return (1);
+    else
+        return (0);
+}
+
+int image_intersect(image_t *img1, image_t *img2)
+{
+    sfFloatRect rect1 = sfSprite_getGlobalBounds(img1->sprite);
+    sfFloatRect rect2 = sfSprite_getGlobalBounds(img2->sprite);
+    sfFloatRect overlap;
+
+    if (sfFloatRect_intersects(&rect1, &rect2, &overlap) == sfTrue)
+        return (1);
+    else
+        return (0);
 }
 
 int main(void)
 {
-    sfVideoMode vidmode = {1600, 900, 32};
-    sfRenderWindow *window = sfRenderWindow_create(vidmode, "Dialogues", sfDefaultStyle, NULL);
-    sfEvent event;
-    struct dialogue_s *dialogue = NULL;
+    game_t game = create_game();
 
-    if (load_dialogue_scene(get_current_scene_id(0)) == -1)
-        return 84;
-    sfRenderWindow_setFramerateLimit(window, 60);
-    sfRenderWindow_display(window);
-    while (sfRenderWindow_isOpen(window)) {
-        while (sfRenderWindow_pollEvent(window, &event)) {
-            if (event.type == sfEvtClosed)
-                sfRenderWindow_close(window);
-            if (event.type == sfEvtKeyPressed) {
-                if (event.key.code == sfKeyEscape)
-                    sfRenderWindow_close(window);
-                if (dialogue) {
-                    if (dialogue->choises && dialogue->n_frames == -1) {
-                        if (event.key.code == sfKeyReturn) {
-                            printf("'%s' [%d]\n", sfText_getString(dialogue->choises->texts[dialogue->choises->selected].text), dialogue->choises->selected);
-                            dialogue = switch_dialogue(dialogue);
-                        }
-                        if (event.key.code == sfKeyLeft && dialogue->choises->selected > 0) {
-                            SET_SELECTED_CHOISE_COLOR(dialogue->choises, sfWhite);
-                            dialogue->choises->selected--;
-                            SET_SELECTED_CHOISE_COLOR(dialogue->choises, sfYellow);
-                        }
-                        if (event.key.code == sfKeyRight && dialogue->choises->selected < dialogue->choises->total - 1) {
-                            SET_SELECTED_CHOISE_COLOR(dialogue->choises, sfWhite);
-                            dialogue->choises->selected++;
-                            SET_SELECTED_CHOISE_COLOR(dialogue->choises, sfYellow);
-                        }
-                    } else {
-                        if (event.key.code == sfKeySpace) {
-                            if (dialogue->n_frames == -1)
-                                dialogue = switch_dialogue(dialogue);
-                            else
-                                dialogue->speed = INSTANT;
-                        }
-                    }
-                } else if (event.key.code == sfKeyE)
-                    dialogue = get_dialogue(0);
-                else if (event.key.code == sfKeyR)
-                    dialogue = get_dialogue(1);
-                else if (event.key.code == sfKeyC) {
-                    destroy_current_dialogue_script();
-                    if (load_dialogue_scene(get_current_scene_id(1)) == -1)
-                        return 84;
-                }
-            }
-        }
-        sfRenderWindow_clear(window, sfBlue);
-        display_dialogue(window, dialogue, 1);
-        sfRenderWindow_display(window);
-    }
-    destroy_current_dialogue_script();
-    sfRenderWindow_destroy(window);
+    game.scene = GAME;
+    game_loop(&game);
+    if (game.exit == -1)
+        return (84);
     return (0);
 }

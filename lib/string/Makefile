@@ -41,7 +41,7 @@ SRC	=	my_arraylen.c	my_arraynlen.c	my_linelen.c			\
 		my_strcpycat.c \
 		my_strdup.c 	my_strlen.c 	my_strncasecmp.c 		\
 		my_strncat.c	my_strncmp.c 	my_strncpy.c 			\
-		my_strndup.c 	my_strnlen.c
+		my_strndup.c 	my_strnlen.c	my_strcat_no_free.c
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%)
 OBJ	=	$(SRCS:.c=.o)

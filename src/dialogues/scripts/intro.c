@@ -7,7 +7,7 @@
 
 #include "scripts.h"
 
-NEW_SCRIPT(blank) = {
+NEW_SCRIPT(blank_aha) = {
     SAY("...", NARRATOR)
     END
 };

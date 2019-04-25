@@ -82,6 +82,7 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(INVENTORY)/remplace_item_with_index.c \
 		$(INVENTORY)/remplace_item.c \
 		$(MAPS)/create_map.c \
+		$(MAPS)/read_map_from_file.c \
 		$(MOVEMENT)/move_player.c \
 		$(SCENES)/game_scene.c \
 		$(UTILS)/get_line.c \

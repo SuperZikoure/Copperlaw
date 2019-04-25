@@ -45,6 +45,7 @@ static col_t create_col(sfIntRect hb, sfVector2f pos, map_t *maps[MAP_AMOUNT])
     col.pos = &pos;
     col.hitbox = hb;
     col.current_map = 0;
+    col.save = V2F(0, 0);
     return (col);
 }
 
@@ -79,5 +80,6 @@ player_t *create_player(game_t *ga)
     }
     player->col = create_col((sfIntRect){0, 16, 16, 16},
     player->pos, ga->maps);
+    player->moving = 0;
     return (player);
 }

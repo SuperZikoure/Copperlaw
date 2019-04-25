@@ -9,7 +9,7 @@
 #include "my_rpg.h"
 #include "stdlib.h"
 
-static scene_t init_scene(game_t game)
+/*static scene_t init_scene(game_t game)
 {
     scene_t scene;
 
@@ -34,7 +34,7 @@ static scene_t init_scene(game_t game)
     scene.test1 = create_image("assets/test1.png", game.window);
     scene.test2 = create_image("assets/test2.png", game.window);
     return (scene);
-}
+}*/
 
 static my_clock_t *create_clock(game_t *game)
 {
@@ -69,7 +69,6 @@ game_t create_game(void)
     game.option = create_option();
     game.exit = 0;
     game.frames = 0;
-    game.game = init_scene(game);
     game.maps[0] = create_map("src/data/maps/testmdr", game.window);
     game.current_map = 0;
     game.player = create_player(&game);

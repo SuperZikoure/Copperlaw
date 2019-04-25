@@ -13,7 +13,11 @@ anim_t *create_anim(sfVector2f fps, sfVector2i size, char *sheet, window_t *wd)
 {
     anim_t *anim = malloc(sizeof(anim_t));
 
+    if (!anim)
+        return (NULL);
     anim->sheet = create_image(sheet, wd);
+    if (!anim->sheet)
+        return (NULL);
     anim->window = wd;
     anim->frames = fps.x;
     anim->speed = pow(fps.y, -1) * 60;

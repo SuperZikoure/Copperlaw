@@ -9,7 +9,7 @@
 #define DIALOGUES_H_
 
 #include <SFML/Graphics.h>
-#include "rpg.h"
+#include "my_rpg.h"
 #include "graph.h"
 
 #define FAILURE -1

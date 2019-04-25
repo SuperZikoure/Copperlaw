@@ -13,6 +13,7 @@
 #include "graph.h"
 #include "my_rpg.h"
 #include "my_string.h"
+#include "macros.h"
 
 static void manage_button2(button_t *button)
 {

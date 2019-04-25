@@ -9,6 +9,7 @@
 #include <math.h>
 #include "graph.h"
 #include "my_rpg.h"
+#include "macros.h"
 
 static void change_anim(player_t *player)
 {

@@ -8,9 +8,6 @@
 #include "graph.h"
 #include "my_rpg.h"
 
-#define RES game->option.resolution
-#define FS game->option.fullscreen
-
 void change_cursor(game_t *game)
 {
     cursor_t *cursor = game->gui->cursor;
@@ -34,7 +31,7 @@ void exit_game(game_t *game)
 
 void put_fs(game_t *game)
 {
-    FS = (FS == 1) ? 0 : 1;
+    FS = FS ? false : true;
     change_window(game->window, RES, FS);
 }
 

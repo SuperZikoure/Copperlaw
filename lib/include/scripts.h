@@ -29,9 +29,9 @@ struct script_s {
 
 enum author_list {
     NARRATOR,
-    PLAYER,
+    PLAYER1,
     USR,
-    PLAYER_NB
+    AUTHOR_NB
 };
 
 struct dialogue_s *create_dialogue_from_script(const struct script_s *script);

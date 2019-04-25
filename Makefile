@@ -43,6 +43,8 @@ INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
 BUTTONS		=	button_functions
+DATA		=	data
+FETCH		=	$(DATA)/fetch
 DIALOGUES	=	dialogues
 SCRIPTS		=	$(DIALOGUES)/scripts
 GUI			=	gui
@@ -54,6 +56,7 @@ SCENES		=	scenes
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/menu_functions.c \
+		$(FETCH)/fetch_image.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/village.c \
 		$(DIALOGUES)/create_dialogue_script.c \
@@ -89,8 +92,10 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(UTILS)/quick_sftext_create.c \
 		create_game.c \
 		create_player.c \
+		game_loop.c \
 		global_info.c \
 		main_test_dialogues.c \
+		manage_collisions.c \
 		manage_inputs.c \
 		manage_intersections.c \
 		manage_view.c

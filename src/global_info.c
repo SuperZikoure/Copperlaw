@@ -43,3 +43,8 @@ const sfKeyCode input_key[KEY_AMOUNT] = {
     sfKeyNum2,
     sfKeyNum3
 };
+
+const char *image_path[IMAGE_AMOUNT] = {
+    "assets/test1.png",
+    "assets/test2.png"
+};

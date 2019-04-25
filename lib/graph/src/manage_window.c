@@ -6,47 +6,46 @@
 */
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "graph.h"
 #include "my_rpg.h"
 
-window_t *create_window(int size, char *str)
+static int fill_window(window_t *win, int size, bool fullscreen)
 {
-    window_t *window = malloc(sizeof(window_t) * 1);
+    sfUint32 style = fullscreen ? sfClose | sfFullscreen : sfClose;
 
-    window->width = window_size[size].width;
-    window->height = window_size[size].height;
-    window->mode.width = window_size[size].width;
-    window->mode.height = window_size[size].height;
-    window->mode.bitsPerPixel = 32;
-    window->title = str;
-    window->window = sfRenderWindow_create(window->mode, str,
-    sfClose,
-    NULL);
-    sfRenderWindow_setFramerateLimit(window->window, 60);
-    sfRenderWindow_setVerticalSyncEnabled(window->window, sfTrue);
-    sfRenderWindow_setMouseCursorVisible(window->window, sfFalse);
-    return (window);
+    win->width = window_size[size].width;
+    win->height = window_size[size].height;
+    win->mode.width = window_size[size].width;
+    win->mode.height = window_size[size].height;
+    win->mode.bitsPerPixel = 32;
+    win->window = sfRenderWindow_create(win->mode, win->title, style, NULL);
+    if (!win->window)
+        return -1;
+    sfRenderWindow_setFramerateLimit(win->window, 60);
+    sfRenderWindow_setVerticalSyncEnabled(win->window, sfTrue);
+    sfRenderWindow_setMouseCursorVisible(win->window, sfFalse);
+    return 0;
 }
 
-void change_window(window_t *window, int size, int fullscreen)
+window_t *create_window(int size, char *str)
+{
+    window_t *window = malloc(sizeof(window_t));
+
+    if (!window)
+        return NULL;
+    window->title = str;
+    if (fill_window(window, size, false) == -1)
+        return NULL;
+    return window;
+}
+
+int change_window(window_t *window, int size, bool fullscreen)
 {
     sfRenderWindow_destroy(window->window);
-    window->width = window_size[size].width;
-    window->height = window_size[size].height;
-    window->mode.width = window_size[size].width;
-    window->mode.height = window_size[size].height;
-    window->mode.bitsPerPixel = 32;
-    if (fullscreen) {
-        window->window = sfRenderWindow_create(window->mode, window->title,
-        sfClose | sfFullscreen, NULL);
-    }
-    else {
-        window->window = sfRenderWindow_create(window->mode, window->title,
-        sfClose, NULL);
-    }
-    sfRenderWindow_setFramerateLimit(window->window, 60);
-    sfRenderWindow_setVerticalSyncEnabled(window->window, sfTrue);
-    sfRenderWindow_setMouseCursorVisible(window->window, sfFalse);
+    if (fill_window(window, size, fullscreen) == -1)
+        return -1;
+    return 0;
 }
 
 void destroy_window(window_t *window)

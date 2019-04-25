@@ -12,6 +12,7 @@
 #include <SFML/Graphics.h>
 #include <SFML/Window.h>
 #include <SFML/System.h>
+#include <stdbool.h>
 
 typedef struct window_s
 {
@@ -66,7 +67,7 @@ typedef struct keypress_s
 /* WINDOW */
 
 window_t *create_window(int size, char *str);
-void change_window(window_t *window, int size, int fullscreen);
+int change_window(window_t *window, int size, bool fullscreen);
 void destroy_window(window_t *window);
 
 /* INPUT */
@@ -84,7 +85,7 @@ sfText *quick_text_create(unsigned int char_size, const char *fontpath);
 
 /* IMAGE */
 
-image_t *create_image(char *path, window_t *window);
+image_t *create_image(const char *path, window_t *window);
 void display_image(image_t *img, sfVector2f pos);
 void destroy_image(image_t *image);
 

@@ -13,18 +13,10 @@
 
 #define BUTTON_PATH ("assets/buttons/")
 
-#define ABS(a) ((a < 0) ? -a : a)
-#define CAM(a, b, c) ((c * a + b) / (c + 1))
-
 #define ZOOM 1.5
 #define VIEW_SIZE_X (480 * ZOOM) //720
 #define VIEW_SIZE_Y (270 * ZOOM) //405
 #define SIZE 10
-
-#define DEG(c) (c * (180 / M_PI))
-
-#define V2F(x, y) (sfVector2f) {x, y}
-#define V2I(x, y) (sfVector2i) {x, y}
 
 #define STATS_AMOUNT 21
 
@@ -42,6 +34,8 @@
 #define DEFAULT_SCREENSIZE 4
 #define RESOLUTIONS 6
 
+#define IMAGE_AMOUNT 2
+
 #define KEY_PRESSED(c) (input->keys[c]->pressed)
 #define KEY_HELD(c) (input->keys[c]->held)
 
@@ -54,6 +48,9 @@
 #define GUI game->gui
 #define PLAYER game->player
 
+#define RES game->option.resolution
+#define FS game->option.fullscreen
+
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 
@@ -65,6 +62,7 @@ struct info_button_s
 };
 
 extern const sfVideoMode window_size[RESOLUTIONS];
+extern const char *image_path[IMAGE_AMOUNT];
 extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_AMOUNT];
 
@@ -77,6 +75,19 @@ enum enum_scene_e {
     SKILLS,
     STATS,
     MENU
+};
+
+enum zone_ids {
+    INTRO,
+    VILLAGE,
+    ZONE_NB
+};
+
+#define DELETE -1
+
+enum enum_images_e {
+    TRAIL_1,
+    TRAIL_2
 };
 
 enum direction_e {
@@ -243,18 +254,6 @@ typedef struct monster_s {
     col_t col;
 } monster_t;
 
-typedef struct scene_s {
-    sfVector2f player_pos;
-    sfVector2f player_speed;
-    sfVector2f dash;
-    image_t *map;
-    image_t *player_image;
-    ball_t *balls[PLAYER_BALLS];
-    monster_t *michel;
-    image_t *test1;
-    image_t *test2;
-} scene_t;
-
 typedef struct input_s {
     keypress_t *keys[KEY_AMOUNT];
 } input_t;
@@ -294,8 +293,10 @@ struct game_s {
     int frames;
     int exit;
     int scene;
-    scene_t game;
 };
+
+/* game loop */
+void game_loop(game_t *game);
 
 /* gui/create_gui.c */
 
@@ -329,6 +330,15 @@ player_t *create_player(game_t *game);
 /* movement/move_player.c */
 
 void move_player(player_t *player, int dir);
+
+/* manage_collisions.c */
+
+void compute_col(col_t *col, int current_map);
+
+/* fetch_image.c */
+
+int fill_image(window_t *window);
+image_t *get_image(int index);
 
 /* BUTTON FUNCTIONS */
 

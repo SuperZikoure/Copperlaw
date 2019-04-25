@@ -13,9 +13,9 @@ NEW_SCRIPT(blank_aha) = {
 };
 
 NEW_SCRIPT(test_script_1) = {
-    SAY("Whoa je veux une pomme.", PLAYER)
+    SAY("Whoa je veux une pomme.", PLAYER1)
     SAY("eh beh bas moi j'en ai des bonnes", USR)
-    SAY("oh oui ! je veux.", PLAYER)
+    SAY("oh oui ! je veux.", PLAYER1)
     CHOSE2("c'est 2 gold la pomme tu la veux oui ou non ?", "oui", "non", USR)
     END
 };

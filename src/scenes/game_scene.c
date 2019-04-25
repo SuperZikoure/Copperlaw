@@ -10,6 +10,7 @@
 #include <math.h>
 #include "graph.h"
 #include "my_rpg.h"
+#include "macros.h"
 
 void reset_velocity(sfVector2f *velocity, float rate)
 {
@@ -212,7 +213,6 @@ PLAYER->pos.y - CURSOR->pos.y)) / 45;
     }
     direction = round(angle);
     direction %= 8;
-    printf("DIRECTION : %d\n", direction);
     return (direction);
 }
 
@@ -232,16 +232,16 @@ void manage_game(game_t *game)
 
     distance = get_distance(game->player->pos, view_pos[3]);
 
-    if (mouse_pressed_once(sfMouseLeft))
-        fire_ball(game->player->pos, game->game.balls, dir);
+    //if (mouse_pressed_once(sfMouseLeft))
+    //    fire_ball(game->player->pos, game->game.balls, dir);
     manage_dash(game->input, &game->player->dash, game->player->speed, dir);
     manage_inputs(game->input, game->player);
 
     //game->game.player_pos.x += game->game.player_speed.x + game->game.dash.x;
     //game->game.player_pos.y += game->game.player_speed.y + game->game.dash.y;
 
-    game->player->pos.x += game->player->speed.x + game->player->dash.x;
-    game->player->pos.y += game->player->speed.y + game->player->dash.y;
+    game->player->vel.x = game->player->speed.x + game->player->dash.x;
+    game->player->vel.y = game->player->speed.y + game->player->dash.y;
 
     game->player->moving = ABS(game->player->speed.x) +
     ABS(game->player->speed.y);
@@ -253,20 +253,34 @@ void manage_game(game_t *game)
         sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
     }
 
+    compute_col(&PLAYER->col, 0);
+
+    if (PLAYER->vel.x > 0 && PLAYER->vel.x > PLAYER->col.max[RIGHT])
+        PLAYER->vel.x = PLAYER->col.max[RIGHT];
+    if (PLAYER->vel.x < 0 && ABS(PLAYER->vel.x) > PLAYER->col.max[LEFT])
+        PLAYER->vel.x = -PLAYER->col.max[LEFT];
+    if (PLAYER->vel.y > 0 && PLAYER->vel.y > PLAYER->col.max[DOWN])
+        PLAYER->vel.y = PLAYER->col.max[DOWN];
+    if (PLAYER->vel.y < 0 && ABS(PLAYER->vel.y) > PLAYER->col.max[UP])
+        PLAYER->vel.y = -PLAYER->col.max[UP];
+
+    PLAYER->pos.x += PLAYER->vel.x;
+    PLAYER->pos.y += PLAYER->vel.y;
+
     manage_view(view_pos[3], game->view);
     display_image(game->maps[game->current_map]->bg, (sfVector2f){0, 0});
-    manage_balls(game->game.balls);
-    manage_michel(game->game.michel, game->game.balls, game->game.player_pos);
+    //manage_balls(game->game.balls);
+    //manage_michel(game->game.michel, game->game.balls, game->game.player_pos);
     update_anim(game->player->display);
     if (game->player->moving)
         display_anim(game->player->move, game->player->pos);
     else
         display_anim(game->player->idle, game->player->pos);
     if (distance >= 15 && distance < 40)
-        display_image(game->game.test1, view_pos[0]);
+        display_image(get_image(TRAIL_1), view_pos[0]);
     else if (distance >= 40) {
-        display_image(game->game.test2, view_pos[0]);
-        display_image(game->game.test1, view_pos[1]);
-        display_image(game->game.test1, view_pos[2]);
+        display_image(get_image(TRAIL_2), view_pos[0]);
+        display_image(get_image(TRAIL_1), view_pos[1]);
+        display_image(get_image(TRAIL_1), view_pos[2]);
     }
 }

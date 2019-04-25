@@ -21,8 +21,7 @@ input_t *create_input(void)
 
 void process_input(window_t *window, input_t *input)
 {
-    while (sfRenderWindow_pollEvent(window->window,
-    &window->event)) {
+    while (sfRenderWindow_pollEvent(window->window, &window->event)) {
         window->width = sfRenderWindow_getSize(window->window).x;
         window->height = sfRenderWindow_getSize(window->window).y;
         if (window->event.type == sfEvtClosed)

@@ -31,7 +31,7 @@ sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view)
 {
     sfVector2f mid = sfView_getCenter(view->camera);
     sfVector2f new_pos = {pos.x / view->window->mode.width * VIEW_SIZE_X,
-        pos.y / view->window->mode.height * VIEW_SIZE_Y};
+pos.y / view->window->mode.height * VIEW_SIZE_Y};
     sfVector2f offset = {mid.x - VIEW_SIZE_X / 2, mid.y - VIEW_SIZE_Y / 2};
 
     new_pos.x += offset.x - view->velocity.x;

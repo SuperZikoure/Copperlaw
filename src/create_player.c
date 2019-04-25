@@ -49,10 +49,8 @@ static col_t create_col(sfIntRect hb, sfVector2f pos, map_t *maps[MAP_AMOUNT])
     return (col);
 }
 
-player_t *create_player(game_t *ga)
+static void init_player(game_t *ga, player_t *player)
 {
-    player_t *player = malloc(sizeof(player_t));
-
     player->pos = V2F(50, 50);
     player->speed = V2F(0, 0);
     player->dash = V2F(0, 0);
@@ -63,10 +61,19 @@ player_t *create_player(game_t *ga)
     player->dir = V2F(0, 0);
     player->mouse_distance = 0;
     player->idle = create_anim(V2F(8, 0), V2I(32, 32),
-    "assets/player/idle.png", ga->window);
+"assets/player/idle.png", ga->window);
     player->move = create_anim(V2F(12, 18), V2I(32, 32),
-    "assets/player/move.png", ga->window);
+"assets/player/move.png", ga->window);
     player->display = player->move;
+}
+
+player_t *create_player(game_t *ga)
+{
+    player_t *player = malloc(sizeof(player_t));
+
+    if (!player)
+        return NULL;
+    init_player(ga, player);
     for (int i = 0; i < PLAYER_BALLS; i++) {
         player->attacks[i] = malloc(sizeof(ball_t));
         player->attacks[i]->ball = create_image("assets/ball.png", ga->window);
@@ -78,8 +85,7 @@ player_t *create_player(game_t *ga)
         player->boost[i] = 0;
         player->stats[i] = stat_init[i];
     }
-    player->col = create_col((sfIntRect){0, 16, 16, 16},
-    player->pos, ga->maps);
+    player->col = create_col((sfIntRect){0, 16, 16, 16}, player->pos, ga->maps);
     player->moving = 0;
     return (player);
 }

@@ -15,7 +15,7 @@
 #define V2F(x, y) (sfVector2f){x, y}
 #define V2I(x, y) (sfVector2i){x, y}
 #define V2U(x, y) (sfVector2u){x, y}
-#define V3F(x, y, z) (sfVector2f){x, y, z}
+#define V3F(x, y, z) (sfVector3f){x, y, z}
 #define COLOR(r, g, b, a) (sfColor){r, g, b, a}
 #define IRECT(l, t, w, h) (sfIntRect){l, t, w, h}
 

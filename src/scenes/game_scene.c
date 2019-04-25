@@ -216,6 +216,8 @@ PLAYER->pos.y - CURSOR->pos.y)) / 45;
     return (direction);
 }
 
+void compute_col(col_t *col, int current_map, sfRectangleShape *rect);
+
 void manage_game(game_t *game)
 {
     sfVector2f dir = ball_dir(game);
@@ -253,15 +255,37 @@ void manage_game(game_t *game)
         sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
     }
 
-    compute_col(&PLAYER->col, 0);
 
+    printf("R: %.2f L: %.2f D: %.2f U: %.2f\n", PLAYER->col.max[RIGHT], PLAYER->col.max[LEFT], PLAYER->col.max[DOWN], PLAYER->col.max[UP]);
+    printf("R: %d 1: %.2f\n", 16 * 16, PLAYER->col.hitbox.x + PLAYER->col.pos->x);
+    sfRectangleShape *rect = sfRectangleShape_create();
+    sfRectangleShape_setFillColor(rect, sfRed);
+    sfRectangleShape_setSize(rect, V2F(1, 1));
+    sfRectangleShape *zobi = sfRectangleShape_create();
+    sfRectangleShape_setFillColor(zobi, sfBlue);
+    sfRectangleShape_setPosition(zobi, V2F(16 * 16, 3 * 16));
+    sfRectangleShape_setSize(zobi, V2F(16, 16));
+    // sfRectangleShape ***mappppp = malloc(sizeof(sfRectangleShape **) * 10000);
+    // for (int i = 0; i < PLAYER->col.maps[0]->size.x; i++) {
+    //     mappppp[i] = malloc(sizeof(sfRectangleShape *) * 10000);
+    //     for (int j = 0; j < PLAYER->col.maps[0]->size.y; j++) {
+    //         mappppp[i][j] = sfRectangleShape_create();
+    //         if (PLAYER->col.maps[0]->map[j][i] == '1')
+    //             sfRectangleShape_setFillColor(mappppp[i][j], sfBlue);
+    //         else
+    //             sfRectangleShape_setFillColor(mappppp[i][j], sfTransparent);
+    //         sfRectangleShape_setPosition(mappppp[i][j], V2F(i * 16, j * 16));
+    //         sfRectangleShape_setSize(mappppp[i][j], V2F(16, 16));
+    //     }
+    // }
+    compute_col(&PLAYER->col, 0, rect);
     if (PLAYER->vel.x > 0 && PLAYER->vel.x > PLAYER->col.max[RIGHT])
         PLAYER->vel.x = PLAYER->col.max[RIGHT];
-    if (PLAYER->vel.x < 0 && ABS(PLAYER->vel.x) > PLAYER->col.max[LEFT])
+    if (PLAYER->vel.x < 0 && -PLAYER->vel.x > PLAYER->col.max[LEFT])
         PLAYER->vel.x = -PLAYER->col.max[LEFT];
     if (PLAYER->vel.y > 0 && PLAYER->vel.y > PLAYER->col.max[DOWN])
         PLAYER->vel.y = PLAYER->col.max[DOWN];
-    if (PLAYER->vel.y < 0 && ABS(PLAYER->vel.y) > PLAYER->col.max[UP])
+    if (PLAYER->vel.y < 0 && -PLAYER->vel.y > PLAYER->col.max[UP])
         PLAYER->vel.y = -PLAYER->col.max[UP];
 
     PLAYER->pos.x += PLAYER->vel.x;
@@ -283,4 +307,18 @@ void manage_game(game_t *game)
         display_image(get_image(TRAIL_1), view_pos[1]);
         display_image(get_image(TRAIL_1), view_pos[2]);
     }
+    // for (int i = 0; i < PLAYER->col.maps[0]->size.x; i++) {
+    //     for (int j = 0; j < PLAYER->col.maps[0]->size.y; j++) {
+    //         sfRenderWindow_drawRectangleShape(game->window->window, mappppp[i][j], NULL);
+    //     }
+    // }
+    sfRectangleShape *bite = sfRectangleShape_create();
+    sfRectangleShape_setPosition(bite, V2F(PLAYER->col.pos->x + PLAYER->col.hitbox.x - PLAYER->col.hitbox.z, PLAYER->col.pos->y + PLAYER->col.hitbox.y -PLAYER->col.hitbox.z));
+    sfRectangleShape_setSize(bite, V2F(16, 16));
+    sfRectangleShape_setFillColor(bite, sfRed);
+
+    sfRenderWindow_drawRectangleShape(game->window->window, bite, NULL);
+
+    sfRenderWindow_drawRectangleShape(game->window->window, zobi, NULL);
+    sfRenderWindow_drawRectangleShape(game->window->window, zobi, NULL);
 }

@@ -219,7 +219,7 @@ typedef struct col_s {
     float max[4];
     sfVector2f *pos;
     sfVector2f save;
-    sfIntRect hitbox;
+    sfVector3f hitbox;
     int current_map;
     map_t *maps[MAP_AMOUNT];
 } col_t;
@@ -333,7 +333,7 @@ void move_player(player_t *player, int dir);
 
 /* manage_collisions.c */
 
-void compute_col(col_t *col, int current_map);
+// void compute_col(col_t *col, int current_map);
 
 /* fetch_image.c */
 

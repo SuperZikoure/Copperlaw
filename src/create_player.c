@@ -35,7 +35,7 @@ const float stat_init[STATS_AMOUNT] = {
     120
 };
 
-static col_t create_col(sfIntRect hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])
+static col_t create_col(sfVector3f hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])
 {
     col_t col;
 
@@ -99,7 +99,7 @@ player_t *create_player(game_t *ga)
         player->boost[i] = 0;
         player->stats[i] = stat_init[i];
     }
-    player->col = create_col(IRECT(0, 16, 16, 16), &player->pos, ga->maps);
+    player->col = create_col(V3F(16, 24, 8), &player->pos, ga->maps);
     player->moving = 0;
     return (player);
 }

@@ -16,8 +16,14 @@ image_t *create_image(const char *path, window_t *window)
         return (NULL);
     image->window = window;
     image->sprite = sfSprite_create();
+    if (!imae->sprite)
+        return (NULL);
     image->texture = sfTexture_createFromFile(path, NULL);
+    if (!image->texture)
+        return (NULL);
     image->image = sfImage_createFromFile(path);
+    if (!image->image)
+        return (NULL);
     sfSprite_setTexture(image->sprite, image->texture, sfTrue);
     sfSprite_setPosition(image->sprite, (sfVector2f){0, 0});
     return (image);

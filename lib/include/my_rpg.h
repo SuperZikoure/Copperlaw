@@ -54,6 +54,9 @@
 #define GUI game->gui
 #define PLAYER game->player
 
+#define RES game->option.resolution
+#define FS game->option.fullscreen
+
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 
@@ -329,6 +332,10 @@ player_t *create_player(game_t *game);
 /* movement/move_player.c */
 
 void move_player(player_t *player, int dir);
+
+/* manage_collisions.c */
+
+void compute_col(col_t *col, int current_map);
 
 /* BUTTON FUNCTIONS */
 

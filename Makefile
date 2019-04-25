@@ -53,7 +53,8 @@ SRC	=	global_info.c \
 		manage_intersections.c \
 		maps/create_map.c \
 		create_player.c \
-		movement/move_player.c
+		movement/move_player.c \
+		manage_collisions.c
 
 
 SRC_LIB	=	stdio my string graph \

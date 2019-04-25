@@ -211,7 +211,6 @@ PLAYER->pos.y - CURSOR->pos.y)) / 45;
     }
     direction = round(angle);
     direction %= 8;
-    printf("DIRECTION : %d\n", direction);
     return (direction);
 }
 
@@ -239,8 +238,8 @@ void manage_game(game_t *game)
     //game->game.player_pos.x += game->game.player_speed.x + game->game.dash.x;
     //game->game.player_pos.y += game->game.player_speed.y + game->game.dash.y;
 
-    game->player->pos.x += game->player->speed.x + game->player->dash.x;
-    game->player->pos.y += game->player->speed.y + game->player->dash.y;
+    game->player->vel.x = game->player->speed.x + game->player->dash.x;
+    game->player->vel.y = game->player->speed.y + game->player->dash.y;
 
     game->player->moving = ABS(game->player->speed.x) +
     ABS(game->player->speed.y);
@@ -251,6 +250,20 @@ void manage_game(game_t *game)
         PLAYER->idle->frame.top = get_player_direction(game) * PLAYER->idle->frame.height;
         sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
     }
+
+    compute_col(&PLAYER->col, 0);
+
+    if (PLAYER->vel.x > 0 && PLAYER->vel.x > PLAYER->col.max[RIGHT])
+        PLAYER->vel.x = PLAYER->col.max[RIGHT];
+    if (PLAYER->vel.x < 0 && ABS(PLAYER->vel.x) > PLAYER->col.max[LEFT])
+        PLAYER->vel.x = -PLAYER->col.max[LEFT];
+    if (PLAYER->vel.y > 0 && PLAYER->vel.y > PLAYER->col.max[DOWN])
+        PLAYER->vel.y = PLAYER->col.max[DOWN];
+    if (PLAYER->vel.y < 0 && ABS(PLAYER->vel.y) > PLAYER->col.max[UP])
+        PLAYER->vel.y = -PLAYER->col.max[UP];
+
+    PLAYER->pos.x += PLAYER->vel.x;
+    PLAYER->pos.y += PLAYER->vel.y;
 
     manage_view(view_pos[3], game->view);
     display_image(game->maps[game->current_map]->bg, (sfVector2f){0, 0});

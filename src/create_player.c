@@ -34,7 +34,7 @@ const float stat_init[STATS_AMOUNT] = {
     120
 };
 
-static col_t create_col(sfIntRect hb, sfVector2f pos, map_t *maps[MAP_AMOUNT])
+static col_t create_col(sfIntRect hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])
 {
     col_t col;
 
@@ -42,7 +42,7 @@ static col_t create_col(sfIntRect hb, sfVector2f pos, map_t *maps[MAP_AMOUNT])
         col.max[i] = 100;
     for (int i = 0; i < MAP_AMOUNT; i++)
         col.maps[i] = maps[i];
-    col.pos = &pos;
+    col.pos = pos;
     col.hitbox = hb;
     col.current_map = 0;
     col.save = V2F(0, 0);
@@ -79,7 +79,7 @@ player_t *create_player(game_t *ga)
         player->stats[i] = stat_init[i];
     }
     player->col = create_col((sfIntRect){0, 16, 16, 16},
-    player->pos, ga->maps);
+    &player->pos, ga->maps);
     player->moving = 0;
     return (player);
 }

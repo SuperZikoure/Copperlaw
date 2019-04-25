@@ -13,7 +13,7 @@
 static void change_anim(player_t *player)
 {
     int speeds[4] = {ABS(player->speed.y), player->speed.x, player->speed.y,
-    ABS(player->speed.x)};
+ABS(player->speed.x)};
     int max = 0;
     sfVector2i dir;
     int current = 0;

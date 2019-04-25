@@ -5,14 +5,12 @@
 ** manage_gui.c
 */
 
-#include <SFML/Audio.h>
 #include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
 #include <stdlib.h>
 #include "graph.h"
 #include "my_rpg.h"
 #include "my_string.h"
+#include "macros.h"
 
 static cursor_t *create_cursor(game_t *game)
 {
@@ -21,39 +19,38 @@ static cursor_t *create_cursor(game_t *game)
     cursor->pos.x = 0;
     cursor->pos.y = 0;
     cursor->mode = 1;
-    cursor->base = create_anim((sfVector2f){1, 19}, (sfVector2i){32, 32},
-    "assets/cursor/base.png", game->window);
-    cursor->idle = create_anim((sfVector2f){7, 19}, (sfVector2i){32, 32},
-    "assets/cursor/idle.png", game->window);
-    cursor->build = create_anim((sfVector2f){7, 19}, (sfVector2i){32, 32},
-    "assets/cursor/build.png", game->window);
-    cursor->inspect = create_anim((sfVector2f){7, 19}, (sfVector2i){32, 32},
-    "assets/cursor/inspect.png", game->window);
+    cursor->base = create_anim(V2F(1, 19), V2I(32, 32),
+"assets/cursor/base.png", game->window);
+    cursor->idle = create_anim(V2F(7, 19), V2I(32, 32),
+"assets/cursor/idle.png", game->window);
+    cursor->build = create_anim(V2F(7, 19), V2I(32, 32),
+"assets/cursor/build.png", game->window);
+    cursor->inspect = create_anim(V2F(7, 19), V2I(32, 32),
+"assets/cursor/inspect.png", game->window);
     return (cursor);
 }
 
 static button_t *create_button(char *path, sfVector3f pos, view_t *view,
-void (*trigger)(game_t*))
+                                void (*trigger)(game_t *))
 {
     button_t *button = malloc(sizeof(button_t));
-    window_t *window = view->window;
 
     button->base = create_image(my_strcat_no_free(BUTTON_PATH,
-    my_strcat_no_free(path, "_base.png")), window);
+my_strcat_no_free(path, "_base.png")), view->window);
     button->hover = create_image(my_strcat_no_free(BUTTON_PATH,
-    my_strcat_no_free(path, "_hover.png")), window);
+my_strcat_no_free(path, "_hover.png")), view->window);
     button->click = create_image(my_strcat_no_free(BUTTON_PATH,
-    my_strcat_no_free(path, "_click.png")), window);
-    button->scene = (int)(pos.z);
+my_strcat_no_free(path, "_click.png")), view->window);
+    button->scene = (int) pos.z;
     button->display = button->base;
     button->trigger = trigger;
     button->hover_sound = create_sound("assets/sounds/hover.wav");
     button->click_sound = create_sound("assets/sounds/click.wav");
     button->mouse_hover = 0;
     button->mouse_click = 0;
-    button->pos = (sfVector2f){pos.x, pos.y};
-    button->display_pos.x = global_to_view((sfVector2f){pos.x, pos.y}, view).x;
-    button->display_pos.x = global_to_view((sfVector2f){pos.x, pos.y}, view).y;
+    button->pos = V2F(pos.x, pos.y);
+    button->display_pos.x = global_to_view(V2F(pos.x, pos.y), view).x;
+    button->display_pos.x = global_to_view(V2F(pos.x, pos.y), view).y;
     return (button);
 }
 

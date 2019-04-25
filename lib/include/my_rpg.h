@@ -139,7 +139,7 @@ enum enum_key_e {
 
 typedef struct button_s
 {
-    void (*trigger)(game_t*);
+    void (*trigger)(game_t *);
     image_t *base;
     image_t *hover;
     image_t *click;

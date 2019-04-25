@@ -29,10 +29,8 @@ static void manage_button2(button_t *button)
 
 static void manage_button(button_t *button, game_t *game)
 {
-    button->display_pos.x = global_to_view(button->pos,
-    VIEW).x;
-    button->display_pos.y = global_to_view(button->pos,
-    VIEW).y;
+    button->display_pos.x = global_to_view(button->pos, VIEW).x;
+    button->display_pos.y = global_to_view(button->pos, VIEW).y;
     if (point_intersect(button->display,
         CURSOR->pos.x + 16, CURSOR->pos.y + 16))
         button->mouse_hover = 1;
@@ -40,8 +38,8 @@ static void manage_button(button_t *button, game_t *game)
         button->mouse_hover = 0;
     if (sfMouse_isButtonPressed(sfMouseLeft) && button->mouse_hover)
         button->mouse_click = 1;
-    if (!sfMouse_isButtonPressed(sfMouseLeft) && button->mouse_hover
-    && button->mouse_click) {
+    if (!sfMouse_isButtonPressed(sfMouseLeft) && button->mouse_hover &&
+button->mouse_click) {
         button->trigger(game);
         button->mouse_click = 0;
     }

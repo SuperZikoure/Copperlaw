@@ -8,17 +8,20 @@
 #ifndef MY_RPG_H_
 #define MY_RPG_H
 
+#include <math.h>
 #include "graph.h"
 
 #define BUTTON_PATH ("assets/buttons/")
 
-#define ABS(a) ((a) < 0 ? (-a) : (a))
+#define ABS(a) ((a < 0) ? -a : a)
 #define CAM(a, b, c) ((c * a + b) / (c + 1))
 
 #define ZOOM 1.5
 #define VIEW_SIZE_X (480 * ZOOM) //720
 #define VIEW_SIZE_Y (270 * ZOOM) //405
 #define SIZE 10
+
+#define DEG(c) (c * (180 / M_PI))
 
 #define V2F(x, y) (sfVector2f) {x, y}
 #define V2I(x, y) (sfVector2i) {x, y}
@@ -27,6 +30,8 @@
 
 #define PLAYER_BALLS 200
 #define MONSTER_BALLS 25
+
+#define CELL_SIZE 16
 
 #define BUTTON_AMOUNT 4
 
@@ -47,6 +52,7 @@
 #define VIEW game->view
 #define CURSOR game->gui->cursor
 #define GUI game->gui
+#define PLAYER game->player
 
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
@@ -201,6 +207,7 @@ typedef struct map_s {
 typedef struct col_s {
     float max[4];
     sfVector2f *pos;
+    sfVector2f save;
     sfIntRect hitbox;
     int current_map;
     map_t *maps[MAP_AMOUNT];
@@ -270,6 +277,7 @@ typedef struct player_s {
     float boost[STATS_AMOUNT];
     ball_t *attacks[PLAYER_BALLS];
     col_t col;
+    int moving;
 } player_t;
 
 struct game_s {
@@ -317,6 +325,10 @@ map_t *create_map(char *filepath, window_t *window);
 /* create_player.c */
 
 player_t *create_player(game_t *game);
+
+/* movement/move_player.c */
+
+void move_player(player_t *player, int dir);
 
 /* BUTTON FUNCTIONS */
 

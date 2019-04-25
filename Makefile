@@ -49,6 +49,7 @@ GUI			=	gui
 INVENTORY	=	inventory
 INV_TOOLS	=	$(INVENTORY)/tools
 MAPS		=	maps
+MOVEMENT	=	movement
 SCENES		=	scenes
 UTILS		=	utils
 
@@ -81,6 +82,7 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(INVENTORY)/remplace_item_with_index.c \
 		$(INVENTORY)/remplace_item.c \
 		$(MAPS)/create_map.c \
+		$(MOVEMENT)/move_player.c \
 		$(SCENES)/game_scene.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \

@@ -6,12 +6,9 @@
 */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 #include "graph.h"
 #include "my_rpg.h"
-
-#define MOVE_SPEED 2.5
 
 void reset_velocity(sfVector2f *velocity, float rate)
 {
@@ -60,26 +57,26 @@ void manage_view(sfVector2f pos, view_t *view)
     sfView_setCenter(view->camera, center);
 }
 
-void manage_inputs(input_t *input, sfVector2f *velocity)
+void manage_inputs(input_t *input, player_t *player)
 {
     if (KEY_HELD(UP_KEY) == 1)
-        velocity->y = -MOVE_SPEED;
+        move_player(player, UP);
     if (KEY_HELD(DOWN_KEY) == 1)
-        velocity->y = MOVE_SPEED;
+        move_player(player, DOWN);
     if (KEY_HELD(UP_KEY) == 1 && KEY_HELD(DOWN_KEY) == 1)
-        velocity->y = 0;
+        player->speed.y = 0;
     if (KEY_HELD(LEFT_KEY) == 1)
-        velocity->x = -MOVE_SPEED;
+        move_player(player, LEFT);
     if (KEY_HELD(RIGHT_KEY) == 1)
-        velocity->x = MOVE_SPEED;
+        move_player(player, RIGHT);
     if (KEY_HELD(LEFT_KEY) == 1 && KEY_HELD(RIGHT_KEY) == 1)
-        velocity->x = 0;
-    velocity->x += (velocity->x > 0) ? -0.45 : 0.45;
-    velocity->y += (velocity->y > 0) ? -0.45 : 0.45;
-    if (velocity->x <= 0.46 && velocity->x >= -0.46)
-        velocity->x = 0;
-    if (velocity->y <= 0.46 && velocity->y >= -0.46)
-        velocity->y = 0;
+        player->speed.x = 0;
+    player->speed.x += (player->speed.x > 0) ? -0.45 : 0.45;
+    player->speed.y += (player->speed.y > 0) ? -0.45 : 0.45;
+    if (player->speed.x <= 0.46 && player->speed.x >= -0.46)
+        player->speed.x = 0;
+    if (player->speed.y <= 0.46 && player->speed.y >= -0.46)
+        player->speed.y = 0;
 }
 
 void manage_dash(input_t *input, sfVector2f *dash, sfVector2f velocity, sfVector2f direction)
@@ -119,8 +116,8 @@ void manage_dash(input_t *input, sfVector2f *dash, sfVector2f velocity, sfVector
 
 sfVector2f ball_dir(game_t *game)
 {
-    float vx = game->gui->cursor->pos.x - game->game.player_pos.x;
-    float vy = game->gui->cursor->pos.y - game->game.player_pos.y;
+    float vx = game->gui->cursor->pos.x - game->player->pos.x;
+    float vy = game->gui->cursor->pos.y - game->player->pos.y;
     float total = ABS(vx) + ABS(vy);
 
     return ((sfVector2f){vx / total, vy / total});
@@ -136,7 +133,6 @@ void manage_michel(monster_t *michel, ball_t *balls[PLAYER_BALLS], sfVector2f po
         if ((michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hit)) || (!(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal))) {
             michel->speed = (sfVector2f){balls[i]->speed.x / 5, balls[i]->speed.y / 5};
             balls[i]->exist = 0;
-            printf("Michel a été frappé\n");
         }
     }
     if (ABS(diff.x) <= 200 && ABS(diff.y) <= 200)
@@ -204,34 +200,67 @@ float get_distance(sfVector2f p1, sfVector2f p2)
     return (distance);
 }
 
+int get_player_direction(game_t *game)
+{
+    int direction;
+    float angle;
+
+    if (!game->player->moving) {
+        angle = 8 - DEG(atan2(PLAYER->pos.x - CURSOR->pos.x,
+PLAYER->pos.y - CURSOR->pos.y)) / 45;
+    }
+    direction = round(angle);
+    direction %= 8;
+    printf("DIRECTION : %d\n", direction);
+    return (direction);
+}
+
 void manage_game(game_t *game)
 {
     sfVector2f dir = ball_dir(game);
     sfVector2f view_pos[4];
     float distance;
+
     game->gui->cursor->pos.x -= 8;
     game->gui->cursor->pos.y -= 8;
 
-    view_pos[0] = (sfVector2f){CAM(game->game.player_pos.x, game->gui->cursor->pos.x, 1) + 8, CAM(game->game.player_pos.y, game->gui->cursor->pos.y, 1) + 8};
-    view_pos[1] = (sfVector2f){CAM(game->game.player_pos.x, game->gui->cursor->pos.x, 0.35) + 8, CAM(game->game.player_pos.y, game->gui->cursor->pos.y, 0.35) + 8};
-    view_pos[2] = (sfVector2f){CAM(game->game.player_pos.x, game->gui->cursor->pos.x, 3) + 8, CAM(game->game.player_pos.y, game->gui->cursor->pos.y, 3) + 8};
-    view_pos[3] = (sfVector2f){CAM(game->game.player_pos.x, game->gui->cursor->pos.x, 4), CAM(game->game.player_pos.y, game->gui->cursor->pos.y, 4)};
+    view_pos[0] = (sfVector2f){CAM(game->player->pos.x, game->gui->cursor->pos.x, 1) + 8, CAM(game->player->pos.y, game->gui->cursor->pos.y, 1) + 8};
+    view_pos[1] = (sfVector2f){CAM(game->player->pos.x, game->gui->cursor->pos.x, 0.35) + 8, CAM(game->player->pos.y, game->gui->cursor->pos.y, 0.35) + 8};
+    view_pos[2] = (sfVector2f){CAM(game->player->pos.x, game->gui->cursor->pos.x, 3) + 8, CAM(game->player->pos.y, game->gui->cursor->pos.y, 3) + 8};
+    view_pos[3] = (sfVector2f){CAM(game->player->pos.x, game->gui->cursor->pos.x, 4), CAM(game->player->pos.y, game->gui->cursor->pos.y, 4)};
 
-    distance = get_distance(game->game.player_pos, view_pos[3]);
+    distance = get_distance(game->player->pos, view_pos[3]);
 
     if (mouse_pressed_once(sfMouseLeft))
-        fire_ball(game->game.player_pos, game->game.balls, dir);
-    manage_dash(game->input, &game->game.dash, game->game.player_speed, dir);
-    manage_inputs(game->input, &game->game.player_speed);
+        fire_ball(game->player->pos, game->game.balls, dir);
+    manage_dash(game->input, &game->player->dash, game->player->speed, dir);
+    manage_inputs(game->input, game->player);
 
-    game->game.player_pos.x += game->game.player_speed.x + game->game.dash.x;
-    game->game.player_pos.y += game->game.player_speed.y + game->game.dash.y;
+    //game->game.player_pos.x += game->game.player_speed.x + game->game.dash.x;
+    //game->game.player_pos.y += game->game.player_speed.y + game->game.dash.y;
+
+    game->player->pos.x += game->player->speed.x + game->player->dash.x;
+    game->player->pos.y += game->player->speed.y + game->player->dash.y;
+
+    game->player->moving = ABS(game->player->speed.x) +
+    ABS(game->player->speed.y);
+    if (ABS(game->player->dash.x) + ABS(game->player->dash.y))
+        game->player->moving = 0;
+    
+    if (!game->player->moving) {
+        PLAYER->idle->frame.top = get_player_direction(game) * PLAYER->idle->frame.height;
+        sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
+    }
 
     manage_view(view_pos[3], game->view);
     display_image(game->maps[game->current_map]->bg, (sfVector2f){0, 0});
     manage_balls(game->game.balls);
     manage_michel(game->game.michel, game->game.balls, game->game.player_pos);
-    display_image(game->game.player_image, game->game.player_pos);
+    update_anim(game->player->display);
+    if (game->player->moving)
+        display_anim(game->player->move, game->player->pos);
+    else
+        display_anim(game->player->idle, game->player->pos);
     if (distance >= 15 && distance < 40)
         display_image(game->game.test1, view_pos[0]);
     else if (distance >= 40) {

@@ -8,10 +8,12 @@
 #include <stdlib.h>
 #include "graph.h"
 
-image_t *create_image(char *path, window_t *window)
+image_t *create_image(const char *path, window_t *window)
 {
     image_t *image = malloc(sizeof(image_t));
 
+    if (!image)
+        return (NULL);
     image->window = window;
     image->sprite = sfSprite_create();
     image->texture = sfTexture_createFromFile(path, NULL);
@@ -23,12 +25,16 @@ image_t *create_image(char *path, window_t *window)
 
 void display_image(image_t *img, sfVector2f pos)
 {
+    if (!image)
+        return (NULL);
     sfSprite_setPosition(img->sprite, pos);
     sfRenderWindow_drawSprite(img->window->window, img->sprite, NULL);
 }
 
 void destroy_image(image_t *image)
 {
+    if (!image)
+        retiurn (NULL);
     sfSprite_destroy(image->sprite);
     sfTexture_destroy(image->texture);
     sfImage_destroy(image->image);

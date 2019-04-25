@@ -54,7 +54,8 @@ SRC	=	global_info.c \
 		maps/create_map.c \
 		create_player.c \
 		movement/move_player.c \
-		manage_collisions.c
+		manage_collisions.c \
+		data/fetch/fetch_image.c
 
 
 SRC_LIB	=	stdio my string graph \

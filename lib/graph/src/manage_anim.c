@@ -13,7 +13,11 @@ anim_t *create_anim(sfVector2f fps, sfVector2i size, char *sheet, window_t *wd)
 {
     anim_t *anim = malloc(sizeof(anim_t));
 
+    if (!anim)
+        return (NULL);
     anim->sheet = create_image(sheet, wd);
+    if (!anim->sheet)
+        return (NULL);
     anim->window = wd;
     anim->frames = fps.x;
     anim->speed = pow(fps.y, -1) * 60;
@@ -30,6 +34,8 @@ anim_t *create_anim(sfVector2f fps, sfVector2i size, char *sheet, window_t *wd)
 
 void update_anim(anim_t *anim)
 {
+    if (!anim)
+        return (NULL);
     anim->wait++;
     if (anim->wait >= anim->speed) {
         anim->wait = 0;
@@ -43,11 +49,15 @@ void update_anim(anim_t *anim)
 
 void display_anim(anim_t *anim, sfVector2f pos)
 {
+    if (!anim)
+        return (NULL);
     display_image(anim->sheet, pos);
 }
 
 void destroy_anim(anim_t *anim)
 {
+    if (!anim)
+        return (NULL);
     destroy_image(anim->sheet);
     free(anim);
 }

@@ -13,6 +13,8 @@ keypress_t *create_key(sfKeyCode key)
 {
     keypress_t *this_key = malloc(sizeof(keypress_t));
 
+    if (!this_key)
+        return (NULL);
     this_key->held = 0;
     this_key->pressed = 0;
     this_key->key = key;
@@ -21,6 +23,8 @@ keypress_t *create_key(sfKeyCode key)
 
 void process_key(keypress_t *key)
 {
+    if (!key)
+        return (NULL);
     if (sfKeyboard_isKeyPressed(key->key) && !key->held) {
         key->pressed = 1;
         key->held = 1;

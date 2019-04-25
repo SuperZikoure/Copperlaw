@@ -42,6 +42,8 @@
 #define DEFAULT_SCREENSIZE 4
 #define RESOLUTIONS 6
 
+#define IMAGE_AMOUNT 2
+
 #define KEY_PRESSED(c) (input->keys[c]->pressed)
 #define KEY_HELD(c) (input->keys[c]->held)
 
@@ -68,6 +70,7 @@ struct info_button_s
 };
 
 extern const sfVideoMode window_size[RESOLUTIONS];
+extern const char *image_path[IMAGE_AMOUNT];
 extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_AMOUNT];
 
@@ -80,6 +83,13 @@ enum enum_scene_e {
     SKILLS,
     STATS,
     MENU
+};
+
+#define DELETE -1
+
+enum enum_images_e {
+    TRAIL_1,
+    TRAIL_2
 };
 
 enum direction_e {
@@ -246,18 +256,6 @@ typedef struct monster_s {
     col_t col;
 } monster_t;
 
-typedef struct scene_s {
-    sfVector2f player_pos;
-    sfVector2f player_speed;
-    sfVector2f dash;
-    image_t *map;
-    image_t *player_image;
-    ball_t *balls[PLAYER_BALLS];
-    monster_t *michel;
-    image_t *test1;
-    image_t *test2;
-} scene_t;
-
 typedef struct input_s {
     keypress_t *keys[KEY_AMOUNT];
 } input_t;
@@ -297,7 +295,6 @@ struct game_s {
     int frames;
     int exit;
     int scene;
-    scene_t game;
 };
 
 /* gui/create_gui.c */
@@ -336,6 +333,11 @@ void move_player(player_t *player, int dir);
 /* manage_collisions.c */
 
 void compute_col(col_t *col, int current_map);
+
+/* fetch_image.c */
+
+int fill_image(window_t *window);
+image_t *get_image(int index);
 
 /* BUTTON FUNCTIONS */
 

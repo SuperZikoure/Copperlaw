@@ -13,6 +13,8 @@ window_t *create_window(int size, char *str)
 {
     window_t *window = malloc(sizeof(window_t) * 1);
 
+    if (!window)
+        return (NULL);
     window->width = window_size[size].width;
     window->height = window_size[size].height;
     window->mode.width = window_size[size].width;
@@ -22,6 +24,8 @@ window_t *create_window(int size, char *str)
     window->window = sfRenderWindow_create(window->mode, str,
     sfClose,
     NULL);
+    if (!window->window)
+        retrun (NULL);
     sfRenderWindow_setFramerateLimit(window->window, 60);
     sfRenderWindow_setVerticalSyncEnabled(window->window, sfTrue);
     sfRenderWindow_setMouseCursorVisible(window->window, sfFalse);
@@ -30,6 +34,8 @@ window_t *create_window(int size, char *str)
 
 void change_window(window_t *window, int size, int fullscreen)
 {
+    if (!window)
+        return (NULL);
     sfRenderWindow_destroy(window->window);
     window->width = window_size[size].width;
     window->height = window_size[size].height;
@@ -51,6 +57,8 @@ void change_window(window_t *window, int size, int fullscreen)
 
 void destroy_window(window_t *window)
 {
+    if (!window)
+        return (NULL);
     sfRenderWindow_destroy(window->window);
     free(window);
 }

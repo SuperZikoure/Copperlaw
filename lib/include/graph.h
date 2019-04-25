@@ -82,7 +82,7 @@ void destroy_text(text_t *text);
 
 /* IMAGE */
 
-image_t *create_image(char *path, window_t *window);
+image_t *create_image(const char *path, window_t *window);
 void display_image(image_t *img, sfVector2f pos);
 void destroy_image(image_t *image);
 

@@ -25,7 +25,7 @@ text_t *create_text(int fontsize, char *font, window_t *window)
 void display_text(char *str, sfVector2f pos, text_t *text)
 {   
     if (!text)
-        return (NULL);
+        return;
     sfText_setString(text->text, str);
     sfText_setPosition(text->text, pos);
     sfRenderWindow_drawText(text->window->window, text->text, NULL);
@@ -34,7 +34,7 @@ void display_text(char *str, sfVector2f pos, text_t *text)
 void destroy_text(text_t *text)
 {
     if (!text)
-        return (NULL);
+        return;
     sfText_destroy(text->text);
     sfFont_destroy(text->font);
     free(text);

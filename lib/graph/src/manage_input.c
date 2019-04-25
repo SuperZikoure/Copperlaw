@@ -24,7 +24,7 @@ keypress_t *create_key(sfKeyCode key)
 void process_key(keypress_t *key)
 {
     if (!key)
-        return (NULL);
+        return;
     if (sfKeyboard_isKeyPressed(key->key) && !key->held) {
         key->pressed = 1;
         key->held = 1;

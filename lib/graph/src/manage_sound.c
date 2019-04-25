@@ -27,7 +27,7 @@ sound_t *create_sound(char *path)
 void destroy_sound(sound_t *sound)
 {
     if (!sound)
-        return (NULL);
+        return;
     sfSound_destroy(sound->sound);
     sfSoundBuffer_destroy(sound->buffer);
     free(sound);

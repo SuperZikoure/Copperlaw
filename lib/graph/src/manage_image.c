@@ -16,7 +16,7 @@ image_t *create_image(const char *path, window_t *window)
         return (NULL);
     image->window = window;
     image->sprite = sfSprite_create();
-    if (!imae->sprite)
+    if (!image->sprite)
         return (NULL);
     image->texture = sfTexture_createFromFile(path, NULL);
     if (!image->texture)
@@ -31,8 +31,8 @@ image_t *create_image(const char *path, window_t *window)
 
 void display_image(image_t *img, sfVector2f pos)
 {
-    if (!image)
-        return (NULL);
+    if (!img)
+        return;
     sfSprite_setPosition(img->sprite, pos);
     sfRenderWindow_drawSprite(img->window->window, img->sprite, NULL);
 }
@@ -40,7 +40,7 @@ void display_image(image_t *img, sfVector2f pos)
 void destroy_image(image_t *image)
 {
     if (!image)
-        retiurn (NULL);
+        return;
     sfSprite_destroy(image->sprite);
     sfTexture_destroy(image->texture);
     sfImage_destroy(image->image);

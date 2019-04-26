@@ -28,7 +28,7 @@ static void move_h(col_t *col, int current_map)
     int x = get_pos(col->pos->x + col->hitbox.x);
     int y = get_pos(col->pos->y + col->hitbox.y);
 
-    for (int i = x - 1; i > 0; i--) {
+    for (int i = x - 1; i >= 0; i--) {
         if (col->maps[current_map]->map[y][i] == '1') {
             count += (int) (col->pos->x + col->hitbox.x) % CELL_SIZE;
             break;
@@ -53,7 +53,7 @@ static void move_v(col_t *col, int current_map)
     int x = get_pos(col->pos->x + col->hitbox.x);
     int y = get_pos(col->pos->y + col->hitbox.y);
 
-    for (int i = y - 1; i > 0; i--) {
+    for (int i = y - 1; i >= 0; i--) {
         if (col->maps[current_map]->map[i][x] == '1') {
             count += (int) (col->pos->y + col->hitbox.y) % CELL_SIZE;
             break;
@@ -72,7 +72,7 @@ static void move_v(col_t *col, int current_map)
     col->max[DOWN] = count - col->hitbox.z;
 }
 
-void compute_col(col_t *col, int current_map, sfRectangleShape *rect)
+void compute_col(col_t *col, int current_map)
 {
     col->save.x = col->pos->x;
     col->save.y = col->pos->y;

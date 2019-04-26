@@ -333,7 +333,7 @@ void move_player(player_t *player, int dir);
 
 /* manage_collisions.c */
 
-// void compute_col(col_t *col, int current_map);
+void compute_col(col_t *col, int current_map);
 
 /* fetch_image.c */
 

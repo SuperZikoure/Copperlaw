@@ -216,8 +216,6 @@ PLAYER->pos.y - CURSOR->pos.y)) / 45;
     return (direction);
 }
 
-void compute_col(col_t *col, int current_map, sfRectangleShape *rect);
-
 void manage_game(game_t *game)
 {
     sfVector2f dir = ball_dir(game);
@@ -257,11 +255,8 @@ void manage_game(game_t *game)
 
 
     printf("R: %.2f L: %.2f D: %.2f U: %.2f\n", PLAYER->col.max[RIGHT], PLAYER->col.max[LEFT], PLAYER->col.max[DOWN], PLAYER->col.max[UP]);
-    sfRectangleShape *rect = sfRectangleShape_create();
-    sfRectangleShape_setFillColor(rect, sfRed);
-    sfRectangleShape_setSize(rect, V2F(1, 1));
 
-    compute_col(&PLAYER->col, 0, rect);
+    compute_col(&PLAYER->col, 0);
     if (PLAYER->vel.x > 0 && PLAYER->vel.x > PLAYER->col.max[RIGHT])
         PLAYER->vel.x = PLAYER->col.max[RIGHT];
     if (PLAYER->vel.x < 0 && -PLAYER->vel.x > PLAYER->col.max[LEFT])
@@ -295,5 +290,4 @@ void manage_game(game_t *game)
     //         sfRenderWindow_drawRectangleShape(game->window->window, mappppp[i][j], NULL);
     //     }
     // }
-    sfRenderWindow_drawRectangleShape(game->window->window, rect, NULL);
 }

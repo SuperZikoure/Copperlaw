@@ -53,26 +53,51 @@ static void move_v(col_t *col, int current_map)
     int x = get_pos(col->pos->x + col->hitbox.x);
     int y = get_pos(col->pos->y + col->hitbox.y);
 
-    for (int i = box[0].y; i > 0; i--) {
-        if (i == 1 || col->maps[current_map]->map[i][box[0].x] == '1' ||
-        col->maps[current_map]->map[i][box[1].x] == '1') {
-            count += ABS((int) col->hitbox.y % CELL_SIZE);
+    for (int i = y - 1; i > 0; i--) {
+        if (col->maps[current_map]->map[i][x] == '1') {
+            count += (int) (col->pos->y + col->hitbox.y) % CELL_SIZE;
             break;
         }
         count += CELL_SIZE;
     }
     col->max[UP] = count - col->hitbox.z;
     count = 0;
-    for (int i = box[1].y; i < col->maps[current_map]->size.y; i++) {
-        if (i == 1 || col->maps[current_map]->map[i][box[0].x + 1] == '1' ||
-        col->maps[current_map]->map[i][box[1].x] == '1') {
-            count -= ABS((int) col->hitbox.y % CELL_SIZE);
+    for (int i = y + 1; i < col->maps[current_map]->size.y; i++) {
+        if (col->maps[current_map]->map[i][x] == '1') {
+            count += CELL_SIZE - ((int) (col->pos->y + col->hitbox.y) % CELL_SIZE);
             break;
         }
         count += CELL_SIZE;
     }
     col->max[DOWN] = count - col->hitbox.z;
 }
+
+// static void move_v(col_t *col, int current_map)
+// {
+//     int count = 0;
+//     int x = get_pos(col->pos->x + col->hitbox.x);
+//     int y = get_pos(col->pos->y + col->hitbox.y);
+
+//     for (int i = box[0].y; i > 0; i--) {
+//         if (i == 1 || col->maps[current_map]->map[i][box[0].x] == '1' ||
+//         col->maps[current_map]->map[i][box[1].x] == '1') {
+//             count += ABS((int) col->hitbox.y % CELL_SIZE);
+//             break;
+//         }
+//         count += CELL_SIZE;
+//     }
+//     col->max[UP] = count - col->hitbox.z;
+//     count = 0;
+//     for (int i = box[1].y; i < col->maps[current_map]->size.y; i++) {
+//         if (i == 1 || col->maps[current_map]->map[i][box[0].x + 1] == '1' ||
+//         col->maps[current_map]->map[i][box[1].x] == '1') {
+//             count -= ABS((int) col->hitbox.y % CELL_SIZE);
+//             break;
+//         }
+//         count += CELL_SIZE;
+//     }
+//     col->max[DOWN] = count - col->hitbox.z;
+// }
 
 void compute_col(col_t *col, int current_map, sfRectangleShape *rect)
 {

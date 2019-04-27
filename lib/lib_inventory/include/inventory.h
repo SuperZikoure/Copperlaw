@@ -90,8 +90,8 @@ int check_index(int index);
 
 int *get_all_id(int id, inventory_t *inv);
 
-/* tools/tri_inventory.c */
+/* simulator/test.c */
 
-void tri_inventory(inventory_t *inv);
+int simulator(void);
 
 #endif /*!INVENTORY */

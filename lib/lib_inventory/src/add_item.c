@@ -9,7 +9,6 @@
 
 int add_item(int id, inventory_t *inv)
 {
-    int error = 0;
     int i = get_id_free(id, inv);
 
     if (i != -1 && inv->amount[i] < MAX_STACK) {

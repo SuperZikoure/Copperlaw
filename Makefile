@@ -100,11 +100,11 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		manage_intersections.c \
 		manage_view.c
 
-SRC_LIB	=	stdio my string graph \
+SRC_LIB	=	stdio my string graph inv \
 			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
-LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph
+LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)

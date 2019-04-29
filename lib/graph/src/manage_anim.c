@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include "graph.h"
 
+size_t get_delta(void);
+
 anim_t *create_anim(sfVector2f fps, sfVector2i size, char *sheet, window_t *wd)
 {
     anim_t *anim = malloc(sizeof(anim_t));
@@ -37,7 +39,7 @@ void update_anim(anim_t *anim)
     anim->wait++;
     if (anim->wait >= anim->speed) {
         anim->wait = 0;
-        anim->img++;
+        anim->img += get_delta();
     }
     if (anim->img >= anim->frames)
         anim->img = 0;

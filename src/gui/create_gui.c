@@ -16,6 +16,8 @@ static cursor_t *create_cursor(game_t *game)
 {
     cursor_t *cursor = malloc(sizeof(cursor_t));
 
+    if (!cursor)
+        return NULL;
     cursor->pos.x = 0;
     cursor->pos.y = 0;
     cursor->mode = 1;
@@ -27,9 +29,12 @@ static cursor_t *create_cursor(game_t *game)
 "assets/cursor/build.png", game->window);
     cursor->inspect = create_anim(V2F(7, 19), V2I(32, 32),
 "assets/cursor/inspect.png", game->window);
+    if (!cursor->base || !cursor->idle || !cursor->build || !cursor->inspect)
+        return NULL;
     return (cursor);
 }
 
+/* this below has no error handling :c */
 static button_t *create_button(char *path, sfVector3f pos, view_t *view,
                                 void (*trigger)(game_t *))
 {
@@ -58,15 +63,17 @@ gui_t *create_gui(view_t *view)
 {
     gui_t *gui = malloc(sizeof(gui_t));
 
+    if (!gui)
+        return NULL;
     gui->parent = view->parent;
     gui->cursor = create_cursor(view->parent);
+    if (!gui->cursor)
+        return NULL;
     for (int i = 0; i < BUTTON_AMOUNT; i++) {
         gui->button[i] = create_button(info[i].path, info[i].pos,
-        view, info[i].trigger);
+view, info[i].trigger);
     }
     gui->pos.x = 0;
     gui->pos.y = 0;
-    gui->cursor->pos.x = 0;
-    gui->cursor->pos.y = 0;
     return (gui);
 }

@@ -48,11 +48,11 @@ FETCH		=	$(DATA)/fetch
 DIALOGUES	=	dialogues
 SCRIPTS		=	$(DIALOGUES)/scripts
 GUI			=	gui
-INVENTORY	=	inventory
-INV_TOOLS	=	$(INVENTORY)/tools
 MAPS		=	maps
 MOVEMENT	=	movement
 SCENES		=	scenes
+GAME_SCENE	=	$(SCENES)/game
+GAME_VIEW	=	$(GAME_SCENE)/view
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/menu_functions.c \
@@ -68,37 +68,34 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(DIALOGUES)/display_dialogue.c \
 		$(DIALOGUES)/load_dialogue_scene.c \
 		$(DIALOGUES)/text_speed.c \
-		$(INV_TOOLS)/add_in_new_stack.c \
-		$(INV_TOOLS)/check_index.c \
-		$(INV_TOOLS)/flood_inventory.c \
-		$(INV_TOOLS)/get_all_id.c \
-		$(INV_TOOLS)/get_id.c \
-		$(INV_TOOLS)/stack_item.c \
 		$(GUI)/create_gui.c \
 		$(GUI)/update_gui.c \
-		$(INVENTORY)/add_item_with_index.c \
-		$(INVENTORY)/add_item.c \
-		$(INVENTORY)/create_inventory.c \
-		$(INVENTORY)/delete_item_with_index.c \
-		$(INVENTORY)/delete_item.c \
-		$(INVENTORY)/get_amount.c \
-		$(INVENTORY)/remplace_item_with_index.c \
-		$(INVENTORY)/remplace_item.c \
 		$(MAPS)/create_map.c \
 		$(MAPS)/read_map_from_file.c \
+		$(MOVEMENT)/change_animation.c \
+		$(MOVEMENT)/manage_collisions.c \
+		$(MOVEMENT)/manage_dash.c \
 		$(MOVEMENT)/move_player.c \
-		$(SCENES)/game_scene.c \
+		$(MOVEMENT)/set_idle_animation.c \
+		$(GAME_VIEW)/display_cursor.c \
+		$(GAME_VIEW)/view_management.c \
+		$(GAME_SCENE)/analyse_movement_keys.c \
+		$(GAME_SCENE)/compute_game_interactions.c \
+		$(GAME_SCENE)/fire_ball.c \
+		$(GAME_SCENE)/game_scene.c \
+		$(GAME_SCENE)/set_player_position.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
+		$(UTILS)/view_utils.c \
 		create_game.c \
 		create_player.c \
 		game_loop.c \
+		get_delta.c \
 		global_info.c \
 		main_test_dialogues.c \
-		manage_collisions.c \
 		manage_inputs.c \
 		manage_intersections.c \
-		manage_view.c
+		scene_system.c
 
 SRC_LIB	=	stdio my string graph inv \
 			csfml-graphics csfml-system csfml-window csfml-audio \

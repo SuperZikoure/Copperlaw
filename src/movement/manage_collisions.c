@@ -6,10 +6,8 @@
 */
 
 #include <stdlib.h>
-#include <math.h>
-#include "graph.h"
-#include "macros.h"
 #include "my_rpg.h"
+#include "macros.h"
 
 static int get_pos(int pos)
 {
@@ -19,8 +17,6 @@ static int get_pos(int pos)
     value /= CELL_SIZE;
     return (value);
 }
-
-#include <stdio.h>
 
 static void move_h(col_t *col, int current_map)
 {

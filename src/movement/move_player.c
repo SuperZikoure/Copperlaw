@@ -11,39 +11,23 @@
 #include "my_rpg.h"
 #include "macros.h"
 
-static void change_anim(player_t *player)
-{
-    int speeds[4] = {ABS(player->speed.y), player->speed.x, player->speed.y,
-ABS(player->speed.x)};
-    int max = 0;
-    sfVector2i dir;
-    int current = 0;
+#define MOVES_UP(dir) (dir & DIR_UP)
+#define MOVES_DOWN(dir) (dir & DIR_DOWN)
+#define MOVES_RIGHT(dir) (dir & DIR_RIGHT)
+#define MOVES_LEFT(dir) (dir & DIR_LEFT)
 
-    dir.x = (player->speed.x > 0) ? 1 : 3;
-    dir.y = (player->speed.y > 0) ? 2 : 0;
-    for (int i = 0; i < 4; i++)
-        if (speeds[i] >= speeds[max])
-            max = i;
-    if (max % 2 != 0)
-        current = dir.x;
-    else
-        current = dir.y;
-    player->move->frame.left = current * player->move->frame.width;
-    sfSprite_setTextureRect(player->move->sheet->sprite, player->move->frame);
-}
+#include <stdio.h>
 
-void move_player(player_t *player, int dir)
+void move_player(player_t *player, char dir)
 {
-    if (dir == UP) {
+    if (MOVES_UP(dir)) {
         player->speed.y = -player->stats[MOVE_SPEED];
-    }
-    if (dir == RIGHT) {
-        player->speed.x = player->stats[MOVE_SPEED];
-    }
-    if (dir == DOWN) {
+    } else if (MOVES_DOWN(dir)) {
         player->speed.y = player->stats[MOVE_SPEED];
     }
-    if (dir == LEFT) {
+    if (MOVES_RIGHT(dir)) {
+        player->speed.x = player->stats[MOVE_SPEED];
+    } else if (MOVES_LEFT(dir)) {
         player->speed.x = -player->stats[MOVE_SPEED];
     }
     change_anim(player);

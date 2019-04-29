@@ -14,8 +14,13 @@ input_t *create_input(void)
 {
     input_t *input = malloc(sizeof(input_t));
 
-    for (int i = 0; i < KEY_AMOUNT; i++)
+    if (!input)
+        return NULL;
+    for (int i = 0; i < KEY_AMOUNT; i++) {
         input->keys[i] = create_key(input_key[i]);
+        if (!input->keys[i])
+            return NULL;
+    }
     return (input);
 }
 

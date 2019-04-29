@@ -23,7 +23,7 @@ text_t *create_text(int fontsize, char *font, window_t *window)
 }
 
 void display_text(char *str, sfVector2f pos, text_t *text)
-{   
+{
     sfText_setString(text->text, str);
     sfText_setPosition(text->text, pos);
     sfRenderWindow_drawText(text->window->window, text->text, NULL);

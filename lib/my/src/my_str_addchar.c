@@ -18,7 +18,7 @@ char *my_str_addchar(char const *str, char const c, int index)
         return NULL;
     my_strncpy(new_str, str, index);
     new_str[index] = c;
-    my_strcpy(new_str + index + 1, str  + index);
+    my_strcpy(new_str + index + 1, str + index);
     free((char *) str);
     return (new_str);
 }

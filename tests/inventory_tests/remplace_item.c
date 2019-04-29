@@ -10,10 +10,10 @@
 #include <stdio.h>
 
 /*
- * Test remplace_item(int id, inventory_t *inv)
- * #define INV_SIZE = 100 &&
- * #define MAX_STACK = 64 to build tests
- */
+* Test remplace_item(int id, inventory_t *inv)
+* #define INV_SIZE = 100 &&
+* #define MAX_STACK = 64 to build tests
+*/
 
 Test(remplace_item, in_an_inventory_full)
 {

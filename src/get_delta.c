@@ -6,7 +6,6 @@
 */
 
 #include "my_rpg.h"
-#include <stdio.h> 
 #include "macros.h"
 
 static sfClock *fetch_clock(int flag)

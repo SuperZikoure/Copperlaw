@@ -8,7 +8,7 @@
 #include "my_rpg.h"
 
 void game_loop(game_t *game)
-{    
+{
     change_scene(GAME);
     start_clock();
     while (sfRenderWindow_isOpen(game->window->window) && !game->exit) {

@@ -10,10 +10,10 @@
 #include <stdio.h>
 
 /*
- * Test delete_stack(int id, int amount, inventory_t *inv)
- * #define INV_SIZE = 100 &&
- * #define MAX_STACK = 64 to build tests
- */
+* Test delete_stack(int id, int amount, inventory_t *inv)
+* #define INV_SIZE = 100 &&
+* #define MAX_STACK = 64 to build tests
+*/
 
 Test(delete_stack, in_an_inventory_fulled_with_same_id)
 {

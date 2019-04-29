@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2019
+** MUL_my_rpg_2018
+** File description:
 ** add_item_with_index
-** File description
-** add an item in a case of the inventory
 */
 
 #include "inventory.h"

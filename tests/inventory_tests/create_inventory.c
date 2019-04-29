@@ -10,8 +10,8 @@
 #include <stdio.h>
 
 /*
- * Test create_inventory(void);
- */
+* Test create_inventory(void);
+*/
 
 Test(create_inventory, create_an_inventory)
 {

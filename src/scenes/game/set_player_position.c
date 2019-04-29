@@ -14,7 +14,6 @@ static void collision_update(game_t *game)
 {
     compute_col(&PLAYER->col, 0);
     printf("R: %.2f L: %.2f U: %.2f D: %.2f\n", PLAYER->col.max[RIGHT], PLAYER->col.max[LEFT], PLAYER->col.max[UP], PLAYER->col.max[DOWN]);
-    puts("");
     if (PLAYER->vel.x > PLAYER->col.max[RIGHT])
         PLAYER->vel.x = PLAYER->col.max[RIGHT];
     if (-PLAYER->vel.x > PLAYER->col.max[LEFT])

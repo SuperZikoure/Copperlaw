@@ -360,7 +360,6 @@ int fill_image(window_t *window);
 image_t *get_image(int index);
 
 /* BUTTON FUNCTIONS */
-void change_cursor(game_t *game);
 void put_game_scene(game_t *game);
 void exit_game(game_t *game);
 void res_moins(game_t *game);

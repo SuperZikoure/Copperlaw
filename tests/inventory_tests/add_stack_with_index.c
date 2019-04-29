@@ -10,10 +10,10 @@
 #include <stdio.h>
 
 /*
- * Test add_stack_with_index(int id, int amount, int i, inventory_t *inv)
- * #define INV_SIZE = 100 &&
- * #define MAX_STACK = 64 to build tests
- */
+* Test add_stack_with_index(int id, int amount, int i, inventory_t *inv)
+* #define INV_SIZE = 100 &&
+* #define MAX_STACK = 64 to build tests
+*/
 
 Test(add_stack_with_index, add_a_stack_in_an_empty_inventory)
 {

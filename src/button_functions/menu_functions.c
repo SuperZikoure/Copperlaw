@@ -8,17 +8,6 @@
 #include "graph.h"
 #include "my_rpg.h"
 
-void change_cursor(game_t *game)
-{
-    cursor_t *cursor = game->gui->cursor;
-    cursor->mode++;
-
-    if (cursor->mode > 3)
-        cursor->mode = 0;
-    if (cursor->mode < 0)
-        cursor->mode = 3;
-}
-
 void put_game_scene(game_t *game)
 {
     game->scene = GAME;

@@ -49,8 +49,9 @@ button->mouse_click) {
 
 static void manage_cursor(game_t *game, sfVector2i pos)
 {
-    CURSOR->pos.x = global_to_view_mouse(V2F(pos.x, pos.y), VIEW).x - 16;
-    CURSOR->pos.y = global_to_view_mouse(V2F(pos.x, pos.y), VIEW).y - 16;
+    CURSOR->pos = global_to_view_mouse(V2F(pos.x, pos.y), VIEW);
+    CURSOR->pos.x -= 16;
+    CURSOR->pos.y -= 16;
     update_anim(CURSOR->idle);
     update_anim(CURSOR->build);
     update_anim(CURSOR->inspect);

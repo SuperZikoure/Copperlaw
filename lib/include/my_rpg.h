@@ -74,7 +74,8 @@ enum enum_scene_e {
     INVENTORY,
     SKILLS,
     STATS,
-    MENU
+    MENU,
+    SCENE_NB
 };
 
 enum zone_ids {
@@ -95,6 +96,13 @@ enum direction_e {
     RIGHT,
     DOWN,
     LEFT
+};
+
+enum bin_directions {
+    DIR_UP = 0b0001,
+    DIR_DOWN = 0b0010,
+    DIR_RIGHT = 0b0100,
+    DIR_LEFT = 0b1000
 };
 
 enum direction_extented_e {
@@ -188,8 +196,6 @@ typedef struct view_s {
     window_t *window;
     sfView *camera;
     sfFloatRect pos;
-    sfVector2f size;
-    sfVector2f offset;
     sfVector2f velocity;
     void *parent;
 } view_t;
@@ -298,50 +304,62 @@ struct game_s {
 /* game loop */
 void game_loop(game_t *game);
 
-/* gui/create_gui.c */
+/* SCENE SYSTEM */
+int (*get_scene(void))(game_t *);
+void change_scene(enum enum_scene_e id);
 
+/* DELTA */
+size_t get_delta(void);
+int start_clock(void);
+void start_new_frame(void);
+
+/* gui/create_gui.c */
 gui_t *create_gui(view_t *view);
 
 /* gui/update_gui.c */
-
 void update_gui(game_t *game, sfVector2i pos);
 
 /* manage_intersections.c */
-
 int point_intersect(image_t *img, float x, float y);
 int image_intersect(image_t *img1, image_t *img2);
 
 /* create_game.c */
-
 game_t create_game(void);
 
-/* scenes/game/manage_game.c */
 
-void manage_game(game_t *game);
+/// SCENES ///
+
+/* GAME */
+int game_scene(game_t *game);
+void manage_game_view(game_t *game);
+void display_cursor(game_t *game, sfVector2f view_pos[4]);
+void compute_game_interactions(game_t *game);
+void analyse_movement_keys(input_t *input, player_t *player);
+void set_player_position(game_t *game);
+/* FIRE BALL */
+void display_balls(ball_t *balls[PLAYER_BALLS]);
+void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
 
 /* maps/create_map.c */
-
 map_t *create_map(char *filepath, window_t *window);
 
 /* create_player.c */
-
 player_t *create_player(game_t *game);
 
-/* movement/move_player.c */
-
-void move_player(player_t *player, int dir);
+/* movement */
+void change_anim(player_t *player);
+void move_player(player_t *player, char dir);
+void set_idle_animation(game_t *game);
+void dash(input_t *input, sfVector2f *dash, sfVector2f vel, sfVector2f dir);
 
 /* manage_collisions.c */
-
 void compute_col(col_t *col, int current_map);
 
 /* fetch_image.c */
-
 int fill_image(window_t *window);
 image_t *get_image(int index);
 
 /* BUTTON FUNCTIONS */
-
 void change_cursor(game_t *game);
 void put_game_scene(game_t *game);
 void exit_game(game_t *game);
@@ -355,11 +373,9 @@ input_t *create_input(void);
 void destroy_input(input_t *input);
 void process_input(window_t *window, input_t *input);
 
-
 view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
 sfVector2f global_to_view(sfVector2f pos, view_t *view);
 sfVector2f global_to_view_fx(sfVector2f pos, view_t *view);
 sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view);
-
 
 #endif

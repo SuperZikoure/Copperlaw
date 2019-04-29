@@ -1,77 +1,99 @@
 ##
 ## EPITECH PROJECT, 2018
-## Makefile
+## Fairefichier
 ## File description:
-## compile lib_inv
+## This is a fairefichier
 ##
 
-DEFAULT         =       "\e[0m"
-BOLD_T          =       "\e[1m"
-DIM_T           =       "\e[2m"
-UNDLN_T         =       "\e[4m"
-BLACK_C         =       "\e[30m"
-RED_C           =       "\e[31m"
-GREEN_C         =       "\e[32m"
-YELLO_C         =       "\e[33m"
-BLUE_C          =       "\e[34m"
-MAGEN_C         =       "\e[35m"
-CYAN_C          =       "\e[36m"
-WHITE_C         =       "\e[97m"
-DEFAULT_C       =       "\e[39m"
-LIGHT_GREY      =       "\e[37m"
-DARK_GREY       =       "\e[90m"
-LIGHT_RED       =       "\e[91m"
-LIGHT_GREEN     =       "\e[92m"
-LIGHT_YELLO     =       "\e[93m"
-LIGHT_BLUE      =       "\e[94m"
-LIGHT_MAGEN     =       "\e[95m"
-LIGHT_CYAN      =       "\e[96m"
-ECHO            =       /bin/echo -e
+ECHO	=	/bin/echo -e
+DEFAULT	=	"\e[0m"
+BOLD_T	=	"\e[1m"
+DIM_T	=	"\e[2m"
+UNDLN_T	=	"\e[4m"
+BLACK_C	=	"\e[30m"
+RED_C	=	"\e[31m"
+GREEN_C	=	"\e[32m"
+YELLO_C	=	"\e[33m"
+BLUE_C	=	"\e[34m"
+MAGEN_C	=	"\e[35m"
+CYAN_C	=	"\e[36m"
+DEFAULT_C	=	"\e[39m"
+LIGHT_RED	=	"\e[91m"
+LIGHT_GREEN	=	"\e[92m"
+LIGHT_YELLO	=	"\e[93m"
+LIGHT_BLUE	=	"\e[94m"
+LIGHT_MAGEN	=	"\e[95m"
+LIGHT_CYAN	=	"\e[96m"
+LINE_RETURN	=	$(ECHO) ""
 
-NAME	=	libinv.a
+COLOR_THEME	=	$(RED_C)
+DEBUG_THEME	=	$(CYAN_C)
 
-SRC	=	src/tools/tri_inventory.c	\
-		src/tools/stack_item.c	\
-		src/tools/get_id.c	\
-		src/tools/get_all_id.c	\
-		src/tools/flood_inventory.c	\
-		src/tools/check_index.c	\
-		src/tools/add_in_new_stack.c	\
-		src/add_item.c		\
-		src/add_item_with_index.c	\
-		src/create_inventory.c	\
-		src/delete_item.c		\
-		src/delete_item_with_index.c	\
-		src/get_amount.c		\
-		src/remplace_item.c	\
-		src/remplace_item_with_index.c
+NAME	=	inv
+SRC_PATH	=	./src
+INCLUDE_PATH	=	../include
 
-OBJ	=	$(SRC:.c=.o)
+SRC	=	tools/tri_inventory.c \
+		tools/stack_item.c \
+		tools/get_id.c \
+		tools/get_all_id.c \
+		tools/flood_inventory.c \
+		tools/check_index.c \
+		tools/add_in_new_stack.c \
+		add_item.c \
+		add_item_with_index.c \
+		create_inventory.c \
+		delete_item.c \
+		delete_item_with_index.c \
+		get_amount.c \
+		remplace_item.c \
+		remplace_item_with_index.c
 
-INCLUDE	=	-I ../../include/
+SRCS	=	$(SRC:%=$(SRC_PATH)/%)
+OBJ	=	$(SRCS:.c=.o)
 
-CFLAGS	=	-Wall -Wextra -Werror $(INCLUDE)
+CFLAGS	=	-Wall -Wextra -Werror -I $(INCLUDE_PATH)
+DEBUG_FLAGS	=	-g3 -gdwarf-4
 
 all:	$(NAME)
 
-mk_message:
-	@$(ECHO) $(BOLT_T)$(WHITE_C)"[LIB INVENTORY]\n"$(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(YELLO_C)".___                           __\n|   | _______  __ ____   _____/  |_  ___________ ___.__.\n|   |/    \  \/ // __ \ /    \   __\/  _ \_  __ <   |  |\n|   |   |  \   /\  ___/|   |  \  | (  <_> )  | \/\___  |\n|___|___|  /\_/  \___  >___|  /__|  \____/|__|   / ____|\n         \/          \/     \/                   \/\n"$(DEFAULT)
-	@$(ECHO) $(LIGHT_GREEN)"Compilated.\n"$(DEFAULT)
+message:
+	@$(LINE_RETURN)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)" _     _ _                          "$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |   (_) |__  _ __ __ _ _ __ _   _ "$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |   | | '_ \| '__/ _\` | '__| | | |"$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |___| | |_) | | | (_| | |  | |_| |"$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"|_____|_|_.__/|_|  \__,_|_|   \__, |"$(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"                              |___/ "$(DEFAULT)
+	@$(LINE_RETURN)
 
-$(NAME):	mk_message $(OBJ)
-		@ar rc $(NAME) $(OBJ)
-		@ranlib $(NAME)
+$(NAME):	$(OBJ)
+	@ar rc ./lib$(NAME).a $(OBJ)
+	# && \
+	# 	$(ECHO) $(BOLD_T)$(GREEN_C)"[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) "lib$(NAME).a" $(DEFAULT) || \
+	# 	$(ECHO) $(RED_C)$(BOLD_T)"[✘] "$(UNDLN_T)"BUILD FAILED:" $(LIGHT_RED) "lib$(NAME).a"$(DEFAULT)
 
 clean:
-	@rm -f $(OBJ)
-	@rm -f \#*\#
-	@rm -f *~
+	@$(RM) $(OBJ)
+	@$(ECHO) $(RED_C)$(DIM_T)"[clean]  "$(DEFAULT) \
+		$(RED_C)$(BOLD_T)"DELETED: "$(DEFAULT) \
+		$(LIGHT_RED)"lib$(NAME)'s object files"$(DEFAULT)
 
 fclean:	clean
-	@rm -f $(NAME)
+	@$(RM) ./lib$(NAME).a
+	@$(ECHO) $(RED_C)$(DIM_T)"[fclean] "$(DEFAULT) \
+		$(RED_C)$(BOLD_T)"DELETED: "$(DEFAULT) \
+		$(LIGHT_RED)"Binary lib$(NAME).a"$(DEFAULT)
 
-re:	fclean all
+re:		fclean all
 
-.PHONY:	clean fclean re all
-.SILENT: $(OBJ)
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: COLOR_THEME = $(DEBUG_THEME)
+debug: all
+
+%.o: %.c
+	@$(CC) -c $(CFLAGS) -o $@ $< && \
+		$(ECHO) $(DIM_T) "cc $(CFLAGS) -c "$<$(COLOR_THEME)" -o "$@ $(DEFAULT) || \
+		$(ECHO) "\n"$(MAGEN_C) $(UNDLN_T)$(BOLD_T)"cc $(CFLAGS) -c "$<" -o "$@$(DEFAULT)"\n"
+
+.PHONY: all $(NAME) message clean fclean re debug

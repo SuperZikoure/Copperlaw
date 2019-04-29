@@ -15,11 +15,17 @@ map_t *create_map(char *filepath, window_t *window)
 {
     map_t *map = malloc(sizeof(map_t));
 
+    if (!map)
+        return NULL;
     map->map = read_map_from_file(filepath);
+    if (!map->map)
+        return NULL;
     if (map->map[0])
         map->size.x = my_strlen(map->map[0]);
     map->size.y = my_strarraylen(map->map);
     map->bg = create_image(my_strcat_no_free(filepath, "_bg.png"), window);
     map->fg = create_image(my_strcat_no_free(filepath, "_fg.png"), window);
+    if (!map->bg || !map->fg)
+        return NULL;
     return (map);
 }

@@ -5,9 +5,10 @@
 ** create_game.c
 */
 
+#include <stdlib.h>
 #include "graph.h"
 #include "my_rpg.h"
-#include "stdlib.h"
+#include "macros.h"
 
 /*static scene_t init_scene(game_t game)
 {
@@ -40,7 +41,11 @@ static my_clock_t *create_clock(game_t *game)
 {
     my_clock_t *clock = malloc(sizeof(my_clock_t));
 
+    if (!clock)
+        return NULL;
     clock->clock = sfClock_create();
+    if (!clock->clock)
+        return NULL;
     clock->frames = 0;
     clock->parent = game;
     return (clock);
@@ -64,12 +69,18 @@ game_t create_game(void)
     game.window = create_window(DEFAULT_SCREENSIZE, "CopperLaw");
     game.input = create_input();
     game.clock = create_clock(&game);
-    game.view = create_view((sfVector2f){0, 0}, SIZE, ZOOM, &game);
+    if (!game.window || !game.input || !game.clock)
+        return game;
+    game.view = create_view(V2F(0, 0), SIZE, ZOOM, &game);
+    if (!game.view)
+        return game;
     game.gui = create_gui(game.view);
     game.option = create_option();
     game.exit = 0;
     game.frames = 0;
     game.maps[0] = create_map("src/data/maps/testmdr", game.window);
+    if (!game.maps[0])
+        return game;
     game.current_map = 0;
     game.player = create_player(&game);
     return (game);

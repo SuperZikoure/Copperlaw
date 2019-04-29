@@ -12,6 +12,8 @@ sfText *quick_text_create(unsigned int char_size, const char *fontpath)
     sfText *text = sfText_create();
     sfFont *font = sfFont_createFromFile(fontpath);
 
+    if (!text || !font)
+        return NULL;
     sfText_setFont(text, font);
     sfText_setCharacterSize(text, char_size);
     return text;

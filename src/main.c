@@ -8,10 +8,21 @@
 #include "graph.h"
 #include "my_rpg.h"
 
+static sfBool is_game_valid(game_t *game)
+{
+    if (!game->window || !game->input || !game->clock)
+        return sfFalse;
+    if (!game->view || !game->gui || !game->maps[0])
+        return sfFalse;
+    return sfTrue;
+}
+
 int main(void)
 {
     game_t game = create_game();
 
+    if (!is_game_valid(&game))
+        return 84;
     if (fill_image(game.window) == -1)
         return (84);
     game.scene = GAME;

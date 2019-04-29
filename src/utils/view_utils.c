@@ -16,6 +16,7 @@
 #include "graph.h"
 #include "my.h"
 #include "my_rpg.h"
+#include "macros.h"
 
 sfVector2f global_to_view(sfVector2f pos, view_t *view)
 {
@@ -56,6 +57,7 @@ view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game)
 
     view->parent = game;
     view->window = game->window;
+    view->velocity = V2F(0, 0);
     cam.left = player_pos.x - VIEW_SIZE_X / 2;
     cam.top = player_pos.y - VIEW_SIZE_Y / 2;
     view->camera = sfView_createFromRect(cam);

@@ -11,30 +11,35 @@ int (* const scenes[SCENE_NB])(game_t *) = {
     NULL,
     NULL,
     game_scene,
-    NULL,
+    pause_scene,
     NULL,
     NULL,
     NULL,
     NULL
 };
 
-static int (*fetch_scene(int flag))(game_t *)
+static int fetch_scene_id(int flag)
 {
     static int id = 0;
 
     if (flag != -1) {
         id = flag;
-        return NULL;
+        return 0;
     }
-    return scenes[id];
+    return id;
 }
 
 int (*get_scene(void))(game_t *)
 {
-    return fetch_scene(-1);
+    return scenes[fetch_scene_id(-1)];
+}
+
+int get_scene_id(void)
+{
+    return fetch_scene_id(-1);
 }
 
 void change_scene(enum enum_scene_e id)
 {
-    fetch_scene(id);
+    fetch_scene_id(id);
 }

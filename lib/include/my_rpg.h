@@ -40,7 +40,7 @@
 #define KEY_HELD(c) (input->keys[c]->held)
 
 #define MOUSE_PRESSED(c) (mouse_pressed_once(c))
-#define MOUSE_HELD(c) (fMouse_isButtonPressed(c))
+#define MOUSE_HELD(c) (sfMouse_isButtonPressed(c))
 
 #define WINDOW game->window
 #define VIEW game->view
@@ -167,7 +167,7 @@ typedef struct button_s
     sound_t *click_sound;
     sfVector2f pos;
     sfVector2f display_pos;
-    int scene;
+    enum enum_scene_e scene;
     int mouse_hover;
     int mouse_click;
     void* parent;
@@ -301,11 +301,13 @@ struct game_s {
     int scene;
 };
 
-/* game loop */
+/* main game functions */
 void game_loop(game_t *game);
+int analyse_events(game_t *game);
 
 /* SCENE SYSTEM */
 int (*get_scene(void))(game_t *);
+int get_scene_id(void);
 void change_scene(enum enum_scene_e id);
 
 /* DELTA */
@@ -313,11 +315,8 @@ size_t get_delta(void);
 int start_clock(void);
 void start_new_frame(void);
 
-/* gui/create_gui.c */
+/* GUI */
 gui_t *create_gui(view_t *view);
-
-/* gui/update_gui.c */
-void update_gui(game_t *game, sfVector2i pos);
 
 /* manage_intersections.c */
 int point_intersect(image_t *img, float x, float y);
@@ -326,6 +325,14 @@ int image_intersect(image_t *img1, image_t *img2);
 /* create_game.c */
 game_t create_game(void);
 
+/* PAUSE GAME */
+int start_pause(game_t *game);
+
+/* BUTTONS */
+button_t *create_button(char *path, sfVector3f pos, view_t *view,
+                                void (*trigger)(game_t *));
+void show_scene_buttons(game_t *game, enum enum_scene_e scene);
+sfBool mouse_pressed_once(int mouse_button);
 
 /// SCENES ///
 
@@ -336,9 +343,14 @@ void display_cursor(game_t *game, sfVector2f view_pos[4]);
 void compute_game_interactions(game_t *game);
 void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
+void update_game_gui(game_t *game, sfVector2i pos);
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
 void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
+
+/* PAUSE */
+int pause_scene(game_t *game);
+
 
 /* maps/create_map.c */
 map_t *create_map(char *filepath, window_t *window);
@@ -370,7 +382,7 @@ void put_fs(game_t *game);
 
 input_t *create_input(void);
 void destroy_input(input_t *input);
-void process_input(window_t *window, input_t *input);
+void process_input(input_t *input);
 
 view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
 sfVector2f global_to_view(sfVector2f pos, view_t *view);

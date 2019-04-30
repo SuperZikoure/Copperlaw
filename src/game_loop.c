@@ -5,6 +5,7 @@
 ** loop_game
 */
 
+#include <stdio.h>
 #include "my_rpg.h"
 
 void game_loop(game_t *game)
@@ -13,11 +14,11 @@ void game_loop(game_t *game)
     start_clock();
     while (sfRenderWindow_isOpen(game->window->window) && !game->exit) {
         start_new_frame();
-        process_input(game->window, game->input);
-        sfRenderWindow_clear(game->window->window, sfBlack);
+        analyse_events(game);
         game->mouse_pos = sfMouse_getPositionRenderWindow(game->window->window);
-        get_scene()(game);
-        update_gui(game, game->mouse_pos);
+        sfRenderWindow_clear(game->window->window, sfBlack);
+        /* if ( */get_scene()(game);/*  == -1) */
+            // sfRenderWindow_close(game->window->window);
         sfRenderWindow_setView(game->window->window, game->view->camera);
         sfRenderWindow_display(game->window->window);
     }

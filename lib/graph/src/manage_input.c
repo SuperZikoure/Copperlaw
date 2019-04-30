@@ -26,8 +26,7 @@ void process_key(keypress_t *key)
     if (sfKeyboard_isKeyPressed(key->key) && !key->held) {
         key->pressed = 1;
         key->held = 1;
-    }
-    else
+    } else
         key->pressed = 0;
     if (!sfKeyboard_isKeyPressed(key->key)) {
         key->pressed = 0;

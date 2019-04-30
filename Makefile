@@ -42,7 +42,7 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-BUTTONS		=	button_functions
+BUTTONS		=	buttons
 DATA		=	data
 FETCH		=	$(DATA)/fetch
 DIALOGUES	=	dialogues
@@ -53,9 +53,12 @@ MOVEMENT	=	movement
 SCENES		=	scenes
 GAME_SCENE	=	$(SCENES)/game
 GAME_VIEW	=	$(GAME_SCENE)/view
+PAUSE_SCENE	=	$(SCENES)/pause
 UTILS		=	utils
 
-SRC	=	$(BUTTONS)/menu_functions.c \
+SRC	=	$(BUTTONS)/create_button.c \
+		$(BUTTONS)/manage_button.c \
+		$(BUTTONS)/menu_functions.c \
 		$(FETCH)/fetch_image.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/village.c \
@@ -69,7 +72,6 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(DIALOGUES)/load_dialogue_scene.c \
 		$(DIALOGUES)/text_speed.c \
 		$(GUI)/create_gui.c \
-		$(GUI)/update_gui.c \
 		$(MAPS)/create_map.c \
 		$(MAPS)/read_map_from_file.c \
 		$(MOVEMENT)/change_animation.c \
@@ -84,9 +86,12 @@ SRC	=	$(BUTTONS)/menu_functions.c \
 		$(GAME_SCENE)/fire_ball.c \
 		$(GAME_SCENE)/game_scene.c \
 		$(GAME_SCENE)/set_player_position.c \
+		$(GAME_SCENE)/update_game_gui.c \
+		$(PAUSE_SCENE)/pause_scene.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
+		analyse_events.c \
 		create_game.c \
 		create_player.c \
 		game_loop.c \

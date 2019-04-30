@@ -24,16 +24,10 @@ input_t *create_input(void)
     return (input);
 }
 
-void process_input(window_t *window, input_t *input)
+void process_input(input_t *input)
 {
-    while (sfRenderWindow_pollEvent(window->window, &window->event)) {
-        window->width = sfRenderWindow_getSize(window->window).x;
-        window->height = sfRenderWindow_getSize(window->window).y;
-        if (window->event.type == sfEvtClosed)
-            sfRenderWindow_close(window->window);
-        for (int i = 0; i < KEY_AMOUNT; i++)
-            process_key(input->keys[i]);
-    }
+    for (int i = 0; i < KEY_AMOUNT; i++)
+        process_key(input->keys[i]);
 }
 
 void destroy_input(input_t *input)

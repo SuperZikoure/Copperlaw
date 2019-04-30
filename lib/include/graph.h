@@ -21,7 +21,6 @@ typedef struct window_s
     sfVideoMode mode;
     sfRenderWindow *window;
     char *title;
-    sfEvent event;
 } window_t;
 
 typedef struct text_s

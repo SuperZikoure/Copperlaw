@@ -301,8 +301,9 @@ struct game_s {
     int scene;
 };
 
-/* game loop */
+/* main game functions */
 void game_loop(game_t *game);
+int analyse_events(game_t *game);
 
 /* SCENE SYSTEM */
 int (*get_scene(void))(game_t *);
@@ -381,7 +382,7 @@ void put_fs(game_t *game);
 
 input_t *create_input(void);
 void destroy_input(input_t *input);
-void process_input(window_t *window, input_t *input);
+void process_input(input_t *input);
 
 view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
 sfVector2f global_to_view(sfVector2f pos, view_t *view);

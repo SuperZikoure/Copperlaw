@@ -91,6 +91,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
+		analyse_events.c \
 		create_game.c \
 		create_player.c \
 		game_loop.c \

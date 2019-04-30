@@ -68,8 +68,20 @@ static void player_management(game_t *game)
     update_game_gui(game, game->mouse_pos);
 }
 
+static int analyse_game_events(input_t *input)
+{
+    if (KEY_PRESSED(ESCAPE_KEY)) {
+        change_scene(PAUSE);
+        input->keys[ESCAPE_KEY]->pressed = 0;
+        return 1;
+    }
+    return 0;
+}
+
 int game_scene(game_t *game)
 {
+    if (analyse_game_events(game->input))
+        return 1;
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
     player_management(game);
     // display_balls(game->game.balls);

@@ -36,7 +36,7 @@ enum zone_ids get_current_scene_id(int action)
 
 int main_test_dialogues(void)
 {
-    window_t *window = create_window(5, "CopperLaw");
+    window_t *window = create_window(DEFAULT_SCREENSIZE, "CopperLaw");
     sfEvent event;
     struct dialogue_s *dialogue = NULL;
 

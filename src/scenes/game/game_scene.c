@@ -65,6 +65,7 @@ static void player_management(game_t *game)
         display_anim(game->player->move, game->player->pos);
     else
         display_anim(game->player->idle, game->player->pos);
+    update_game_gui(game, game->mouse_pos);
 }
 
 int game_scene(game_t *game)

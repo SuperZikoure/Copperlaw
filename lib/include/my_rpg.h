@@ -167,7 +167,7 @@ typedef struct button_s
     sound_t *click_sound;
     sfVector2f pos;
     sfVector2f display_pos;
-    int scene;
+    enum enum_scene_e scene;
     int mouse_hover;
     int mouse_click;
     void* parent;
@@ -313,11 +313,8 @@ size_t get_delta(void);
 int start_clock(void);
 void start_new_frame(void);
 
-/* gui/create_gui.c */
+/* GUI */
 gui_t *create_gui(view_t *view);
-
-/* gui/update_gui.c */
-void update_gui(game_t *game, sfVector2i pos);
 
 /* manage_intersections.c */
 int point_intersect(image_t *img, float x, float y);
@@ -326,6 +323,13 @@ int image_intersect(image_t *img1, image_t *img2);
 /* create_game.c */
 game_t create_game(void);
 
+/* PAUSE GAME */
+int start_pause(game_t *game);
+
+/* BUTTONS */
+button_t *create_button(char *path, sfVector3f pos, view_t *view,
+                                void (*trigger)(game_t *));
+void show_scene_buttons(game_t *game, enum enum_scene_e scene);
 
 /// SCENES ///
 
@@ -336,6 +340,7 @@ void display_cursor(game_t *game, sfVector2f view_pos[4]);
 void compute_game_interactions(game_t *game);
 void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
+void update_game_gui(game_t *game, sfVector2i pos);
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
 void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);

@@ -9,11 +9,6 @@
 #include "my_string.h"
 #include "scripts.h"
 
-const struct script_s **script_list[] = {
-    intro_scripts,
-    village_scripts,
-};
-
 struct dialogue_s **load_scene_dialogues(enum zone_ids id)
 {
     struct dialogue_s **ptr;

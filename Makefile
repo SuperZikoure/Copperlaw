@@ -45,8 +45,7 @@ TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 BUTTONS		=	buttons
 DATA		=	data
 FETCH		=	$(DATA)/fetch
-DIALOGUES	=	dialogues
-SCRIPTS		=	$(DIALOGUES)/scripts
+SCRIPTS		=	scripts
 GUI			=	gui
 MAPS		=	maps
 MOVEMENT	=	movement
@@ -61,17 +60,6 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(BUTTONS)/manage_button.c \
 		$(BUTTONS)/menu_functions.c \
 		$(FETCH)/fetch_image.c \
-		$(SCRIPTS)/intro.c \
-		$(SCRIPTS)/village.c \
-		$(DIALOGUES)/create_dialogue_script.c \
-		$(DIALOGUES)/create_dialogue.c \
-		$(DIALOGUES)/destroy_dialogue.c \
-		$(DIALOGUES)/dialogue_actions.c \
-		$(DIALOGUES)/dialogue_canvas.c \
-		$(DIALOGUES)/dialogue_constants.c \
-		$(DIALOGUES)/display_dialogue.c \
-		$(DIALOGUES)/load_dialogue_scene.c \
-		$(DIALOGUES)/text_speed.c \
 		$(GUI)/create_gui.c \
 		$(GUI)/display_cursor.c \
 		$(MAPS)/create_map.c \
@@ -92,6 +80,9 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(MENU_SCENE)/menu_scene.c \
 		$(TRANSITIONS)/game_menu.c \
 		$(TRANSITIONS)/mainmenu_game.c \
+		$(SCRIPTS)/intro.c \
+		$(SCRIPTS)/script_list.c \
+		$(SCRIPTS)/village.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
@@ -106,11 +97,11 @@ SRC	=	$(BUTTONS)/create_button.c \
 		manage_intersections.c \
 		scene_system.c
 
-SRC_LIB	=	stdio my string graph inv \
+SRC_LIB	=	stdio my string graph inv dialogues \
 			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
-LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory
+LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory lib/dialogues
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)

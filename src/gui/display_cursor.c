@@ -11,7 +11,7 @@
 void display_cursor(game_t *game)
 {
     sfVector2f pos = {game->mouse_pos.x, game->mouse_pos.y};
-    
+
     CURSOR->pos = global_to_view_mouse(pos, VIEW);
     CURSOR->pos.x -= 16;
     CURSOR->pos.y -= 16;

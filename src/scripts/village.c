@@ -7,20 +7,23 @@
 
 #include "scripts.h"
 
-NEW_SCRIPT(blank_village) = {
+NEW_SCRIPT(blank_village)
+{
     SAY("...", NARRATOR)
     END
 };
 
-NEW_SCRIPT(test_village_1) = {
+NEW_SCRIPT(test_village_1)
+{
     CHOSE2("c'est 2 gold la pomme tu la veux oui ou non ?", "oui", "non", USR)
     END
 };
 
-NEW_SCRIPT(test_village_2) = {
+NEW_SCRIPT(test_village_2)
+{
     SAY("le nutella c'est bon 14", NARRATOR)
-    CHOSE3("le nutella c'est quoi a ton avis ???????", "bon", "Bon", "Super mega bon tu peux pas test mon gars",
-NARRATOR)
+    CHOSE3("le nutella c'est quoi a ton avis ???????", "bon", "Bon",
+"Super mega bon tu peux pas test mon gars", NARRATOR)
     END
 };
 

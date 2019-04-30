@@ -41,4 +41,10 @@
 #define SET_SELECTED_CHOISE_COLOR(s, c) \
             sfText_setColor(s->texts[s->selected], c)
 
+/* PLAYER MOVEMENT */
+#define MOVES_UP(dir) (dir & DIR_UP)
+#define MOVES_DOWN(dir) (dir & DIR_DOWN)
+#define MOVES_RIGHT(dir) (dir & DIR_RIGHT)
+#define MOVES_LEFT(dir) (dir & DIR_LEFT)
+
 #endif /* !MACROS_H_ */

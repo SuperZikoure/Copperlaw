@@ -29,8 +29,6 @@ static void begin_dash(sfVector2f *dash, sfVector2f vel, sfVector2f dir)
     }
 }
 
-#include <stdio.h>
-
 void dash(input_t *input, sfVector2f *dash, sfVector2f vel, sfVector2f dir)
 {
     static int timer = 0;

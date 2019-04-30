@@ -40,7 +40,7 @@
 #define KEY_HELD(c) (input->keys[c]->held)
 
 #define MOUSE_PRESSED(c) (mouse_pressed_once(c))
-#define MOUSE_HELD(c) (fMouse_isButtonPressed(c))
+#define MOUSE_HELD(c) (sfMouse_isButtonPressed(c))
 
 #define WINDOW game->window
 #define VIEW game->view
@@ -306,6 +306,7 @@ void game_loop(game_t *game);
 
 /* SCENE SYSTEM */
 int (*get_scene(void))(game_t *);
+int get_scene_id(void);
 void change_scene(enum enum_scene_e id);
 
 /* DELTA */
@@ -330,6 +331,7 @@ int start_pause(game_t *game);
 button_t *create_button(char *path, sfVector3f pos, view_t *view,
                                 void (*trigger)(game_t *));
 void show_scene_buttons(game_t *game, enum enum_scene_e scene);
+sfBool mouse_pressed_once(int mouse_button);
 
 /// SCENES ///
 
@@ -344,6 +346,10 @@ void update_game_gui(game_t *game, sfVector2i pos);
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
 void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
+
+/* PAUSE */
+int pause_scene(game_t *game);
+
 
 /* maps/create_map.c */
 map_t *create_map(char *filepath, window_t *window);

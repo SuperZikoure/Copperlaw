@@ -2,12 +2,13 @@
 ** EPITECH PROJECT, 2019
 ** MUL_my_rpg_2018
 ** File description:
-** button_triggers
+** pause_loop
 */
 
 #include "my_rpg.h"
 
-void resume_paused_game(game_t *game)
+int pause_scene(game_t *game)
 {
-    
+    (void) game;
+    return 0;
 }

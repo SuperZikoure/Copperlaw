@@ -53,6 +53,7 @@ MOVEMENT	=	movement
 SCENES		=	scenes
 GAME_SCENE	=	$(SCENES)/game
 GAME_VIEW	=	$(GAME_SCENE)/view
+PAUSE_SCENE	=	$(SCENES)/pause
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/create_button.c \
@@ -86,6 +87,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(GAME_SCENE)/game_scene.c \
 		$(GAME_SCENE)/set_player_position.c \
 		$(GAME_SCENE)/update_game_gui.c \
+		$(PAUSE_SCENE)/pause_scene.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \

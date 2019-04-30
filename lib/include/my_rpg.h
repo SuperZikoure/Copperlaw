@@ -70,7 +70,6 @@ enum enum_scene_e {
     MAIN_MENU,
     OPTIONS,
     GAME,
-    PAUSE,
     INVENTORY,
     SKILLS,
     STATS,
@@ -156,6 +155,14 @@ enum enum_key_e {
     SKILL_3_KEY
 };
 
+enum cursor_modes {
+    CURSOR_BASE,
+    CURSOR_IDLE,
+    CURSOR_INSPECT,
+    CURSOR_BUILD,
+    CURSOR_MODES_NB
+};
+
 typedef struct button_s
 {
     void (*trigger)(game_t *);
@@ -188,7 +195,6 @@ typedef struct cursor_s
 typedef struct gui_s {
     cursor_t *cursor;
     button_t *button[BUTTON_AMOUNT];
-    sfVector2i pos;
     void *parent;
 } gui_t;
 
@@ -307,7 +313,7 @@ int analyse_events(game_t *game);
 
 /* SCENE SYSTEM */
 int (*get_scene(void))(game_t *);
-int get_scene_id(void);
+enum enum_scene_e get_scene_id(void);
 void change_scene(enum enum_scene_e id);
 
 /* DELTA */
@@ -317,6 +323,7 @@ void start_new_frame(void);
 
 /* GUI */
 gui_t *create_gui(view_t *view);
+void display_cursor(game_t *game);
 
 /* manage_intersections.c */
 int point_intersect(image_t *img, float x, float y);
@@ -325,31 +332,35 @@ int image_intersect(image_t *img1, image_t *img2);
 /* create_game.c */
 game_t create_game(void);
 
-/* PAUSE GAME */
-int start_pause(game_t *game);
-
 /* BUTTONS */
 button_t *create_button(char *path, sfVector3f pos, view_t *view,
                                 void (*trigger)(game_t *));
-void show_scene_buttons(game_t *game, enum enum_scene_e scene);
+void show_scene_buttons(game_t *game);
 sfBool mouse_pressed_once(int mouse_button);
 
 /// SCENES ///
 
+/* TRANSITIONS */
+int swap_game_to_menu(game_t *game);
+int swap_menu_to_game(game_t *game);
+int swap_main_menu_to_game(game_t *game);
+
 /* GAME */
 int game_scene(game_t *game);
-void manage_game_view(game_t *game);
-void display_cursor(game_t *game, sfVector2f view_pos[4]);
+void display_cursor_trail(game_t *game, sfVector2f view_pos[4]);
 void compute_game_interactions(game_t *game);
 void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
-void update_game_gui(game_t *game, sfVector2i pos);
+void update_game_gui(game_t *game);
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
 void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
 
-/* PAUSE */
-int pause_scene(game_t *game);
+/* MAIN MENU */
+int main_menu_scene(game_t *game);
+
+/* MENU */
+int menu_scene(game_t *game);
 
 
 /* maps/create_map.c */

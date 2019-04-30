@@ -14,10 +14,8 @@ int analyse_events(game_t *game)
     while (sfRenderWindow_pollEvent(WINDOW->window, &event)) {
         if (event.type == sfEvtClosed) {
             sfRenderWindow_close(WINDOW->window);
-            return 0;
+            return 1;
         }
-        WINDOW->width = sfRenderWindow_getSize(WINDOW->window).x;
-        WINDOW->height = sfRenderWindow_getSize(WINDOW->window).y;
         if (event.type == sfEvtKeyPressed || event.type == sfEvtKeyReleased)
             process_input(game->input);
     }

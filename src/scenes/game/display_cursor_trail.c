@@ -15,7 +15,7 @@ static float get_distance(sfVector2f p1, sfVector2f p2)
     return (distance);
 }
 
-void display_cursor(game_t *game, sfVector2f view_pos[4])
+void display_cursor_trail(game_t *game, sfVector2f view_pos[4])
 {
     float distance;
 

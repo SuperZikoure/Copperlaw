@@ -38,8 +38,10 @@ b->mouse_click) {
     manage_button2(b);
 }
 
-void show_scene_buttons(game_t *game, enum enum_scene_e scene)
+void show_scene_buttons(game_t *game)
 {
+    enum enum_scene_e scene = get_scene_id();
+
     for (int i = 0; i < BUTTON_AMOUNT; i++) {
         if (GUI->button[i]->scene == scene)
             manage_button(GUI->button[i], game);

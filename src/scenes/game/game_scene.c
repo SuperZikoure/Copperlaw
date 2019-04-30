@@ -12,50 +12,50 @@
 #include "my_rpg.h"
 #include "macros.h"
 
-void reset_velocity(sfVector2f *velocity, float rate)
-{
-    if (velocity->x != 0)
-        velocity->x -= (velocity->x > 0) ? rate : -rate;
-    if (velocity->y != 0)
-        velocity->y -= (velocity->y > 0) ? rate : -rate;
-    if (velocity->x >= rate && velocity->x <= - rate)
-        velocity->x = 0;
-    if (velocity->y >= rate && velocity->y <= - rate)
-        velocity->y = 0;
-}
+// void reset_velocity(sfVector2f *velocity, float rate)
+// {
+//     if (velocity->x != 0)
+//         velocity->x -= (velocity->x > 0) ? rate : -rate;
+//     if (velocity->y != 0)
+//         velocity->y -= (velocity->y > 0) ? rate : -rate;
+//     if (velocity->x >= rate && velocity->x <= - rate)
+//         velocity->x = 0;
+//     if (velocity->y >= rate && velocity->y <= - rate)
+//         velocity->y = 0;
+// }
 
-void manage_michel(monster_t *michel, ball_t *balls[PLAYER_BALLS], sfVector2f pos)
-{
-        sfVector2f diff = (sfVector2f){michel->pos.x - pos.x, michel->pos.y - pos.y};
+// void manage_michel(monster_t *michel, ball_t *balls[PLAYER_BALLS], sfVector2f pos)
+// {
+//         sfVector2f diff = (sfVector2f){michel->pos.x - pos.x, michel->pos.y - pos.y};
 
-    for (int i = 0; i < PLAYER_BALLS; i++) {
-        if (!balls[i]->exist)
-            continue;
-        if ((michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hit)) || (!(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal))) {
-            michel->speed = (sfVector2f){balls[i]->speed.x / 5, balls[i]->speed.y / 5};
-            balls[i]->exist = 0;
-        }
-    }
-    if (ABS(diff.x) <= 200 && ABS(diff.y) <= 200)
-        michel->aggro = 1;
-    else
-        michel->aggro = 0;
-    if (michel->aggro) {
-        michel->speed.x += (diff.x <= 0) ? 0.6 : -0.6;
-        michel->speed.y += (diff.y <= 0) ? 0.6 : -0.6;
-    }
-    michel->pos.x += michel->speed.x;
-    michel->pos.y += michel->speed.y;
-    reset_velocity(&michel->speed, 1);
-    if (michel->speed.x <= 1.01 && michel->speed.x >= -1.01)
-        michel->speed.x = 0;
-    if (michel->speed.y <= 1.01 && michel->speed.y >= -1.01)
-        michel->speed.y = 0;
-    if (michel->speed.x + michel->speed.y)
-        display_image(michel->hit, michel->pos);
-    else
-        display_image(michel->normal, michel->pos);
-}
+//     for (int i = 0; i < PLAYER_BALLS; i++) {
+//         if (!balls[i]->exist)
+//             continue;
+//         if ((michel->speed.x + michel->speed.y && image_intersect(balls[i]->ball, michel->hit)) || (!(michel->speed.x + michel->speed.y) && image_intersect(balls[i]->ball, michel->normal))) {
+//             michel->speed = (sfVector2f){balls[i]->speed.x / 5, balls[i]->speed.y / 5};
+//             balls[i]->exist = 0;
+//         }
+//     }
+//     if (ABS(diff.x) <= 200 && ABS(diff.y) <= 200)
+//         michel->aggro = 1;
+//     else
+//         michel->aggro = 0;
+//     if (michel->aggro) {
+//         michel->speed.x += (diff.x <= 0) ? 0.6 : -0.6;
+//         michel->speed.y += (diff.y <= 0) ? 0.6 : -0.6;
+//     }
+//     michel->pos.x += michel->speed.x;
+//     michel->pos.y += michel->speed.y;
+//     reset_velocity(&michel->speed, 1);
+//     if (michel->speed.x <= 1.01 && michel->speed.x >= -1.01)
+//         michel->speed.x = 0;
+//     if (michel->speed.y <= 1.01 && michel->speed.y >= -1.01)
+//         michel->speed.y = 0;
+//     if (michel->speed.x + michel->speed.y)
+//         display_image(michel->hit, michel->pos);
+//     else
+//         display_image(michel->normal, michel->pos);
+// }
 
 static void player_management(game_t *game)
 {
@@ -65,27 +65,21 @@ static void player_management(game_t *game)
         display_anim(game->player->move, game->player->pos);
     else
         display_anim(game->player->idle, game->player->pos);
-    update_game_gui(game, game->mouse_pos);
 }
 
-static int analyse_game_events(input_t *input)
+static int analyse_game_events(game_t *game, input_t *input)
 {
-    if (KEY_PRESSED(ESCAPE_KEY)) {
-        change_scene(PAUSE);
-        input->keys[ESCAPE_KEY]->pressed = 0;
-        return 1;
-    }
+    if (KEY_PRESSED(ESCAPE_KEY))
+        return swap_game_to_menu(game);
     return 0;
 }
 
 int game_scene(game_t *game)
 {
-    if (analyse_game_events(game->input))
+    if (analyse_game_events(game, game->input))
         return 1;
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
     player_management(game);
-    // display_balls(game->game.balls);
-    // manage_michel(game->game.michel, game->game.balls, game->game.player_pos);
-    manage_game_view(game);
+    update_game_gui(game);
     return 0;
 }

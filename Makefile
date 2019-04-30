@@ -84,6 +84,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(SCRIPTS)/script_list.c \
 		$(SCRIPTS)/village.c \
 		$(UTILS)/get_line.c \
+		$(UTILS)/my_srand.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
 		analyse_events.c \

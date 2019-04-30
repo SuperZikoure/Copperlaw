@@ -23,7 +23,7 @@
 #define PLAYER_BALLS 200
 #define MONSTER_BALLS 25
 
-#define CELL_SIZE 16
+#define C_SIZE 16
 
 #define BUTTON_AMOUNT 4
 

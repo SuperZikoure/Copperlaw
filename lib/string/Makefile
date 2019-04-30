@@ -26,7 +26,7 @@ LIGHT_MAGEN	=	"\e[95m"
 LIGHT_CYAN	=	"\e[96m"
 LINE_RETURN	=	$(ECHO) ""
 
-COLOR_THEME	=	$(YELLO_C)
+COLOR_THEME	=	$(GREEN_C)
 DEBUG_THEME	=	$(CYAN_C)
 
 NAME	=	string
@@ -41,7 +41,7 @@ SRC	=	my_arraylen.c	my_arraynlen.c	my_linelen.c			\
 		my_strcpycat.c \
 		my_strdup.c 	my_strlen.c 	my_strncasecmp.c 		\
 		my_strncat.c	my_strncmp.c 	my_strncpy.c 			\
-		my_strndup.c 	my_strnlen.c
+		my_strndup.c 	my_strnlen.c	my_strcat_no_free.c
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%)
 OBJ	=	$(SRCS:.c=.o)
@@ -49,7 +49,7 @@ OBJ	=	$(SRCS:.c=.o)
 CFLAGS	=	-Wall -Wextra -Werror -I $(INCLUDE_PATH)
 DEBUG_FLAGS	=	-g3 -gdwarf-4
 
-all:	message $(NAME)
+all:	$(NAME)
 
 message:
 	@$(LINE_RETURN)
@@ -62,9 +62,10 @@ message:
 	@$(LINE_RETURN)
 
 $(NAME):	$(OBJ)
-	@ar rc ./lib$(NAME).a $(OBJ) && \
-		$(ECHO) $(BOLD_T)$(GREEN_C)"\n[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) "lib$(NAME).a" $(DEFAULT) || \
-		$(ECHO) $(RED_C)$(BOLD_T)"[✘] "$(UNDLN_T)"BUILD FAILED:" $(LIGHT_RED) "lib$(NAME).a"$(DEFAULT)
+	@ar rc ./lib$(NAME).a $(OBJ)
+	# && \
+	# 	$(ECHO) $(BOLD_T)$(GREEN_C)"[✔] COMPILED:" $(DEFAULT)$(LIGHT_GREEN) "lib$(NAME).a" $(DEFAULT) || \
+	# 	$(ECHO) $(RED_C)$(BOLD_T)"[✘] "$(UNDLN_T)"BUILD FAILED:" $(LIGHT_RED) "lib$(NAME).a"$(DEFAULT)
 
 clean:
 	@$(RM) $(OBJ)

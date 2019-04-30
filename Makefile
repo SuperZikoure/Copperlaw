@@ -42,27 +42,80 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 
-SRC	=	
+BUTTONS		=	buttons
+DATA		=	data
+FETCH		=	$(DATA)/fetch
+SCRIPTS		=	scripts
+GUI			=	gui
+MAPS		=	maps
+MOVEMENT	=	movement
+SCENES		=	scenes
+GAME_SCENE	=	$(SCENES)/game
+MAINM_SCENE	=	$(SCENES)/main_menu
+MENU_SCENE	=	$(SCENES)/menu
+TRANSITIONS	=	$(SCENES)/transitions
+UTILS		=	utils
 
-SRC_LIB	=	stdio my string \
-			csfml-graphics csfml-system csfml-audio \
+SRC	=	$(BUTTONS)/create_button.c \
+		$(BUTTONS)/manage_button.c \
+		$(BUTTONS)/menu_functions.c \
+		$(FETCH)/fetch_image.c \
+		$(GUI)/create_gui.c \
+		$(GUI)/display_cursor.c \
+		$(MAPS)/create_map.c \
+		$(MAPS)/read_map_from_file.c \
+		$(MOVEMENT)/change_animation.c \
+		$(MOVEMENT)/manage_collisions.c \
+		$(MOVEMENT)/manage_dash.c \
+		$(MOVEMENT)/move_player.c \
+		$(MOVEMENT)/set_idle_animation.c \
+		$(GAME_SCENE)/analyse_movement_keys.c \
+		$(GAME_SCENE)/compute_game_interactions.c \
+		$(GAME_SCENE)/display_cursor_trail.c \
+		$(GAME_SCENE)/fire_ball.c \
+		$(GAME_SCENE)/game_scene.c \
+		$(GAME_SCENE)/set_player_position.c \
+		$(GAME_SCENE)/update_game_gui.c \
+		$(MAINM_SCENE)/main_menu_scene.c \
+		$(MENU_SCENE)/menu_scene.c \
+		$(TRANSITIONS)/game_menu.c \
+		$(TRANSITIONS)/mainmenu_game.c \
+		$(SCRIPTS)/intro.c \
+		$(SCRIPTS)/script_list.c \
+		$(SCRIPTS)/village.c \
+		$(UTILS)/get_line.c \
+		$(UTILS)/quick_sftext_create.c \
+		$(UTILS)/view_utils.c \
+		analyse_events.c \
+		create_game.c \
+		create_player.c \
+		game_loop.c \
+		get_delta.c \
+		global_info.c \
+		main_test_dialogues.c \
+		manage_inputs.c \
+		manage_intersections.c \
+		scene_system.c
+
+SRC_LIB	=	stdio my string graph inv dialogues \
+			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
-LIB_PATHS	=	lib/stdio lib/my lib/string
+LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory lib/dialogues
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)
 LIBRARIES	=	$(SRC_LIB:%=-l%)
 LIB_PATHS_FLAG	=	$(LIB_PATHS:%=-L$(ROOT_PATH)%)
 
-CFLAGS	=	-Wall -Wextra -I $(INCL_PATH)
+CFLAGS	=	-Wall -Wextra -Werror -I $(INCL_PATH)
 LDFLAGS	=	$(LIB_PATHS_FLAG) $(LIBRARIES)
 DEBUG_FLAGS	=	-g3 -gdwarf-4
 
 MAKE_RULE	=	all
 CLEAN_RULE	=	clean
 
-all:	build_libs message $(NAME)
+all:	build_libs $(NAME)
 
 message:
 	@$(LINE_RETURN)

@@ -22,10 +22,10 @@ const sfVideoMode window_size[RESOLUTIONS] = {
 };
 
 const info_button_t info[BUTTON_AMOUNT] = {
-    {{0, 100, MENU}, "play", put_fs},
-    {{5, 140, MENU}, "skill", res_plus},
-    {{10, 180, MENU}, "help", res_moins},
-    {{15, 220, MENU}, "exit", exit_game}
+    {{0, 100, MAIN_MENU}, "play", put_fs},
+    {{5, 140, MAIN_MENU}, "skill", res_plus},
+    {{10, 180, MAIN_MENU}, "help", res_moins},
+    {{15, 220, MAIN_MENU}, "exit", exit_game}
 };
 
 const sfKeyCode input_key[KEY_AMOUNT] = {

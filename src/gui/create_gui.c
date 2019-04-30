@@ -20,7 +20,7 @@ static cursor_t *create_cursor(game_t *game)
         return NULL;
     cursor->pos.x = 0;
     cursor->pos.y = 0;
-    cursor->mode = 1;
+    cursor->mode = 0;
     cursor->base = create_anim(V2F(1, 19), V2I(32, 32),
 "assets/cursor/base.png", game->window);
     cursor->idle = create_anim(V2F(7, 19), V2I(32, 32),
@@ -48,7 +48,5 @@ gui_t *create_gui(view_t *view)
         gui->button[i] = create_button(info[i].path, info[i].pos,
 view, info[i].trigger);
     }
-    gui->pos.x = 0;
-    gui->pos.y = 0;
     return (gui);
 }

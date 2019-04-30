@@ -52,8 +52,9 @@ MAPS		=	maps
 MOVEMENT	=	movement
 SCENES		=	scenes
 GAME_SCENE	=	$(SCENES)/game
-GAME_VIEW	=	$(GAME_SCENE)/view
-PAUSE_SCENE	=	$(SCENES)/pause
+MAINM_SCENE	=	$(SCENES)/main_menu
+MENU_SCENE	=	$(SCENES)/menu
+TRANSITIONS	=	$(SCENES)/transitions
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/create_button.c \
@@ -72,6 +73,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(DIALOGUES)/load_dialogue_scene.c \
 		$(DIALOGUES)/text_speed.c \
 		$(GUI)/create_gui.c \
+		$(GUI)/display_cursor.c \
 		$(MAPS)/create_map.c \
 		$(MAPS)/read_map_from_file.c \
 		$(MOVEMENT)/change_animation.c \
@@ -79,15 +81,17 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(MOVEMENT)/manage_dash.c \
 		$(MOVEMENT)/move_player.c \
 		$(MOVEMENT)/set_idle_animation.c \
-		$(GAME_VIEW)/display_cursor.c \
-		$(GAME_VIEW)/view_management.c \
 		$(GAME_SCENE)/analyse_movement_keys.c \
 		$(GAME_SCENE)/compute_game_interactions.c \
+		$(GAME_SCENE)/display_cursor_trail.c \
 		$(GAME_SCENE)/fire_ball.c \
 		$(GAME_SCENE)/game_scene.c \
 		$(GAME_SCENE)/set_player_position.c \
 		$(GAME_SCENE)/update_game_gui.c \
-		$(PAUSE_SCENE)/pause_scene.c \
+		$(MAINM_SCENE)/main_menu_scene.c \
+		$(MENU_SCENE)/menu_scene.c \
+		$(TRANSITIONS)/game_menu.c \
+		$(TRANSITIONS)/mainmenu_game.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \

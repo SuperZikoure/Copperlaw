@@ -8,21 +8,20 @@
 #include "my_rpg.h"
 
 int (* const scenes[SCENE_NB])(game_t *) = {
-    NULL,
+    main_menu_scene,
     NULL,
     game_scene,
-    pause_scene,
     NULL,
     NULL,
     NULL,
-    NULL
+    menu_scene
 };
 
-static int fetch_scene_id(int flag)
+static enum enum_scene_e fetch_scene_id(enum enum_scene_e flag)
 {
-    static int id = 0;
+    static enum enum_scene_e id = 0;
 
-    if (flag != -1) {
+    if (flag != SCENE_NB) {
         id = flag;
         return 0;
     }
@@ -31,12 +30,12 @@ static int fetch_scene_id(int flag)
 
 int (*get_scene(void))(game_t *)
 {
-    return scenes[fetch_scene_id(-1)];
+    return scenes[fetch_scene_id(SCENE_NB)];
 }
 
-int get_scene_id(void)
+enum enum_scene_e get_scene_id(void)
 {
-    return fetch_scene_id(-1);
+    return fetch_scene_id(SCENE_NB);
 }
 
 void change_scene(enum enum_scene_e id)

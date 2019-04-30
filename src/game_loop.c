@@ -10,11 +10,12 @@
 
 void game_loop(game_t *game)
 {
-    change_scene(GAME);
+    change_scene(MAIN_MENU);
     start_clock();
     while (sfRenderWindow_isOpen(game->window->window) && !game->exit) {
         start_new_frame();
-        analyse_events(game);
+        if (analyse_events(game))
+            break;
         game->mouse_pos = sfMouse_getPositionRenderWindow(game->window->window);
         sfRenderWindow_clear(game->window->window, sfBlack);
         /* if ( */get_scene()(game);/*  == -1) */

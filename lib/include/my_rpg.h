@@ -159,7 +159,8 @@ enum enum_key_e {
     SKILL_1_KEY,
     SKILL_2_KEY,
     SKILL_3_KEY,
-    KEY_AMOUNT
+    SCREENSHOT_KEY,
+    KEY_NB
 };
 
 enum cursor_modes {
@@ -173,9 +174,8 @@ enum cursor_modes {
 extern const sfVideoMode window_size[RESOLUTIONS];
 extern const char *image_path[IMAGE_AMOUNT];
 extern const info_button_t info[BUTTON_AMOUNT];
-extern const sfKeyCode input_key[KEY_AMOUNT];
+extern const sfKeyCode input_key[KEY_NB];
 extern const info_npc_t npc_info [NPC_AMOUNT];
-
 
 typedef struct button_s
 {
@@ -281,7 +281,7 @@ typedef struct monster_s {
 } monster_t;
 
 typedef struct input_s {
-    keypress_t *keys[KEY_AMOUNT];
+    keypress_t *keys[KEY_NB];
 } input_t;
 
 typedef struct npc_s {
@@ -409,6 +409,10 @@ void exit_game(game_t *game);
 void res_moins(game_t *game);
 void res_plus(game_t *game);
 void put_fs(game_t *game);
+
+/* SCREESHOT */
+#define SCREENSHOT_FILENAME_MAX 10
+int do_screenshot(window_t *window);
 
 ////////////////////////////////////
 

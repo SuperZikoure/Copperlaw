@@ -82,7 +82,6 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(TRANSITIONS)/game_menu.c \
 		$(TRANSITIONS)/mainmenu_game.c \
 		$(SCREESHOTS)/do_screenshot.c \
-		$(SCREESHOTS)/save_screenshot.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/script_list.c \
 		$(SCRIPTS)/village.c \

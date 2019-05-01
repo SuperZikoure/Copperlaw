@@ -5,11 +5,6 @@
 ** info.c
 */
 
-#include <SFML/Audio.h>
-#include <SFML/Graphics.h>
-#include <SFML/Window.h>
-#include <SFML/System.h>
-#include "graph.h"
 #include "my_rpg.h"
 
 const sfVideoMode window_size[RESOLUTIONS] = {
@@ -28,7 +23,7 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{15, 220, MAIN_MENU}, "exit", exit_game}
 };
 
-const sfKeyCode input_key[KEY_AMOUNT] = {
+const sfKeyCode input_key[KEY_NB] = {
     sfKeyZ,
     sfKeyD,
     sfKeyS,
@@ -41,7 +36,8 @@ const sfKeyCode input_key[KEY_AMOUNT] = {
     sfKeyTab,
     sfKeyNum1,
     sfKeyNum2,
-    sfKeyNum3
+    sfKeyNum3,
+    sfKeyF11
 };
 
 const char *image_path[IMAGE_AMOUNT] = {

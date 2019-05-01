@@ -8,6 +8,14 @@
 #include <stdio.h>
 #include "my_rpg.h"
 
+static int display_window(window_t *window, input_t *input)
+{
+    if (KEY_PRESSED(SCREENSHOT_KEY))
+        do_screenshot(window);
+    sfRenderWindow_display(window->window);
+    return 0;
+}
+
 void game_loop(game_t *game)
 {
     change_scene(MAIN_MENU);
@@ -21,6 +29,6 @@ void game_loop(game_t *game)
         /* if ( */get_scene()(game);/*  == -1) */
             // sfRenderWindow_close(game->window->window);
         sfRenderWindow_setView(game->window->window, game->view->camera);
-        sfRenderWindow_display(game->window->window);
+        display_window(WINDOW, game->input);
     }
 }

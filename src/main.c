@@ -29,7 +29,6 @@ int main(void)
     if (fill_image(game.window) == -1)
         return (84);
     my_srand();
-    game.scene = GAME;
     game_loop(&game);
     if (game.exit == -1)
         return (84);

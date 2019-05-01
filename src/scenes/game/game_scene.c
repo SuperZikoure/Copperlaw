@@ -61,10 +61,10 @@ static void player_management(game_t *game)
 {
     compute_game_interactions(game);
     set_player_position(game);
-    if (game->player->moving)
-        display_anim(game->player->move, game->player->pos);
-    else
-        display_anim(game->player->idle, game->player->pos);
+    // if (game->player->moving)
+    //     display_anim(game->player->move, game->player->pos);
+    // else
+    //     display_anim(game->player->idle, game->player->pos);
 }
 
 static void npc_management(game_t *game)
@@ -72,7 +72,6 @@ static void npc_management(game_t *game)
     for (int i = 0; i < NPC_AMOUNT; i++) {
         if (game->npc[i]->map == game->current_map) {
             update_anim(game->npc[i]->display);
-            display_anim(game->npc[i]->display, game->npc[i]->pos); 
         }
     }
 }
@@ -91,6 +90,7 @@ int game_scene(game_t *game)
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
     player_management(game);
     npc_management(game);
+    display_mobs(game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     update_game_gui(game);
     return 0;

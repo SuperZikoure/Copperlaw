@@ -403,6 +403,9 @@ void compute_col(col_t *col, int current_map);
 int fill_image(window_t *window);
 image_t *get_image(int index);
 
+/* display_mobs.c */
+void display_mobs(game_t *game);
+
 /* BUTTON FUNCTIONS */
 void put_game_scene(game_t *game);
 void exit_game(game_t *game);

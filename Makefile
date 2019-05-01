@@ -73,6 +73,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(GAME_SCENE)/analyse_movement_keys.c \
 		$(GAME_SCENE)/compute_game_interactions.c \
 		$(GAME_SCENE)/display_cursor_trail.c \
+		$(GAME_SCENE)/display_mobs.c \
 		$(GAME_SCENE)/fire_ball.c \
 		$(GAME_SCENE)/game_scene.c \
 		$(GAME_SCENE)/set_player_position.c \

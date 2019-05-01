@@ -9,22 +9,35 @@
 #include "my_rpg.h"
 #include "macros.h"
 
-button_t *create_button(char *path, sfVector3f pos, view_t *view,
-                                void (*trigger)(game_t *))
+static int setup_button_images(button_t *button, char *path, view_t *view)
 {
-    button_t *button = malloc(sizeof(button_t));
-
     button->base = create_image(my_strcat_no_free(BUTTON_PATH,
 my_strcat_no_free(path, "_base.png")), view->window);
     button->hover = create_image(my_strcat_no_free(BUTTON_PATH,
 my_strcat_no_free(path, "_hover.png")), view->window);
     button->click = create_image(my_strcat_no_free(BUTTON_PATH,
 my_strcat_no_free(path, "_click.png")), view->window);
+    if (!button->base || !button->hover || !button->click)
+        return -1;
+    return 0;
+}
+
+button_t *create_button(char *path, sfVector3f pos, view_t *view,
+                                void (*trigger)(game_t *))
+{
+    button_t *button = malloc(sizeof(button_t));
+
+    if (!button)
+        return NULL;
+    if (setup_button_images(button, path, view) == -1)
+        return NULL;
     button->scene = (int) pos.z;
     button->display = button->base;
     button->trigger = trigger;
     button->hover_sound = create_sound("assets/sounds/hover.wav");
     button->click_sound = create_sound("assets/sounds/click.wav");
+    if (!button->hover_sound || !button->click_sound)
+        return NULL;
     button->mouse_hover = 0;
     button->mouse_click = 0;
     button->pos = V2F(pos.x, pos.y);

@@ -15,7 +15,7 @@ static sfBool is_game_valid(game_t *game)
         return sfFalse;
     if (!game->window || !game->input || !game->clock)
         return sfFalse;
-    if (!game->view || !game->gui || !game->maps[0])
+    if (!game->view || !game->gui || !game->maps[0] || !game->player)
         return sfFalse;
     return sfTrue;
 }

@@ -18,8 +18,6 @@
 #define VIEW_SIZE_Y (270 * ZOOM) //405
 #define SIZE 10
 
-#define STATS_AMOUNT 21
-
 #define PLAYER_BALLS 200
 #define MONSTER_BALLS 25
 
@@ -27,14 +25,10 @@
 
 #define BUTTON_AMOUNT 4
 
-#define KEY_AMOUNT 13
-
 #define MAP_AMOUNT 1
 
 #define DEFAULT_SCREENSIZE 4
 #define RESOLUTIONS 6
-
-#define IMAGE_AMOUNT 2
 
 #define KEY_PRESSED(c) (input->keys[c]->pressed)
 #define KEY_HELD(c) (input->keys[c]->held)
@@ -53,6 +47,7 @@
 
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
+typedef struct info_npc_s info_npc_t;
 
 struct info_button_s
 {
@@ -61,10 +56,13 @@ struct info_button_s
     void (*trigger)(game_t*);
 };
 
-extern const sfVideoMode window_size[RESOLUTIONS];
-extern const char *image_path[IMAGE_AMOUNT];
-extern const info_button_t info[BUTTON_AMOUNT];
-extern const sfKeyCode input_key[KEY_AMOUNT];
+struct info_npc_s
+{
+    sfVector2f pos;
+    sfVector2f fps;
+    char *path;
+    int map;
+};
 
 enum enum_scene_e {
     MAIN_MENU,
@@ -87,7 +85,8 @@ enum zone_ids {
 
 enum enum_images_e {
     TRAIL_1,
-    TRAIL_2
+    TRAIL_2,
+    IMAGE_AMOUNT
 };
 
 enum direction_e {
@@ -102,6 +101,12 @@ enum bin_directions {
     DIR_DOWN = 0b0010,
     DIR_RIGHT = 0b0100,
     DIR_LEFT = 0b1000
+};
+
+enum npc_list {
+    SHERIFF,
+    BLACKSMITH,
+    NPC_AMOUNT
 };
 
 enum direction_extented_e {
@@ -136,7 +141,8 @@ enum enum_stats_e {
     SP_POINTS,
     SKILL_SET,
     SKILL_1_COOLDOWN,
-    SKILL_2_COOLDOWN
+    SKILL_2_COOLDOWN,
+    STATS_AMOUNT
 };
 
 enum enum_key_e {
@@ -152,7 +158,8 @@ enum enum_key_e {
     MENU_KEY,
     SKILL_1_KEY,
     SKILL_2_KEY,
-    SKILL_3_KEY
+    SKILL_3_KEY,
+    KEY_AMOUNT
 };
 
 enum cursor_modes {
@@ -162,6 +169,13 @@ enum cursor_modes {
     CURSOR_BUILD,
     CURSOR_MODES_NB
 };
+
+extern const sfVideoMode window_size[RESOLUTIONS];
+extern const char *image_path[IMAGE_AMOUNT];
+extern const info_button_t info[BUTTON_AMOUNT];
+extern const sfKeyCode input_key[KEY_AMOUNT];
+extern const info_npc_t npc_info [NPC_AMOUNT];
+
 
 typedef struct button_s
 {
@@ -270,6 +284,12 @@ typedef struct input_s {
     keypress_t *keys[KEY_AMOUNT];
 } input_t;
 
+typedef struct npc_s {
+    sfVector2f pos;
+    anim_t *display;
+    int map;
+} npc_t;
+
 typedef struct player_s {
     sfVector2f pos;
     sfVector2f speed;
@@ -301,6 +321,7 @@ struct game_s {
     player_t *player;
     int current_map;
     map_t *maps[MAP_AMOUNT];
+    npc_t *npc[NPC_AMOUNT];
     sfVector2i mouse_pos;
     int frames;
     int exit;

@@ -62,6 +62,20 @@ static option_t create_option(void)
     return (option);
 }
 
+static npc_t *create_npc(int i, window_t *window)
+{
+    npc_t *npc = malloc(sizeof(npc_t));
+
+    if (!npc)
+        return NULL;
+    npc->pos = npc_info[i].pos;
+    npc->map = npc_info[i].map;
+    npc->display = create_anim(npc_info[i].fps, V2I(32,32), npc_info[i].path, window);
+    if (!npc->display)
+        return NULL;
+    return (npc);
+}
+
 game_t create_game(void)
 {
     game_t game;
@@ -83,5 +97,12 @@ game_t create_game(void)
         return game;
     game.current_map = 0;
     game.player = create_player(&game);
+    for (int i = 0; i < NPC_AMOUNT; i++) {
+        game.npc[i] = create_npc(i, game.window);
+        if (!game.npc[i]) {
+            game.exit = -1;
+            return game;
+        }
+    }
     return (game);
 }

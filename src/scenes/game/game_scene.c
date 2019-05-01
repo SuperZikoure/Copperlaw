@@ -67,6 +67,16 @@ static void player_management(game_t *game)
         display_anim(game->player->idle, game->player->pos);
 }
 
+static void npc_management(game_t *game)
+{
+    for (int i = 0; i < NPC_AMOUNT; i++) {
+        if (game->npc[i]->map == game->current_map) {
+            update_anim(game->npc[i]->display);
+            display_anim(game->npc[i]->display, game->npc[i]->pos); 
+        }
+    }
+}
+
 static int analyse_game_events(game_t *game, input_t *input)
 {
     if (KEY_PRESSED(ESCAPE_KEY))
@@ -80,6 +90,7 @@ int game_scene(game_t *game)
         return 1;
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
     player_management(game);
+    npc_management(game);
     update_game_gui(game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     return 0;

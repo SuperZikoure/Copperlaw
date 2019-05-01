@@ -6,6 +6,7 @@
 */
 
 #include "my_rpg.h"
+#include "macros.h"
 
 const sfVideoMode window_size[RESOLUTIONS] = {
     {640, 360, 32},
@@ -43,4 +44,9 @@ const sfKeyCode input_key[KEY_NB] = {
 const char *image_path[IMAGE_AMOUNT] = {
     "assets/test1.png",
     "assets/test2.png"
+};
+
+const info_npc_t npc_info[NPC_AMOUNT] = {
+    {{592, 416}, {12, 8}, "assets/npc/sheriff.png", 0},
+    {{320, 384}, {60, 10}, "assets/npc/blacksmith.png", 0},
 };

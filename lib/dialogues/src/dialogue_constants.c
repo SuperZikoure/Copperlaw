@@ -7,5 +7,5 @@
 
 #include "dialogues.h"
 
-const char *dialogue_font_path = "pixelmix.ttf";
-const char *texture_path = "white.png";
+const char *dialogue_font_path = "assets/dialogues/font.ttf";
+const char *texture_path = "assets/dialogues/canvas.png";

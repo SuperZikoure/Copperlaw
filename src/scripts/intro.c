@@ -7,12 +7,14 @@
 
 #include "scripts.h"
 
-NEW_SCRIPT(blank_aha) = {
+NEW_SCRIPT(blank_aha)
+{
     SAY("...", NARRATOR)
     END
 };
 
-NEW_SCRIPT(test_script_1) = {
+NEW_SCRIPT(test_script_1)
+{
     SAY("Whoa je veux une pomme.", PLAYER1)
     SAY("eh beh bas moi j'en ai des bonnes", USR)
     SAY("oh oui ! je veux.", PLAYER1)
@@ -20,7 +22,8 @@ NEW_SCRIPT(test_script_1) = {
     END
 };
 
-NEW_SCRIPT(test_script_2) = {
+NEW_SCRIPT(test_script_2)
+{
     SAY("le nutella c'est bon 0", NARRATOR)
     SAY("le nutella c'est bon 1", NARRATOR)
     SAY("le nutella c'est bon 2", NARRATOR)

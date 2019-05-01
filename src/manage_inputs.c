@@ -16,7 +16,7 @@ input_t *create_input(void)
 
     if (!input)
         return NULL;
-    for (int i = 0; i < KEY_AMOUNT; i++) {
+    for (int i = 0; i < KEY_NB; i++) {
         input->keys[i] = create_key(input_key[i]);
         if (!input->keys[i])
             return NULL;
@@ -26,13 +26,13 @@ input_t *create_input(void)
 
 void process_input(input_t *input)
 {
-    for (int i = 0; i < KEY_AMOUNT; i++)
+    for (int i = 0; i < KEY_NB; i++)
         process_key(input->keys[i]);
 }
 
 void destroy_input(input_t *input)
 {
-    for (int i = 0; i < KEY_AMOUNT; i++)
+    for (int i = 0; i < KEY_NB; i++)
         free(input->keys[i]);
     free(input);
 }

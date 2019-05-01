@@ -11,5 +11,6 @@
 #include <stdio.h>
 
 char *get_line(FILE *f_stream);
+void my_srand(void);
 
 #endif /* !UTILS_H_ */

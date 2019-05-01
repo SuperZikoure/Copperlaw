@@ -54,6 +54,7 @@ GAME_SCENE	=	$(SCENES)/game
 MAINM_SCENE	=	$(SCENES)/main_menu
 MENU_SCENE	=	$(SCENES)/menu
 TRANSITIONS	=	$(SCENES)/transitions
+SCREESHOTS	=	screenshots
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/create_button.c \
@@ -80,10 +81,12 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(MENU_SCENE)/menu_scene.c \
 		$(TRANSITIONS)/game_menu.c \
 		$(TRANSITIONS)/mainmenu_game.c \
+		$(SCREESHOTS)/do_screenshot.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/script_list.c \
 		$(SCRIPTS)/village.c \
 		$(UTILS)/get_line.c \
+		$(UTILS)/my_srand.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
 		analyse_events.c \

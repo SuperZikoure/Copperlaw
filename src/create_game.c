@@ -78,7 +78,7 @@ game_t create_game(void)
     game.option = create_option();
     game.exit = 0;
     game.frames = 0;
-    game.maps[0] = create_map("src/data/maps/testmdr", game.window);
+    game.maps[0] = create_map("src/data/maps/village", game.window);
     if (!game.maps[0])
         return game;
     game.current_map = 0;

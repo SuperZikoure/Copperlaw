@@ -52,7 +52,7 @@ static col_t create_col(sfVector3f hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])
 
 static int init_player(game_t *ga, player_t *player)
 {
-    player->pos = V2F(50, 50);
+    player->pos = V2F(200, 200);
     player->speed = V2F(0, 0);
     player->dash = V2F(0, 0);
     player->bump = V2F(0, 0);

@@ -81,5 +81,6 @@ int game_scene(game_t *game)
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
     player_management(game);
     update_game_gui(game);
+    display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     return 0;
 }

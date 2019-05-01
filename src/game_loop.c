@@ -6,7 +6,7 @@
 */
 
 #include <stdio.h>
-#include "my_rpg.h"
+#include "dialogues.h"
 
 static int display_window(window_t *window, input_t *input)
 {
@@ -19,6 +19,7 @@ static int display_window(window_t *window, input_t *input)
 void game_loop(game_t *game)
 {
     change_scene(MAIN_MENU);
+    load_dialogue_scene(INTRO);
     start_clock();
     while (sfRenderWindow_isOpen(game->window->window) && !game->exit) {
         start_new_frame();

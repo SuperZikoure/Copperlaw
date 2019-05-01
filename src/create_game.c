@@ -97,6 +97,7 @@ game_t create_game(void)
         return game;
     game.current_map = 0;
     game.player = create_player(&game);
+    game.dialogue = NULL;
     for (int i = 0; i < NPC_AMOUNT; i++) {
         game.npc[i] = create_npc(i, game.window);
         if (!game.npc[i]) {

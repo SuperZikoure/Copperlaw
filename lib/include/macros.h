@@ -37,10 +37,6 @@
 /* used to know if a dialogue has been fully displayed or not */
 #define IS_TEXT_ENDED(d) STRLEN_EQ(d->script, d->said)
 
-/* used to change the selected "dialogue selection" color */
-#define SET_SELECTED_CHOISE_COLOR(s, c) \
-            sfText_setColor(s->texts[s->selected], c)
-
 /* PLAYER MOVEMENT */
 #define MOVES_UP(dir) (dir & DIR_UP)
 #define MOVES_DOWN(dir) (dir & DIR_DOWN)

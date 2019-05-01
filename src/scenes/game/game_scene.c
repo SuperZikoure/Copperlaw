@@ -6,10 +6,8 @@
 */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
-#include "graph.h"
-#include "my_rpg.h"
+#include "dialogues.h"
 #include "macros.h"
 
 // void reset_velocity(sfVector2f *velocity, float rate)
@@ -59,12 +57,12 @@
 
 static void player_management(game_t *game)
 {
-    compute_game_interactions(game);
+    if (game->dialogue)
+        compute_dialogues_interactions(game);
+    else
+        compute_game_interactions(game);
+    slow_down_player(PLAYER);
     set_player_position(game);
-    // if (game->player->moving)
-    //     display_anim(game->player->move, game->player->pos);
-    // else
-    //     display_anim(game->player->idle, game->player->pos);
 }
 
 static void npc_management(game_t *game)
@@ -80,6 +78,8 @@ static int analyse_game_events(game_t *game, input_t *input)
 {
     if (KEY_PRESSED(ESCAPE_KEY))
         return swap_game_to_menu(game);
+    if (KEY_PRESSED(MENU_KEY) && !game->dialogue)
+        game->dialogue = get_dialogue(1);
     return 0;
 }
 

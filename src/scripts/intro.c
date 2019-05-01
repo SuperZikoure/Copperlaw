@@ -37,10 +37,12 @@ NEW_SCRIPT(test_script_2)
     SAY("le nutella c'est bon 10", NARRATOR)
     SAY("le nutella c'est bon 11", NARRATOR)
     SAY("le nutella c'est bon 12", NARRATOR)
-    SAY("le nutella c'est bon 13", NARRATOR)
+    SAY("le nutella c'est bon 13 le nutella c'est bon 1 le nutella c'est bon 1", NARRATOR)
     SAY("le nutella c'est bon 14", NARRATOR)
-    CHOSE3("le nutella c'est quoi a ton avis ???????", "bon", "Bon",
-"Super mega bon tu peux pas test mon gars", NARRATOR)
+    CHOSE3("le nutella c'est quoi a ton avis ???????  le nutella c'est bon 1 le nutella c'est bon 1 le nutella c'est bon 1nu t e l l a nu te l l anutella",
+"Super mega bon tu peux pas test mon gars1",
+"Super mega bon tu peux pas test mon gars2",
+"Super mega bon tu peux pas test mon gars3", NARRATOR)
     END
 };
 

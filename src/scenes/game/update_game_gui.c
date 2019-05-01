@@ -6,7 +6,7 @@
 */
 
 #include <stdlib.h>
-#include "my_rpg.h"
+#include "dialogues.h"
 #include "macros.h"
 
 static void setup_view_pos(game_t *game, sfVector2f view_pos[4])
@@ -47,6 +47,7 @@ void update_game_gui(game_t *game)
     CURSOR->pos.y -= 8;
     setup_view_pos(game, view_pos);
     edit_view(game->view, view_pos[3]);
+    display_dialogue(game, game->dialogue, get_delta());
     display_cursor(game);
     display_cursor_trail(game, view_pos);
 }

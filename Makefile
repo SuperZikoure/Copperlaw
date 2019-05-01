@@ -70,7 +70,9 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(MOVEMENT)/manage_dash.c \
 		$(MOVEMENT)/move_player.c \
 		$(MOVEMENT)/set_idle_animation.c \
+		$(MOVEMENT)/slow_down_player.c \
 		$(GAME_SCENE)/analyse_movement_keys.c \
+		$(GAME_SCENE)/compute_dialogue_interactions.c \
 		$(GAME_SCENE)/compute_game_interactions.c \
 		$(GAME_SCENE)/display_cursor_trail.c \
 		$(GAME_SCENE)/display_mobs.c \
@@ -96,7 +98,6 @@ SRC	=	$(BUTTONS)/create_button.c \
 		game_loop.c \
 		get_delta.c \
 		global_info.c \
-		main_test_dialogues.c \
 		manage_inputs.c \
 		manage_intersections.c \
 		scene_system.c

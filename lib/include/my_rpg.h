@@ -322,10 +322,10 @@ struct game_s {
     int current_map;
     map_t *maps[MAP_AMOUNT];
     npc_t *npc[NPC_AMOUNT];
+    struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
     int frames;
     int exit;
-    int scene;
 };
 
 /* main game functions */
@@ -370,6 +370,7 @@ int swap_main_menu_to_game(game_t *game);
 int game_scene(game_t *game);
 void display_cursor_trail(game_t *game, sfVector2f view_pos[4]);
 void compute_game_interactions(game_t *game);
+int compute_dialogues_interactions(game_t *game);
 void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
 void update_game_gui(game_t *game);
@@ -393,6 +394,7 @@ player_t *create_player(game_t *game);
 /* movement */
 void change_anim(player_t *player);
 void move_player(player_t *player, char dir);
+void slow_down_player(player_t *player);
 void set_idle_animation(game_t *game);
 void dash(input_t *input, sfVector2f *dash, sfVector2f vel, sfVector2f dir);
 

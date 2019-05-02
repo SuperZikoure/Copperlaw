@@ -45,6 +45,6 @@ int my_strncasecmp(const char *s1, const char *s2, size_t n);
 #define IS_LOWER(c) (c >= 'a' && c <= 'z')
 #define IS_UPPER(c) (c >= 'A' && c <= 'Z')
 #define IS_NUMBER(c) (c >= '0' && c <= '9')
-#define IS_ALPHA(c) IS_LOWER(c) || IS_UPPER(c) || IS_NUMBER(c)
+#define IS_ALPHA(c) (IS_LOWER(c) || IS_UPPER(c) || IS_NUMBER(c))
 
 #endif /* !MY_STRING_H_ */

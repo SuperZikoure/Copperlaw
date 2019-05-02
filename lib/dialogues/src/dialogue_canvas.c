@@ -7,7 +7,6 @@
 
 #include "dialogues.h"
 #include "macros.h"
-/* macros.h useless */
 
 static sfSprite *create_dialogue_canvas(void)
 {

@@ -5,7 +5,6 @@
 ** loop_game
 */
 
-#include <stdio.h>
 #include "dialogues.h"
 
 static int display_window(window_t *window, input_t *input)

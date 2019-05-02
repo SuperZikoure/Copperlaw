@@ -45,10 +45,10 @@ static struct selection *init_choises(struct script_s *script)
     choises->total = script->choise_nb;
     choises->selected = 0;
     for (int i = 0; i < choises->total; i++) {
-        text_array[i] = quick_text_create(30, dialogue_font_path);
+        text_array[i] = quick_text_create(25, dialogue_font_path);
         if (!text_array[i])
             return NULL;
-        sfText_setScale(text_array[i], V2F(.5, .5));
+        sfText_setScale(text_array[i], V2F(.40, .40));
         choise_tmp = write_script(script->choise[i], CHOISE_MAX);
         if (!choise_tmp)
             return NULL;

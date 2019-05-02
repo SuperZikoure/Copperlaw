@@ -29,7 +29,7 @@ struct dialogue_s *create_dialogue(char *script, author_t author,
     dialogue->text = quick_text_create(30, dialogue_font_path);
     if (!dialogue->text)
         return NULL;
-    sfText_setScale(dialogue->text, V2F(.5, .5));
+    sfText_setScale(dialogue->text, V2F(.45, .45));
     sfText_setString(dialogue->text, dialogue->said);
     dialogue->choises = choises;
     dialogue->next = NULL;

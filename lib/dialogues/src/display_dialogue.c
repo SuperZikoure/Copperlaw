@@ -10,6 +10,9 @@
 #include "dialogues.h"
 #include "macros.h"
 
+const sfVector2f canvas_pos = {60, 255};
+const sfVector2f dia_pos = {100, 275};
+
 static int draw_dialogue(game_t *game, struct dialogue_s *dialogue)
 {
     sfSprite *canvas;
@@ -17,15 +20,14 @@ static int draw_dialogue(game_t *game, struct dialogue_s *dialogue)
     canvas = fetch_dialogue_canvas();
     if (!canvas)
         return FAILURE;
-    sfSprite_setPosition(canvas, global_to_view(V2F(65, 265), game->view));
-    sfText_setPosition(dialogue->text,
-global_to_view(V2F(80, 275), game->view));
+    sfSprite_setPosition(canvas, global_to_view(canvas_pos, game->view));
+    sfText_setPosition(dialogue->text, global_to_view(dia_pos, game->view));
     sfRenderWindow_drawSprite(WINDOW->window, canvas, NULL);
     sfRenderWindow_drawText(WINDOW->window, dialogue->text, NULL);
     if (dialogue->choises && dialogue->n_frames == -1) {
         for (int i = 0; i < dialogue->choises->total; i++) {
             sfText_setPosition(dialogue->choises->texts[i],
-global_to_view(V2F(75 + 200 * i, 350), VIEW));
+global_to_view(V2F(95 + 200 * i, 340), VIEW));
             sfRenderWindow_drawText(WINDOW->window, dialogue->choises->texts[i],
 NULL);
         }

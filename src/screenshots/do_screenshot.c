@@ -15,7 +15,7 @@ static char *create_dest_path(void)
 {
     char path[SCREENSHOT_FILENAME_MAX + 5] = {0};
     char c;
-    
+
     for (unsigned int i = 0; i < SCREENSHOT_FILENAME_MAX; i++) {
         c = rand() % 128;
         while (!IS_ALPHA(c))

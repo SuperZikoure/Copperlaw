@@ -10,7 +10,8 @@
 #include "stdlib.h"
 #include "macros.h"
 
-int text_intersect(sfText *text, image_t *image) {
+int text_intersect(sfText *text, image_t *image)
+{
     sfFloatRect rect1 = sfText_getGlobalBounds(text);
     sfFloatRect rect2 = sfSprite_getGlobalBounds(image->sprite);
 

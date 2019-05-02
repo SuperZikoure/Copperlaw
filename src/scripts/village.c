@@ -7,20 +7,17 @@
 
 #include "scripts.h"
 
-NEW_SCRIPT(blank_village)
-{
+const struct script_s blank_village[] = {
     SAY("...", NARRATOR)
     END
 };
 
-NEW_SCRIPT(test_village_1)
-{
+const struct script_s test_village_1[] = {
     CHOSE2("c'est 2 gold la pomme tu la veux oui ou non ?", "oui", "non", USR)
     END
 };
 
-NEW_SCRIPT(test_village_2)
-{
+const struct script_s test_village_2[] = {
     SAY("le nutella c'est bon 14", NARRATOR)
     CHOSE3("le nutella c'est quoi a ton avis ???????", "bon", "Bon",
 "Super mega bon tu peux pas test mon gars", NARRATOR)

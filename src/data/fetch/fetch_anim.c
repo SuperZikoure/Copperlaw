@@ -34,7 +34,8 @@ int fill_anim(window_t *window)
     return 0;
 }
 
-void update_fetch_anim() {
+void update_fetch_anim(void)
+{
     anim_t *tmp = NULL;
 
     for (int i = 0; i < ANIM_AMOUNT; i++) {

@@ -10,7 +10,6 @@
 int swap_main_menu_to_game(game_t *game)
 {
     change_scene(GAME);
-    game->input->keys[ESCAPE_KEY]->pressed = 0;
     CURSOR->mode = CURSOR_IDLE;
     return 1;
 }

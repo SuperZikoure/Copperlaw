@@ -12,7 +12,7 @@
 
 #define MAX_CHOSE 4
 
-#define NEW_SCRIPT(name) const struct script_s name[] =
+// #define NEW_SCRIPT(name) const struct script_s name[] =
 #define EXPORT(name) extern const struct script_s *name[];
 #define SAY(sentence, who) {sentence, 0, {0}, who},
 #define CHOSE1(sentence, c1, who) {sentence, 1, {c1, 0}, who},

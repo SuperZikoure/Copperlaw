@@ -7,14 +7,12 @@
 
 #include "scripts.h"
 
-NEW_SCRIPT(blank_aha)
-{
+const struct script_s blank_aha[] = {
     SAY("...", NARRATOR)
     END
 };
 
-NEW_SCRIPT(test_script_1)
-{
+const struct script_s test_script_1[] = {
     SAY("Whoa je veux une pomme.", PLAYER1)
     SAY("eh beh bas moi j'en ai des bonnes", USR)
     SAY("oh oui ! je veux.", PLAYER1)
@@ -22,8 +20,7 @@ NEW_SCRIPT(test_script_1)
     END
 };
 
-NEW_SCRIPT(test_script_2)
-{
+const struct script_s test_script_2[] = {
     SAY("le nutella c'est bon 0", NARRATOR)
     SAY("Alors j'ai supprime des lignes psk c'etait chiant pour test a chaque fois ...", NARRATOR)
     CHOSE3("le nutella c'est quoi a ton avis ???????  le nutella c'est bon 1 le nutella c'est bon 1 le nutella c'est bon 1nu t e l l a nu te l l anutella",
@@ -33,8 +30,7 @@ NEW_SCRIPT(test_script_2)
     END
 };
 
-NEW_SCRIPT(test)
-{
+const struct script_s test[] = {
     SAY("Ceci est un test.", PLAYER1)
     SAY("haha yes.", PLAYER1)
     END

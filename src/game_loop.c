@@ -37,9 +37,11 @@ void game_loop(game_t *game)
         game->mouse_pos = sfMouse_getPositionRenderWindow(game->window->window);
         update_fetch_anim();
         sfRenderWindow_clear(game->window->window, sfBlack);
-        /* if ( */get_scene()(game);/*  == -1) */
-            // sfRenderWindow_close(game->window->window);
+        if (get_scene()(game) == -1)
+            game->exit = -1;
         sfRenderWindow_setView(game->window->window, game->view->camera);
         display_window(WINDOW, game->input);
     }
+    if (!sfRenderWindow_isOpen(game->window->window))
+        sfRenderWindow_close(game->window->window);
 }

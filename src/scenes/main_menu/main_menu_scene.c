@@ -28,7 +28,6 @@ static void display_menu(game_t *game)
     else if (color < 50)
         color = 50;
     test = (sfColor){ABS(color), ABS(color), ABS(color), 255};
-    printf("COLOR : %f\n", color);
     sfSprite_setColor(get_image(MENU_BG)->sprite, test);
     sfSprite_setColor(get_anim(MENU_PLAYER)->sheet->sprite, test);
     display_image(get_image(MENU_SKY), global_to_view(V2F(pos, 0),VIEW));

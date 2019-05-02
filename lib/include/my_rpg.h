@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 4
+#define BUTTON_AMOUNT 8
 
 #define MAP_AMOUNT 1
 
@@ -53,13 +53,6 @@ typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
 typedef struct info_anim_s info_anim_t;
 
-struct info_button_s
-{
-    sfVector3f pos;
-    char *path;
-    void (*trigger)(game_t*);
-};
-
 struct info_anim_s
 {
     sfVector2f fps;
@@ -85,6 +78,14 @@ enum enum_scene_e {
     STATS,
     MENU,
     SCENE_NB
+};
+
+struct info_button_s
+{
+    sfVector2f pos;
+    enum enum_scene_e scene;
+    char *path;
+    void (*trigger)(game_t*);
 };
 
 enum zone_ids {
@@ -382,8 +383,7 @@ float get_distance(sfVector2f p1, sfVector2f p2);
 game_t create_game(void);
 
 /* BUTTONS */
-button_t *create_button(char *path, sfVector3f pos, view_t *view,
-                                void (*trigger)(game_t *));
+button_t *create_button(const info_button_t *info, view_t *view);
 void show_scene_buttons(game_t *game);
 sfBool mouse_pressed_once(int mouse_button);
 

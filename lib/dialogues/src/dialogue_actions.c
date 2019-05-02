@@ -13,8 +13,7 @@
 #include "dialogues.h"
 #include "scripts.h"
 
-static struct dialogue_s **fetch_current_scipt_scene(int index,
-                                                enum zone_ids id)
+static struct dialogue_s **fetch_cur_scipt_scene(int index, enum zone_ids id)
 {
     static struct dialogue_s **ptr = NULL;
 
@@ -31,12 +30,12 @@ static struct dialogue_s **fetch_current_scipt_scene(int index,
 
 struct dialogue_s *get_dialogue(int index)
 {
-    return *fetch_current_scipt_scene(index, 0);
+    return *fetch_cur_scipt_scene(index, 0);
 }
 
 int load_dialogue_scene(enum zone_ids id)
 {
-    struct dialogue_s **ptr = fetch_current_scipt_scene(-1, id);
+    struct dialogue_s **ptr = fetch_cur_scipt_scene(-1, id);
 
     if (!ptr)
         return -1;
@@ -45,12 +44,12 @@ int load_dialogue_scene(enum zone_ids id)
 
 void destroy_current_dialogue_script(void)
 {
-    struct dialogue_s **ptr = fetch_current_scipt_scene(0, 0);
+    struct dialogue_s **ptr = fetch_cur_scipt_scene(0, 0);
 
     if (!ptr)
         return;
     for (size_t i = 0; ptr[i]; i++)
         destroy_dialogue(ptr[i]);
     free(ptr);
-    fetch_current_scipt_scene(-2, 0);
+    fetch_cur_scipt_scene(-2, 0);
 }

@@ -29,7 +29,7 @@ static void display_npc(game_t *game, float pos)
         if (!compare_floats(game->npc[i]->pos.y, pos))
             continue;
         if (game->npc[i]->map == game->current_map) {
-            display_anim(game->npc[i]->display, game->npc[i]->pos); 
+            display_anim(game->npc[i]->display, game->npc[i]->pos);
         }
     }
 }

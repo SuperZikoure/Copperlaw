@@ -20,7 +20,7 @@ static int analyse_main_menu_events(game_t *game, input_t *input)
 static void display_menu(game_t *game)
 {
     static float pos = 0;
-    float color = sin((2880 + (pos - 400)) / (720 + 192)) * 255;//(ABS(pos) / 2880) * 255;
+    float color = sin((2880 + (pos - 400)) / (720 + 192)) * 255;
     sfColor test = {ABS(color), ABS(color), ABS(color), 255};
 
     if (color > 255)

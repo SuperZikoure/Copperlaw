@@ -95,8 +95,6 @@ static int analyse_game_events(game_t *game, input_t *input)
 {
     if (KEY_PRESSED(ESCAPE_KEY))
         return swap_game_to_menu(game);
-    //if ((KEY_PRESSED(MENU_KEY)) && !game->dialogue)
-    //    game->dialogue = get_dialogue(1);
     return 0;
 }
 

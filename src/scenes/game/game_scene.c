@@ -9,6 +9,7 @@
 #include <math.h>
 #include "dialogues.h"
 #include "macros.h"
+#include <stdio.h>
 
 // void reset_velocity(sfVector2f *velocity, float rate)
 // {
@@ -55,6 +56,21 @@
 //         display_image(michel->normal, michel->pos);
 // }
 
+static void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index)
+{
+    float distance = get_distance(PLAYER->pos, npc->pos);
+
+    if (distance > C_SIZE * 5)
+        return;
+    display_anim(get_anim(CAN_TALK), V2F(npc->pos.x + 16, npc->pos.y - 16));
+    if (point_intersect(npc->display->sheet, pos.x + C_SIZE, pos.y + C_SIZE)) {
+        CURSOR->mode = CURSOR_INSPECT;
+        if (MOUSE_PRESSED(sfMouseLeft) && !game->dialogue) {
+            game->dialogue = get_dialogue(npc_info[index].dialogue);
+        }
+    }
+}
+
 static void player_management(game_t *game)
 {
     if (game->dialogue)
@@ -70,6 +86,7 @@ static void npc_management(game_t *game)
     for (int i = 0; i < NPC_AMOUNT; i++) {
         if (game->npc[i]->map == game->current_map) {
             update_anim(game->npc[i]->display);
+            check_click(game, game->npc[i], game->gui->cursor->pos, i);
         }
     }
 }
@@ -78,8 +95,8 @@ static int analyse_game_events(game_t *game, input_t *input)
 {
     if (KEY_PRESSED(ESCAPE_KEY))
         return swap_game_to_menu(game);
-    if (KEY_PRESSED(MENU_KEY) && !game->dialogue)
-        game->dialogue = get_dialogue(1);
+    //if ((KEY_PRESSED(MENU_KEY)) && !game->dialogue)
+    //    game->dialogue = get_dialogue(1);
     return 0;
 }
 
@@ -87,10 +104,11 @@ int game_scene(game_t *game)
 {
     if (analyse_game_events(game, game->input))
         return 1;
+    CURSOR->mode = CURSOR_IDLE;
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
+    display_mobs(game);
     player_management(game);
     npc_management(game);
-    display_mobs(game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     update_game_gui(game);
     return 0;

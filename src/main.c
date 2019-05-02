@@ -28,6 +28,8 @@ int main(void)
         return 84;
     if (fill_image(game.window) == -1)
         return (84);
+    if (fill_anim(game.window) == -1)
+        return (84);
     my_srand();
     game_loop(&game);
     if (game.exit == -1)

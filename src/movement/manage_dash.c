@@ -33,10 +33,16 @@ void dash(input_t *input, sfVector2f *dash, sfVector2f vel, sfVector2f dir)
 {
     static int timer = 0;
 
-    if (KEY_HELD(SPACE_KEY) && timer == 0) {
+    if (KEY_PRESSED(SPACE_KEY) && timer == 0) {
         timer = 60;
         begin_dash(dash, vel, dir);
     }
+    dash->x += (dash->x > 0) ? -1 : 1;
+    dash->y += (dash->y > 0) ? -1 : 1;
+    if (dash->x <= 1.01 && dash->x >= -1.01)
+        dash->x = 0;
+    if (dash->y <= 1.01 && dash->y >= -1.01)
+        dash->y = 0;
     if (timer > 0) {
         timer -= get_delta();
         if (timer < 0)

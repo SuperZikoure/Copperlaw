@@ -13,7 +13,7 @@ char **read_map_from_file(char *filepath);
 
 map_t *create_map(char *filepath, window_t *window)
 {
-    sfColor color = (sfColor){255, 255, 255, 200};
+    sfColor color = (sfColor){255, 255, 255, 225};
     map_t *map = malloc(sizeof(map_t));
 
     if (!map)

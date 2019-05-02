@@ -8,6 +8,16 @@
 #include "graph.h"
 #include "my_rpg.h"
 #include "stdlib.h"
+#include "macros.h"
+
+int text_intersect(sfText *text, image_t *image) {
+    sfFloatRect rect1 = sfText_getGlobalBounds(text);
+    sfFloatRect rect2 = sfSprite_getGlobalBounds(image->sprite);
+
+    if (sfFloatRect_intersects(&rect1, &rect2, NULL))
+        return (1);
+    return (0);
+}
 
 int point_intersect(image_t *img, float x, float y)
 {

@@ -61,6 +61,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(BUTTONS)/manage_button.c \
 		$(BUTTONS)/menu_functions.c \
 		$(FETCH)/fetch_image.c \
+		$(FETCH)/fetch_anim.c \
 		$(GUI)/create_gui.c \
 		$(GUI)/display_cursor.c \
 		$(MAPS)/create_map.c \

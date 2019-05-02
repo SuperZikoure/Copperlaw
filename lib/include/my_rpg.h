@@ -9,7 +9,6 @@
 #define MY_RPG_H
 
 #include <math.h>
-#include <stdio.h>
 #include "graph.h"
 
 #define BUTTON_PATH ("assets/buttons/")
@@ -37,6 +36,9 @@
 #define MOUSE_PRESSED(c) (mouse_pressed_once(c))
 #define MOUSE_HELD(c) (sfMouse_isButtonPressed(c))
 
+#define ANIM(i) anim_info[i]
+#define F_ANIM(i) create_anim(ANIM(i).fps, ANIM(i).size, ANIM(i).path, window)
+
 #define WINDOW game->window
 #define VIEW game->view
 #define CURSOR game->gui->cursor
@@ -49,6 +51,7 @@
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
+typedef struct info_anim_s info_anim_t;
 
 struct info_button_s
 {
@@ -57,12 +60,20 @@ struct info_button_s
     void (*trigger)(game_t*);
 };
 
+struct info_anim_s
+{
+    sfVector2f fps;
+    sfVector2i size;;
+    char *path;
+};
+
 struct info_npc_s
 {
     sfVector2f pos;
     sfVector2f fps;
     char *path;
     int map;
+    int dialogue;
 };
 
 enum enum_scene_e {
@@ -88,6 +99,11 @@ enum enum_images_e {
     TRAIL_1,
     TRAIL_2,
     IMAGE_AMOUNT
+};
+
+enum enum_anims_e {
+    CAN_TALK,
+    ANIM_AMOUNT
 };
 
 enum direction_e {
@@ -174,6 +190,7 @@ enum cursor_modes {
 
 extern const sfVideoMode window_size[RESOLUTIONS];
 extern const char *image_path[IMAGE_AMOUNT];
+extern const info_anim_t anim_info[ANIM_AMOUNT];
 extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_NB];
 extern const info_npc_t npc_info [NPC_AMOUNT];
@@ -348,8 +365,14 @@ gui_t *create_gui(view_t *view);
 void display_cursor(game_t *game);
 
 /* manage_intersections.c */
+int text_intersect(sfText *text, image_t *image);
 int point_intersect(image_t *img, float x, float y);
 int image_intersect(image_t *img1, image_t *img2);
+
+
+/* utiles */
+float get_distance(sfVector2f p1, sfVector2f p2);
+
 
 /* create_game.c */
 game_t create_game(void);
@@ -405,6 +428,11 @@ void compute_col(col_t *col, int current_map);
 /* fetch_image.c */
 int fill_image(window_t *window);
 image_t *get_image(int index);
+
+/* fetch_anim.c */
+int fill_anim(window_t *window);
+void update_fetch_anim();
+anim_t *get_anim(int index);
 
 /* display_mobs.c */
 void display_mobs(game_t *game);

@@ -46,8 +46,12 @@ void update_game_gui(game_t *game)
     CURSOR->pos.x -= 8;
     CURSOR->pos.y -= 8;
     setup_view_pos(game, view_pos);
-    edit_view(game->view, view_pos[3]);
+    if (!game->dialogue)
+        edit_view(game->view, view_pos[3]);
     display_dialogue(game, game->dialogue, get_delta());
+    if (game->dialogue)
+        CURSOR->mode = CURSOR_BASE;
+    else
+        display_cursor_trail(game, view_pos);
     display_cursor(game);
-    display_cursor_trail(game, view_pos);
 }

@@ -24,30 +24,25 @@ NEW_SCRIPT(test_script_1)
 
 NEW_SCRIPT(test_script_2)
 {
-    SAY("le nutella c'est bon 0 le nutella c'est bon 0 le nutella c'est bon 0", NARRATOR)
-    SAY("le nutella c'est bon 1", NARRATOR)
-    SAY("le nutella c'est bon 2", NARRATOR)
-    SAY("le nutella c'est bon 3", NARRATOR)
-    SAY("le nutella c'est bon 4", NARRATOR)
-    SAY("le nutella c'est bon 5", NARRATOR)
-    SAY("le nutella c'est bon 6", NARRATOR)
-    SAY("le nutella c'est bon 7", NARRATOR)
-    SAY("le nutella c'est bon 8", NARRATOR)
-    SAY("le nutella c'est bon 9", NARRATOR)
-    SAY("le nutella c'est bon 10", NARRATOR)
-    SAY("le nutella c'est bon 11", NARRATOR)
-    SAY("le nutella c'est bon 12", NARRATOR)
-    SAY("le nutella c'est bon 13 le nutella c'est bon 1 le nutella c'est bon 1", NARRATOR)
-    SAY("le nutella c'est bon 14", NARRATOR)
-    CHOSE3("Je me demande bien qu'est ce que le Nutella est a tes yeux pendant la pause gouter.",
-"Super mega bon tu pe ux pas test mon gars1",
-"Super mega bon tu peu x pas test mon gars2",
-"Super mega bon tu p eux pas test mon gars3", NARRATOR)
+    SAY("le nutella c'est bon 0", NARRATOR)
+    SAY("Alors j'ai supprime des lignes psk c'etait chiant pour test a chaque fois ...", NARRATOR)
+    CHOSE3("le nutella c'est quoi a ton avis ???????  le nutella c'est bon 1 le nutella c'est bon 1 le nutella c'est bon 1nu t e l l a nu te l l anutella",
+"Super mega bon tu peux pas test mon gars1",
+"Super mega bon tu peux pas test mon gars2",
+"Super mega bon tu peux pas test mon gars3", NARRATOR)
+    END
+};
+
+NEW_SCRIPT(test)
+{
+    SAY("Ceci est un test.", PLAYER1)
+    SAY("haha yes.", PLAYER1)
     END
 };
 
 const struct script_s *intro_scripts[] = {
     test_script_1,
     test_script_2,
+    test,
     0
 };

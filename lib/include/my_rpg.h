@@ -9,6 +9,7 @@
 #define MY_RPG_H
 
 #include <math.h>
+#include <stdio.h>
 #include "graph.h"
 
 #define BUTTON_PATH ("assets/buttons/")

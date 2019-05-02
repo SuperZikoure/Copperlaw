@@ -98,11 +98,15 @@ enum zone_ids {
 enum enum_images_e {
     TRAIL_1,
     TRAIL_2,
+    MENU_SKY,
+    MENU_BG,
+    MENU_LOGO,
     IMAGE_AMOUNT
 };
 
 enum enum_anims_e {
     CAN_TALK,
+    MENU_PLAYER,
     ANIM_AMOUNT
 };
 

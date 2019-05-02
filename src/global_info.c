@@ -43,11 +43,15 @@ const sfKeyCode input_key[KEY_NB] = {
 
 const char *image_path[IMAGE_AMOUNT] = {
     "assets/test1.png",
-    "assets/test2.png"
+    "assets/test2.png",
+    "assets/menues/main_menue/sky.png",
+    "assets/menues/main_menue/bg.png",
+    "assets/menues/main_menue/logo.png"
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {
-    {{11, 12}, {32, 32}, "assets/anims/can_talk.png"}
+    {{11, 12}, {32, 32}, "assets/anims/can_talk.png"},
+    {{5, 8}, {128, 128}, "assets/menues/main_menue/player.png"}
 };
 
 const info_npc_t npc_info[NPC_AMOUNT] = {

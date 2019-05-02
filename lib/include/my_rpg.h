@@ -52,6 +52,7 @@ typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
 typedef struct info_anim_s info_anim_t;
+typedef int (*scene_swap_t)(game_t *);
 
 struct info_anim_s
 {

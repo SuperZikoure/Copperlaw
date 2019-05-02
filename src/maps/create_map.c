@@ -26,8 +26,8 @@ map_t *create_map(char *filepath, window_t *window)
     map->size.y = my_strarraylen(map->map);
     map->bg = create_image(my_strcat_no_free(filepath, "_bg.png"), window);
     map->fg = create_image(my_strcat_no_free(filepath, "_fg.png"), window);
-    sfSprite_setColor(map->fg->sprite, color);
     if (!map->bg || !map->fg)
         return NULL;
+    sfSprite_setColor(map->fg->sprite, color);
     return (map);
 }

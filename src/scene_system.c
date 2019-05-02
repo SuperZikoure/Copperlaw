@@ -7,7 +7,9 @@
 
 #include "my_rpg.h"
 
-int (* const scenes[SCENE_NB])(game_t *) = {
+typedef int (*scene_swap_t)(game_t *);
+
+const scene_swap_t scenes[SCENE_NB] = {
     main_menu_scene,
     NULL,
     game_scene,

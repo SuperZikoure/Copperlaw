@@ -8,7 +8,7 @@
 #include "my_rpg.h"
 #include "macros.h"
 
-static float get_distance(sfVector2f p1, sfVector2f p2)
+float get_distance(sfVector2f p1, sfVector2f p2)
 {
     float distance = ABS(sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)));
 

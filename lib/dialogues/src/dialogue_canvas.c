@@ -7,7 +7,6 @@
 
 #include "dialogues.h"
 #include "macros.h"
-/* macros.h useless */
 
 static sfSprite *create_dialogue_canvas(void)
 {
@@ -16,9 +15,8 @@ static sfSprite *create_dialogue_canvas(void)
 
     if (!canvas || !texture)
         return NULL;
-    sfSprite_setTexture(canvas, texture, sfFalse);
-    sfSprite_setPosition(canvas, V2F(100, 450));
-    sfSprite_setColor(canvas, COLOR(0, 0, 0, 255));
+    sfSprite_setTexture(canvas, texture, sfTrue);
+    sfSprite_setScale(canvas, V2F(.62, .45));
     return canvas;
 }
 

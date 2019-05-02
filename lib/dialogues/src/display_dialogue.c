@@ -10,19 +10,27 @@
 #include "dialogues.h"
 #include "macros.h"
 
-static int draw_dialogue(sfRenderWindow *window, struct dialogue_s *dialogue)
+const sfVector2f canvas_pos = {60, 255};
+const sfVector2f dia_pos = {100, 275};
+
+static int draw_dialogue(game_t *game, struct dialogue_s *dialogue)
 {
     sfSprite *canvas;
 
     canvas = fetch_dialogue_canvas();
     if (!canvas)
         return FAILURE;
-    sfRenderWindow_drawSprite(window, canvas, NULL);
-    sfRenderWindow_drawText(window, dialogue->text, NULL);
+    sfSprite_setPosition(canvas, global_to_view(canvas_pos, game->view));
+    sfText_setPosition(dialogue->text, global_to_view(dia_pos, game->view));
+    sfRenderWindow_drawSprite(WINDOW->window, canvas, NULL);
+    sfRenderWindow_drawText(WINDOW->window, dialogue->text, NULL);
     if (dialogue->choises && dialogue->n_frames == -1) {
-        for (int i = 0; i < dialogue->choises->total; i++)
-            sfRenderWindow_drawText(window, dialogue->choises->texts[i],
+        for (int i = 0; i < dialogue->choises->total; i++) {
+            sfText_setPosition(dialogue->choises->texts[i],
+global_to_view(V2F(95 + 200 * i, 340), VIEW));
+            sfRenderWindow_drawText(WINDOW->window, dialogue->choises->texts[i],
 NULL);
+        }
     }
     return SUCCESS;
 }
@@ -40,7 +48,7 @@ static void update_text_content(struct dialogue_s *dialogue)
     sfText_setString(dialogue->text, dialogue->said);
 }
 
-int display_dialogue(window_t *window, struct dialogue_s *dialogue,
+int display_dialogue(game_t *game, struct dialogue_s *dialogue,
                         size_t frames)
 {
     if (!dialogue)
@@ -53,5 +61,5 @@ dialogue->n_frames >= SPEED_TO_FRAMES(dialogue->speed)) {
         dialogue->n_frames -= SPEED_TO_FRAMES(dialogue->speed);
         update_text_content(dialogue);
     }
-    return draw_dialogue(window->window, dialogue);
+    return draw_dialogue(game, dialogue);
 }

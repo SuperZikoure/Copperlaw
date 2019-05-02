@@ -32,10 +32,4 @@ void analyse_movement_keys(input_t *input, player_t *player)
     char dir = get_direction(input);
 
     move_player(player, dir);
-    player->speed.x += (player->speed.x > 0) ? -0.45 : 0.45;
-    player->speed.y += (player->speed.y > 0) ? -0.45 : 0.45;
-    if (player->speed.x <= 0.46 && player->speed.x >= -0.46)
-        player->speed.x = 0;
-    if (player->speed.y <= 0.46 && player->speed.y >= -0.46)
-        player->speed.y = 0;
 }

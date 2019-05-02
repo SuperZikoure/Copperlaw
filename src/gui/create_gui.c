@@ -45,8 +45,9 @@ gui_t *create_gui(view_t *view)
     if (!gui->cursor)
         return NULL;
     for (int i = 0; i < BUTTON_AMOUNT; i++) {
-        gui->button[i] = create_button(info[i].path, info[i].pos,
-view, info[i].trigger);
+        gui->button[i] = create_button(&info[i], view);
+        if (!gui->button[i])
+            return NULL;
     }
     return (gui);
 }

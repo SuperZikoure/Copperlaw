@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 4
+#define BUTTON_AMOUNT 8
 
 #define MAP_AMOUNT 1
 
@@ -35,6 +35,9 @@
 
 #define MOUSE_PRESSED(c) (mouse_pressed_once(c))
 #define MOUSE_HELD(c) (sfMouse_isButtonPressed(c))
+
+#define ANIM(i) anim_info[i]
+#define F_ANIM(i) create_anim(ANIM(i).fps, ANIM(i).size, ANIM(i).path, window)
 
 #define WINDOW game->window
 #define VIEW game->view
@@ -48,12 +51,13 @@
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
+typedef struct info_anim_s info_anim_t;
 
-struct info_button_s
+struct info_anim_s
 {
-    sfVector3f pos;
+    sfVector2f fps;
+    sfVector2i size;;
     char *path;
-    void (*trigger)(game_t*);
 };
 
 struct info_npc_s
@@ -62,6 +66,7 @@ struct info_npc_s
     sfVector2f fps;
     char *path;
     int map;
+    int dialogue;
 };
 
 enum enum_scene_e {
@@ -75,6 +80,14 @@ enum enum_scene_e {
     SCENE_NB
 };
 
+struct info_button_s
+{
+    sfVector2f pos;
+    enum enum_scene_e scene;
+    char *path;
+    void (*trigger)(game_t*);
+};
+
 enum zone_ids {
     INTRO,
     VILLAGE,
@@ -86,7 +99,16 @@ enum zone_ids {
 enum enum_images_e {
     TRAIL_1,
     TRAIL_2,
+    MENU_SKY,
+    MENU_BG,
+    MENU_LOGO,
     IMAGE_AMOUNT
+};
+
+enum enum_anims_e {
+    CAN_TALK,
+    MENU_PLAYER,
+    ANIM_AMOUNT
 };
 
 enum direction_e {
@@ -173,6 +195,7 @@ enum cursor_modes {
 
 extern const sfVideoMode window_size[RESOLUTIONS];
 extern const char *image_path[IMAGE_AMOUNT];
+extern const info_anim_t anim_info[ANIM_AMOUNT];
 extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_NB];
 extern const info_npc_t npc_info [NPC_AMOUNT];
@@ -322,10 +345,10 @@ struct game_s {
     int current_map;
     map_t *maps[MAP_AMOUNT];
     npc_t *npc[NPC_AMOUNT];
+    struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
     int frames;
     int exit;
-    int scene;
 };
 
 /* main game functions */
@@ -347,15 +370,20 @@ gui_t *create_gui(view_t *view);
 void display_cursor(game_t *game);
 
 /* manage_intersections.c */
+int text_intersect(sfText *text, image_t *image);
 int point_intersect(image_t *img, float x, float y);
 int image_intersect(image_t *img1, image_t *img2);
+
+
+/* utiles */
+float get_distance(sfVector2f p1, sfVector2f p2);
+
 
 /* create_game.c */
 game_t create_game(void);
 
 /* BUTTONS */
-button_t *create_button(char *path, sfVector3f pos, view_t *view,
-                                void (*trigger)(game_t *));
+button_t *create_button(const info_button_t *info, view_t *view);
 void show_scene_buttons(game_t *game);
 sfBool mouse_pressed_once(int mouse_button);
 
@@ -370,6 +398,7 @@ int swap_main_menu_to_game(game_t *game);
 int game_scene(game_t *game);
 void display_cursor_trail(game_t *game, sfVector2f view_pos[4]);
 void compute_game_interactions(game_t *game);
+int compute_dialogues_interactions(game_t *game);
 void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
 void update_game_gui(game_t *game);
@@ -393,6 +422,7 @@ player_t *create_player(game_t *game);
 /* movement */
 void change_anim(player_t *player);
 void move_player(player_t *player, char dir);
+void slow_down_player(player_t *player);
 void set_idle_animation(game_t *game);
 void dash(input_t *input, sfVector2f *dash, sfVector2f vel, sfVector2f dir);
 
@@ -402,6 +432,14 @@ void compute_col(col_t *col, int current_map);
 /* fetch_image.c */
 int fill_image(window_t *window);
 image_t *get_image(int index);
+
+/* fetch_anim.c */
+int fill_anim(window_t *window);
+void update_fetch_anim();
+anim_t *get_anim(int index);
+
+/* display_mobs.c */
+void display_mobs(game_t *game);
 
 /* BUTTON FUNCTIONS */
 void put_game_scene(game_t *game);

@@ -33,7 +33,7 @@ void dash(input_t *input, sfVector2f *dash, sfVector2f vel, sfVector2f dir)
 {
     static int timer = 0;
 
-    if (KEY_HELD(SPACE_KEY) && timer == 0) {
+    if (KEY_PRESSED(SPACE_KEY) && timer == 0) {
         timer = 60;
         begin_dash(dash, vel, dir);
     }

@@ -33,7 +33,8 @@ NAME	=	dialogues
 SRC_PATH	=	./src
 INCLUDE_PATH	=	../include
 
-SRC	=	create_dialogue_script.c \
+SRC	=	change_selected_choise_color.c \
+		create_dialogue_script.c \
 		create_dialogue.c \
 		destroy_dialogue.c \
 		dialogue_actions.c \
@@ -41,6 +42,7 @@ SRC	=	create_dialogue_script.c \
 		dialogue_constants.c \
 		display_dialogue.c \
 		load_dialogue_scene.c \
+		switch_dialogue.c \
 		text_speed.c
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%)

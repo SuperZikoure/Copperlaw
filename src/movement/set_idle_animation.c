@@ -26,6 +26,8 @@ void set_idle_animation(game_t *game)
 {
     int dir = get_player_direction(game);
 
-    PLAYER->idle->frame.top = dir * PLAYER->idle->frame.height;
-    sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
+    if (!game->dialogue) {
+        PLAYER->idle->frame.top = dir * PLAYER->idle->frame.height;
+        sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
+    }
 }

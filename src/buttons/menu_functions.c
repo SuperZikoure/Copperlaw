@@ -8,11 +8,6 @@
 #include "graph.h"
 #include "my_rpg.h"
 
-void put_game_scene(game_t *game)
-{
-    game->scene = GAME;
-}
-
 void exit_game(game_t *game)
 {
     game->exit = 1;

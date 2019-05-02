@@ -10,7 +10,6 @@
 
 #include <SFML/Graphics.h>
 #include "my_rpg.h"
-#include "graph.h"
 
 #define FAILURE -1
 #define SUCCESS 0
@@ -53,7 +52,7 @@ struct dialogue_s {
 };
 
 /* function called in the game loop */
-int display_dialogue(window_t *window, struct dialogue_s *dialogue,
+int display_dialogue(game_t *game, struct dialogue_s *dialogue,
                         size_t frames);
 
 /* Dialogue structure */
@@ -66,9 +65,11 @@ sfSprite *fetch_dialogue_canvas(void);
 void destroy_dialogue_canvas(void);
 
 /* Dialogue actions */
-struct dialogue_s *get_dialogue(int index);
-struct dialogue_s **load_scene_dialogues(enum zone_ids id);
 int load_dialogue_scene(enum zone_ids id);
+struct dialogue_s *get_dialogue(int index);
 void destroy_current_dialogue_script(void);
+struct dialogue_s **load_scene_dialogues(enum zone_ids id);
+struct dialogue_s *switch_dialogue(struct dialogue_s *dialogue);
+void change_selected_choise_color(struct selection *s, sfColor c);
 
 #endif /* !DIALOGUES_H_ */

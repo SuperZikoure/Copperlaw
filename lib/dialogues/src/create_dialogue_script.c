@@ -40,16 +40,18 @@ static struct selection *init_choises(struct script_s *script)
     sfText **text_array = malloc(sizeof(sfText *) * script->choise_nb);
     char *choise_tmp;
 
-    if (!choises)
+    if (!choises || !text_array)
         return NULL;
     choises->total = script->choise_nb;
     choises->selected = 0;
     for (int i = 0; i < choises->total; i++) {
-        text_array[i] = quick_text_create(30, dialogue_font_path);
+        text_array[i] = quick_text_create(25, dialogue_font_path);
+        if (!text_array[i])
+            return NULL;
+        sfText_setScale(text_array[i], V2F(.40, .40));
         choise_tmp = write_script(script->choise[i], CHOISE_MAX);
         if (!choise_tmp)
             return NULL;
-        sfText_setPosition(text_array[i], V2F(100 + 300 * i, 250));
         sfText_setString(text_array[i], choise_tmp);
     }
     sfText_setColor(text_array[choises->selected], sfYellow);

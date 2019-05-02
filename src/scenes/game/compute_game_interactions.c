@@ -10,10 +10,11 @@
 
 static sfVector2f cursor_dir(game_t *game)
 {
-    float vx = ABS(game->gui->cursor->pos.x - game->player->pos.x);
-    float vy = ABS(game->gui->cursor->pos.y - game->player->pos.y);
-    float total = vx + vy;
+    float vx = game->gui->cursor->pos.x - game->player->pos.x;
+    float vy = game->gui->cursor->pos.y - game->player->pos.y;
+    float total;
 
+    total = ABS(vx) + ABS(vy);
     return (V2F(vx / total, vy / total));
 }
 

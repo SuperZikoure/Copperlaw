@@ -14,17 +14,17 @@ static image_t **fetch_image(int flag, window_t *window)
 {
     static image_t **images = NULL;
 
-    if (flag == 0) {
-        images = malloc(sizeof(image_t) * IMAGE_AMOUNT);
-        if (!images)
+    if (flag != 0)
+        return images;
+    images = malloc(sizeof(image_t) * IMAGE_AMOUNT);
+    if (!images)
+        return NULL;
+    for (int i = 0; i < IMAGE_AMOUNT; i++) {
+        images[i] = create_image(image_path[i], window);
+        if (!images[i])
             return NULL;
-        for (int i = 0; i < IMAGE_AMOUNT; i++) {
-            images[i] = create_image(image_path[i], window);
-            if (!images[i])
-                return NULL;
-        }
     }
-    return (images);
+    return images;
 }
 
 int fill_image(window_t *window)

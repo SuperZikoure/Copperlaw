@@ -54,12 +54,14 @@ GAME_SCENE	=	$(SCENES)/game
 MAINM_SCENE	=	$(SCENES)/main_menu
 MENU_SCENE	=	$(SCENES)/menu
 TRANSITIONS	=	$(SCENES)/transitions
+OPT_SCENE	=	$(SCENES)/option
 SCREESHOTS	=	screenshots
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/create_button.c \
+		$(BUTTONS)/mainmenu_functions.c \
 		$(BUTTONS)/manage_button.c \
-		$(BUTTONS)/menu_functions.c \
+		$(BUTTONS)/option_functions.c \
 		$(FETCH)/fetch_image.c \
 		$(FETCH)/fetch_anim.c \
 		$(GUI)/create_gui.c \
@@ -83,8 +85,10 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(GAME_SCENE)/update_game_gui.c \
 		$(MAINM_SCENE)/main_menu_scene.c \
 		$(MENU_SCENE)/menu_scene.c \
+		$(OPT_SCENE)/option_scene.c \
 		$(TRANSITIONS)/game_menu.c \
 		$(TRANSITIONS)/mainmenu_game.c \
+		$(TRANSITIONS)/mainmenu_option.c \
 		$(SCREESHOTS)/do_screenshot.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/script_list.c \

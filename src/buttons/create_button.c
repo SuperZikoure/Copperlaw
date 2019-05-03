@@ -39,7 +39,7 @@ button_t *create_button(const info_button_t *info, view_t *view)
         return NULL;
     button->mouse_hover = 0;
     button->mouse_click = 0;
-    button->index = info->index;
+    button->option = info->option;
     button->pos = V2F(info->pos.x, info->pos.y);
     button->display_pos = global_to_view(V2F(info->pos.x, info->pos.y), view);
     return (button);

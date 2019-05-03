@@ -18,14 +18,16 @@ const sfVideoMode window_size[RESOLUTIONS] = {
 };
 
 const info_button_t info[BUTTON_AMOUNT] = {
-    {{75, 145}, 0, MAIN_MENU, "play", swap_main_menu_to_game},
-    {{75, 185}, 0, MAIN_MENU, "skill", res_plus},
-    {{75, 225}, 0, MAIN_MENU, "help", res_moins},
-    {{75, 265}, 0, MAIN_MENU, "exit", exit_game},
-    {{75, 145}, 0, MENU, "play", put_fs},
-    {{75, 185}, 0, MENU, "skill", res_plus},
-    {{75, 225}, 0, MENU, "help", res_moins},
-    {{75, 265}, 0, MENU, "exit", exit_game}
+    {{50, 147}, 0, MAIN_MENU, "newgame", swap_main_menu_to_game},
+    {{50, 179}, 0, MAIN_MENU, "loadgame", swap_main_menu_to_game},
+    {{50, 211}, 0, MAIN_MENU, "option", swap_main_menu_to_option},
+    {{50, 243}, 0, MAIN_MENU, "help", exit_game},
+    {{50, 275}, 0, MAIN_MENU, "credits", exit_game},
+    {{50, 307}, 0, MAIN_MENU, "exit", exit_game},
+    {{85, 162}, 0, OPTIONS, "fullscreen", change_fullscreen_mode},
+    {{325, 207}, 0, OPTIONS, "res_plus", icr_resolution},
+    {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
+    {{30, 298}, 0, OPTIONS, "back", swap_option_to_main_menu}
 };
 
 const sfKeyCode input_key[KEY_NB] = {
@@ -48,14 +50,20 @@ const sfKeyCode input_key[KEY_NB] = {
 const char *image_path[IMAGE_AMOUNT] = {
     "assets/test1.png",
     "assets/test2.png",
-    "assets/menues/main_menue/sky.png",
-    "assets/menues/main_menue/bg.png",
-    "assets/menues/main_menue/logo.png"
+    "assets/scenes/main_menu/sky.png",
+    "assets/scenes/main_menu/bg.png",
+    "assets/scenes/main_menu/logo.png",
+    "assets/scenes/menu/selected.png",
+    "assets/scenes/menu/not_selected.png",
+    "assets/scenes/option/logo.png",
+    "assets/scenes/option/resolution.png",
+    "assets/scenes/option/sound.png",
+    "assets/buttons/option_hover.png"
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {
     {{11, 12}, {32, 32}, "assets/anims/can_talk.png"},
-    {{5, 8}, {128, 128}, "assets/menues/main_menue/player.png"}
+    {{5, 8}, {128, 128}, "assets/scenes/main_menu/player.png"}
 };
 
 const info_npc_t npc_info[NPC_AMOUNT] = {

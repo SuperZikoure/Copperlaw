@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 8
+#define BUTTON_AMOUNT 10
 
 #define MAP_AMOUNT 1
 
@@ -84,7 +84,7 @@ enum enum_scene_e {
 struct info_button_s
 {
     sfVector2f pos;
-    int index;
+    int option;
     enum enum_scene_e scene;
     char *path;
     int (*trigger)(game_t *, int);
@@ -104,6 +104,12 @@ enum enum_images_e {
     MENU_SKY,
     MENU_BG,
     MENU_LOGO,
+    BUTTON_SELECTED,
+    BUTTON_NOT_SELECTED,
+    OPTION_LOGO,
+    OPTION_RESOLUTION,
+    OPTION_SOUND,
+    OPTION_OPTION,
     IMAGE_AMOUNT
 };
 
@@ -205,7 +211,7 @@ extern const info_npc_t npc_info [NPC_AMOUNT];
 typedef struct button_s
 {
     int (*trigger)(game_t *, int);
-    int index;
+    int option;
     image_t *base;
     image_t *hover;
     image_t *click;
@@ -391,9 +397,11 @@ sfBool mouse_pressed_once(int mouse_button);
 /// SCENES ///
 
 /* TRANSITIONS */
-int swap_game_to_menu(game_t *game, int index __attribute__((unused)));
-int swap_menu_to_game(game_t *game, int index __attribute__((unused)));
-int swap_main_menu_to_game(game_t *game, int index __attribute__((unused)));
+int swap_game_to_menu(game_t *game, int option);
+int swap_menu_to_game(game_t *game, int option);
+int swap_main_menu_to_game(game_t *game, int option);
+int swap_main_menu_to_option(game_t *game, int option);
+int swap_option_to_main_menu(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);
@@ -413,6 +421,8 @@ int main_menu_scene(game_t *game);
 /* MENU */
 int menu_scene(game_t *game);
 
+/* OPTION */
+int option_scene(game_t *game);
 
 /* maps/create_map.c */
 map_t *create_map(char *filepath, window_t *window);
@@ -443,10 +453,11 @@ anim_t *get_anim(int index);
 void display_mobs(game_t *game);
 
 /* BUTTON FUNCTIONS */
-int exit_game(game_t *game, int index __attribute__((unused)));
-int res_moins(game_t *game, int index __attribute__((unused)));
-int res_plus(game_t *game, int index __attribute__((unused)));
-int put_fs(game_t *game, int index __attribute__((unused)));
+int exit_game(game_t *game, int option);
+int change_fullscreen_mode(game_t *game, int option);
+int icr_resolution(game_t *game, int option);
+int dcr_resolution(game_t *game, int option);
+int change_sound(game_t *game, int option);
 
 /* SCREESHOT */
 #define SCREENSHOT_FILENAME_MAX 10

@@ -16,7 +16,7 @@ static image_t **fetch_image(int flag, window_t *window)
 
     if (flag != 0)
         return images;
-    images = malloc(sizeof(image_t) * IMAGE_AMOUNT);
+    images = malloc(sizeof(image_t *) * IMAGE_AMOUNT);
     if (!images)
         return NULL;
     for (int i = 0; i < IMAGE_AMOUNT; i++) {

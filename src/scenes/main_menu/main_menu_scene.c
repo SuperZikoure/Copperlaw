@@ -13,7 +13,7 @@
 static int analyse_main_menu_events(game_t *game, input_t *input)
 {
     if (KEY_PRESSED(ESCAPE_KEY))
-        return swap_main_menu_to_game(game);
+        return swap_main_menu_to_game(game, 0);
     return 0;
 }
 

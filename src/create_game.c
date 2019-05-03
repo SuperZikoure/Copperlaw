@@ -37,20 +37,6 @@
     return (scene);
 }*/
 
-static my_clock_t *create_clock(game_t *game)
-{
-    my_clock_t *clock = malloc(sizeof(my_clock_t));
-
-    if (!clock)
-        return NULL;
-    clock->clock = sfClock_create();
-    if (!clock->clock)
-        return NULL;
-    clock->frames = 0;
-    clock->parent = game;
-    return (clock);
-}
-
 static option_t create_option(void)
 {
     option_t option;
@@ -76,14 +62,24 @@ static npc_t *create_npc(int i, window_t *window)
     return (npc);
 }
 
+static void init_npcs(game_t *game)
+{
+    for (int i = 0; i < NPC_AMOUNT; i++) {
+        game->npc[i] = create_npc(i, game->window);
+        if (!game->npc[i]) {
+            game->exit = -1;
+            return;
+        }
+    }
+}
+
 game_t create_game(void)
 {
     game_t game;
 
     game.window = create_window(DEFAULT_SCREENSIZE, "CopperLaw");
     game.input = create_input();
-    game.clock = create_clock(&game);
-    if (!game.window || !game.input || !game.clock)
+    if (!game.window || !game.input)
         return game;
     game.view = create_view(V2F(0, 0), SIZE, ZOOM, &game);
     if (!game.view)
@@ -91,19 +87,12 @@ game_t create_game(void)
     game.gui = create_gui(game.view);
     game.option = create_option();
     game.exit = 0;
-    game.frames = 0;
     game.maps[0] = create_map("src/data/maps/village", game.window);
     if (!game.maps[0])
         return game;
-    game.current_map = 0;
     game.player = create_player(&game);
+    game.current_map = 0;
     game.dialogue = NULL;
-    for (int i = 0; i < NPC_AMOUNT; i++) {
-        game.npc[i] = create_npc(i, game.window);
-        if (!game.npc[i]) {
-            game.exit = -1;
-            return game;
-        }
-    }
+    init_npcs(&game);
     return (game);
 }

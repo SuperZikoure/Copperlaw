@@ -94,7 +94,7 @@ static void npc_management(game_t *game)
 static int analyse_game_events(game_t *game, input_t *input)
 {
     if (KEY_PRESSED(ESCAPE_KEY))
-        return swap_game_to_menu(game);
+        return swap_game_to_menu(game, 0);
     return 0;
 }
 

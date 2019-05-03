@@ -18,14 +18,14 @@ const sfVideoMode window_size[RESOLUTIONS] = {
 };
 
 const info_button_t info[BUTTON_AMOUNT] = {
-    {{75, 145}, MAIN_MENU, "play", put_fs},
-    {{75, 185}, MAIN_MENU, "skill", res_plus},
-    {{75, 225}, MAIN_MENU, "help", res_moins},
-    {{75, 265}, MAIN_MENU, "exit", exit_game},
-    {{75, 145}, MENU, "play", put_fs},
-    {{75, 185}, MENU, "skill", res_plus},
-    {{75, 225}, MENU, "help", res_moins},
-    {{75, 265}, MENU, "exit", exit_game}
+    {{75, 145}, 0, MAIN_MENU, "play", swap_main_menu_to_game},
+    {{75, 185}, 0, MAIN_MENU, "skill", res_plus},
+    {{75, 225}, 0, MAIN_MENU, "help", res_moins},
+    {{75, 265}, 0, MAIN_MENU, "exit", exit_game},
+    {{75, 145}, 0, MENU, "play", put_fs},
+    {{75, 185}, 0, MENU, "skill", res_plus},
+    {{75, 225}, 0, MENU, "help", res_moins},
+    {{75, 265}, 0, MENU, "exit", exit_game}
 };
 
 const sfKeyCode input_key[KEY_NB] = {

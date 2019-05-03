@@ -32,13 +32,14 @@ button_t *create_button(const info_button_t *info, view_t *view)
         return NULL;
     button->scene = info->scene;
     button->display = button->base;
-    button->trigger = button->trigger;
+    button->trigger = info->trigger;
     button->hover_sound = create_sound("assets/sounds/hover.wav");
     button->click_sound = create_sound("assets/sounds/click.wav");
     if (!button->hover_sound || !button->click_sound)
         return NULL;
     button->mouse_hover = 0;
     button->mouse_click = 0;
+    button->index = info->index;
     button->pos = V2F(info->pos.x, info->pos.y);
     button->display_pos = global_to_view(V2F(info->pos.x, info->pos.y), view);
     return (button);

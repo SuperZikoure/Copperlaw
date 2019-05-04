@@ -14,8 +14,8 @@ static sfText *init_skip_text(game_t *game)
     if (!text)
         return NULL;
     sfText_setScale(text, V2F(.5, .5));
-    sfText_setPosition(text, GTV(560, 380));
-    sfText_setString(text, "Click to skip...");
+    sfText_setPosition(text, GTV(485, 380));
+    sfText_setString(text, "Press SPACE to skip...");
     return text;
 }
 
@@ -59,7 +59,7 @@ int main_menu_scene(game_t *game)
             return -1;
     }
     display_parallax(game);
-    if (MOUSE_PRESSED(sfMouseLeft))
+    if (game->input->keys[SPACE_KEY]->pressed)
         intro = false;
     if (intro) {
         intro = display_intro(game, text);

@@ -76,7 +76,7 @@ static void init_npcs(game_t *game)
 static void fill_game(game_t *game)
 {
     game->exit = 0;
-    game->current_map = 0;
+    game->current_map = VILLAGE_MAP;
     game->dialogue = NULL;
     game->sound = true;
 }
@@ -95,7 +95,11 @@ game_t create_game(void)
         return game;
     game.gui = create_gui(game.view);
     game.option = create_option();
-    game.maps[0] = create_map("src/data/maps/village", game.window);
+    game.maps[VILLAGE_MAP] = create_map("src/data/maps/village", game.window);
+    game.maps[WILD_MAP] = create_map("src/data/maps/wild", game.window);
+    game.maps[SHERIFF_MAP] = create_map("src/data/maps/sheriff", game.window);
+    game.maps[SALOON_MAP] = create_map("src/data/maps/saloon", game.window);
+    game.maps[HOUSE_MAP] = create_map("src/data/maps/house", game.window);
     if (!game.maps[0])
         return game;
     game.player = create_player(&game);

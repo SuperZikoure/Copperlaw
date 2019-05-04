@@ -9,7 +9,6 @@
 #include <math.h>
 #include "dialogues.h"
 #include "macros.h"
-#include <stdio.h>
 
 // void reset_velocity(sfVector2f *velocity, float rate)
 // {
@@ -73,6 +72,19 @@ static void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index)
 
 static void player_management(game_t *game)
 {
+    sfVector2i pos;
+
+    pos.x = ((PLAYER->pos.x) - ((int)PLAYER->pos.x % 16)) / 16;
+    pos.y = ((PLAYER->pos.y) - ((int)PLAYER->pos.y % 16)) / 16;
+    for (int i = 0; i < TP_AMOUNT; i++) {
+        if (game->current_map != tp_info[i].pos.z)
+            continue;
+        if (pos.x == tp_info[i].pos.x && pos.y == tp_info[i].pos.y) {
+            game->current_map = tp_info[i].dest.z;
+            PLAYER->pos.x = tp_info[i].dest.x * C_SIZE;
+            PLAYER->pos.y = tp_info[i].dest.y * C_SIZE;
+        }
+    }
     if (game->dialogue)
         compute_dialogues_interactions(game);
     else

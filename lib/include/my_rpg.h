@@ -390,6 +390,7 @@ float get_distance(sfVector2f p1, sfVector2f p2);
 
 /* create_game.c */
 game_t create_game(void);
+int destroy_game(game_t *game);
 
 /* BUTTONS */
 button_t *create_button(const info_button_t *info, view_t *view);

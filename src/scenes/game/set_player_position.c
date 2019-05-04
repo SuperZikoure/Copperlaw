@@ -12,7 +12,7 @@
 
 static void collision_update(game_t *game)
 {
-    compute_col(&PLAYER->col, 0);
+    compute_col(&PLAYER->col, game->current_map);
     if (PLAYER->vel.x > PLAYER->col.max[RIGHT])
         PLAYER->vel.x = PLAYER->col.max[RIGHT];
     if (-PLAYER->vel.x > PLAYER->col.max[LEFT])
@@ -25,20 +25,18 @@ static void collision_update(game_t *game)
 
 void set_player_position(game_t *game)
 {
-    game->player->vel.x = game->player->speed.x + game->player->dash.x;
-    game->player->vel.y = game->player->speed.y + game->player->dash.y;
-    game->player->vel.x *= get_delta();
-    game->player->vel.y *= get_delta();
+    PLAYER->vel.x = PLAYER->speed.x + PLAYER->dash.x;
+    PLAYER->vel.y = PLAYER->speed.y + PLAYER->dash.y;
+    PLAYER->vel.x *= get_delta();
+    PLAYER->vel.y *= get_delta();
     collision_update(game);
-    if (ABS(game->player->dash.x) + ABS(game->player->dash.y))
-        game->player->moving = 0;
-    if ((!PLAYER->vel.x && !PLAYER->vel.y) || game->player->dash.x ||
-game->player->dash.y) {
+    if ((!PLAYER->vel.x && !PLAYER->vel.y) || PLAYER->dash.x ||
+PLAYER->dash.y) {
         PLAYER->moving = 0;
         set_idle_animation(game);
     } else
         PLAYER->moving = 1;
     PLAYER->pos.x += PLAYER->vel.x;
     PLAYER->pos.y += PLAYER->vel.y;
-    update_anim(game->player->display);
+    update_anim(PLAYER->display);
 }

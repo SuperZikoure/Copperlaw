@@ -46,7 +46,6 @@ int option_scene(game_t *game)
         return 1;
     display_menu(game);
     display_image(get_image(OPTION_RESOLUTION), GTV(85, 204));
-    display_image(get_image(OPTION_SOUND), GTV(85, 246));
     display_image(get_image(OPTION_OPTION), GTV(310, 115));
     show_scene_buttons(game);
     display_cursor(game);

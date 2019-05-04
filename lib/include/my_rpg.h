@@ -451,6 +451,7 @@ map_t *create_map(char *filepath, window_t *window);
 player_t *create_player(game_t *game);
 
 /* movement */
+int get_map_pos(int pos);
 void change_anim(player_t *player);
 void move_player(player_t *player, char dir);
 void slow_down_player(player_t *player);

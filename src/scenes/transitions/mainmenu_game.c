@@ -7,7 +7,7 @@
 
 #include "my_rpg.h"
 
-int swap_main_menu_to_game(game_t *game)
+int swap_main_menu_to_game(game_t *game, int option __attribute__((unused)))
 {
     change_scene(GAME);
     CURSOR->mode = CURSOR_IDLE;

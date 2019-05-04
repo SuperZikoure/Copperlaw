@@ -6,7 +6,6 @@
 */
 
 #include <stdlib.h>
-#include "graph.h"
 #include "my_rpg.h"
 #include "macros.h"
 
@@ -37,20 +36,6 @@
     return (scene);
 }*/
 
-static my_clock_t *create_clock(game_t *game)
-{
-    my_clock_t *clock = malloc(sizeof(my_clock_t));
-
-    if (!clock)
-        return NULL;
-    clock->clock = sfClock_create();
-    if (!clock->clock)
-        return NULL;
-    clock->frames = 0;
-    clock->parent = game;
-    return (clock);
-}
-
 static option_t create_option(void)
 {
     option_t option;
@@ -70,40 +55,50 @@ static npc_t *create_npc(int i, window_t *window)
         return NULL;
     npc->pos = npc_info[i].pos;
     npc->map = npc_info[i].map;
-    npc->display = create_anim(npc_info[i].fps, V2I(32,32), npc_info[i].path, window);
+    npc->display = create_anim(npc_info[i].fps, V2I(32, 32), npc_info[i].path,
+window);
     if (!npc->display)
         return NULL;
     return (npc);
+}
+
+static void init_npcs(game_t *game)
+{
+    for (int i = 0; i < NPC_AMOUNT; i++) {
+        game->npc[i] = create_npc(i, game->window);
+        if (!game->npc[i]) {
+            game->exit = -1;
+            return;
+        }
+    }
+}
+
+static void fill_game(game_t *game)
+{
+    game->exit = 0;
+    game->current_map = 0;
+    game->dialogue = NULL;
+    game->sound = true;
 }
 
 game_t create_game(void)
 {
     game_t game;
 
+    fill_game(&game);
     game.window = create_window(DEFAULT_SCREENSIZE, "CopperLaw");
     game.input = create_input();
-    game.clock = create_clock(&game);
-    if (!game.window || !game.input || !game.clock)
+    if (!game.window || !game.input)
         return game;
     game.view = create_view(V2F(0, 0), SIZE, ZOOM, &game);
     if (!game.view)
         return game;
     game.gui = create_gui(game.view);
     game.option = create_option();
-    game.exit = 0;
-    game.frames = 0;
     game.maps[0] = create_map("src/data/maps/village", game.window);
     if (!game.maps[0])
         return game;
-    game.current_map = 0;
     game.player = create_player(&game);
-    game.dialogue = NULL;
-    for (int i = 0; i < NPC_AMOUNT; i++) {
-        game.npc[i] = create_npc(i, game.window);
-        if (!game.npc[i]) {
-            game.exit = -1;
-            return game;
-        }
-    }
+    init_npcs(&game);
     return (game);
 }

@@ -27,6 +27,7 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{85, 162}, 0, OPTIONS, "fullscreen", change_fullscreen_mode},
     {{325, 207}, 0, OPTIONS, "res_plus", icr_resolution},
     {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
+    {{85, 246}, 0, OPTIONS, "sound", change_sound},
     {{30, 298}, 0, OPTIONS, "back", swap_option_to_main_menu}
 };
 
@@ -57,7 +58,6 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/menu/not_selected.png",
     "assets/scenes/option/logo.png",
     "assets/scenes/option/resolution.png",
-    "assets/scenes/option/sound.png",
     "assets/buttons/option_hover.png"
 };
 

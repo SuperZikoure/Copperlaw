@@ -36,16 +36,16 @@ int dcr_resolution(game_t *game, int option __attribute__((unused)))
 int change_sound(game_t *game, int option __attribute__((unused)))
 {
     button_t *button = find_button(game, "sound", OPTIONS);
+    sfColor color = {255, 255, 255, game->sound ? 100 : 255};
+    float volume = game->sound ? 0 : BASE_VOLUME;
 
     game->sound = game->sound ? false : true;
-    if (!game->sound) {
-        sfSprite_setColor(button->base->sprite, COLOR(255, 255, 255, 100));
-        sfSprite_setColor(button->hover->sprite, COLOR(255, 255, 255, 100));
-        sfSprite_setColor(button->click->sprite, COLOR(255, 255, 255, 100));
-    } else {
-        sfSprite_setColor(button->base->sprite, COLOR(255, 255, 255, 255));
-        sfSprite_setColor(button->hover->sprite, COLOR(255, 255, 255, 255));
-        sfSprite_setColor(button->click->sprite, COLOR(255, 255, 255, 255));
+    sfSprite_setColor(button->base->sprite, color);
+    sfSprite_setColor(button->hover->sprite, color);
+    sfSprite_setColor(button->click->sprite, color);
+    for (int i = 0; i < BUTTON_AMOUNT; i++) {
+        sfSound_setVolume(GUI->button[i]->click_sound->sound, volume);
+        sfSound_setVolume(GUI->button[i]->hover_sound->sound, volume);
     }
     return 1;
 }

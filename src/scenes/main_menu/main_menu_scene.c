@@ -29,11 +29,9 @@ static int change_square_alpha(void)
     if (frames < 6)
         return 0;
     frames -= 6;
-    color -= 1 * get_delta();
-    if (color <= 1 * get_delta()) {
-        color = 0;
+    --color;
+    if (!color)
         return 1;
-    }
     return 0;
 }
 

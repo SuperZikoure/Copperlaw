@@ -26,9 +26,7 @@ button_t *create_button(const info_button_t *info, view_t *view)
 {
     button_t *button = malloc(sizeof(button_t));
 
-    if (!button)
-        return NULL;
-    if (setup_button_images(button, info->path, view) == -1)
+    if (!button || setup_button_images(button, info->path, view) == -1)
         return NULL;
     button->scene = info->scene;
     button->display = button->base;
@@ -41,6 +39,7 @@ button_t *create_button(const info_button_t *info, view_t *view)
     button->mouse_click = 0;
     button->option = info->option;
     button->pos = V2F(info->pos.x, info->pos.y);
+    button->name = info->path;
     button->display_pos = global_to_view(V2F(info->pos.x, info->pos.y), view);
     return (button);
 }

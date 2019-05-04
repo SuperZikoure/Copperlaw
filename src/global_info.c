@@ -67,6 +67,31 @@ const info_anim_t anim_info[ANIM_AMOUNT] = {
     {{5, 8}, {128, 128}, "assets/scenes/main_menu/player.png"}
 };
 
+const info_tp_t tp_info[TP_AMOUNT] = {
+    {{35, 26, VILLAGE_MAP}, {4, 11, SHERIFF_MAP}},
+    {{4, 12, SHERIFF_MAP}, {35, 27, VILLAGE_MAP}},
+    {{5, 12, SHERIFF_MAP}, {35, 27, VILLAGE_MAP}},
+    {{3, 32, VILLAGE_MAP}, {5, 9, HOUSE_MAP}},
+    {{5, 10, HOUSE_MAP}, {3, 33, VILLAGE_MAP}},
+    {{6, 10, HOUSE_MAP}, {3, 33, VILLAGE_MAP}},
+    {{24, 11, VILLAGE_MAP}, {8, 15, SALOON_MAP}},
+    {{25, 11, VILLAGE_MAP}, {8, 15, SALOON_MAP}},
+    {{7, 16, SALOON_MAP}, {24, 12, VILLAGE_MAP}},
+    {{8, 16, SALOON_MAP}, {24, 12, VILLAGE_MAP}},
+    {{9, 16, SALOON_MAP}, {25, 12, VILLAGE_MAP}},
+    {{39, 0, VILLAGE_MAP}, {96, 96, WILD_MAP}},
+    {{40, 0, VILLAGE_MAP}, {97, 96, WILD_MAP}},
+    {{41, 0, VILLAGE_MAP}, {98, 96, WILD_MAP}},
+    {{42, 0, VILLAGE_MAP}, {99, 96, WILD_MAP}},
+    {{43, 0, VILLAGE_MAP}, {100, 96, WILD_MAP}},
+    {{96, 97, WILD_MAP}, {39, 1, VILLAGE_MAP}},
+    {{97, 97, WILD_MAP}, {40, 1, VILLAGE_MAP}},
+    {{98, 97, WILD_MAP}, {41, 1, VILLAGE_MAP}},
+    {{98, 97, WILD_MAP}, {42, 1, VILLAGE_MAP}},
+    {{100, 97, WILD_MAP}, {43, 1, VILLAGE_MAP}}
+
+};
+
 const info_npc_t npc_info[NPC_AMOUNT] = {
     {{592, 416}, {12, 8}, "assets/npc/sheriff.png", 0, 2},
     {{320, 400}, {60, 10}, "assets/npc/blacksmith.png", 0, 1},

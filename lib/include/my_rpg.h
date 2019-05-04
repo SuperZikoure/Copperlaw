@@ -25,7 +25,7 @@
 
 #define BUTTON_AMOUNT 11
 
-#define MAP_AMOUNT 1
+#define TP_AMOUNT 21
 
 #define DEFAULT_SCREENSIZE 4
 #define RESOLUTIONS 6
@@ -52,6 +52,7 @@ typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
 typedef struct info_anim_s info_anim_t;
+typedef struct info_tp_s info_tp_t;
 typedef int (*scene_swap_t)(game_t *);
 
 struct info_anim_s
@@ -61,6 +62,12 @@ struct info_anim_s
     char *path;
 };
 
+struct info_tp_s
+{
+    sfVector3f pos;
+    sfVector3f dest;
+};
+
 struct info_npc_s
 {
     sfVector2f pos;
@@ -68,6 +75,15 @@ struct info_npc_s
     char *path;
     int map;
     int dialogue;
+};
+
+enum enum_map_e {
+    VILLAGE_MAP,
+    WILD_MAP,
+    SHERIFF_MAP,
+    SALOON_MAP,
+    HOUSE_MAP,
+    MAP_AMOUNT
 };
 
 enum enum_scene_e {
@@ -207,6 +223,7 @@ extern const info_anim_t anim_info[ANIM_AMOUNT];
 extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_NB];
 extern const info_npc_t npc_info [NPC_AMOUNT];
+extern const info_tp_t tp_info[TP_AMOUNT];
 
 typedef struct button_s
 {

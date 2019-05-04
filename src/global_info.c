@@ -49,8 +49,8 @@ const sfKeyCode input_key[KEY_NB] = {
 };
 
 const char *image_path[IMAGE_AMOUNT] = {
-    "assets/test1.png",
-    "assets/test2.png",
+    "assets/trail1.png",
+    "assets/trail2.png",
     "assets/scenes/main_menu/sky.png",
     "assets/scenes/main_menu/bg.png",
     "assets/scenes/main_menu/logo.png",
@@ -58,7 +58,8 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/menu/not_selected.png",
     "assets/scenes/option/logo.png",
     "assets/scenes/option/resolution.png",
-    "assets/buttons/option_hover.png"
+    "assets/buttons/option_hover.png",
+    "assets/big_square.png"
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {

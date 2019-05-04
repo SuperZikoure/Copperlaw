@@ -18,12 +18,12 @@ const sfVideoMode window_size[RESOLUTIONS] = {
 };
 
 const info_button_t info[BUTTON_AMOUNT] = {
-    {{50, 147}, 0, MAIN_MENU, "newgame", swap_main_menu_to_game},
-    {{50, 179}, 0, MAIN_MENU, "loadgame", swap_main_menu_to_game},
-    {{50, 211}, 0, MAIN_MENU, "option", swap_main_menu_to_option},
-    {{50, 243}, 0, MAIN_MENU, "help", exit_game},
-    {{50, 275}, 0, MAIN_MENU, "credits", exit_game},
-    {{50, 307}, 0, MAIN_MENU, "exit", exit_game},
+    {{50, 148}, 0, MAIN_MENU, "newgame", swap_main_menu_to_game},
+    {{50, 181}, 0, MAIN_MENU, "loadgame", swap_main_menu_to_game},
+    {{50, 216}, 0, MAIN_MENU, "option", swap_main_menu_to_option},
+    {{50, 250}, 0, MAIN_MENU, "help", exit_game},
+    {{50, 284}, 0, MAIN_MENU, "credits", exit_game},
+    {{50, 318}, 0, MAIN_MENU, "exit", exit_game},
     {{85, 162}, 0, OPTIONS, "fullscreen", change_fullscreen_mode},
     {{325, 207}, 0, OPTIONS, "res_plus", icr_resolution},
     {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},

@@ -57,7 +57,7 @@ typedef int (*scene_swap_t)(game_t *);
 struct info_anim_s
 {
     sfVector2f fps;
-    sfVector2i size;;
+    sfVector2i size;
     char *path;
 };
 
@@ -109,6 +109,7 @@ enum enum_images_e {
     OPTION_LOGO,
     OPTION_RESOLUTION,
     OPTION_OPTION,
+    BIG_SQUARE,
     IMAGE_AMOUNT
 };
 

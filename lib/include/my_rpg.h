@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 10
+#define BUTTON_AMOUNT 11
 
 #define MAP_AMOUNT 1
 
@@ -108,7 +108,6 @@ enum enum_images_e {
     BUTTON_NOT_SELECTED,
     OPTION_LOGO,
     OPTION_RESOLUTION,
-    OPTION_SOUND,
     OPTION_OPTION,
     IMAGE_AMOUNT
 };
@@ -212,6 +211,7 @@ typedef struct button_s
 {
     int (*trigger)(game_t *, int);
     int option;
+    char *name;
     image_t *base;
     image_t *hover;
     image_t *click;
@@ -223,7 +223,7 @@ typedef struct button_s
     enum enum_scene_e scene;
     int mouse_hover;
     int mouse_click;
-    void* parent;
+    void *parent;
 } button_t;
 
 typedef struct cursor_s
@@ -355,6 +355,7 @@ struct game_s {
     npc_t *npc[NPC_AMOUNT];
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
+    bool sound;
     int exit;
 };
 
@@ -393,6 +394,7 @@ game_t create_game(void);
 button_t *create_button(const info_button_t *info, view_t *view);
 void show_scene_buttons(game_t *game);
 sfBool mouse_pressed_once(int mouse_button);
+button_t *find_button(game_t *game, char *name, enum enum_scene_e scene);
 
 /// SCENES ///
 

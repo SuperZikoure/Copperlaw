@@ -59,6 +59,7 @@ SCREESHOTS	=	screenshots
 UTILS		=	utils
 
 SRC	=	$(BUTTONS)/create_button.c \
+		$(BUTTONS)/find_button.c \
 		$(BUTTONS)/mainmenu_functions.c \
 		$(BUTTONS)/manage_button.c \
 		$(BUTTONS)/option_functions.c \

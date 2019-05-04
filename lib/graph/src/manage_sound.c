@@ -21,6 +21,7 @@ sound_t *create_sound(char *path)
     if (!sound->sound)
         return (NULL);
     sfSound_setBuffer(sound->sound, sound->buffer);
+    sfSound_setVolume(sound->sound, BASE_VOLUME);
     return (sound);
 }
 

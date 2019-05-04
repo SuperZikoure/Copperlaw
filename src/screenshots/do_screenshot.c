@@ -6,16 +6,24 @@
 */
 
 #include <stdlib.h>
+#include <dirent.h>
 #include "my_string.h"
 #include "my_rpg.h"
 
+const char *dir_dest = "screenshots/";
 const char *extension = ".png";
 
 static char *create_dest_path(void)
 {
+    const char *dir_path = dir_dest;
     char path[SCREENSHOT_FILENAME_MAX + 5] = {0};
     char c;
+    DIR *dir = opendir(dir_dest);
 
+    if (!dir)
+        dir_path = "./";
+    else
+        closedir(dir);
     for (unsigned int i = 0; i < SCREENSHOT_FILENAME_MAX; i++) {
         c = rand() % 128;
         while (!IS_ALPHA(c))
@@ -23,7 +31,7 @@ static char *create_dest_path(void)
         path[i] = c;
     }
     my_strcpy(path + SCREENSHOT_FILENAME_MAX, extension);
-    return my_strdup(path);
+    return my_strdup(my_strcat_no_free(dir_path, path));
 }
 
 static int save_screenshot(const sfImage *image)

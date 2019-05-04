@@ -5,9 +5,8 @@
 ** Main function
 */
 
-#include "graph.h"
+#include "dialogues.h"
 #include "utils.h"
-#include "my_rpg.h"
 
 static sfBool is_game_valid(game_t *game)
 {
@@ -18,6 +17,15 @@ static sfBool is_game_valid(game_t *game)
     if (!game->gui || !game->maps[0] || !game->player)
         return sfFalse;
     return sfTrue;
+}
+
+static int setup_dialogues(void)
+{
+    if (load_dialogue_scene(INTRO) == -1)
+        return -1;
+    if (!fetch_dialogue_canvas())
+        return -1;
+    return 0;
 }
 
 int main(void)
@@ -31,6 +39,9 @@ int main(void)
     if (fill_anim(game.window) == -1)
         return (84);
     my_srand();
+    change_scene(MAIN_MENU);
+    if (setup_dialogues() == -1)
+        return 84;
     game_loop(&game);
     if (game.exit == -1)
         return (84);

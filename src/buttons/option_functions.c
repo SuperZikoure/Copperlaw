@@ -6,6 +6,7 @@
 */
 
 #include "my_rpg.h"
+#include "macros.h"
 
 int change_fullscreen_mode(game_t *game, int option __attribute__((unused)))
 {
@@ -16,15 +17,19 @@ int change_fullscreen_mode(game_t *game, int option __attribute__((unused)))
 
 int icr_resolution(game_t *game, int option __attribute__((unused)))
 {
-    RES += (RES < RESOLUTIONS - 1) ? 1 : 0;
-    change_window(game->window, RES, FS);
+    if (RES < RESOLUTIONS - 1) {
+        ++RES;
+        change_window(game->window, RES, FS);
+    }
     return 1;
 }
 
 int dcr_resolution(game_t *game, int option __attribute__((unused)))
 {
-    RES -= (RES >= 1) ? 1 : 0;
-    change_window(game->window, RES, FS);
+    if (RES > 0) {
+        --RES;
+        change_window(game->window, RES, FS);
+    }
     return 1;
 }
 

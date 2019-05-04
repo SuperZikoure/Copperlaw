@@ -466,6 +466,10 @@ int change_sound(game_t *game, int option);
 #define SCREENSHOT_FILENAME_MAX 10
 int do_screenshot(window_t *window);
 
+/* PARALLAX POSITION (main_menu, option, how2play) */
+float get_parallax_pos(void);
+void set_parallax_pos(float value);
+
 ////////////////////////////////////
 
 input_t *create_input(void);

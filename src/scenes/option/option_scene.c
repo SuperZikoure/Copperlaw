@@ -33,7 +33,7 @@ static void display_menu(game_t *game)
     display_image(get_image(MENU_SKY), GTV(pos, 0));
     pos -= 2880;
     display_image(get_image(MENU_BG), GTV(0, 0));
-    display_anim(get_anim(MENU_PLAYER), GTV(450, 250));
+    display_anim(get_anim(MENU_PLAYER), GTV(445, 252));
     display_image(get_image(OPTION_LOGO), GTV(0, 0));
     pos -= get_delta() / 2.0;
     if (pos <= -2880)

@@ -9,7 +9,7 @@
 
 const scene_swap_t scenes[SCENE_NB] = {
     main_menu_scene,
-    NULL,
+    option_scene,
     game_scene,
     NULL,
     NULL,

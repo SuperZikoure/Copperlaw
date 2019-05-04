@@ -7,47 +7,66 @@
 
 #include "my_rpg.h"
 #include "macros.h"
-#include <math.h>
-#include <stdio.h>
 
-static int analyse_main_menu_events(game_t *game, input_t *input)
+static sfText *init_skip_text(game_t *game)
 {
-    if (KEY_PRESSED(ESCAPE_KEY))
-        return swap_main_menu_to_game(game);
+    sfText *text = quick_text_create(30, "assets/dialogues/font.ttf");
+    if (!text)
+        return NULL;
+    sfText_setScale(text, V2F(.5, .5));
+    sfText_setPosition(text, GTV(560, 380));
+    sfText_setString(text, "Click to skip...");
+    return text;
+}
+
+static int change_square_alpha(void)
+{
+    static unsigned char color = 255;
+    static size_t frames = 0;
+
+    sfSprite_setColor(get_image(BIG_SQUARE)->sprite, COLOR(0, 0, 0, color));
+    frames += get_delta();
+    if (frames < 6)
+        return 0;
+    frames -= 6;
+    color -= 1 * get_delta();
+    if (color <= 1 * get_delta()) {
+        color = 0;
+        return 1;
+    }
     return 0;
 }
 
-static void display_menu(game_t *game)
+static bool display_intro(game_t *game, sfText *text)
 {
-    static float pos = 0;
-    float color = sin((2880 + (pos - 400)) / (720 + 192)) * 255;
-    sfColor test = {ABS(color), ABS(color), ABS(color), 255};
-
-    if (color > 255)
-        color = 255;
-    else if (color < 50)
-        color = 50;
-    test = (sfColor){ABS(color), ABS(color), ABS(color), 255};
-    sfSprite_setColor(get_image(MENU_BG)->sprite, test);
-    sfSprite_setColor(get_anim(MENU_PLAYER)->sheet->sprite, test);
-    display_image(get_image(MENU_SKY), global_to_view(V2F(pos, 0),VIEW));
-    pos += 2880;
-    display_image(get_image(MENU_SKY), global_to_view(V2F(pos, 0), VIEW));
-    pos -= 2880;
-    display_image(get_image(MENU_BG), global_to_view(V2F(0, 0), VIEW));
-    display_anim(get_anim(MENU_PLAYER), global_to_view(V2F(450, 250), VIEW));
-    display_image(get_image(MENU_LOGO), global_to_view(V2F(0, 0), VIEW));
-    pos -= get_delta() / 2.0;
-    if (pos <= -2880)
-        pos = 0;
+    bool is_ended = false;
+    
+    if (change_square_alpha())
+        is_ended = true;
+    display_image(get_image(BIG_SQUARE), GTV(0, 0));
+    sfRenderWindow_drawText(WINDOW->window, text, NULL);
+    return !is_ended;
 }
 
 int main_menu_scene(game_t *game)
 {
-    if (analyse_main_menu_events(game, game->input))
-        return 1;
-    display_menu(game);
-    show_scene_buttons(game);
+    static bool intro = true;
+    static sfText *text = NULL;
+
+    if (!text) {
+        text = init_skip_text(game);
+        if (!text)
+            return -1;
+    }
+    display_parallax(game);
+    if (MOUSE_PRESSED(sfMouseLeft))
+        intro = false;
+    if (intro) {
+        intro = display_intro(game, text);
+    } else {
+        display_image(get_image(MENU_LOGO), GTV(0, 0));
+        show_scene_buttons(game);
+    }
     display_cursor(game);
     return 0;
 }

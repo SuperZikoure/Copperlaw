@@ -18,14 +18,17 @@ const sfVideoMode window_size[RESOLUTIONS] = {
 };
 
 const info_button_t info[BUTTON_AMOUNT] = {
-    {{75, 145}, MAIN_MENU, "play", put_fs},
-    {{75, 185}, MAIN_MENU, "skill", res_plus},
-    {{75, 225}, MAIN_MENU, "help", res_moins},
-    {{75, 265}, MAIN_MENU, "exit", exit_game},
-    {{75, 145}, MENU, "play", put_fs},
-    {{75, 185}, MENU, "skill", res_plus},
-    {{75, 225}, MENU, "help", res_moins},
-    {{75, 265}, MENU, "exit", exit_game}
+    {{50, 148}, 0, MAIN_MENU, "newgame", swap_main_menu_to_game},
+    {{50, 181}, 0, MAIN_MENU, "loadgame", swap_main_menu_to_game},
+    {{50, 216}, 0, MAIN_MENU, "option", swap_main_menu_to_option},
+    {{50, 250}, 0, MAIN_MENU, "help", exit_game},
+    {{50, 284}, 0, MAIN_MENU, "credits", exit_game},
+    {{50, 318}, 0, MAIN_MENU, "exit", exit_game},
+    {{85, 162}, 0, OPTIONS, "fullscreen", change_fullscreen_mode},
+    {{325, 207}, 0, OPTIONS, "res_plus", icr_resolution},
+    {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
+    {{85, 246}, 0, OPTIONS, "sound", change_sound},
+    {{30, 298}, 0, OPTIONS, "back", swap_option_to_main_menu}
 };
 
 const sfKeyCode input_key[KEY_NB] = {
@@ -46,16 +49,22 @@ const sfKeyCode input_key[KEY_NB] = {
 };
 
 const char *image_path[IMAGE_AMOUNT] = {
-    "assets/test1.png",
-    "assets/test2.png",
-    "assets/menues/main_menue/sky.png",
-    "assets/menues/main_menue/bg.png",
-    "assets/menues/main_menue/logo.png"
+    "assets/trail1.png",
+    "assets/trail2.png",
+    "assets/scenes/main_menu/sky.png",
+    "assets/scenes/main_menu/bg.png",
+    "assets/scenes/main_menu/logo.png",
+    "assets/scenes/menu/selected.png",
+    "assets/scenes/menu/not_selected.png",
+    "assets/scenes/option/logo.png",
+    "assets/scenes/option/resolution.png",
+    "assets/buttons/option_hover.png",
+    "assets/big_square.png"
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {
     {{11, 12}, {32, 32}, "assets/anims/can_talk.png"},
-    {{5, 8}, {128, 128}, "assets/menues/main_menue/player.png"}
+    {{5, 8}, {128, 128}, "assets/scenes/main_menu/player.png"}
 };
 
 const info_npc_t npc_info[NPC_AMOUNT] = {

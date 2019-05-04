@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 8
+#define BUTTON_AMOUNT 11
 
 #define MAP_AMOUNT 1
 
@@ -57,7 +57,7 @@ typedef int (*scene_swap_t)(game_t *);
 struct info_anim_s
 {
     sfVector2f fps;
-    sfVector2i size;;
+    sfVector2i size;
     char *path;
 };
 
@@ -84,9 +84,10 @@ enum enum_scene_e {
 struct info_button_s
 {
     sfVector2f pos;
+    int option;
     enum enum_scene_e scene;
     char *path;
-    void (*trigger)(game_t*);
+    int (*trigger)(game_t *, int);
 };
 
 enum zone_ids {
@@ -103,6 +104,12 @@ enum enum_images_e {
     MENU_SKY,
     MENU_BG,
     MENU_LOGO,
+    BUTTON_SELECTED,
+    BUTTON_NOT_SELECTED,
+    OPTION_LOGO,
+    OPTION_RESOLUTION,
+    OPTION_OPTION,
+    BIG_SQUARE,
     IMAGE_AMOUNT
 };
 
@@ -203,7 +210,9 @@ extern const info_npc_t npc_info [NPC_AMOUNT];
 
 typedef struct button_s
 {
-    void (*trigger)(game_t *);
+    int (*trigger)(game_t *, int);
+    int option;
+    char *name;
     image_t *base;
     image_t *hover;
     image_t *click;
@@ -215,7 +224,7 @@ typedef struct button_s
     enum enum_scene_e scene;
     int mouse_hover;
     int mouse_click;
-    void* parent;
+    void *parent;
 } button_t;
 
 typedef struct cursor_s
@@ -337,7 +346,6 @@ typedef struct player_s {
 
 struct game_s {
     window_t *window;
-    my_clock_t *clock;
     view_t *view;
     gui_t *gui;
     input_t *input;
@@ -348,7 +356,7 @@ struct game_s {
     npc_t *npc[NPC_AMOUNT];
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
-    int frames;
+    bool sound;
     int exit;
 };
 
@@ -387,13 +395,16 @@ game_t create_game(void);
 button_t *create_button(const info_button_t *info, view_t *view);
 void show_scene_buttons(game_t *game);
 sfBool mouse_pressed_once(int mouse_button);
+button_t *find_button(game_t *game, char *name, enum enum_scene_e scene);
 
 /// SCENES ///
 
 /* TRANSITIONS */
-int swap_game_to_menu(game_t *game);
-int swap_menu_to_game(game_t *game);
-int swap_main_menu_to_game(game_t *game);
+int swap_game_to_menu(game_t *game, int option);
+int swap_menu_to_game(game_t *game, int option);
+int swap_main_menu_to_game(game_t *game, int option);
+int swap_main_menu_to_option(game_t *game, int option);
+int swap_option_to_main_menu(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);
@@ -413,6 +424,8 @@ int main_menu_scene(game_t *game);
 /* MENU */
 int menu_scene(game_t *game);
 
+/* OPTION */
+int option_scene(game_t *game);
 
 /* maps/create_map.c */
 map_t *create_map(char *filepath, window_t *window);
@@ -443,15 +456,20 @@ anim_t *get_anim(int index);
 void display_mobs(game_t *game);
 
 /* BUTTON FUNCTIONS */
-void put_game_scene(game_t *game);
-void exit_game(game_t *game);
-void res_moins(game_t *game);
-void res_plus(game_t *game);
-void put_fs(game_t *game);
+int exit_game(game_t *game, int option);
+int change_fullscreen_mode(game_t *game, int option);
+int icr_resolution(game_t *game, int option);
+int dcr_resolution(game_t *game, int option);
+int change_sound(game_t *game, int option);
 
 /* SCREESHOT */
 #define SCREENSHOT_FILENAME_MAX 10
 int do_screenshot(window_t *window);
+
+/* PARALLAX (main_menu, option, how2play) */
+void display_parallax(game_t *game);
+float get_parallax_pos(void);
+void set_parallax_pos(float value);
 
 ////////////////////////////////////
 

@@ -103,6 +103,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		analyse_events.c \
 		create_game.c \
 		create_player.c \
+		destroy_game.c \
 		game_loop.c \
 		get_delta.c \
 		global_info.c \

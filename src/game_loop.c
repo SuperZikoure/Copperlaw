@@ -32,6 +32,6 @@ void game_loop(game_t *game)
         sfRenderWindow_setView(game->window->window, game->view->camera);
         display_window(WINDOW, game->input);
     }
-    if (!sfRenderWindow_isOpen(game->window->window))
+    if (sfRenderWindow_isOpen(game->window->window))
         sfRenderWindow_close(game->window->window);
 }

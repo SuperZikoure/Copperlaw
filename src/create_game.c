@@ -6,7 +6,6 @@
 */
 
 #include <stdlib.h>
-#include "graph.h"
 #include "my_rpg.h"
 #include "macros.h"
 
@@ -73,10 +72,19 @@ static void init_npcs(game_t *game)
     }
 }
 
+static void fill_game(game_t *game)
+{
+    game->exit = 0;
+    game->current_map = 0;
+    game->dialogue = NULL;
+    game->sound = true;
+}
+
 game_t create_game(void)
 {
     game_t game;
 
+    fill_game(&game);
     game.window = create_window(DEFAULT_SCREENSIZE, "CopperLaw");
     game.input = create_input();
     if (!game.window || !game.input)
@@ -86,13 +94,10 @@ game_t create_game(void)
         return game;
     game.gui = create_gui(game.view);
     game.option = create_option();
-    game.exit = 0;
     game.maps[0] = create_map("src/data/maps/village", game.window);
     if (!game.maps[0])
         return game;
     game.player = create_player(&game);
-    game.current_map = 0;
-    game.dialogue = NULL;
     init_npcs(&game);
     return (game);
 }

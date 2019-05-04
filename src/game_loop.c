@@ -5,7 +5,7 @@
 ** loop_game
 */
 
-#include "dialogues.h"
+#include "my_rpg.h"
 
 static int display_window(window_t *window, input_t *input)
 {
@@ -15,20 +15,8 @@ static int display_window(window_t *window, input_t *input)
     return 0;
 }
 
-static int setup_dialogues(void)
-{
-    if (load_dialogue_scene(INTRO) == -1)
-        return -1;
-    if (!fetch_dialogue_canvas())
-        return -1;
-    return 0;
-}
-
 void game_loop(game_t *game)
 {
-    change_scene(MAIN_MENU);
-    if (setup_dialogues() == -1)
-        game->exit = -1;
     start_clock();
     while (sfRenderWindow_isOpen(game->window->window) && !game->exit) {
         start_new_frame();

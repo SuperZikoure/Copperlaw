@@ -6,7 +6,7 @@
 */
 
 #ifndef MY_RPG_H_
-#define MY_RPG_H
+#define MY_RPG_H_
 
 #include <math.h>
 #include "graph.h"

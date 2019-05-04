@@ -55,6 +55,7 @@ MAINM_SCENE	=	$(SCENES)/main_menu
 MENU_SCENE	=	$(SCENES)/menu
 TRANSITIONS	=	$(SCENES)/transitions
 UTILS		=	utils
+PARTICLE	=	particle
 
 SRC	=	$(BUTTONS)/create_button.c \
 		$(BUTTONS)/manage_button.c \
@@ -86,6 +87,9 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
+		$(PARTICLE)/particles_system.c \
+		$(PARTICLE)/desert.c \
+		$(PARTICLE)/fire.c \
 		analyse_events.c \
 		create_game.c \
 		create_player.c \
@@ -97,11 +101,11 @@ SRC	=	$(BUTTONS)/create_button.c \
 		manage_intersections.c \
 		scene_system.c
 
-SRC_LIB	=	stdio my string graph inv dialogues \
+SRC_LIB	=	stdio my string graph inv dialogues particle\
 			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
-LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory lib/dialogues
+LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory lib/dialogues lib/particle
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)

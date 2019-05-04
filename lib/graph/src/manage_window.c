@@ -22,6 +22,8 @@ static int fill_window(window_t *win, int size, bool fullscreen)
     win->window = sfRenderWindow_create(win->mode, win->title, style, NULL);
     if (!win->window)
         return -1;
+    sfRenderWindow_clear(win->window, sfBlack);
+    sfRenderWindow_display(win->window);
     sfRenderWindow_setFramerateLimit(win->window, 60);
     sfRenderWindow_setVerticalSyncEnabled(win->window, sfTrue);
     sfRenderWindow_setMouseCursorVisible(win->window, sfFalse);

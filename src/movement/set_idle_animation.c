@@ -25,9 +25,10 @@ static int get_player_direction(game_t *game)
 void set_idle_animation(game_t *game)
 {
     int dir = get_player_direction(game);
+    anim_t *idle = PLAYER->idle;
 
     if (!game->dialogue) {
-        PLAYER->idle->frame.top = dir * PLAYER->idle->frame.height;
-        sfSprite_setTextureRect(PLAYER->idle->sheet->sprite, PLAYER->idle->frame);
+        idle->frame.top = dir * idle->frame.height;
+        sfSprite_setTextureRect(idle->sheet->sprite, idle->frame);
     }
 }

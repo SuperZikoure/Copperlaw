@@ -55,7 +55,8 @@ static npc_t *create_npc(int i, window_t *window)
         return NULL;
     npc->pos = npc_info[i].pos;
     npc->map = npc_info[i].map;
-    npc->display = create_anim(npc_info[i].fps, V2I(32,32), npc_info[i].path, window);
+    npc->display = create_anim(npc_info[i].fps, V2I(32, 32), npc_info[i].path,
+window);
     if (!npc->display)
         return NULL;
     return (npc);

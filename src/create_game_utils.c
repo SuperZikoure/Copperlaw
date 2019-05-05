@@ -14,7 +14,6 @@ void fill_game(game_t *game)
     game->exit = 0;
     game->current_map = VILLAGE_MAP;
     game->dialogue = NULL;
-    game->sound = true;
 }
 
 option_t create_option(void)
@@ -22,9 +21,8 @@ option_t create_option(void)
     option_t option;
 
     option.resolution = DEFAULT_SCREENSIZE;
-    option.fullscreen = 0;
-    option.music = 1;
-    option.sound = 1;
+    option.fullscreen = false;
+    option.sound = true;
     return (option);
 }
 

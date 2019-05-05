@@ -140,6 +140,6 @@ char *map_paths[MAP_AMOUNT] = {
     "src/data/maps/house"
 };
 
-char *music_paths[] = {
-    "assets/musics/main_menu.ogg"
+const info_music_t music_paths[MUSIC_AMOUT] = {
+    {"assets/musics/main_menu.ogg", NULL}
 };

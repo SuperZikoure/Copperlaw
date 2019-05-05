@@ -36,6 +36,7 @@ INCLUDE_PATH	=	../include
 SRC	=	manage_anim.c	\
 		manage_image.c	\
 		manage_input.c	\
+		manage_music.c	\
 		manage_sound.c	\
 		manage_text.c	\
 		manage_window.c

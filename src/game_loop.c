@@ -18,7 +18,7 @@ static int display_window(window_t *window, input_t *input)
 void game_loop(game_t *game)
 {
     start_clock();
-    sfMusic_play(game->music);
+    start_music(game->music);
     while (sfRenderWindow_isOpen(game->window->window) && !game->exit) {
         start_new_frame();
         if (!sfRenderWindow_hasFocus(game->window->window))

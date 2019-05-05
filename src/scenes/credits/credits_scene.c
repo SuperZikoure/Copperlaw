@@ -24,7 +24,7 @@ int credit_scene(game_t *game)
     if (analyse_main_menu_events(game, game->input))
         return 1;
     display_parallax(game);
-    display_image(get_image(CREDIT_IMG), GTV(0, 0));
+    display_image(get_image(CREDIT_IMG), GTV(10, 80));
     display_text(credits_txt, V2F(-200, -150),
 game->texts[BIG_TEXT]);
     show_scene_buttons(game);

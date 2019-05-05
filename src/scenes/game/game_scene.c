@@ -103,8 +103,9 @@ static void display_hud(game_t *game)
     display_image(get_image(HUD), GTV(0, 0));
     show_scene_buttons(game);
     display_image(get_image(HUD_ITEMS), GTV(0, 0));
-    for (int i = 0; i < ITEM_AMOUNT; i++) {
-        display_text(AMOUNT_STR(i), GTV(690, 88 + (i * 36)), game->texts[SMALL_TEXT]);
+    for (int i = 1; i < ITEM_AMOUNT; i++) {
+        display_text(AMOUNT_STR(i), GTV(690, 88 + ((i - 1) * 36)),
+        game->texts[SMALL_TEXT]);
     }
 }
 

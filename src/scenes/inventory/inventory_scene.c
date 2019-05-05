@@ -17,9 +17,11 @@ static int analyse_inventory_events(game_t *game, input_t *input)
 
 static void display_inventory(game_t *game)
 {
-    for (int i = 0; i < ITEM_AMOUNT; i++) {
-        display_text(AMOUNT_STR(i), GTV(325, 128 + (i * 36)), game->texts[SMALL_TEXT]);
-        display_text(desc_item[i], GTV(340, 123 + (i * 36)), game->texts[BIG_TEXT]);
+    for (int i = 1; i < ITEM_AMOUNT; i++) {
+        display_text(AMOUNT_STR(i), GTV(325, 128 + ((i - 1) * 36)),
+        game->texts[SMALL_TEXT]);
+        display_text(desc_item[i], GTV(340, 123 + ((i - 1) * 36)),
+        game->texts[BIG_TEXT]);
     }
 }
 

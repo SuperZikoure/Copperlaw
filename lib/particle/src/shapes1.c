@@ -34,11 +34,11 @@ void my_put_pixel(fb_t *framebuffer, int x, int y, sfColor color)
     framebuffer->pixels[pos + 3] = color.a;
 }
 
-void my_draw_square(fb_t *fb, sfVector2u pos, int size, sfColor clr)
+void my_draw_square(fb_t *fb, sfVector2u pos, int size)
 {
     for (unsigned int i = pos.y; i <= pos.y + size; i++) {
         for (unsigned int j = pos.x; j <= pos.y + size; j++) {
-            my_put_pixel(fb, j, i, clr);
+            fb->pixels[(i + j * fb->x) * 4 + 3] = 255;
         }
     }
 }

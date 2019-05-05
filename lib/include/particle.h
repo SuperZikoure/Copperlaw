@@ -39,7 +39,7 @@ void fb_empty(fb_t *fb);
 //lib/particle/shapes1.c
 void my_put_pixel_f(fb_t *framebuffer, int x, int y, sfColor color);
 void my_put_pixel(fb_t *framebuffer, int x, int y, sfColor color);
-void my_draw_square(fb_t *fb, sfVector2u pos, int size, sfColor clr);
+void my_draw_square(fb_t *fb, sfVector2u pos, int size);
 void my_draw_fcircle(fb_t *fb, sfVector2i center, int r, sfColor clr);
 void check_neg(int *x, int *y);
 

@@ -9,7 +9,6 @@
 #include "macros.h"
 
 extern char *map_paths[MAP_AMOUNT]; 
-extern char *music_paths[];
 void init_npcs(game_t *game);
 npc_t *create_npc(int i, window_t *window);
 option_t create_option(void);
@@ -64,6 +63,21 @@ static void create_texts(game_t *game)
     }
 }
 
+static int create_game_2(game_t *game)
+{
+    game->music = load_music(GET_MUSIC_PATHS(MAIN_MENU_MUSIC));
+    if (!game->music)
+        return -1;
+    game->player = create_player(game);
+    if (!game->player)
+        return -1;
+    game->inventory = create_inventory();
+    if (!game->inventory)
+        return -1;
+    init_npcs(game);
+    return 0;
+}
+
 game_t create_game(void)
 {
     game_t game;
@@ -80,9 +94,7 @@ game_t create_game(void)
     game.option = create_option();
     create_maps(&game);
     create_texts(&game);
-    game.music = create_music(music_paths[0]);
-    game.player = create_player(&game);
-    game.inventory = create_inventory();
-    init_npcs(&game);
+    if (create_game_2(&game) == -1)
+        game.exit = -1;
     return (game);
 }

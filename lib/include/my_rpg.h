@@ -50,6 +50,7 @@
 
 #define RES game->option.resolution
 #define FS game->option.fullscreen
+#define SOUND game->option.sound
 
 #define AMOUNT_STR(i) my_itoa(get_amount(i, G_INVENTORY))
 
@@ -58,6 +59,7 @@ typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
 typedef struct info_anim_s info_anim_t;
 typedef struct info_tp_s info_tp_t;
+typedef struct info_music_s info_music_t;
 typedef int (*scene_swap_t)(game_t *);
 
 struct info_anim_s
@@ -90,6 +92,12 @@ struct info_item_s
     int sp;
 };
 
+struct info_music_s
+{
+    char *main_path;
+    char *cover_path;
+};
+
 enum enum_item_e
 {
     ELIXIR_OF_LIFE,
@@ -110,6 +118,12 @@ enum enum_text_e
     CREDIT_TEXT,
     TEXT_AMOUNT
 };
+
+enum musics_ids_e {
+    MAIN_MENU_MUSIC,
+    MUSIC_AMOUT
+};
+
 
 enum enum_map_e {
     VILLAGE_MAP,
@@ -269,6 +283,7 @@ extern const info_npc_t npc_info [NPC_AMOUNT];
 extern const info_tp_t tp_info[TP_AMOUNT];
 extern const char* font_path[TEXT_AMOUNT];
 extern const int font_size[TEXT_AMOUNT];
+extern const info_music_t music_paths[MUSIC_AMOUT];
 
 typedef struct button_s
 {
@@ -323,10 +338,9 @@ typedef struct my_clock_s {
 } my_clock_t;
 
 typedef struct option_s {
-    unsigned short int resolution;
-    unsigned short int fullscreen;
-    unsigned short int music;
-    unsigned short int sound;
+    unsigned short resolution;
+    bool fullscreen;
+    bool sound;
 } option_t;
 
 typedef struct map_s {
@@ -418,10 +432,9 @@ struct game_s {
     map_t *maps[MAP_AMOUNT];
     npc_t *npc[NPC_AMOUNT];
     text_t *texts[TEXT_AMOUNT];
-    sfMusic *music;
+    music_t *music;
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
-    bool sound;
     int exit;
 };
 

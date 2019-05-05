@@ -33,8 +33,8 @@ int inventory_scene(game_t *game)
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 249));
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 301));
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 353));
-    show_scene_buttons(game);
     manage_inventory(game);
+    show_scene_buttons(game);
     display_cursor(game);
     return 0;
 }

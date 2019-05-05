@@ -67,6 +67,6 @@ int destroy_game(game_t *game)
         destroy_anim(get_anim(i));
     destroy_dialogue_canvas();
     destroy_door_sound();
-    sfMusic_destroy(game->music);
+    destroy_music(game->music);
     return 0;
 }

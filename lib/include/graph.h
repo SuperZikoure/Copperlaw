@@ -63,6 +63,11 @@ typedef struct keypress_s
     sfKeyCode key;
 } keypress_t;
 
+typedef struct music_s {
+    sfMusic *main;
+    sfMusic *cover;
+} music_t;
+
 /* WINDOW */
 window_t *create_window(int size, char *str);
 int change_window(window_t *window, int size, bool fullscreen);
@@ -91,9 +96,13 @@ void display_anim(anim_t *anim, sfVector2f pos);
 void destroy_anim(anim_t *anim);
 
 /* SOUND */
-#define BASE_VOLUME 25
+#define BASE_VOLUME 50
 sound_t *create_sound(char *path);
 void destroy_sound(sound_t *sound);
-sfMusic *create_music(const char *path);
+
+/* MUSIC */
+music_t *load_music(char *main_path, char *cover_path);
+void start_music(music_t *music);
+void destroy_music(music_t *music);
 
 #endif

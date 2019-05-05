@@ -21,6 +21,22 @@ fb_t *(*PARTICLE_TYPE[MAX_PARTICLE])(fb_t *, int) = {
     , skill_particle
 };
 
+static image_t *load_fb_in_image(fb_t *particle)
+{
+    image_t *image = malloc(sizeof(image_t *));
+
+    if (image == NULL)
+        return NULL;
+    image->texture = sfTexture_create(particle->x, particle->y);
+    sfTexture_updateFromPixels(image->texture, particle->pixels, particle->x,
+        particle->y, 0, 0);
+    image->sprite = sfSprite_create();
+    sfSprite_setTexture(image->sprite, image->texture, sfTrue);
+    image->image = NULL;
+    image->window = NULL;
+    return image;
+}
+
 static void free_fb(fb_t **fb_part)
 {
     int i;
@@ -37,24 +53,18 @@ static void free_fb(fb_t **fb_part)
 image_t *get_particle(int type)
 {
     static fb_t **fb_part = NULL;
-    image_t *image = malloc(sizeof(image));
 
     if (fb_part == NULL) {
         fb_part = malloc(sizeof(fb_t *) * MAX_PARTICLE);
-        if (fb_part == NULL || image == NULL)
+        if (fb_part == NULL)
             return NULL;
     }
     if (type != -1) {
         fb_part[type] = (*PARTICLE_TYPE[type])(fb_part[type], type);
         if (fb_part[type] == NULL)
             return NULL;
-        image->texture = sfTexture_create(fb_part[type]->x, fb_part[type]->y);
-        sfTexture_updateFromPixels(image->texture, fb_part[type]->pixels,
-            fb_part[type]->x, fb_part[type]->y, 0, 0);
-        return image;
-    } else {
+        return load_fb_in_image(fb_part[type]);
+    } else
         free_fb(fb_part);
-        free(image);
-    }
     return NULL;
 }

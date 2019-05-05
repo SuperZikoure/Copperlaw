@@ -9,9 +9,9 @@
 
 static void update_stats_shotgun(player_t *player, int level) {
     if (level == 1) {
-        STATS(ATTACK_SPEED) = 4;
-        STATS(ATTACK_COOLDOWN) = 60;
-        STATS(ATTACK_RANGE) = 60;
+        STATS(ATTACK_SPEED) = 8;
+        STATS(ATTACK_COOLDOWN) = 180;
+        STATS(ATTACK_RANGE) = 15;
         STATS(DAMAGE) = 1.5;
         return;
     }
@@ -29,7 +29,7 @@ static void update_stats_shotgun(player_t *player, int level) {
 
 static void update_stats_revolver(player_t *player, int level) {
     if (level == 1) {
-        STATS(ATTACK_SPEED) = 4;
+        STATS(ATTACK_SPEED) = 25;
         STATS(ATTACK_COOLDOWN) = 30;
         STATS(ATTACK_RANGE) = 600;
         STATS(DAMAGE) = 1.5;

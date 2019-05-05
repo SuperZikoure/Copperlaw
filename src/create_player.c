@@ -27,7 +27,7 @@ const float stat_init[STATS_AMOUNT] = {
     1,
     0,
     5,
-    1,
+    0,
     0,
     0,
     0,

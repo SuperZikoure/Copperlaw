@@ -102,11 +102,10 @@ int game_scene(game_t *game)
     display_mobs(game);
     player_management(game);
     npc_management(game);
-    // drop_coin(V2F(200, 200), game->coins, 0);
     manage_coins(game->coins, PLAYER->pos, game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
+    display_balls(PLAYER->balls);
     display_hud(game);
-    printf("MONEY : %d\n", game->money);
     update_game_gui(game);
     return 0;
 }

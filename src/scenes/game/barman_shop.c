@@ -57,5 +57,6 @@ void blacksmith_shop(game_t *game)
         return;
     game->money -= 30;
     game->player->class = response == 0 ? REVOLVER : SHOTGUN;
+    PLAYER->stats[CURRENT_XP] += 5;
     game->dialogue = NULL;
 }

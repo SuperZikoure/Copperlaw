@@ -40,8 +40,12 @@ void compute_game_interactions(game_t *game)
 {
     sfVector2f dir = cursor_dir(game);
 
-    // if (mouse_pressed_once(sfMouseLeft))
-    //    fire_ball(game->player->pos, game->game.balls, dir);
+    if (game->current_map == WILD_MAP && PLAYER->class) {
+        if (mouse_pressed_once(sfMouseLeft))
+            fire_ball(game, dir, PLAYER->class, 0);
+        if (mouse_pressed_once(sfMouseRight))
+            fire_ball(game, dir, PLAYER->class, PLAYER->class);
+    }
     dash(game->input, &PLAYER->dash, PLAYER->speed, dir);
     analyse_movement_keys(game->input, game->player);
 }

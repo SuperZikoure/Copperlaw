@@ -23,7 +23,8 @@ void display_balls(ball_t *balls[PLAYER_BALLS])
             continue;
         balls[i]->pos.x += balls[i]->speed.x;
         balls[i]->pos.y += balls[i]->speed.y;
-        //display_image(balls[i]->ball, balls[i]->pos);
+        if (!balls[i]->skill)
+            display_image(get_image(WHITE_BALL), balls[i]->pos);
     }
 }
 

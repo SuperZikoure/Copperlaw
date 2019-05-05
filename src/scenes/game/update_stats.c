@@ -56,5 +56,8 @@ void update_stats(player_t *player) {
             update_stats_shotgun(player, STATS(LVL));
         STATS(CURRENT_XP) = (int)STATS(CURRENT_XP) % (int)STATS(MAX_XP);
         STATS(MAX_XP) += STATS(LVL);
+        STATS(CURRENT_HP) = STATS(MAX_HP);
+        STATS(CURRENT_MP) = STATS(MAX_MP);
+        STATS(CURRENT_SP) = STATS(MAX_SP);
     }
 }

@@ -10,17 +10,14 @@
 
 static int analyse_choise_mouse(game_t *game, struct selection *s)
 {
-    int found = 0;
     int selected = -1;
     int save = s->selected;
 
     for (int i = 0; i < s->total; i++) {
-        if (text_intersect(s->texts[i], CURSOR->display->sheet)) {
+        if (text_intersect(s->texts[i], CURSOR->display->sheet))
             selected = i;
-            found = 1;
-        }
     }
-    for (int i = 0; i < s->total && found; i++) {
+    for (int i = 0; selected != -1 && i < s->total; i++) {
         s->selected = i;
         if (i == selected)
             change_selected_choise_color(s, sfYellow);
@@ -28,7 +25,7 @@ static int analyse_choise_mouse(game_t *game, struct selection *s)
             change_selected_choise_color(s, sfWhite);
     }
     s->selected = (selected != -1) ? selected : save;
-    if (MOUSE_PRESSED(sfMouseLeft) && found)
+    if (selected != -1 && MOUSE_PRESSED(sfMouseLeft))
         return (s->selected);
     return (-1);
 }

@@ -63,41 +63,46 @@ typedef struct keypress_s
     sfKeyCode key;
 } keypress_t;
 
-/* WINDOW */
+typedef struct music_s {
+    sfMusic *main;
+    sfMusic *cover;
+} music_t;
 
+/* WINDOW */
 window_t *create_window(int size, char *str);
 int change_window(window_t *window, int size, bool fullscreen);
 void destroy_window(window_t *window);
 
 /* INPUT */
-
 keypress_t *create_key(sfKeyCode key);
 void process_key(keypress_t *key);
 
 /* TEXT */
-
-text_t *create_text(int fontsize, char *font, window_t *window);
-void display_text(char *str, sfVector2f pos, text_t *text);
+text_t *create_text(int fontsize, const char *font, window_t *window);
+void display_text(const char *str, sfVector2f pos, text_t *text);
 void destroy_text(text_t *text);
 /* quick sfText creator */
 sfText *quick_text_create(unsigned int char_size, const char *fontpath);
 
 /* IMAGE */
-
 image_t *create_image(const char *path, window_t *window);
 void display_image(image_t *img, sfVector2f pos);
 void destroy_image(image_t *image);
 
 /* ANIMATION */
-
 anim_t *create_anim(sfVector2f fps, sfVector2i size, char *path, window_t *wd);
 void update_anim(anim_t *anim);
 void display_anim(anim_t *anim, sfVector2f pos);
 void destroy_anim(anim_t *anim);
 
 /* SOUND */
-
+#define BASE_VOLUME 50
 sound_t *create_sound(char *path);
 void destroy_sound(sound_t *sound);
+
+/* MUSIC */
+music_t *load_music(char *main_path, char *cover_path);
+void start_music(music_t *music);
+void destroy_music(music_t *music);
 
 #endif

@@ -25,6 +25,7 @@
             sfTexture_destroy((sfTexture *) sfSprite_getTexture(s));
 #define DESTROY_TEXT_FONT(t) sfFont_destroy((sfFont *) sfText_getFont(t))
 
+#define GET_MUSIC_PATHS(i) music_paths[i].main_path, music_paths[i].cover_path
 
 /* MATHS */
 #define DEG(c) (c * (180 / M_PI))

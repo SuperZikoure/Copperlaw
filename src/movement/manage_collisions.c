@@ -6,10 +6,11 @@
 */
 
 #include <stdlib.h>
+#include <stdio.h>
 #include "my_rpg.h"
 #include "macros.h"
 
-static int get_pos(int pos)
+int get_map_pos(int pos)
 {
     int value = 0;
 
@@ -21,8 +22,8 @@ static int get_pos(int pos)
 static void move_h(col_t *col, int current_map)
 {
     int count = 0;
-    int x = get_pos(col->pos->x + col->hitbox.x);
-    int y = get_pos(col->pos->y + col->hitbox.y);
+    int x = get_map_pos(col->pos->x + col->hitbox.x);
+    int y = get_map_pos(col->pos->y + col->hitbox.y);
 
     for (int i = x - 1; i >= 0; i--) {
         if (col->maps[current_map]->map[y][i] == '1') {
@@ -46,8 +47,8 @@ static void move_h(col_t *col, int current_map)
 static void move_v(col_t *col, int current_map)
 {
     int count = 0;
-    int x = get_pos(col->pos->x + col->hitbox.x);
-    int y = get_pos(col->pos->y + col->hitbox.y);
+    int x = get_map_pos(col->pos->x + col->hitbox.x);
+    int y = get_map_pos(col->pos->y + col->hitbox.y);
 
     for (int i = y - 1; i >= 0; i--) {
         if (col->maps[current_map]->map[i][x] == '1') {

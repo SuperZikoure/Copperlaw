@@ -7,7 +7,8 @@
 
 #include "scripts.h"
 
-const struct script_s **script_list[] = {
+const struct script_s **script_list[ZONE_NB] = {
     intro_scripts,
-    village_scripts,
+    weapon_scripts,
+    village_scripts
 };

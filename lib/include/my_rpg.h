@@ -195,6 +195,9 @@ enum enum_images_e {
     HUD_ITEMS,
     ITEMS,
     HOWTOPLAY_IMG,
+    WHITE_BALL,
+    GREEN_BALL,
+    BLUE_BALL,
     IMAGE_AMOUNT
 };
 
@@ -291,7 +294,7 @@ enum cursor_modes {
     CURSOR_MODES_NB
 };
 
-enum enum_class {
+enum enum_class_e {
     NO_CLASS,
     REVOLVER,
     SHOTGUN,

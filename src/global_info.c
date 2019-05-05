@@ -87,7 +87,10 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/game/HUD.png",
     "assets/scenes/game/HUD_ITEMS.png",
     "assets/scenes/menu/items.png",
-    "assets/scenes/how_to_play/board.png"
+    "assets/scenes/how_to_play/board.png",
+    "assets/ball_white.png",
+    "assets/ball_green.png",
+    "assets/ball_blue.png"
 };
 
 const char *font_path[TEXT_AMOUNT] = {

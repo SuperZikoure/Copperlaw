@@ -7,7 +7,8 @@
 
 #include "my_rpg.h"
 
-static void update_stats_shotgun(player_t *player, int level) {
+static void update_stats_shotgun(player_t *player, int level)
+{
     if (level == 1) {
         STATS(ATTACK_SPEED) = 8;
         STATS(ATTACK_COOLDOWN) = 180;
@@ -27,7 +28,8 @@ static void update_stats_shotgun(player_t *player, int level) {
     player->level_up_display += 60;
 }
 
-static void update_stats_revolver(player_t *player, int level) {
+static void update_stats_revolver(player_t *player, int level)
+{
     if (level == 1) {
         STATS(ATTACK_SPEED) = 25;
         STATS(ATTACK_COOLDOWN) = 30;
@@ -47,7 +49,8 @@ static void update_stats_revolver(player_t *player, int level) {
     player->level_up_display += 60;
 }
 
-void update_stats(player_t *player) {
+void update_stats(player_t *player)
+{
     if (STATS(CURRENT_XP) >= STATS(MAX_XP)) {
         STATS(LVL) += 1;
         if (player->class == REVOLVER)

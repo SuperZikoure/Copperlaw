@@ -71,7 +71,7 @@ static int init_player(game_t *ga, player_t *player)
     return 0;
 }
 
-static int init_attacks(game_t *ga, player_t *player)
+static int init_attacks(player_t *player)
 {
     for (int i = 0; i < PLAYER_BALLS; i++) {
         player->balls[i] = malloc(sizeof(ball_t));
@@ -88,7 +88,7 @@ player_t *create_player(game_t *ga)
 
     if (!player)
         return NULL;
-    if (init_player(ga, player) == -1 || init_attacks(ga, player) == -1)
+    if (init_player(ga, player) == -1 || init_attacks(player) == -1)
         return NULL;
     for (int i = 0; i < STATS_AMOUNT; i++) {
         player->boost[i] = 0;

@@ -16,7 +16,7 @@
 
 #include "my_rpg.h"
 
-void display_balls(ball_t *balls[PLAYER_BALLS])
+/*void display_balls(ball_t *balls[PLAYER_BALLS])
 {
     for (int i = 0; i < PLAYER_BALLS; i++) {
         if (!balls[i]->exist)
@@ -44,4 +44,4 @@ void fire_ball(game_t *game, sfVector2f dir, int type, int skill)
         balls[i]->type;
         return;
     }
-}
+}*/

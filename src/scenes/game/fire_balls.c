@@ -41,6 +41,9 @@ static void fire_ball_2(game_t *game, int i, sfVector2f dir)
     PLAYER->balls[i]->exist = 1;
     PLAYER->balls[i]->speed.x += value;
     PLAYER->balls[i]->speed.y += value;
+    PLAYER->stats[CURRENT_MP] -= 1;
+    if (PLAYER->stats[CURRENT_MP] < 0)
+        PLAYER->stats[CURRENT_MP] = 0;
 }
 
 void fire_ball(game_t *game, sfVector2f dir, int type, int skill)

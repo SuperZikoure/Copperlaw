@@ -109,7 +109,10 @@ const int font_size[TEXT_AMOUNT] = {
 const info_anim_t anim_info[ANIM_AMOUNT] = {
     {{11, 12}, {32, 32}, "assets/anims/can_talk.png"},
     {{5, 8}, {128, 128}, "assets/scenes/main_menu/player.png"},
-    {{10, 12}, {16, 16}, "assets/coin.png"}
+    {{10, 12}, {16, 16}, "assets/coin.png"},
+    {{48, 0}, {400, 75}, "assets/hp.png"},
+    {{32, 0}, {600, 200}, "assets/mp.png"},
+    {{11, 0}, {19, 40}, "assets/sp.png"}
 };
 
 const info_tp_t tp_info[TP_AMOUNT] = {

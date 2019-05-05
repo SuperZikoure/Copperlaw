@@ -207,6 +207,9 @@ enum enum_anims_e {
     CAN_TALK,
     MENU_PLAYER,
     COIN,
+    LIFE_BAR,
+    MANA_BAR,
+    SP_BALL,
     ANIM_AMOUNT
 };
 

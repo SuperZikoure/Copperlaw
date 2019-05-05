@@ -83,6 +83,8 @@ static int analyse_game_events(game_t *game, input_t *input)
 
 static void display_hud(game_t *game)
 {
+    player_t *player = game->player;
+
     display_image(get_image(HUD), GTV(0, 0));
     show_scene_buttons(game);
     display_image(get_image(HUD_ITEMS), GTV(0, 0));
@@ -90,6 +92,10 @@ static void display_hud(game_t *game)
         display_text(AMOUNT_STR(i), GTV(690, 88 + ((i - 1) * 36)),
         game->texts[SMALL_TEXT]);
     }
+    display_text(DISP_STATS(CURRENT_HP, MAX_HP), GTV(280, 6),
+    game->texts[BIG_TEXT]);
+    display_text(DISP_STATS(CURRENT_MP, MAX_MP), GTV(170, 55),
+    game->texts[BIG_TEXT]);
 }
 
 int game_scene(game_t *game)

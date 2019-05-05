@@ -9,27 +9,27 @@
 #include "my_rpg.h"
 #include "particle.h"
 
-fb_t *(*PARTICLE_TYPE[MAX_PARTICLE])(fb_t *, int) = {
-    desert_particle
-    , fire_particle
-    , dash_particle
-    , trail_particle
-    , trail_particle
-    , skill_particle
-    , skill_particle
-    , skill_particle
-    , skill_particle
+const particle_types_t particle_types[MAX_PARTICLE] = {
+    desert_particle,
+    fire_particle,
+    dash_particle,
+    trail_particle,
+    trail_particle,
+    skill_particle,
+    skill_particle,
+    skill_particle,
+    skill_particle
 };
 
 static image_t *load_fb_in_image(fb_t *particle)
 {
-    image_t *image = malloc(sizeof(image_t *));
+    image_t *image = malloc(sizeof(image_t));
 
     if (image == NULL)
         return NULL;
     image->texture = sfTexture_create(particle->x, particle->y);
     sfTexture_updateFromPixels(image->texture, particle->pixels, particle->x,
-        particle->y, 0, 0);
+particle->y, 0, 0);
     image->sprite = sfSprite_create();
     sfSprite_setTexture(image->sprite, image->texture, sfTrue);
     image->image = NULL;
@@ -60,7 +60,7 @@ image_t *get_particle(int type)
             return NULL;
     }
     if (type != -1) {
-        fb_part[type] = (*PARTICLE_TYPE[type])(fb_part[type], type);
+        fb_part[type] = particle_types[type](fb_part[type], type);
         if (fb_part[type] == NULL)
             return NULL;
         return load_fb_in_image(fb_part[type]);

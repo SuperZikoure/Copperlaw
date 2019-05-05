@@ -21,10 +21,9 @@ fb_t *framebuffer_create(int width, int height)
         return NULL;
     ret->y = height;
     ret->x = width;
-    ret->pixels = malloc(sizeof(sfUint8) * height * width * 4);
-    for (int i = 0; i < size; i++) {
+    ret->pixels = malloc(sizeof(sfUint8) * size);
+    for (int i = 0; i < size; i++)
         ret->pixels[i] = 0;
-    }
     return (ret);
 }
 

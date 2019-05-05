@@ -29,6 +29,8 @@ enum particle_type_e {
     MAX_PARTICLE
 };
 
+typedef fb_t *(*particle_types_t)(fb_t *, int);
+
 //lib/particle/framebuffer.c
 fb_t *framebuffer_create(int width, int height);
 void framebuffer_destroy(fb_t *framebuffer);

@@ -12,7 +12,7 @@
 void fill_game(game_t *game)
 {
     game->exit = 0;
-    game->current_map = VILLAGE_MAP;
+    game->current_map = HOUSE_MAP;
     game->dialogue = NULL;
 }
 

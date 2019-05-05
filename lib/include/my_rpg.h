@@ -15,6 +15,8 @@
 
 #define BUTTON_PATH ("assets/buttons/")
 
+#define TOTAL_COINS_ON_MAP (100)
+
 #define ZOOM 1.5
 #define VIEW_SIZE_X (480 * ZOOM) //720
 #define VIEW_SIZE_Y (270 * ZOOM) //405
@@ -199,6 +201,7 @@ enum enum_images_e {
 enum enum_anims_e {
     CAN_TALK,
     MENU_PLAYER,
+    COIN,
     ANIM_AMOUNT
 };
 
@@ -372,6 +375,14 @@ typedef struct map_s {
     image_t *fg;
 } map_t;
 
+typedef struct coin_s
+{
+    sfVector2f pos;
+    sfVector2f vel;
+    int exist;
+    int attract;
+} coin_t;
+
 typedef struct col_s {
     float max[4];
     sfVector2f *pos;
@@ -457,6 +468,8 @@ struct game_s {
     npc_t *npc[NPC_AMOUNT];
     text_t *texts[TEXT_AMOUNT];
     music_t *music;
+    coin_t **coins;
+    int money;
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
     int exit;
@@ -603,5 +616,12 @@ view_t *create_view(sfVector2f player_pos, int size, float zoom, game_t *game);
 sfVector2f global_to_view(sfVector2f pos, view_t *view);
 sfVector2f global_to_view_fx(sfVector2f pos, view_t *view);
 sfVector2f global_to_view_mouse(sfVector2f pos, view_t *view);
+
+/* coins */
+
+coin_t *init_coin(void);
+void manage_coins(coin_t **coins, sfVector2f pos, game_t *game);
+void drop_coin(sfVector2f pos, coin_t **coins, int mode);
+
 
 #endif

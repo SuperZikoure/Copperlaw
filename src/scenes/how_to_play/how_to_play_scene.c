@@ -8,7 +8,9 @@
 #include "my_rpg.h"
 #include "macros.h"
 
-static char const *msg = "[Z] to move up\n[S] to move down\n[Q] to move left\n[D] to move right\n[Space] to dash\n[Click] to interact with people\n[F11] to take a screenshot";
+static char const *msg = "[Z] to move up\n\n[S] to move down\n\n[Q] to move \
+left\n\n[D] to move right\n\n[Space] to dash\n\n[Click] to interact with \
+people\n\n[F11] to take a screenshot";
 
 static int analyse_main_menu_events(game_t *game, input_t *input)
 {

@@ -27,7 +27,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 30
+#define BUTTON_AMOUNT 31
 
 #define TP_AMOUNT 21
 
@@ -530,6 +530,8 @@ int swap_main_menu_to_option(game_t *game, int option);
 int swap_option_to_main_menu(game_t *game, int option);
 int swap_main_menu_to_howtoplay(game_t *game, int option);
 int swap_howtoplay_to_main_menu(game_t *game, int option);
+int swap_main_menu_to_credits(game_t *game, int option);
+int swap_credits_to_main_menu(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);
@@ -562,6 +564,9 @@ int option_scene(game_t *game);
 
 /* HOW_TO_PLAY */
 int how_to_play_scene(game_t *game);
+
+/* CREDITS */
+int credit_scene(game_t *game);
 
 /* CREDIT */
 int credit(game_t *game);

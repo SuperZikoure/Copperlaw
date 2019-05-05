@@ -66,5 +66,6 @@ int destroy_game(game_t *game)
     for (size_t i = 0; i < ANIM_AMOUNT; i++)
         destroy_anim(get_anim(i));
     destroy_dialogue_canvas();
+    destroy_door_sound();
     return 0;
 }

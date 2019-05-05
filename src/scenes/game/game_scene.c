@@ -70,28 +70,6 @@ static void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index)
     }
 }
 
-static void player_management(game_t *game)
-{
-    int x = get_map_pos(PLAYER->pos.x);
-    int y = get_map_pos(PLAYER->pos.y);
-
-    for (int i = 0; i < TP_AMOUNT; i++) {
-        if (game->current_map != tp_info[i].pos.z)
-            continue;
-        if (x == tp_info[i].pos.x && y == tp_info[i].pos.y) {
-            game->current_map = tp_info[i].dest.z;
-            PLAYER->pos.x = tp_info[i].dest.x * C_SIZE;
-            PLAYER->pos.y = tp_info[i].dest.y * C_SIZE;
-        }
-    }
-    if (game->dialogue)
-        compute_dialogues_interactions(game);
-    else
-        compute_game_interactions(game);
-    slow_down_player(PLAYER);
-    set_player_position(game);
-}
-
 static void npc_management(game_t *game)
 {
     for (int i = 0; i < NPC_AMOUNT; i++) {

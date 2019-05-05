@@ -80,8 +80,10 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(GAME_SCENE)/compute_game_interactions.c \
 		$(GAME_SCENE)/display_cursor_trail.c \
 		$(GAME_SCENE)/display_mobs.c \
+		$(GAME_SCENE)/door_sound.c \
 		$(GAME_SCENE)/fire_ball.c \
 		$(GAME_SCENE)/game_scene.c \
+		$(GAME_SCENE)/player_management.c \
 		$(GAME_SCENE)/set_player_position.c \
 		$(GAME_SCENE)/update_game_gui.c \
 		$(MAINM_SCENE)/display_parallax.c \

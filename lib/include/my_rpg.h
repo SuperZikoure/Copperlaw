@@ -66,6 +66,7 @@ struct info_tp_s
 {
     sfVector3f pos;
     sfVector3f dest;
+    bool is_door;
 };
 
 struct info_npc_s
@@ -432,6 +433,7 @@ int compute_dialogues_interactions(game_t *game);
 void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
 void update_game_gui(game_t *game);
+void player_management(game_t *game);
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
 void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
@@ -489,6 +491,10 @@ int do_screenshot(window_t *window);
 void display_parallax(game_t *game);
 float get_parallax_pos(void);
 void set_parallax_pos(float value);
+
+/* DOOR SOUND */
+sound_t *get_door_sound(void);
+void destroy_door_sound(void);
 
 ////////////////////////////////////
 

@@ -63,7 +63,7 @@
 
 #define CAT_NOFREE(i, j) my_strcat_no_free(i, j)
 
-#define DISP_STATS(i, j) CAT(CAT_NOFREE("/", FSTR(STATS(i))) ,FSTR(STATS(j))) 
+#define DISP_STATS(i, j) CAT(CAT_NOFREE("/", FSTR(STATS(i))) ,FSTR(STATS(j)))
 
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
@@ -551,6 +551,9 @@ int inventory_scene(game_t *game);
 
 /* OPTION */
 int option_scene(game_t *game);
+
+/* HOW_TO_PLAY */
+int how_to_play_scene(game_t *game);
 
 /* maps/create_map.c */
 map_t *create_map(char *filepath, window_t *window);

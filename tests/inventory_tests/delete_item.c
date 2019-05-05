@@ -24,8 +24,8 @@ Test(delete_item, in_an_inventory_fulled_with_same_id)
     flood_inventory(1600, inv);
     error = delete_item(item_id, inv);
     cr_assert_eq(error, 0);
-    cr_assert_eq(inv->id[0], 1600);
-    cr_assert_eq(inv->amount[0], 63);
+    cr_assert_eq(inv->id[INV_SIZE], 1600);
+    cr_assert_eq(inv->amount[INV_SIZE], 63);
 }
 
 Test(delete_item, in_an_inventory_fulled_with_diffrents_id)

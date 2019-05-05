@@ -23,8 +23,8 @@ const struct script_s i_sheriff_script[] = {
     SAY("Looks like you got beat up by some monster.")
     SAY("If I were you, I wouldn't try bothering them.")
     SAY("But since you seek revenge, maybe you should find a weapon to fight")
-    SAY("Here is some money to excuse my inattention.")
     SAY("Maybe you can get one. But that you need you to ask the blacksmith.")
+    SAY("Here is some money, you can back me back later.")
     END
 };
 

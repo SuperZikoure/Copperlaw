@@ -103,7 +103,7 @@ enum enum_item_e
     ELIXIR_OF_LIFE,
     BEER,
     RUM,
-    ELIXIR_OF_VENOM,
+    SNAKE_VENOM,
     FIELD_RATIO,
     CACTUS_JUICE,
     TEQUILA,
@@ -209,6 +209,8 @@ enum npc_list {
     BLACKSMITH,
     NOTE,
     BARMAN,
+    VILLAGER,
+    OLD_COWBOY,
     NPC_AMOUNT
 };
 

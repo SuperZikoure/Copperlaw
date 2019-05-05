@@ -132,7 +132,9 @@ const info_npc_t npc_info[NPC_AMOUNT] = {
     {{592, 416}, {12, 8}, "assets/npc/sheriff.png", VILLAGE_MAP, 2},
     {{320, 400}, {60, 10}, "assets/npc/blacksmith.png", VILLAGE_MAP, 1},
     {{14, 69}, {0, 0}, "assets/npc/note.png", SHERIFF_MAP, 0},
-    {{215, 64}, {36, 8}, "assets/npc/barman.png", SALOON_MAP, 0}
+    {{215, 64}, {36, 8}, "assets/npc/barman.png", SALOON_MAP, 0},
+    {{92, 68}, {25, 6}, "assets/npc/villager.png", HOUSE_MAP, 0},
+    {{1552, 432}, {65, 12}, "assets/npc/old_cowboy.png", WILD_MAP, 0}
 };
 
 char *map_paths[MAP_AMOUNT] = {

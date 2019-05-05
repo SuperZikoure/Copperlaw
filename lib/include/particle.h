@@ -40,7 +40,7 @@ void fb_empty(fb_t *fb);
 void my_put_pixel_f(fb_t *framebuffer, int x, int y, sfColor color);
 void my_put_pixel(fb_t *framebuffer, int x, int y, sfColor color);
 void my_draw_square(fb_t *fb, sfVector2u pos, int size);
-void my_draw_fcircle(fb_t *fb, sfVector2i center, int r, sfColor clr);
+void my_draw_fcircle(fb_t *fb, sfVector2i center, int r);
 void check_neg(int *x, int *y);
 
 //lib/particle/shapes2.c
@@ -67,5 +67,8 @@ fb_t *skill_particle(fb_t *particle, int type);
 
 //particle/dash.c
 fb_t *dash_particle(fb_t *particle, int type);
+
+//particle/trail.c
+fb_t *trail_particle(fb_t *particle, int type);
 
 #endif

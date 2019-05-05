@@ -13,8 +13,8 @@ fb_t *(*PARTICLE_TYPE[MAX_PARTICLE])(fb_t *, int) = {
     desert_particle
     , fire_particle
     , dash_particle
-    , desert_particle/*trail_particle*/
-    , desert_particle/*trail_particle*/
+    , trail_particle
+    , trail_particle
     , skill_particle
     , skill_particle
     , skill_particle

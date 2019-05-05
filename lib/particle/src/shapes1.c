@@ -43,7 +43,7 @@ void my_draw_square(fb_t *fb, sfVector2u pos, int size)
     }
 }
 
-void my_draw_fcircle(fb_t *fb, sfVector2i center, int r, sfColor clr)
+void my_draw_fcircle(fb_t *fb, sfVector2i center, int r)
 {
     int height;
     int px;
@@ -55,7 +55,7 @@ void my_draw_fcircle(fb_t *fb, sfVector2i center, int r, sfColor clr)
             px = x + center.x;
             py = y + center.y;
             check_neg(&px, &py);
-            my_put_pixel(fb, px % 1920, py % 1080, clr);
+            fb->pixels[(px + py * fb->x) * 4] = 255;
         }
     }
 }

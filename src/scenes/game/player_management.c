@@ -31,6 +31,7 @@ static void check_teleports(game_t *game)
 
 void player_management(game_t *game)
 {
+    update_stats(PLAYER);
     check_teleports(game);
     if (game->dialogue)
         store_response(compute_dialogues_interactions(game));

@@ -56,6 +56,13 @@
 
 #define STATS(i) player->stats[i]
 
+#define FSTR(i) my_float_to_str(i)
+#define CAT(i, j) my_strcat(i, j)
+
+#define CAT_NOFREE(i, j) my_strcat_no_free(i, j)
+
+#define DISP_STATS(i, j) CAT(CAT_NOFREE("/", FSTR(STATS(i))) ,FSTR(STATS(j))) 
+
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;

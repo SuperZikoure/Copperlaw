@@ -24,12 +24,6 @@ const struct script_s i_sheriff_script[] = {
     END
 };
 
-const struct script_s i_sheriff_scriptaa[] = {
-    SAY("There are sure no bandits in this town.")
-    SAY("Mark my words.")
-    END
-};
-
 const struct script_s i_cowboy_script[] = {
     SAY("Act like you didn't see me.")
     END

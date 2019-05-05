@@ -171,6 +171,7 @@ const char *stats_desc[STATS_AMOUNT] = {
 };
 
 const char* desc_item[ITEM_AMOUNT] = {
+    NULL,
     "Elixir of life : Heals 2 HP.",
     "Beer : Heals 4 HP.",
     "Rum : Heals all of your HP",

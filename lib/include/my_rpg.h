@@ -102,6 +102,7 @@ struct info_music_s
 
 enum enum_item_e
 {
+    EMPTY,
     ELIXIR_OF_LIFE,
     BEER,
     RUM,

@@ -79,7 +79,7 @@ void process_key(keypress_t *key);
 
 /* TEXT */
 text_t *create_text(int fontsize, const char *font, window_t *window);
-void display_text(char *str, sfVector2f pos, text_t *text);
+void display_text(const char *str, sfVector2f pos, text_t *text);
 void destroy_text(text_t *text);
 /* quick sfText creator */
 sfText *quick_text_create(unsigned int char_size, const char *fontpath);

@@ -24,7 +24,7 @@ text_t *create_text(int fontsize, const char *font, window_t *window)
     return (text);
 }
 
-void display_text(char *str, sfVector2f pos, text_t *text)
+void display_text(const char *str, sfVector2f pos, text_t *text)
 {
     sfText_setString(text->text, str);
     sfText_setPosition(text->text, pos);

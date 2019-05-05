@@ -84,7 +84,8 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/menu/stats.png",
     "assets/scenes/menu/skills.png",
     "assets/scenes/game/HUD.png",
-    "assets/scenes/game/HUD_ITEMS.png"
+    "assets/scenes/game/HUD_ITEMS.png",
+    "assets/scenes/menu/items.png"
 };
 
 const char *font_path[TEXT_AMOUNT] = {
@@ -95,7 +96,7 @@ const char *font_path[TEXT_AMOUNT] = {
 
 const int font_size[TEXT_AMOUNT] = {
     12,
-    24,
+    10,
     30
 };
 
@@ -167,4 +168,15 @@ const char *stats_desc[STATS_AMOUNT] = {
     NULL,
     "LVL: ",
     "SP Points: "
+};
+
+const char* desc_item[ITEM_AMOUNT] = {
+    "Elixir of life : Heals 2 HP.",
+    "Beer : Heals 4 HP.",
+    "Rum : Heals all of your HP",
+    "Snake Venom : Gives you 2 SP back.",
+    "Field Ratio : Gives you all of your SP back.",
+    "Cactus Juice : Gives you all of your MP back.",
+    "Tequila : Gives you all of your MP back and 1 SP.",
+    "Ethanol : Gives you all of your MP and SP back at the cost of 2 HP."
 };

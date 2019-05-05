@@ -15,10 +15,12 @@ static int analyse_inventory_events(game_t *game, input_t *input)
     return 0;
 }
 
-static void manage_inventory(game_t *game)
+static void display_inventory(game_t *game)
 {
-    /* do stuff here */
-    game->current_map = game->current_map;
+    for (int i = 0; i < ITEM_AMOUNT; i++) {
+        display_text(AMOUNT_STR(i), GTV(325, 128 + (i * 36)), game->texts[SMALL_TEXT]);
+        display_text(desc_item[i], GTV(340, 123 + (i * 36)), game->texts[BIG_TEXT]);
+    }
 }
 
 int inventory_scene(game_t *game)
@@ -33,7 +35,8 @@ int inventory_scene(game_t *game)
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 249));
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 301));
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 353));
-    manage_inventory(game);
+    display_image(get_image(ITEMS), GTV(300, 112));
+    display_inventory(game);
     show_scene_buttons(game);
     display_cursor(game);
     return 0;

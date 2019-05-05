@@ -181,6 +181,7 @@ enum enum_images_e {
     SKILLS_SELECTED,
     HUD,
     HUD_ITEMS,
+    ITEMS,
     IMAGE_AMOUNT
 };
 
@@ -286,6 +287,7 @@ extern const info_tp_t tp_info[TP_AMOUNT];
 extern const char* font_path[TEXT_AMOUNT];
 extern const int font_size[TEXT_AMOUNT];
 extern const info_music_t music_paths[MUSIC_AMOUT];
+extern const char* desc_item[ITEM_AMOUNT];
 
 typedef struct button_s
 {

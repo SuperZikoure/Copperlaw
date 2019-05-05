@@ -24,6 +24,11 @@ static void create_maps(game_t *game)
             return;
         }
     }
+    game->monsters[0] = create_monster(V2F(500, 500), game->window);
+    game->monsters[1] = create_monster(V2F(600, 500), game->window);
+    game->monsters[2] = create_monster(V2F(700, 500), game->window);
+    game->monsters[3] = create_monster(V2F(800, 500), game->window);
+    game->monsters[4] = create_monster(V2F(900, 500), game->window);
 }
 
 static void create_texts(game_t *game)

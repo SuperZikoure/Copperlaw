@@ -51,11 +51,6 @@ static void display_hud(game_t *game)
     game->texts[BIG_TEXT]);
     display_text(DISP_STATS(CURRENT_MP, MAX_MP), GTV(170, 55),
     game->texts[BIG_TEXT]);
-    display_anim(get_anim(LIFE_BAR), GTV(0, 0));
-    display_anim(get_anim(MANA_BAR), GTV(0, 0));
-    for (int i = 0; i > PLAYER->stats[MAX_SP]; i++) {
-        display_anim(get_anim(SP_BALL), GTV(i * 50 + 10, 15));
-    }
 }
 
 int game_scene(game_t *game)

@@ -92,7 +92,8 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(GAME_SCENE)/door_sound.c \
 		$(GAME_SCENE)/fire_balls.c \
 		$(GAME_SCENE)/game_scene.c \
-		$(GAME_SCENE)/manage_coins.c \
+		$(GAME_SCENE)/update_stats.c \
+		$(GAME_SCENE)/manage_monster.c \
 		$(GAME_SCENE)/player_management.c \
 		$(GAME_SCENE)/set_player_position.c \
 		$(GAME_SCENE)/update_game_gui.c \

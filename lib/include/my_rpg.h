@@ -654,5 +654,8 @@ coin_t *init_coin(void);
 void manage_coins(coin_t **coins, sfVector2f pos, game_t *game);
 void drop_coin(sfVector2f pos, coin_t **coins, int mode);
 
+monster_t *create_monster(sfVector2f pos, window_t *window);
+void manage_monster(monster_t *monster, ball_t *balls[PLAYER_BALLS],
+                    sfVector2f pos);
 
 #endif

@@ -32,9 +32,7 @@ enum particle_type_e {
 //lib/particle/framebuffer.c
 fb_t *framebuffer_create(int width, int height);
 void framebuffer_destroy(fb_t *framebuffer);
-//void fb_clear(fb_t *fb);
 void fb_empty(fb_t *fb);
-//void fb_filter(fb_t *fb2, fb_t *fb, int filter);
 
 //lib/particle/shapes1.c
 void my_put_pixel_f(fb_t *framebuffer, int x, int y, sfColor color);

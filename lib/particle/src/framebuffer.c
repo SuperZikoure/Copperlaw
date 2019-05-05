@@ -34,17 +34,6 @@ void framebuffer_destroy(fb_t *framebuffer)
     free(framebuffer);
 }
 
-/*void fb_clear(fb_t *fb)
-{
-    int size = (fb->x * fb->y) * 4;
-    for (int i = 0; i < size; i++) {
-        if (fb->pixels[i] != 0)
-            fb->pixels[i] -= 5;
-        if (fb->pixels[i] < 0)
-            fb->pixels[i] = 0;
-    }
-}*/
-
 void fb_empty(fb_t *fb)
 {
     int size = (fb->x * fb->y) * 4;
@@ -52,26 +41,3 @@ void fb_empty(fb_t *fb)
         fb->pixels[i] = 0;
     }
 }
-
-/*void fb_filter(fb_t *fb2, fb_t *fb, int filter)
-{
-    int size = (fb2->x * fb2->y) * 4;
-    for (int i = 0; i < size; i++) {
-        if (fb->pixels[i] != 0)
-            fb->pixels[i] -= 10;
-        if (fb->pixels[i] < 0)
-            fb->pixels[i] = 0;
-        if (fb2->pixels[i] != 0)
-            fb2->pixels[i] -= 10;
-        if (fb2->pixels[i] < 0)
-            fb2->pixels[i] = 0;
-        if (i % filter == 0 && fb->pixels[i] > 0) {
-            fb2->pixels[i] = fb->pixels[i];
-            fb2->pixels[i - 1] = 255;
-            fb2->pixels[i - 2] = 255;
-            fb2->pixels[i - 3] = 255;
-        }
-        if (i < 0 && i % 3)
-            fb2->pixels[i] = 0;
-    }
-}*/

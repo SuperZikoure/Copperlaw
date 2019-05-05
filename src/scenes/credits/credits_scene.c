@@ -8,8 +8,8 @@
 #include "my_rpg.h"
 #include "macros.h"
 
-const char *msg = "Credits: \n\n\nWorker 1 : Ghassane SEBAI\n\nWorker 2 : \
-Nathan BELLANGER\n\nWorker 3 : Nathan LECORCHET\n\nWorker 4 : \
+const char *credits_txt = "Credits: \n\n\nWorker 1 : Ghassane SEBAI\n\n\
+Worker 2 : Nathan BELLANGER\n\nWorker 3 : Nathan LECORCHET\n\nWorker 4 : \
 Briag FROUX\n\nThanks for playing";
 
 static int analyse_main_menu_events(game_t *game, input_t *input)
@@ -25,7 +25,7 @@ int credit_scene(game_t *game)
         return 1;
     display_parallax(game);
     display_image(get_image(CREDIT_IMG), GTV(0, 0));
-    display_text(msg, V2F(-200, -150),
+    display_text(credits_txt, V2F(-200, -150),
 game->texts[BIG_TEXT]);
     show_scene_buttons(game);
     display_cursor(game);

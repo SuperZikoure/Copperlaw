@@ -14,6 +14,7 @@ void fill_game(game_t *game)
     game->exit = 0;
     game->current_map = HOUSE_MAP;
     game->dialogue = NULL;
+    game->money = 0;
 }
 
 option_t create_option(void)

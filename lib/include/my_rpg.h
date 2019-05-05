@@ -54,6 +54,8 @@
 
 #define AMOUNT_STR(i) my_itoa(get_amount(i, G_INVENTORY))
 
+#define STATS(i) player->stats[i]
+
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
@@ -236,13 +238,13 @@ enum enum_stats_e {
     MOVE_SPEED,
     DASH_COOLDOWN,
     ATTACK_SPEED,
-    ATTACK_COOLDOW,
+    ATTACK_COOLDOWN,
     ATTACK_RANGE,
     DAMAGE,
     DEFENSE,
     CURRENT_XP,
     MAX_XP,
-    CURRENT_LEVEL,
+    LVL,
     MAX_LEVEL,
     SP_POINTS,
     SKILL_SET,
@@ -275,6 +277,13 @@ enum cursor_modes {
     CURSOR_INSPECT,
     CURSOR_BUILD,
     CURSOR_MODES_NB
+};
+
+enum enum_class {
+    NO_CLASS,
+    REVOLVER,
+    SHOTGUN,
+    CLASS_AMOUNT
 };
 
 extern const sfVideoMode window_size[RESOLUTIONS];
@@ -422,6 +431,8 @@ typedef struct player_s {
     ball_t *attacks[PLAYER_BALLS];
     col_t col;
     int moving;
+    int level_up_display;
+    int class;
 } player_t;
 
 struct game_s {
@@ -548,6 +559,9 @@ void store_response(int choice);
 
 /* display_mobs.c */
 void display_mobs(game_t *game);
+
+/* update_stats.c */
+void update_stats(player_t *player);
 
 /* BUTTON FUNCTIONS */
 int exit_game(game_t *game, int option);

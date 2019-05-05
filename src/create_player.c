@@ -12,27 +12,27 @@
 #include "macros.h"
 
 const float stat_init[STATS_AMOUNT] = {
-    30,
-    30,
-    15,
-    15,
-    3,
-    3,
+    5,
+    5,
+    5,
+    5,
+    1,
+    1,
     2.5,
     60,
     25,
     30,
     1500,
-    2,
+    1,
     1,
     0,
-    100,
+    5,
     1,
-    100,
     0,
     0,
-    120,
-    120
+    0,
+    0,
+    0
 };
 
 static col_t create_col(sfVector3f hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])

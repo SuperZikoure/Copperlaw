@@ -89,6 +89,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(GAME_SCENE)/player_management.c \
 		$(GAME_SCENE)/set_player_position.c \
 		$(GAME_SCENE)/update_game_gui.c \
+		$(GAME_SCENE)/update_stats.c \
 		$(MAINM_SCENE)/display_parallax.c \
 		$(MAINM_SCENE)/main_menu_scene.c \
 		$(MAINM_SCENE)/parallax_position.c \

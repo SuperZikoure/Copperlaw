@@ -9,6 +9,8 @@
 #include "my_string.h"
 #include "scripts.h"
 
+#include <stdio.h>
+
 struct dialogue_s **load_scene_dialogues(enum zone_ids id)
 {
     struct dialogue_s **ptr;
@@ -18,6 +20,7 @@ struct dialogue_s **load_scene_dialogues(enum zone_ids id)
     if (!ptr)
         return NULL;
     for (size_t i = 0; i < len; i++) {
+        printf("%lu [%u]\n", i, id);
         ptr[i] = create_dialogue_from_script(script_list[id][i]);
         if (!ptr[i])
             return NULL;

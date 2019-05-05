@@ -11,6 +11,7 @@
 #include <math.h>
 #include "graph.h"
 #include "inventory.h"
+#include "particle.h"
 #include "my.h"
 
 #define BUTTON_PATH ("assets/buttons/")

@@ -12,7 +12,7 @@ sound_t *get_door_sound(void)
     static sound_t *door_sound = NULL;
 
     if (!door_sound)
-        door_sound = create_sound("assets/scenes/game/open_door.wav");
+        door_sound = create_sound("assets/sounds/open_door.wav");
     return door_sound;
 }
 

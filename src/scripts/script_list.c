@@ -9,5 +9,6 @@
 
 const struct script_s **script_list[] = {
     intro_scripts,
-    village_scripts,
+    weapon_scripts,
+    village_scripts
 };

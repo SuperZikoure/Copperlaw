@@ -5,6 +5,7 @@
 ** menu_scene
 */
 
+#include "my.h"
 #include "my_rpg.h"
 #include "macros.h"
 
@@ -15,10 +16,12 @@ static int analyse_menu_events(game_t *game, input_t *input)
     return 0;
 }
 
+#include <stdio.h>
+
 static void display_stats(game_t *game)
 {
     /* do stuff here */
-    game->current_map = game->current_map;
+    printf("%s\n", my_float_to_str(game->player->stats[MAX_HP]));
 }
 
 int menu_scene(game_t *game)

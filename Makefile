@@ -80,6 +80,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(MOVEMENT)/set_idle_animation.c \
 		$(MOVEMENT)/slow_down_player.c \
 		$(GAME_SCENE)/analyse_movement_keys.c \
+		$(GAME_SCENE)/barman_shop.c \
 		$(GAME_SCENE)/compute_dialogue_interactions.c \
 		$(GAME_SCENE)/compute_game_interactions.c \
 		$(GAME_SCENE)/display_cursor_trail.c \
@@ -103,6 +104,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/script_list.c \
 		$(SCRIPTS)/village.c \
+		$(SCRIPTS)/weapon.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/my_srand.c \
 		$(UTILS)/quick_sftext_create.c \

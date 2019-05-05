@@ -158,6 +158,7 @@ struct info_button_s
 
 enum zone_ids {
     INTRO,
+    WEAPON,
     VILLAGE,
     ZONE_NB
 };
@@ -510,6 +511,7 @@ void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
 void update_game_gui(game_t *game);
 void player_management(game_t *game);
+void barman_shop(game_t *game);
 
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);

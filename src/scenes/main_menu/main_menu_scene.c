@@ -64,7 +64,7 @@ int main_menu_scene(game_t *game)
             return -1;
     }
     display_parallax(game);
-    if (game->input->keys[SPACE_KEY]->pressed)
+    if (intro && game->input->keys[SPACE_KEY]->pressed)
         intro = destroy_intro_text(text);
     if (intro) {
         intro = display_intro(game, text);

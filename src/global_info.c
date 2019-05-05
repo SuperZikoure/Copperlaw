@@ -90,7 +90,8 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/how_to_play/board.png",
     "assets/ball_white.png",
     "assets/ball_green.png",
-    "assets/ball_blue.png"
+    "assets/ball_blue.png",
+    "assets/scenes/credit/long_board"
 };
 
 const char *font_path[TEXT_AMOUNT] = {

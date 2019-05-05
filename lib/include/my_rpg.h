@@ -49,7 +49,6 @@
 #define GUI game->gui
 #define PLAYER game->player
 #define G_INVENTORY game->inventory
-
 #define RES game->option.resolution
 #define FS game->option.fullscreen
 #define SOUND game->option.sound
@@ -152,6 +151,7 @@ enum enum_scene_e {
     GAME,
     INVENTORY,
     HOW_TO_PLAY,
+    CREDIT,
     MENU,
     SCENE_NB
 };
@@ -198,6 +198,7 @@ enum enum_images_e {
     WHITE_BALL,
     GREEN_BALL,
     BLUE_BALL,
+    CREDIT_IMG,
     IMAGE_AMOUNT
 };
 
@@ -560,6 +561,9 @@ int option_scene(game_t *game);
 
 /* HOW_TO_PLAY */
 int how_to_play_scene(game_t *game);
+
+/* CREDIT */
+int credit(game_t *game);
 
 /* maps/create_map.c */
 map_t *create_map(char *filepath, window_t *window);

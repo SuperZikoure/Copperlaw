@@ -33,9 +33,11 @@ void player_management(game_t *game)
 {
     check_teleports(game);
     if (game->dialogue)
-        compute_dialogues_interactions(game);
-    else
+        store_response(compute_dialogues_interactions(game));
+    else {
         compute_game_interactions(game);
+        store_response(-1);
+    }
     slow_down_player(PLAYER);
     set_player_position(game);
 }

@@ -77,7 +77,7 @@ enum enum_text_e
 {
     SMALL_TEXT,
     BIG_TEXT,
-    CREDIT_TEXT
+    CREDIT_TEXT,
     TEXT_AMOUNT
 };
 
@@ -516,6 +516,10 @@ image_t *get_image(int index);
 int fill_anim(window_t *window);
 void update_fetch_anim();
 anim_t *get_anim(int index);
+
+/* fetch_oldest_dialogue_response.c */
+int get_response(void);
+void store_response(int choice);
 
 /* display_mobs.c */
 void display_mobs(game_t *game);

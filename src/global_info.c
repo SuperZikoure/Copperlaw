@@ -31,9 +31,12 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{5, 298}, 0, OPTIONS, "back", swap_option_to_main_menu},
     {{5, 260}, 0, MENU, "resume", swap_menu_to_game},
     {{5, 312}, 0, MENU, "save", swap_menu_to_game},
-    {{5, 364}, 0, MENU, "exit", exit_game},
+    {{5, 364}, 0, MENU, "exit", swap_option_to_main_menu},
     {{5, 63}, 0, MENU, "inventory", swap_menu_to_inventory},
-    {{5, 115}, 0, MENU, "skills", swap_menu_to_skills}
+    {{5, 260}, 0, INVENTORY, "resume", swap_menu_to_game},
+    {{5, 312}, 0, INVENTORY, "save", swap_menu_to_game},
+    {{5, 364}, 0, INVENTORY, "exit", swap_option_to_main_menu},
+    {{5, 11}, 0, INVENTORY, "stats", swap_game_to_menu},
 };
 
 const sfKeyCode input_key[KEY_NB] = {

@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 16
+#define BUTTON_AMOUNT 19
 
 #define TP_AMOUNT 21
 
@@ -431,7 +431,6 @@ int swap_main_menu_to_game(game_t *game, int option);
 int swap_main_menu_to_option(game_t *game, int option);
 int swap_option_to_main_menu(game_t *game, int option);
 int swap_menu_to_inventory(game_t *game, int option);
-int swap_menu_to_skills(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);
@@ -442,6 +441,7 @@ void analyse_movement_keys(input_t *input, player_t *player);
 void set_player_position(game_t *game);
 void update_game_gui(game_t *game);
 void player_management(game_t *game);
+
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
 void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
@@ -451,6 +451,9 @@ int main_menu_scene(game_t *game);
 
 /* MENU */
 int menu_scene(game_t *game);
+
+/* INVENTORY */
+int inventory_scene(game_t *game);
 
 /* OPTION */
 int option_scene(game_t *game);

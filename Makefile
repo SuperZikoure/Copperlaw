@@ -53,6 +53,7 @@ SCENES		=	scenes
 GAME_SCENE	=	$(SCENES)/game
 MAINM_SCENE	=	$(SCENES)/main_menu
 MENU_SCENE	=	$(SCENES)/menu
+INVENTORY_SCENE	=	$(SCENES)/inventory
 TRANSITIONS	=	$(SCENES)/transitions
 OPT_SCENE	=	$(SCENES)/option
 SCREESHOTS	=	screenshots
@@ -67,6 +68,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(FETCH)/fetch_anim.c \
 		$(GUI)/create_gui.c \
 		$(GUI)/display_cursor.c \
+		$(INVENTORY_SCENE)/inventory_scene.c \
 		$(MAPS)/create_map.c \
 		$(MAPS)/read_map_from_file.c \
 		$(MOVEMENT)/change_animation.c \

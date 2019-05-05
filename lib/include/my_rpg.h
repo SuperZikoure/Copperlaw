@@ -402,6 +402,7 @@ typedef struct ball_s {
     int exist;
     int type;
     int timer;
+    int skill;
     col_t col;
 } ball_t;
 
@@ -540,7 +541,7 @@ void blacksmith_shop(game_t *game);
 
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
-void fire_ball(sfVector2f pos, ball_t *balls[PLAYER_BALLS], sfVector2f dir);
+void fire_ball(game_t *game, sfVector2f dir, int type, int skill);
 
 /* MAIN MENU */
 int main_menu_scene(game_t *game);

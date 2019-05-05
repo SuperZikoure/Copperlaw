@@ -9,7 +9,7 @@
 #include "macros.h"
 #include <stdlib.h>
 
-extern char *map_paths[MAP_AMOUNT]; 
+extern char *map_paths[MAP_AMOUNT];
 void init_npcs(game_t *game);
 npc_t *create_npc(int i, window_t *window);
 option_t create_option(void);
@@ -76,7 +76,7 @@ static int create_game_2(game_t *game)
     if (!game->inventory)
         return -1;
     init_npcs(game);
-    game->coins = malloc(sizeof(coin_t*) * TOTAL_COINS_ON_MAP);
+    game->coins = malloc(sizeof(coin_t *) * TOTAL_COINS_ON_MAP);
     if (!game->coins)
         return -1;
     for (int i = 0; i < TOTAL_COINS_ON_MAP; i++)

@@ -64,7 +64,7 @@ void fire_ball(game_t *game, sfVector2f dir, int type, int skill)
         PLAYER->balls[i]->timer = PLAYER->stats[ATTACK_RANGE];
         if (type == REVOLVER || !balls)
             return;
-        else 
+        else
             balls--;
     }
 }

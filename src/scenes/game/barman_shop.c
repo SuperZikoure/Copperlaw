@@ -11,7 +11,7 @@ void barman_shop(game_t *game)
 {
     static int sel = 1;
     int response = get_response();
-    
+
     if (response == -1)
         return;
     sel += response;
@@ -35,7 +35,8 @@ void cowboy_shop(game_t *game)
 {
     int response = get_response();
     int sel = 7;
-    
+    display_image(get_particle(DASH_P), PLAYER->pos);
+
     if (response == -1 || response == 2)
         return;
     sel += response;
@@ -52,7 +53,7 @@ void cowboy_shop(game_t *game)
 void blacksmith_shop(game_t *game)
 {
     int response = get_response();
-    
+
     if (response == -1 || response == 2)
         return;
     game->money -= 30;

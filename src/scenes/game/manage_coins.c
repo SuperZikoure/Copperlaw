@@ -69,7 +69,7 @@ void drop_coin(sfVector2f pos, coin_t **coins, int mode)
 {
     sfVector2f vel = {(rand() % 200 + 1) / 100, (rand() % 200 + 1) / 100};
 
-    for (int i =0; i < TOTAL_COINS_ON_MAP; i++) {
+    for (int i = 0; i < TOTAL_COINS_ON_MAP; i++) {
         if (coins[i]->exist)
             continue;
         coins[i]->exist = 1;
@@ -79,6 +79,5 @@ void drop_coin(sfVector2f pos, coin_t **coins, int mode)
         coins[i]->vel.y = vel.y;
         coins[i]->attract = mode;
         return;
-    
     }
 }

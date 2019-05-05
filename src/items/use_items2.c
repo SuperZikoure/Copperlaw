@@ -26,7 +26,7 @@ void use_tequila(game_t *game)
 }
 
 void use_ethanol(game_t *game)
-{    
+{
     PLAYER->stats[CURRENT_MP] = PLAYER->stats[MAX_MP];
     PLAYER->stats[CURRENT_SP] = PLAYER->stats[MAX_SP];
     PLAYER->stats[CURRENT_HP] -= 2;

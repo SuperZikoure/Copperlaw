@@ -309,6 +309,7 @@ extern const char* font_path[TEXT_AMOUNT];
 extern const int font_size[TEXT_AMOUNT];
 extern const info_music_t music_paths[MUSIC_AMOUT];
 extern const char* desc_item[ITEM_AMOUNT];
+extern const int item_prices[ITEM_AMOUNT];
 
 typedef struct button_s
 {
@@ -533,6 +534,8 @@ void set_player_position(game_t *game);
 void update_game_gui(game_t *game);
 void player_management(game_t *game);
 void barman_shop(game_t *game);
+void cowboy_shop(game_t *game);
+void blacksmith_shop(game_t *game);
 
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);

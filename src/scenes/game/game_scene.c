@@ -11,6 +11,8 @@
 #include "macros.h"
 #include <stdio.h>
 
+void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index);
+
 // void reset_velocity(sfVector2f *velocity, float rate)
 // {
 //     if (velocity->x != 0)
@@ -56,30 +58,6 @@
 //         display_image(michel->normal, michel->pos);
 // }
 
-static void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index)
-{
-    float distance = get_distance(PLAYER->pos, npc->pos);
-    static int changed = 0;
-
-    if (distance > C_SIZE * 5)
-        return;
-    display_anim(get_anim(CAN_TALK), V2F(npc->pos.x + 16, npc->pos.y - 16));
-    if (point_intersect(npc->display->sheet, pos.x + C_SIZE, pos.y + C_SIZE)) {
-        CURSOR->mode = CURSOR_INSPECT;
-        if (MOUSE_PRESSED(sfMouseLeft) && !game->dialogue)
-            game->dialogue = get_dialogue(npc_info[index].dialogue);
-        if (index == 2 && changed == 0) {
-            ++changed;
-            destroy_current_dialogue_script();
-            load_dialogue_scene(WEAPON);
-        } else if (index == 1 && changed == 1) {
-            ++changed;
-            destroy_current_dialogue_script();
-            load_dialogue_scene(VILLAGE);
-        }
-    }
-}
-
 static void npc_management(game_t *game)
 {
     for (int i = 0; i < NPC_AMOUNT; i++) {
@@ -88,8 +66,12 @@ static void npc_management(game_t *game)
             check_click(game, game->npc[i], game->gui->cursor->pos, i);
         }
     }
+    if (game->current_map == VILLAGE_MAP)
+        blacksmith_shop(game);
     if (game->current_map == SALOON_MAP)
         barman_shop(game);
+    if (game->current_map == WILD_MAP)
+        cowboy_shop(game);
 }
 
 static int analyse_game_events(game_t *game, input_t *input)
@@ -120,7 +102,7 @@ int game_scene(game_t *game)
     display_mobs(game);
     player_management(game);
     npc_management(game);
-    drop_coin(V2F(200, 200), game->coins, 0);
+    // drop_coin(V2F(200, 200), game->coins, 0);
     manage_coins(game->coins, PLAYER->pos, game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     display_hud(game);

@@ -13,14 +13,15 @@ const struct script_s w_barman_script[] = {
 };
 
 const struct script_s w_blacksmith_script[] = {
-    SAY("Watch me hitting this sword.")
+    SAY("Hey stranger, want a weapon?")
+    CHOSE3("Best I can offer is a revolver or a shotgun. Whatchawant ?",
+"Revolver", "Shotgun", "I'll think more about it.")
+    SAY("I won't move from here anyway.")
     END
 };
 
 const struct script_s w_sheriff_script[] = {
-    SAY("Looks like you got beat up by some monster.")
-    SAY("If I were you, I wouldn't try bothering them.")
-    SAY("But since you seek revenge, maybe you should find a weapon to fight")
+    SAY("Hello there. How life going ?")
     END
 };
 
@@ -35,7 +36,8 @@ const struct script_s w_note_script[] = {
 };
 
 const struct script_s w_villager_script[] = {
-    SAY("2")
+    SAY("Oh so you need a weapon, huh ?")
+    SAY("Since you've got some money, why not go ask the blacksmith?")
     END
 };
 

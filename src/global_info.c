@@ -171,7 +171,7 @@ const char *stats_desc[STATS_AMOUNT] = {
     "SP Points: "
 };
 
-const char* desc_item[ITEM_AMOUNT] = {
+const char *desc_item[ITEM_AMOUNT] = {
     NULL,
     "Elixir of life : Heals 2 HP.",
     "Beer : Heals 4 HP.",
@@ -181,4 +181,16 @@ const char* desc_item[ITEM_AMOUNT] = {
     "Cactus Juice : Gives you all of your MP back.",
     "Tequila : Gives you all of your MP back and 1 SP.",
     "Ethanol : Gives you all of your MP and SP back at the cost of 2 HP."
+};
+
+const int item_prices[ITEM_AMOUNT] = {
+    -1,
+    3,
+    6,
+    10,
+    3,
+    10,
+    15,
+    30,
+    35
 };

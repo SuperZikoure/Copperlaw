@@ -15,6 +15,12 @@ static int analyse_menu_events(game_t *game, input_t *input)
     return 0;
 }
 
+static void display_stats(game_t *game)
+{
+    /* do stuff here */
+    game->current_map = game->current_map;
+}
+
 int menu_scene(game_t *game)
 {
     if (analyse_menu_events(game, game->input))
@@ -28,6 +34,7 @@ int menu_scene(game_t *game)
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(0, 301));
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(0, 353));
     show_scene_buttons(game);
+    display_stats(game);
     display_cursor(game);
     return 0;
 }

@@ -77,6 +77,7 @@ enum enum_text_e
 {
     SMALL_TEXT,
     BIG_TEXT,
+    CREDIT_TEXT
     TEXT_AMOUNT
 };
 

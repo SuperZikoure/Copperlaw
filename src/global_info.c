@@ -88,11 +88,13 @@ const char *image_path[IMAGE_AMOUNT] = {
 const char *font_path[TEXT_AMOUNT] = {
     "assets/fonts/1.ttf",
     "assets/fonts/2.ttf",
+    "assets/fonts/4.ttf",
 };
 
 const int font_size[TEXT_AMOUNT] = {
     12,
-    24
+    24,
+    30
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {

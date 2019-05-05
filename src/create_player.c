@@ -12,27 +12,27 @@
 #include "macros.h"
 
 const float stat_init[STATS_AMOUNT] = {
-    30,
-    30,
-    15,
-    15,
-    3,
-    3,
+    5,
+    5,
+    5,
+    5,
+    1,
+    1,
     2.5,
     60,
     25,
     30,
     1500,
-    2,
+    1,
     1,
     0,
-    100,
-    1,
-    100,
+    5,
     0,
     0,
-    120,
-    120
+    0,
+    0,
+    0,
+    0
 };
 
 static col_t create_col(sfVector3f hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])
@@ -52,7 +52,7 @@ static col_t create_col(sfVector3f hb, sfVector2f *pos, map_t *maps[MAP_AMOUNT])
 
 static int init_player(game_t *ga, player_t *player)
 {
-    player->pos = V2F(200, 200);
+    player->pos = V2F(160, 80);
     player->speed = V2F(0, 0);
     player->dash = V2F(0, 0);
     player->bump = V2F(0, 0);
@@ -68,23 +68,19 @@ static int init_player(game_t *ga, player_t *player)
     if (!player->idle || !player->move)
         return -1;
     player->display = player->move;
+    player->class = NO_CLASS;
     return 0;
 }
 
-static int init_attacks(game_t *ga, player_t *player)
+static int init_attacks(player_t *player)
 {
     for (int i = 0; i < PLAYER_BALLS; i++) {
-        player->attacks[i] = malloc(sizeof(ball_t));
-        if (!player->attacks[i])
+        player->balls[i] = malloc(sizeof(ball_t));
+        if (!player->balls[i])
             return -1;
-        player->attacks[i]->ball = create_image("assets/ball.png", ga->window);
-        if (!player->attacks[i]->ball)
-            return -1;
-        player->attacks[i]->pos = V2F(0, 0);
-        player->attacks[i]->speed = V2F(0, 0);
-        player->attacks[i]->exist = 0;
+        player->balls[i]->exist = 0;
     }
-    return 0;
+    return (0);
 }
 
 player_t *create_player(game_t *ga)
@@ -93,7 +89,7 @@ player_t *create_player(game_t *ga)
 
     if (!player)
         return NULL;
-    if (init_player(ga, player) == -1 || init_attacks(ga, player) == -1)
+    if (init_player(ga, player) == -1 || init_attacks(player) == -1)
         return NULL;
     for (int i = 0; i < STATS_AMOUNT; i++) {
         player->boost[i] = 0;

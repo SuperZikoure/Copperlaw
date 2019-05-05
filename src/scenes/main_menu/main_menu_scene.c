@@ -22,16 +22,16 @@ static sfText *init_skip_text(game_t *game)
 static int change_square_alpha(void)
 {
     static unsigned char color = 255;
-    static size_t frames = 0;
+    static float frames = -3;
 
     sfSprite_setColor(get_image(BIG_SQUARE)->sprite, COLOR(0, 0, 0, color));
     frames += get_delta();
-    if (frames < 6)
-        return 0;
-    frames -= 6;
-    --color;
-    if (!color)
-        return 1;
+    while (frames > 1.44) {
+        frames -= 1.44;
+        --color;
+        if (!color)
+            return 1;
+    }
     return 0;
 }
 
@@ -64,7 +64,7 @@ int main_menu_scene(game_t *game)
             return -1;
     }
     display_parallax(game);
-    if (game->input->keys[SPACE_KEY]->pressed)
+    if (intro && game->input->keys[SPACE_KEY]->pressed)
         intro = destroy_intro_text(text);
     if (intro) {
         intro = display_intro(game, text);

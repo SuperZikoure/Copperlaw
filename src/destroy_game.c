@@ -41,8 +41,7 @@ static void destroy_player(player_t *player)
     destroy_anim(player->idle);
     destroy_anim(player->move);
     for (size_t i = 0; i < PLAYER_BALLS; i++) {
-        destroy_image(player->attacks[i]->ball);
-        free(player->attacks[i]);
+        free(player->balls[i]);
     }
     free(player);
 }
@@ -66,5 +65,7 @@ int destroy_game(game_t *game)
     for (size_t i = 0; i < ANIM_AMOUNT; i++)
         destroy_anim(get_anim(i));
     destroy_dialogue_canvas();
+    destroy_door_sound();
+    destroy_music(game->music);
     return 0;
 }

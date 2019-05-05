@@ -7,38 +7,53 @@
 
 #include "scripts.h"
 
-const struct script_s blank_aha[] = {
-    SAY("...", NARRATOR)
+const struct script_s i_barman_script[] = {
+    SAY("Burp.")
     END
 };
 
-const struct script_s test_script_1[] = {
-    SAY("Whoa je veux une pomme.", PLAYER1)
-    SAY("eh beh bas moi j'en ai des bonnes", USR)
-    SAY("oh oui ! je veux.", PLAYER1)
-    CHOSE2("c'est 2 gold la pomme tu la veux oui ou non ?", "oui", "non", USR)
+const struct script_s i_blacksmith_script[] = {
+    SAY("Hey stranger, want a weap...")
+    SAY("Wait you don't have any money...")
+    SAY("Sorry, no money, no weapon.")
     END
 };
 
-const struct script_s test_script_2[] = {
-    SAY("le nutella c'est bon 0", NARRATOR)
-    SAY("Alors j'ai supprime des lignes psk c'etait chiant pour test a chaque fois ...", NARRATOR)
-    CHOSE3("le nutella c'est quoi a ton avis ???????  le nutella c'est bon 1 le nutella c'est bon 1 le nutella c'est bon 1nu t e l l a nu te l l anutella",
-"Super mega bon tu peux pas test mon gars1",
-"Super mega bon tu peux pas test mon gars2",
-"Super mega bon tu peux pas test mon gars3", NARRATOR)
+const struct script_s i_sheriff_script[] = {
+    SAY("Looks like you got beat up by some monster.")
+    SAY("If I were you, I wouldn't try bothering them.")
+    SAY("But since you seek revenge, maybe you should find a weapon to fight")
+    SAY("Maybe you can get one. But that you need you to ask the blacksmith.")
+    SAY("Here is some money, you can back me back later.")
     END
 };
 
-const struct script_s test[] = {
-    SAY("Ceci est un test.", PLAYER1)
-    SAY("haha yes.", PLAYER1)
+const struct script_s i_cowboy_script[] = {
+    SAY("Do as if you did not see me.")
+    END
+};
+
+const struct script_s i_note_script[] = {
+    SAY("WANTED: Nut'o Ella")
+    END
+};
+
+const struct script_s i_villager_script[] = {
+    SAY("Hey you finally awake!")
+    SAY("You were trying to cross the lake, right?")
+    SAY("I found you on the verge of dying, hopefully you will recover in \
+a few!")
+    SAY("If you can move, try talking to the sheriff, he can tell you more \
+about your situation.")
     END
 };
 
 const struct script_s *intro_scripts[] = {
-    test_script_1,
-    test_script_2,
-    test,
+    i_barman_script,
+    i_blacksmith_script,
+    i_sheriff_script,
+    i_note_script,
+    i_cowboy_script,
+    i_villager_script,
     0
 };

@@ -48,9 +48,9 @@ static int game_main(void)
 
     if (!is_game_valid(&game))
         return 84;
-    if (fill_image(game.window) == -1)
+    if (fill_image(game.window) == -1 || fill_anim(game.window) == -1)
         return 84;
-    if (fill_anim(game.window) == -1)
+    if (!get_door_sound())
         return 84;
     my_srand();
     change_scene(MAIN_MENU);

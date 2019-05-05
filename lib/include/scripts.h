@@ -12,12 +12,11 @@
 
 #define MAX_CHOSE 4
 
-// #define NEW_SCRIPT(name) const struct script_s name[] =
 #define EXPORT(name) extern const struct script_s *name[];
-#define SAY(sentence, who) {sentence, 0, {0}, who},
-#define CHOSE1(sentence, c1, who) {sentence, 1, {c1, 0}, who},
-#define CHOSE2(sentence, c1, c2, who) {sentence, 2, {c1, c2, 0}, who},
-#define CHOSE3(sentence, c1, c2, c3, who) {sentence, 3, {c1, c2, c3, 0}, who},
+#define SAY(sentence) {sentence, 0, {0}, USR},
+#define CHOSE1(sentence, c1) {sentence, 1, {c1, 0}, USR},
+#define CHOSE2(sentence, c1, c2) {sentence, 2, {c1, c2, 0}, USR},
+#define CHOSE3(sentence, c1, c2, c3) {sentence, 3, {c1, c2, c3, 0}, USR},
 #define END {0, 0, {0}, 0}
 
 struct script_s {
@@ -39,6 +38,7 @@ struct dialogue_s *create_dialogue_from_script(const struct script_s *script);
 /* SCRIPTS */
 EXPORT(intro_scripts)
 EXPORT(village_scripts)
+EXPORT(weapon_scripts)
 extern const struct script_s **script_list[];
 
 #endif /* !SCRIPTS_H_ */

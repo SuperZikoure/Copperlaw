@@ -106,3 +106,15 @@ const info_npc_t npc_info[NPC_AMOUNT] = {
     {{592, 416}, {12, 8}, "assets/npc/sheriff.png", 0, 2},
     {{320, 400}, {60, 10}, "assets/npc/blacksmith.png", 0, 1},
 };
+
+char *map_paths[MAP_AMOUNT] = {
+    "src/data/maps/village",
+    "src/data/maps/wild",
+    "src/data/maps/sheriff",
+    "src/data/maps/saloon",
+    "src/data/maps/house"
+};
+
+char *music_paths[] = {
+    "assets/musics/main_menu.ogg"
+};

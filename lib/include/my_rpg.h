@@ -377,6 +377,7 @@ struct game_s {
     int current_map;
     map_t *maps[MAP_AMOUNT];
     npc_t *npc[NPC_AMOUNT];
+    sfMusic *music;
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;
     bool sound;

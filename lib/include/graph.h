@@ -94,5 +94,6 @@ void destroy_anim(anim_t *anim);
 #define BASE_VOLUME 25
 sound_t *create_sound(char *path);
 void destroy_sound(sound_t *sound);
+sfMusic *create_music(const char *path);
 
 #endif

@@ -42,5 +42,9 @@ int change_sound(game_t *game, int option __attribute__((unused)))
     sfSprite_setColor(button->base->sprite, newcolor);
     sfSprite_setColor(button->hover->sprite, newcolor);
     sfSprite_setColor(button->click->sprite, newcolor);
+    if (game->sound)
+        sfMusic_setVolume(game->music, BASE_VOLUME);
+    else
+        sfMusic_setVolume(game->music, 0);
     return 1;
 }

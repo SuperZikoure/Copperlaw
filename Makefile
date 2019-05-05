@@ -98,11 +98,13 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(SCRIPTS)/intro.c \
 		$(SCRIPTS)/script_list.c \
 		$(SCRIPTS)/village.c \
+		$(UTILS)/create_music.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/my_srand.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
 		analyse_events.c \
+		create_game_utils.c \
 		create_game.c \
 		create_player.c \
 		destroy_game.c \

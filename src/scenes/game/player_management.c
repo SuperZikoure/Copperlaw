@@ -12,7 +12,7 @@ static void teleport_player(game_t *game, sfVector3f dest, bool is_door)
     game->current_map = dest.z;
     PLAYER->pos.x = dest.x * C_SIZE;
     PLAYER->pos.y = dest.y * C_SIZE;
-    if (is_door)
+    if (is_door && game->sound)
         sfSound_play(get_door_sound()->sound);
 }
 

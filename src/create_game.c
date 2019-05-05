@@ -5,9 +5,15 @@
 ** create_game.c
 */
 
-#include <stdlib.h>
 #include "my_rpg.h"
 #include "macros.h"
+
+extern char *map_paths[MAP_AMOUNT]; 
+extern char *music_paths[];
+void init_npcs(game_t *game);
+npc_t *create_npc(int i, window_t *window);
+option_t create_option(void);
+void fill_game(game_t *game);
 
 /*static scene_t init_scene(game_t game)
 {
@@ -36,49 +42,15 @@
     return (scene);
 }*/
 
-static option_t create_option(void)
+static void create_maps(game_t *game)
 {
-    option_t option;
-
-    option.resolution = DEFAULT_SCREENSIZE;
-    option.fullscreen = 0;
-    option.music = 1;
-    option.sound = 1;
-    return (option);
-}
-
-static npc_t *create_npc(int i, window_t *window)
-{
-    npc_t *npc = malloc(sizeof(npc_t));
-
-    if (!npc)
-        return NULL;
-    npc->pos = npc_info[i].pos;
-    npc->map = npc_info[i].map;
-    npc->display = create_anim(npc_info[i].fps, V2I(32, 32), npc_info[i].path,
-window);
-    if (!npc->display)
-        return NULL;
-    return (npc);
-}
-
-static void init_npcs(game_t *game)
-{
-    for (int i = 0; i < NPC_AMOUNT; i++) {
-        game->npc[i] = create_npc(i, game->window);
-        if (!game->npc[i]) {
+    for (int i = 0; i < MAP_AMOUNT; i++) {
+        game->maps[i] = create_map(map_paths[i], game->window);
+        if (!game->maps[i]) {
             game->exit = -1;
             return;
         }
     }
-}
-
-static void fill_game(game_t *game)
-{
-    game->exit = 0;
-    game->current_map = VILLAGE_MAP;
-    game->dialogue = NULL;
-    game->sound = true;
 }
 
 game_t create_game(void)
@@ -95,13 +67,8 @@ game_t create_game(void)
         return game;
     game.gui = create_gui(game.view);
     game.option = create_option();
-    game.maps[VILLAGE_MAP] = create_map("src/data/maps/village", game.window);
-    game.maps[WILD_MAP] = create_map("src/data/maps/wild", game.window);
-    game.maps[SHERIFF_MAP] = create_map("src/data/maps/sheriff", game.window);
-    game.maps[SALOON_MAP] = create_map("src/data/maps/saloon", game.window);
-    game.maps[HOUSE_MAP] = create_map("src/data/maps/house", game.window);
-    if (!game.maps[0])
-        return game;
+    create_maps(&game);
+    game.music = create_music(music_paths[0]);
     game.player = create_player(&game);
     init_npcs(&game);
     return (game);

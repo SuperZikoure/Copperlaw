@@ -58,6 +58,7 @@ TRANSITIONS	=	$(SCENES)/transitions
 OPT_SCENE	=	$(SCENES)/option
 SCREESHOTS	=	screenshots
 UTILS		=	utils
+PARTICLE	=	particle
 
 SRC	=	$(BUTTONS)/create_button.c \
 		$(BUTTONS)/find_button.c \
@@ -106,6 +107,12 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(UTILS)/my_srand.c \
 		$(UTILS)/quick_sftext_create.c \
 		$(UTILS)/view_utils.c \
+		$(PARTICLE)/particles_system.c \
+		$(PARTICLE)/desert.c \
+		$(PARTICLE)/fire.c \
+		$(PARTICLE)/skill.c \
+		$(PARTICLE)/dash.c \
+		$(PARTICLE)/trail.c \
 		analyse_events.c \
 		create_game_utils.c \
 		create_game.c \
@@ -118,11 +125,11 @@ SRC	=	$(BUTTONS)/create_button.c \
 		manage_intersections.c \
 		scene_system.c
 
-SRC_LIB	=	stdio my string graph inv dialogues \
+SRC_LIB	=	stdio my string graph inv dialogues particle\
 			csfml-graphics csfml-system csfml-window csfml-audio \
 			m
 
-LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory lib/dialogues
+LIB_PATHS	=	lib/stdio lib/my lib/string lib/graph lib/lib_inventory lib/dialogues lib/particle
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)

@@ -91,6 +91,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(PARTICLE)/desert.c \
 		$(PARTICLE)/fire.c \
 		$(PARTICLE)/skill.c \
+		$(PARTICLE)/dash.c \
 		analyse_events.c \
 		create_game.c \
 		create_player.c \

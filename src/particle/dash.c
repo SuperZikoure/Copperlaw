@@ -15,9 +15,9 @@ static void clear_square(fb_t *particle)
 
     for (i = 0; i < particle->x * particle->y; i++) {
         if (particle->pixels[i * 4 + 3] == 255)
-            particle->pixels[i * 4 + 3] == 125;
+            particle->pixels[i * 4 + 3] = 125;
         else
-            particle->pixels[i * 4 + 3] == 0;
+            particle->pixels[i * 4 + 3] = 0;
     }
 }
 
@@ -56,5 +56,7 @@ fb_t *dash_particle(fb_t *particle, int type)
         bool_created = 1;
         set_color(particle);
     }
+    clear_square(particle);
+    draw_particle(particle);
     return particle;
 }

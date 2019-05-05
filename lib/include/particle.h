@@ -65,4 +65,7 @@ fb_t *fire_particle(fb_t *particle, int type);
 //particle/skill.c
 fb_t *skill_particle(fb_t *particle, int type);
 
+//particle/dash.c
+fb_t *dash_particle(fb_t *particle, int type);
+
 #endif

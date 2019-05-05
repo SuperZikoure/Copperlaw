@@ -25,6 +25,8 @@
 #define PLAYER_BALLS 200
 #define MONSTER_BALLS 25
 
+#define MONSTER_AMOUNT 15;
+
 #define C_SIZE 16
 
 #define BUTTON_AMOUNT 31
@@ -418,17 +420,10 @@ typedef struct monster_s {
     sfVector2f pos;
     sfVector2f speed;
     sfVector2f bump;
-    sfVector2f vel;
     int aggro;
-    anim_t **move;
-    anim_t **hurt;
-    anim_t *idle;
-    anim_t *display;
-    image_t *normal; //FUCK
-    image_t *hit; //FUCK
-    float stats[STATS_AMOUNT];
-    ball_t *attacks[MONSTER_BALLS];
-    col_t col;
+    image_t *normal;
+    image_t *hit;
+    int hp;
 } monster_t;
 
 typedef struct input_s {
@@ -478,6 +473,7 @@ struct game_s {
     text_t *texts[TEXT_AMOUNT];
     music_t *music;
     coin_t **coins;
+    monster_t *monsters[5];
     int money;
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;

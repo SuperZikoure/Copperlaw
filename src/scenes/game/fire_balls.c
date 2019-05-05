@@ -41,7 +41,7 @@ static void fire_ball_2(game_t *game, int i, sfVector2f dir)
     PLAYER->balls[i]->exist = 1;
     PLAYER->balls[i]->speed.x += value;
     PLAYER->balls[i]->speed.y += value;
-    PLAYER->stats[CURRENT_MP] -= 1;
+    PLAYER->stats[CURRENT_MP] -= 1 * PLAYER->balls[i]->skill;
     if (PLAYER->stats[CURRENT_MP] < 0)
         PLAYER->stats[CURRENT_MP] = 0;
 }
@@ -62,7 +62,7 @@ void fire_ball(game_t *game, sfVector2f dir, int type, int skill)
         PLAYER->balls[i]->type = type;
         PLAYER->balls[i]->skill = skill;
         PLAYER->balls[i]->timer = PLAYER->stats[ATTACK_RANGE];
-        if (type == REVOLVER || !balls)
+        if (type == REVOLVER || !balls || PLAYER->stats[CURRENT_MP] < balls)
             return;
         else 
             balls--;

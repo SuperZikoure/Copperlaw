@@ -68,6 +68,7 @@ static int init_player(game_t *ga, player_t *player)
     if (!player->idle || !player->move)
         return -1;
     player->display = player->move;
+    player->class = NO_CLASS;
     return 0;
 }
 

@@ -51,6 +51,11 @@ static void create_maps(game_t *game)
             return;
         }
     }
+    game->monsters[0] = create_monster(500, 500;)
+    game->monsters[1] = create_monster(600, 500;)
+    game->monsters[2] = create_monster(700, 500;)
+    game->monsters[3] = create_monster(800, 500;)
+    game->monsters[4] = create_monster(900, 500;)
 }
 
 static void create_texts(game_t *game)

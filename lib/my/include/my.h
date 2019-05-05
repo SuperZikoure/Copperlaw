@@ -21,5 +21,6 @@ char *my_revstr(char *str);
 char *my_str_addchar(char const *str, char const c, int index);
 int my_str_ends_with(const char *str, const char *end);
 int my_str_isnum(char const *str, int neg);
+char *my_float_to_str(float nb);
 
 #endif /* MY_H_ */

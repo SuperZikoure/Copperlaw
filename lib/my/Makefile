@@ -35,6 +35,7 @@ INCLUDE_PATH	=	../include
 
 SRC	=	free_em.c \
 		my_atoi.c \
+		my_float_to_str.c \
 		my_free_fields.c \
 		my_intlen.c \
 		my_itoa.c \

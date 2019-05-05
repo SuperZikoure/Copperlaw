@@ -40,14 +40,14 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{5, 312}, 0, INVENTORY, "quit", swap_option_to_main_menu},
     {{5, 364}, 0, INVENTORY, "exit", exit_game},
     {{5, 11}, 0, INVENTORY, "stats", swap_game_to_menu},
-    {{668, 72}, 0, GAME, "inv_button", swap_game_to_menu},
-    {{668, 108}, 1, GAME, "inv_button", swap_game_to_menu},
-    {{668, 144}, 2, GAME, "inv_button", swap_game_to_menu},
-    {{668, 180}, 3, GAME, "inv_button", swap_game_to_menu},
-    {{668, 216}, 4, GAME, "inv_button", swap_game_to_menu},
-    {{668, 252}, 5, GAME, "inv_button", swap_game_to_menu},
-    {{668, 288}, 6, GAME, "inv_button", swap_game_to_menu},
-    {{668, 324}, 7, GAME, "inv_button", swap_game_to_menu}
+    {{668, 72}, 1, GAME, "inv_button", use_item},
+    {{668, 108}, 2, GAME, "inv_button", use_item},
+    {{668, 144}, 3, GAME, "inv_button", use_item},
+    {{668, 180}, 4, GAME, "inv_button", use_item},
+    {{668, 216}, 5, GAME, "inv_button", use_item},
+    {{668, 252}, 6, GAME, "inv_button", use_item},
+    {{668, 288}, 7, GAME, "inv_button", use_item},
+    {{668, 324}, 8, GAME, "inv_button", use_item}
 };
 
 const sfKeyCode input_key[KEY_NB] = {

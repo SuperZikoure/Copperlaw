@@ -65,11 +65,14 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(BUTTONS)/mainmenu_functions.c \
 		$(BUTTONS)/manage_button.c \
 		$(BUTTONS)/option_functions.c \
+		$(BUTTONS)/use_item.c \
 		$(FETCH)/fetch_image.c \
 		$(FETCH)/fetch_anim.c \
 		$(FETCH)/fetch_oldest_dialogue_response.c \
 		$(GUI)/create_gui.c \
 		$(GUI)/display_cursor.c \
+		items/use_items1.c \
+		items/use_items2.c \
 		$(INVENTORY_SCENE)/inventory_scene.c \
 		$(MAPS)/create_map.c \
 		$(MAPS)/read_map_from_file.c \

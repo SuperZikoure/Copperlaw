@@ -71,6 +71,7 @@ typedef struct info_anim_s info_anim_t;
 typedef struct info_tp_s info_tp_t;
 typedef struct info_music_s info_music_t;
 typedef int (*scene_swap_t)(game_t *);
+typedef void (*item_function_t)(game_t *);
 
 struct info_anim_s
 {
@@ -607,6 +608,16 @@ int change_fullscreen_mode(game_t *game, int option);
 int icr_resolution(game_t *game, int option);
 int dcr_resolution(game_t *game, int option);
 int change_sound(game_t *game, int option);
+int use_item(game_t *game, int option);
+
+void use_elixir(game_t *game);
+void use_beer(game_t *game);
+void use_rum(game_t *game);
+void use_snakevenom(game_t *game);
+void use_fieldratio(game_t *game);
+void use_cactusjuice(game_t *game);
+void use_tequila(game_t *game);
+void use_ethanol(game_t *game);
 
 /* SCREESHOT */
 #define SCREENSHOT_FILENAME_MAX 10

@@ -21,7 +21,7 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{50, 148}, 0, MAIN_MENU, "newgame", swap_main_menu_to_game},
     {{50, 181}, 0, MAIN_MENU, "loadgame", swap_main_menu_to_game},
     {{50, 216}, 0, MAIN_MENU, "option", swap_main_menu_to_option},
-    {{50, 250}, 0, MAIN_MENU, "help", exit_game},
+    {{50, 250}, 0, MAIN_MENU, "help", swap_main_menu_to_howtoplay},
     {{50, 284}, 0, MAIN_MENU, "credits", exit_game},
     {{50, 318}, 0, MAIN_MENU, "exit", exit_game},
     {{85, 162}, 0, OPTIONS, "fullscreen", change_fullscreen_mode},
@@ -29,6 +29,7 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
     {{85, 246}, 0, OPTIONS, "sound", change_sound},
     {{5, 298}, 0, OPTIONS, "back", swap_option_to_main_menu},
+    {{5, 298}, 0, HOW_TO_PLAY, "back", swap_howtoplay_to_main_menu},
     {{5, 208}, 0, MENU, "resume", swap_menu_to_game},
     {{5, 260}, 0, MENU, "save", swap_menu_to_game},
     {{5, 312}, 0, MENU, "quit", swap_option_to_main_menu},
@@ -85,7 +86,8 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/menu/skills.png",
     "assets/scenes/game/HUD.png",
     "assets/scenes/game/HUD_ITEMS.png",
-    "assets/scenes/menu/items.png"
+    "assets/scenes/menu/items.png",
+    "assets/scenes/how_to_play/board.png"
 };
 
 const char *font_path[TEXT_AMOUNT] = {

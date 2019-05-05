@@ -97,10 +97,12 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(MAINM_SCENE)/display_parallax.c \
 		$(MAINM_SCENE)/main_menu_scene.c \
 		$(MAINM_SCENE)/parallax_position.c \
+		$(SCENES)/how_to_play/how_to_play_scene.c \
 		$(MENU_SCENE)/menu_scene.c \
 		$(OPT_SCENE)/option_scene.c \
 		$(TRANSITIONS)/game_menu.c \
 		$(TRANSITIONS)/mainmenu_game.c \
+		$(TRANSITIONS)/mainmenu_howtoplay.c \
 		$(TRANSITIONS)/mainmenu_option.c \
 		$(SCREESHOTS)/do_screenshot.c \
 		$(SCRIPTS)/intro.c \

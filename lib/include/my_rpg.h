@@ -27,7 +27,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 29
+#define BUTTON_AMOUNT 30
 
 #define TP_AMOUNT 21
 
@@ -151,8 +151,7 @@ enum enum_scene_e {
     OPTIONS,
     GAME,
     INVENTORY,
-    SKILLS,
-    STATS,
+    HOW_TO_PLAY,
     MENU,
     SCENE_NB
 };
@@ -195,6 +194,7 @@ enum enum_images_e {
     HUD,
     HUD_ITEMS,
     ITEMS,
+    HOWTOPLAY_IMG,
     IMAGE_AMOUNT
 };
 
@@ -519,9 +519,11 @@ button_t *find_button(game_t *game, char *name, enum enum_scene_e scene);
 int swap_game_to_menu(game_t *game, int option);
 int swap_menu_to_game(game_t *game, int option);
 int swap_main_menu_to_game(game_t *game, int option);
+int swap_menu_to_inventory(game_t *game, int option);
 int swap_main_menu_to_option(game_t *game, int option);
 int swap_option_to_main_menu(game_t *game, int option);
-int swap_menu_to_inventory(game_t *game, int option);
+int swap_main_menu_to_howtoplay(game_t *game, int option);
+int swap_howtoplay_to_main_menu(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);

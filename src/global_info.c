@@ -37,6 +37,14 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{5, 312}, 0, INVENTORY, "save", swap_menu_to_game},
     {{5, 364}, 0, INVENTORY, "exit", swap_option_to_main_menu},
     {{5, 11}, 0, INVENTORY, "stats", swap_game_to_menu},
+    {{668, 72}, 0, GAME, "inv_button", swap_game_to_menu},
+    {{668, 108}, 1, GAME, "inv_button", swap_game_to_menu},
+    {{668, 144}, 2, GAME, "inv_button", swap_game_to_menu},
+    {{668, 180}, 3, GAME, "inv_button", swap_game_to_menu},
+    {{668, 216}, 4, GAME, "inv_button", swap_game_to_menu},
+    {{668, 252}, 5, GAME, "inv_button", swap_game_to_menu},
+    {{668, 288}, 6, GAME, "inv_button", swap_game_to_menu},
+    {{668, 324}, 7, GAME, "inv_button", swap_game_to_menu}
 };
 
 const sfKeyCode input_key[KEY_NB] = {
@@ -78,8 +86,13 @@ const char *image_path[IMAGE_AMOUNT] = {
 };
 
 const char *font_path[TEXT_AMOUNT] = {
-    "assets/trail1.png",
-    "assets/trail1.png",
+    "assets/fonts/1.ttf",
+    "assets/fonts/2.ttf",
+};
+
+const int font_size[TEXT_AMOUNT] = {
+    12,
+    24
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {

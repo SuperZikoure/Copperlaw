@@ -89,7 +89,12 @@ static int analyse_game_events(game_t *game, input_t *input)
 
 static void display_hud(game_t *game)
 {
+    display_image(get_image(HUD), GTV(0, 0));
+    show_scene_buttons(game);
     display_image(get_image(HUD_ITEMS), GTV(0, 0));
+    for (int i = 0; i < ITEM_AMOUNT; i++) {
+        display_text(AMOUNT_STR(i), GTV(690, 88 + (i * 36)), game->texts[SMALL_TEXT]);
+    }
 }
 
 int game_scene(game_t *game)
@@ -102,8 +107,7 @@ int game_scene(game_t *game)
     player_management(game);
     npc_management(game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
-    display_image(get_image(HUD), GTV(0, 0));
-    update_game_gui(game);
     display_hud(game);
+    update_game_gui(game);
     return 0;
 }

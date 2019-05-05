@@ -56,7 +56,7 @@ static void create_maps(game_t *game)
 static void create_texts(game_t *game)
 {
     for (int i = 0; i < TEXT_AMOUNT; i++) {
-        game->texts[i] = create_text(12, font_path[i], game->window);
+        game->texts[i] = create_text(font_size[i], font_path[i], game->window);
         if (!game->texts[i]) {
             game->exit = -1;
             return;

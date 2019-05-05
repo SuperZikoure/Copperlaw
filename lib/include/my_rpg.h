@@ -11,6 +11,7 @@
 #include <math.h>
 #include "graph.h"
 #include "inventory.h"
+#include "my.h"
 
 #define BUTTON_PATH ("assets/buttons/")
 
@@ -24,7 +25,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 19
+#define BUTTON_AMOUNT 27
 
 #define TP_AMOUNT 21
 
@@ -50,6 +51,8 @@
 #define RES game->option.resolution
 #define FS game->option.fullscreen
 
+#define AMOUNT_STR(i) my_itoa(get_amount(i, G_INVENTORY))
+
 typedef struct game_s game_t;
 typedef struct info_button_s info_button_t;
 typedef struct info_npc_s info_npc_t;
@@ -65,7 +68,9 @@ enum enum_item_e
     ELIXIR_OF_VENOM,
     FIELD_RATIO,
     CACTUS_JUICE,
-    ETHANOL
+    TEQUILA,
+    ETHANOL,
+    ITEM_AMOUNT
 };
 
 enum enum_text_e
@@ -254,6 +259,7 @@ extern const sfKeyCode input_key[KEY_NB];
 extern const info_npc_t npc_info [NPC_AMOUNT];
 extern const info_tp_t tp_info[TP_AMOUNT];
 extern const char* font_path[TEXT_AMOUNT];
+extern const int font_size[TEXT_AMOUNT];
 
 typedef struct button_s
 {

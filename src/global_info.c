@@ -146,3 +146,23 @@ char *map_paths[MAP_AMOUNT] = {
 const info_music_t music_paths[MUSIC_AMOUT] = {
     {"assets/musics/main_menu.ogg", NULL}
 };
+
+const char *stats_desc[STATS_AMOUNT] = {
+    NULL,
+    "HP: ",
+    NULL,
+    "MP: ",
+    NULL,
+    "SP: ",
+    "Speed: ",
+    "Dash CD: ",
+    "Attack Speed: ",
+    "Attack CD: ",
+    "Attack Range: ",
+    "Damage",
+    "Defense",
+    "XP",
+    NULL,
+    "LVL: ",
+    "SP Points: "
+};

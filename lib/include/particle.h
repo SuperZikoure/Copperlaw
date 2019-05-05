@@ -62,4 +62,7 @@ fb_t *desert_particle(fb_t *particle, int type);
 //particle/fire.c
 fb_t *fire_particle(fb_t *particle, int type);
 
+//particle/skill.c
+fb_t *skill_particle(fb_t *particle, int type);
+
 #endif

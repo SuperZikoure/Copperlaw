@@ -13,9 +13,9 @@ static void create_fire(fb_t *particle)
 {
     unsigned int i;
 
-    for (i = 0; i < 50; i++) {
+    for (i = 0; i < particle->x * particle->y; i++) {
         if (!(rand() % 4))
-        particle->pixels[rand() % (particle->x * particle->y) * 4] = 255;
+            particle->pixels[i * 4 + 3] = 255;
     }
 }
 
@@ -23,8 +23,10 @@ static void clear_fire(fb_t *particle)
 {
     unsigned int i;
 
-    for (i = 0; i < 50; i++)
-        particle->pixels[rand() % (particle->x * particle->y) * 4] = 0;
+    for (i = 0; i < particle->x * particle->y; i++) {
+        if (!(rand() % 4))
+            particle->pixels[i * 4 + 3] = 0;
+    }
 }
 
 static void set_color(fb_t *particle)

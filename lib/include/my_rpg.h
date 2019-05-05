@@ -402,7 +402,6 @@ typedef struct ball_s {
     int exist;
     int type;
     int timer;
-    image_t *ball;
     col_t col;
 } ball_t;
 
@@ -449,7 +448,7 @@ typedef struct player_s {
     anim_t *display;
     float stats[STATS_AMOUNT];
     float boost[STATS_AMOUNT];
-    ball_t *attacks[PLAYER_BALLS];
+    ball_t *balls[PLAYER_BALLS];
     col_t col;
     int moving;
     int level_up_display;

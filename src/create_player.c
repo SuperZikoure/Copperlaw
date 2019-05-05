@@ -74,17 +74,12 @@ static int init_player(game_t *ga, player_t *player)
 static int init_attacks(game_t *ga, player_t *player)
 {
     for (int i = 0; i < PLAYER_BALLS; i++) {
-        player->attacks[i] = malloc(sizeof(ball_t));
-        if (!player->attacks[i])
+        player->balls[i] = malloc(sizeof(ball_t));
+        if (!player->balls[i])
             return -1;
-        player->attacks[i]->ball = create_image("assets/ball.png", ga->window);
-        if (!player->attacks[i]->ball)
-            return -1;
-        player->attacks[i]->pos = V2F(0, 0);
-        player->attacks[i]->speed = V2F(0, 0);
-        player->attacks[i]->exist = 0;
+        player->balls[i]->exist = 0;
     }
-    return 0;
+    return (0);
 }
 
 player_t *create_player(game_t *ga)

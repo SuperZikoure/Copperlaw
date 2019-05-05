@@ -21,6 +21,7 @@ const struct script_s i_sheriff_script[] = {
     SAY("Looks like you got beat up by some monster.")
     SAY("If I were you, I wouldn't try bothering them.")
     SAY("But since you seek revenge, maybe you should find a weapon to fight")
+    END
 };
 
 const struct script_s i_sheriff_scriptaa[] = {

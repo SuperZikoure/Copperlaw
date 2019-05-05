@@ -29,7 +29,7 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
     {{85, 246}, 0, OPTIONS, "sound", change_sound},
     {{5, 298}, 0, OPTIONS, "back", swap_option_to_main_menu},
-    {{5, 298}, 0, HOW_TO_PLAY, "back", swap_howtoplay_to_main_menu},
+    {{50, 318}, 0, HOW_TO_PLAY, "back", swap_howtoplay_to_main_menu},
     {{5, 208}, 0, MENU, "resume", swap_menu_to_game},
     {{5, 260}, 0, MENU, "save", swap_menu_to_game},
     {{5, 312}, 0, MENU, "quit", swap_option_to_main_menu},

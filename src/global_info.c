@@ -91,7 +91,7 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/ball_white.png",
     "assets/ball_green.png",
     "assets/ball_blue.png",
-    "assets/scenes/credit/long_board"
+    "assets/scenes/credit/long_board.png"
 };
 
 const char *font_path[TEXT_AMOUNT] = {

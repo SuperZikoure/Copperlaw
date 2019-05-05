@@ -20,3 +20,17 @@ int swap_menu_to_game(game_t *game, int option __attribute__((unused)))
     CURSOR->mode = CURSOR_IDLE;
     return 1;
 }
+
+int swap_menu_to_inventory(game_t *game, int option __attribute__((unused)))
+{
+    change_scene(INVENTORY);
+    CURSOR->mode = CURSOR_IDLE;
+    return 1;
+}
+
+int swap_menu_to_skills(game_t *game, int option __attribute__((unused)))
+{
+    change_scene(SKILLS);
+    CURSOR->mode = CURSOR_IDLE;
+    return 1;
+}

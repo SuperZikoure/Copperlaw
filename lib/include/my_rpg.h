@@ -23,7 +23,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 11
+#define BUTTON_AMOUNT 16
 
 #define TP_AMOUNT 21
 
@@ -127,6 +127,11 @@ enum enum_images_e {
     OPTION_RESOLUTION,
     OPTION_OPTION,
     BIG_SQUARE,
+    PAUSE_BG,
+    BUTTON_NOT_SELECTED_2,
+    INVENTORY_SELECTED,
+    STATS_SELECTED,
+    SKILLS_SELECTED,
     IMAGE_AMOUNT
 };
 
@@ -424,6 +429,8 @@ int swap_menu_to_game(game_t *game, int option);
 int swap_main_menu_to_game(game_t *game, int option);
 int swap_main_menu_to_option(game_t *game, int option);
 int swap_option_to_main_menu(game_t *game, int option);
+int swap_menu_to_inventory(game_t *game, int option);
+int swap_menu_to_skills(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);

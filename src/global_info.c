@@ -28,7 +28,12 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{325, 207}, 0, OPTIONS, "res_plus", icr_resolution},
     {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
     {{85, 246}, 0, OPTIONS, "sound", change_sound},
-    {{30, 298}, 0, OPTIONS, "back", swap_option_to_main_menu}
+    {{5, 298}, 0, OPTIONS, "back", swap_option_to_main_menu},
+    {{5, 260}, 0, MENU, "resume", swap_menu_to_game},
+    {{5, 312}, 0, MENU, "save", swap_menu_to_game},
+    {{5, 364}, 0, MENU, "exit", exit_game},
+    {{5, 63}, 0, MENU, "inventory", swap_menu_to_inventory},
+    {{5, 115}, 0, MENU, "skills", swap_menu_to_skills}
 };
 
 const sfKeyCode input_key[KEY_NB] = {
@@ -59,7 +64,12 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/option/logo.png",
     "assets/scenes/option/resolution.png",
     "assets/buttons/option_hover.png",
-    "assets/big_square.png"
+    "assets/big_square.png",
+    "assets/scenes/menu/background.png",
+    "assets/scenes/menu/not_selected_inverted.png",
+    "assets/scenes/menu/inventory.png",
+    "assets/scenes/menu/stats.png",
+    "assets/scenes/menu/skills.png"
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {

@@ -29,13 +29,15 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{360, 207}, 0, OPTIONS, "res_less", dcr_resolution},
     {{85, 246}, 0, OPTIONS, "sound", change_sound},
     {{5, 298}, 0, OPTIONS, "back", swap_option_to_main_menu},
-    {{5, 260}, 0, MENU, "resume", swap_menu_to_game},
-    {{5, 312}, 0, MENU, "save", swap_menu_to_game},
-    {{5, 364}, 0, MENU, "exit", swap_option_to_main_menu},
+    {{5, 208}, 0, MENU, "resume", swap_menu_to_game},
+    {{5, 260}, 0, MENU, "save", swap_menu_to_game},
+    {{5, 312}, 0, MENU, "quit", swap_option_to_main_menu},
+    {{5, 364}, 0, MENU, "exit", exit_game},
     {{5, 63}, 0, MENU, "inventory", swap_menu_to_inventory},
-    {{5, 260}, 0, INVENTORY, "resume", swap_menu_to_game},
-    {{5, 312}, 0, INVENTORY, "save", swap_menu_to_game},
-    {{5, 364}, 0, INVENTORY, "exit", swap_option_to_main_menu},
+    {{5, 208}, 0, INVENTORY, "resume", swap_menu_to_game},
+    {{5, 260}, 0, INVENTORY, "save", swap_menu_to_game},
+    {{5, 312}, 0, INVENTORY, "quit", swap_option_to_main_menu},
+    {{5, 364}, 0, INVENTORY, "exit", exit_game},
     {{5, 11}, 0, INVENTORY, "stats", swap_game_to_menu},
     {{668, 72}, 0, GAME, "inv_button", swap_game_to_menu},
     {{668, 108}, 1, GAME, "inv_button", swap_game_to_menu},
@@ -129,7 +131,8 @@ const info_tp_t tp_info[TP_AMOUNT] = {
 const info_npc_t npc_info[NPC_AMOUNT] = {
     {{592, 416}, {12, 8}, "assets/npc/sheriff.png", VILLAGE_MAP, 2},
     {{320, 400}, {60, 10}, "assets/npc/blacksmith.png", VILLAGE_MAP, 1},
-    {{14, 69}, {0, 0}, "assets/npc/note.png", SHERIFF_MAP, 0}
+    {{14, 69}, {0, 0}, "assets/npc/note.png", SHERIFF_MAP, 0},
+    {{215, 64}, {36, 8}, "assets/npc/barman.png", SALOON_MAP, 0}
 };
 
 char *map_paths[MAP_AMOUNT] = {

@@ -78,6 +78,10 @@ static void npc_management(game_t *game)
             check_click(game, game->npc[i], game->gui->cursor->pos, i);
         }
     }
+    if (game->current_map == SALOON_MAP) {
+        if (get_response() == 0 && get_amount(TEQUILA, G_INVENTORY) < 99)
+            add_item(TEQUILA, G_INVENTORY);
+    }
 }
 
 static int analyse_game_events(game_t *game, input_t *input)

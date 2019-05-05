@@ -25,7 +25,7 @@
 
 #define C_SIZE 16
 
-#define BUTTON_AMOUNT 27
+#define BUTTON_AMOUNT 29
 
 #define TP_AMOUNT 21
 
@@ -60,27 +60,6 @@ typedef struct info_anim_s info_anim_t;
 typedef struct info_tp_s info_tp_t;
 typedef int (*scene_swap_t)(game_t *);
 
-enum enum_item_e
-{
-    ELIXIR_OF_LIFE,
-    BEER,
-    RUM,
-    ELIXIR_OF_VENOM,
-    FIELD_RATIO,
-    CACTUS_JUICE,
-    TEQUILA,
-    ETHANOL,
-    ITEM_AMOUNT
-};
-
-enum enum_text_e
-{
-    SMALL_TEXT,
-    BIG_TEXT,
-    CREDIT_TEXT,
-    TEXT_AMOUNT
-};
-
 struct info_anim_s
 {
     sfVector2f fps;
@@ -102,6 +81,34 @@ struct info_npc_s
     char *path;
     int map;
     int dialogue;
+};
+
+struct info_item_s
+{
+    int hp;
+    int mp;
+    int sp;
+};
+
+enum enum_item_e
+{
+    ELIXIR_OF_LIFE,
+    BEER,
+    RUM,
+    ELIXIR_OF_VENOM,
+    FIELD_RATIO,
+    CACTUS_JUICE,
+    TEQUILA,
+    ETHANOL,
+    ITEM_AMOUNT
+};
+
+enum enum_text_e
+{
+    SMALL_TEXT,
+    BIG_TEXT,
+    CREDIT_TEXT,
+    TEXT_AMOUNT
 };
 
 enum enum_map_e {
@@ -187,6 +194,7 @@ enum npc_list {
     SHERIFF,
     BLACKSMITH,
     NOTE,
+    BARMAN,
     NPC_AMOUNT
 };
 

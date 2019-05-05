@@ -13,10 +13,9 @@ const struct script_s blank_aha[] = {
 };
 
 const struct script_s test_script_1[] = {
-    SAY("Whoa je veux une pomme.", PLAYER1)
-    SAY("eh beh bas moi j'en ai des bonnes", USR)
-    SAY("oh oui ! je veux.", PLAYER1)
-    CHOSE2("c'est 2 gold la pomme tu la veux oui ou non ?", "oui", "non", USR)
+    SAY("Wesh tu veux de la tequila ?", PLAYER1)
+    SAY("vas-y mec", USR)
+    CHOSE2("c'est 2 gold la tequila tu la veux oui ou non ?", "oui", "non", USR)
     END
 };
 

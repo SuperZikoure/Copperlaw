@@ -10,13 +10,14 @@
 
 #include <math.h>
 #include "graph.h"
+#include "inventory.h"
 
 #define BUTTON_PATH ("assets/buttons/")
 
 #define ZOOM 1.5
 #define VIEW_SIZE_X (480 * ZOOM) //720
 #define VIEW_SIZE_Y (270 * ZOOM) //405
-#define SIZE 10
+#define SIZE 7
 
 #define PLAYER_BALLS 200
 #define MONSTER_BALLS 25
@@ -44,6 +45,7 @@
 #define CURSOR game->gui->cursor
 #define GUI game->gui
 #define PLAYER game->player
+#define G_INVENTORY game->inventory
 
 #define RES game->option.resolution
 #define FS game->option.fullscreen
@@ -54,6 +56,24 @@ typedef struct info_npc_s info_npc_t;
 typedef struct info_anim_s info_anim_t;
 typedef struct info_tp_s info_tp_t;
 typedef int (*scene_swap_t)(game_t *);
+
+enum enum_item_e
+{
+    ELIXIR_OF_LIFE,
+    BEER,
+    RUM,
+    ELIXIR_OF_VENOM,
+    FIELD_RATIO,
+    CACTUS_JUICE,
+    ETHANOL
+};
+
+enum enum_text_e
+{
+    SMALL_TEXT,
+    BIG_TEXT,
+    TEXT_AMOUNT
+};
 
 struct info_anim_s
 {
@@ -132,6 +152,8 @@ enum enum_images_e {
     INVENTORY_SELECTED,
     STATS_SELECTED,
     SKILLS_SELECTED,
+    HUD,
+    HUD_ITEMS,
     IMAGE_AMOUNT
 };
 
@@ -158,6 +180,7 @@ enum bin_directions {
 enum npc_list {
     SHERIFF,
     BLACKSMITH,
+    NOTE,
     NPC_AMOUNT
 };
 
@@ -230,6 +253,7 @@ extern const info_button_t info[BUTTON_AMOUNT];
 extern const sfKeyCode input_key[KEY_NB];
 extern const info_npc_t npc_info [NPC_AMOUNT];
 extern const info_tp_t tp_info[TP_AMOUNT];
+extern const char* font_path[TEXT_AMOUNT];
 
 typedef struct button_s
 {
@@ -374,9 +398,11 @@ struct game_s {
     input_t *input;
     option_t option;
     player_t *player;
+    inventory_t *inventory;
     int current_map;
     map_t *maps[MAP_AMOUNT];
     npc_t *npc[NPC_AMOUNT];
+    text_t *texts[TEXT_AMOUNT];
     sfMusic *music;
     struct dialogue_s *dialogue;
     sfVector2i mouse_pos;

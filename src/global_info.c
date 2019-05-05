@@ -72,7 +72,14 @@ const char *image_path[IMAGE_AMOUNT] = {
     "assets/scenes/menu/not_selected_inverted.png",
     "assets/scenes/menu/inventory.png",
     "assets/scenes/menu/stats.png",
-    "assets/scenes/menu/skills.png"
+    "assets/scenes/menu/skills.png",
+    "assets/scenes/game/HUD.png",
+    "assets/scenes/game/HUD_ITEMS.png"
+};
+
+const char *font_path[TEXT_AMOUNT] = {
+    "assets/trail1.png",
+    "assets/trail1.png",
 };
 
 const info_anim_t anim_info[ANIM_AMOUNT] = {
@@ -102,12 +109,12 @@ const info_tp_t tp_info[TP_AMOUNT] = {
     {{98, 97, WILD_MAP}, {41, 1, VILLAGE_MAP}, false},
     {{98, 97, WILD_MAP}, {42, 1, VILLAGE_MAP}, false},
     {{100, 97, WILD_MAP}, {43, 1, VILLAGE_MAP}, false}
-
 };
 
 const info_npc_t npc_info[NPC_AMOUNT] = {
-    {{592, 416}, {12, 8}, "assets/npc/sheriff.png", 0, 2},
-    {{320, 400}, {60, 10}, "assets/npc/blacksmith.png", 0, 1},
+    {{592, 416}, {12, 8}, "assets/npc/sheriff.png", VILLAGE_MAP, 2},
+    {{320, 400}, {60, 10}, "assets/npc/blacksmith.png", VILLAGE_MAP, 1},
+    {{14, 69}, {0, 0}, "assets/npc/note.png", SHERIFF_MAP, 0}
 };
 
 char *map_paths[MAP_AMOUNT] = {

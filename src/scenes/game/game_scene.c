@@ -87,6 +87,11 @@ static int analyse_game_events(game_t *game, input_t *input)
     return 0;
 }
 
+static void display_hud(game_t *game)
+{
+    display_image(get_image(HUD_ITEMS), GTV(0, 0));
+}
+
 int game_scene(game_t *game)
 {
     if (analyse_game_events(game, game->input))
@@ -97,6 +102,8 @@ int game_scene(game_t *game)
     player_management(game);
     npc_management(game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
+    display_image(get_image(HUD), GTV(0, 0));
     update_game_gui(game);
+    display_hud(game);
     return 0;
 }

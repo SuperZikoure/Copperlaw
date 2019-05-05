@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "graph.h"
 
-text_t *create_text(int fontsize, char *font, window_t *window)
+text_t *create_text(int fontsize, const char *font, window_t *window)
 {
     text_t *text = malloc(sizeof(text_t));
 

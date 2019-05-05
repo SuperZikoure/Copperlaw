@@ -53,6 +53,17 @@ static void create_maps(game_t *game)
     }
 }
 
+static void create_texts(game_t *game)
+{
+    for (int i = 0; i < TEXT_AMOUNT; i++) {
+        game->texts[i] = create_text(12, font_path[i], game->window);
+        if (!game->texts[i]) {
+            game->exit = -1;
+            return;
+        }
+    }
+}
+
 game_t create_game(void)
 {
     game_t game;
@@ -68,8 +79,10 @@ game_t create_game(void)
     game.gui = create_gui(game.view);
     game.option = create_option();
     create_maps(&game);
+    create_texts(&game);
     game.music = create_music(music_paths[0]);
     game.player = create_player(&game);
+    game.inventory = create_inventory();
     init_npcs(&game);
     return (game);
 }

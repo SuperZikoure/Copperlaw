@@ -5,11 +5,11 @@
 ** header of inventory part for my_rpg
 */
 
-#ifndef INVENTORY
-#define INVENTORY
+#ifndef __INVENTORY__
+#define __INVENTORY__
 
-#define INV_SIZE 100
-#define MAX_STACK 64
+#define INV_SIZE 8
+#define MAX_STACK 99
 
 typedef struct inventory_s {
     int id[INV_SIZE];
@@ -94,4 +94,4 @@ int *get_all_id(int id, inventory_t *inv);
 
 void tri_inventory(inventory_t *inv);
 
-#endif /*!INVENTORY */
+#endif /*!__INVENTORY__ */

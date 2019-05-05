@@ -29,9 +29,9 @@ int inventory_scene(game_t *game)
     display_image(get_image(BUTTON_NOT_SELECTED), GTV(0, 0));
     display_image(get_image(BUTTON_SELECTED), GTV(0, 52));
     display_image(get_image(INVENTORY_SELECTED), GTV(5, 63));
-    display_image(get_image(BUTTON_NOT_SELECTED), GTV(0, 249));
-    display_image(get_image(BUTTON_NOT_SELECTED), GTV(0, 301));
-    display_image(get_image(BUTTON_NOT_SELECTED), GTV(0, 353));
+    display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 249));
+    display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 301));
+    display_image(get_image(BUTTON_NOT_SELECTED), GTV(-64, 353));
     show_scene_buttons(game);
     manage_inventory(game);
     display_cursor(game);

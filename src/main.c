@@ -16,8 +16,7 @@ static bool has_display_env_variable(char const *env[])
     for (size_t i = 0; env[i]; i++) {
         if (my_strncmp("DISPLAY", env[i], 7))
             continue;
-        if (STR_EQ(&env[i][7], "=:0") || STR_EQ(&env[i][7], "=:0.0"))
-            return true;
+        return true;
     }
     return false;
 }
@@ -71,7 +70,7 @@ int main(int argc, char const *argv[], char const *env[])
     }
     if (!has_display_env_variable(env)) {
         my_dputs("ERROR: The current DISPLAY environement varible is not \
-supported (ACCEPTED: DISPLAY=:0 || DISPLAY=:0.0)\n", 2);
+supported\n", 2);
         return 84;
     }
     return game_main();

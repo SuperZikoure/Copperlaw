@@ -14,7 +14,7 @@ const struct script_s w_barman_script[] = {
 
 const struct script_s w_blacksmith_script[] = {
     SAY("Hey stranger, want a weapon?")
-    CHOSE2("Best I can offer is a revolver or a shotgun. Whatchawant ?",
+    CHOSE2("Best I can offer is a revolver or a shotgun. What do you want ?",
 "Revolver", "Shotgun")
     END
 };

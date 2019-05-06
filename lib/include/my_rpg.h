@@ -548,7 +548,7 @@ void blacksmith_shop(game_t *game);
 
 /* FIRE BALL */
 void display_balls(ball_t *balls[PLAYER_BALLS]);
-void fire_ball(game_t *game, sfVector2f dir, int type, int skill);
+void check_input_fire(game_t *game, sfVector2f dir);
 
 /* MAIN MENU */
 int main_menu_scene(game_t *game);

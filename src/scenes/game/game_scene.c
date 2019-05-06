@@ -51,6 +51,14 @@ static void display_hud(game_t *game)
     game->texts[BIG_TEXT]);
     display_text(DISP_STATS(CURRENT_MP, MAX_MP), GTV(170, 55),
     game->texts[BIG_TEXT]);
+    display_anim(get_anim(LIFE_BAR), GTV(0, 0));
+    display_anim(get_anim(MANA_BAR), GTV(0, 0));
+    for (int i = 0; i < PLAYER->stats[CURRENT_SP]; i++) {
+        if (PLAYER->class)
+            display_anim(get_anim(SP_BALL), GTV(380 + (i * 32), 15));
+    }
+    display_text(my_itoa(game->money), GTV(600, 36), game->texts[BIG_TEXT]);
+    display_anim(get_anim(COIN), GTV(625, 30));
 }
 
 int game_scene(game_t *game)

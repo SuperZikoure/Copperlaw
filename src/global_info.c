@@ -33,12 +33,12 @@ const info_button_t info[BUTTON_AMOUNT] = {
     {{50, 318}, 0, CREDIT, "back", swap_credits_to_main_menu},
     {{5, 208}, 0, MENU, "resume", swap_menu_to_game},
     {{5, 260}, 0, MENU, "save", swap_menu_to_game},
-    {{5, 312}, 0, MENU, "quit", swap_option_to_main_menu},
+    {{5, 312}, 0, MENU, "quit", swap_menu_to_main_menu},
     {{5, 364}, 0, MENU, "exit", exit_game},
     {{5, 63}, 0, MENU, "inventory", swap_menu_to_inventory},
     {{5, 208}, 0, INVENTORY, "resume", swap_menu_to_game},
     {{5, 260}, 0, INVENTORY, "save", swap_menu_to_game},
-    {{5, 312}, 0, INVENTORY, "quit", swap_option_to_main_menu},
+    {{5, 312}, 0, INVENTORY, "quit", swap_menu_to_main_menu},
     {{5, 364}, 0, INVENTORY, "exit", exit_game},
     {{5, 11}, 0, INVENTORY, "stats", swap_game_to_menu},
     {{668, 72}, 1, GAME, "inv_button", use_item},
@@ -158,7 +158,9 @@ char *map_paths[MAP_AMOUNT] = {
 };
 
 const info_music_t music_paths[MUSIC_AMOUT] = {
-    {"assets/musics/main_menu.ogg", NULL}
+    {"assets/musics/main_menu.ogg", NULL},
+    {"assets/musics/village.ogg", NULL},
+    {"assets/musics/wild_base.ogg", "assets/musics/wild_fight.ogg"}
 };
 
 const char *stats_desc[STATS_AMOUNT] = {

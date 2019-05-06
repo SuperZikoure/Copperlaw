@@ -136,9 +136,10 @@ enum enum_text_e
 
 enum musics_ids_e {
     MAIN_MENU_MUSIC,
+    VILLAGE_MUSIC,
+    WILD_MUSIC,
     MUSIC_AMOUT
 };
-
 
 enum enum_map_e {
     VILLAGE_MAP,
@@ -532,6 +533,7 @@ int swap_main_menu_to_howtoplay(game_t *game, int option);
 int swap_howtoplay_to_main_menu(game_t *game, int option);
 int swap_main_menu_to_credits(game_t *game, int option);
 int swap_credits_to_main_menu(game_t *game, int option);
+int swap_menu_to_main_menu(game_t *game, int option);
 
 /* GAME */
 int game_scene(game_t *game);

@@ -14,12 +14,12 @@ static void shift_sand(fb_t *particle)
     unsigned int i;
 
     for (i = 0; i < particle->x * particle->y; i++) {
-        if (particle->pixels[i * 4 + 4] == 255 && i > 0) {
-            particle->pixels[(i - 1) * 4 + 4] = 255;
-            particle->pixels[i * 4 + 4] = 0;
-        } else if (particle->pixels[i * 4 + 4] == 255) {
-            particle->pixels[(particle->x * particle->y - 1) * 4 + 4] = 255;
-            particle->pixels[i * 4 + 4] = 0;
+        if (particle->pixels[i * 4 + 3] == 255 && i > 0) {
+            particle->pixels[(i - 1) * 4 + 3] = 255;
+            particle->pixels[i * 4 + 3] = 0;
+        } else if (particle->pixels[i * 4 + 3] == 255) {
+            particle->pixels[(particle->x * particle->y - 1) * 4 + 3] = 255;
+            particle->pixels[i * 4 + 3] = 0;
         }
     }
 }
@@ -29,7 +29,7 @@ static void create_sand(fb_t *particle)
     unsigned int i;
 
     for (i = 0; i < 50; i++)
-        particle->pixels[rand() % (particle->x * particle->y) * 4] = 255;
+        particle->pixels[rand() % (particle->x * particle->y) * 4 + 3] = 255;
 }
 
 static void set_color(fb_t *particle)
@@ -50,7 +50,7 @@ fb_t *desert_particle(fb_t *particle, int type)
 
     type = type;
     if (!bool_created) {
-        particle = framebuffer_create(1920, 1080);
+        particle = framebuffer_create(720, 405);
         if (particle == NULL)
             return NULL;
         set_color(particle);

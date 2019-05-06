@@ -61,6 +61,12 @@ static void display_hud(game_t *game)
     display_anim(get_anim(COIN), GTV(625, 30));
 }
 
+static void display_particules(game_t *game)
+{
+    if (game->current_map == VILLAGE_MAP)
+        draw_particule(get_particle(WINDOW, FIRE_P), V2F(303, 379));
+}
+
 int game_scene(game_t *game)
 {
     if (analyse_game_events(game, game->input))
@@ -72,9 +78,11 @@ int game_scene(game_t *game)
     player_management(game);
     npc_management(game);
     manage_coins(game->coins, PLAYER->pos, game);
-    display_image(get_particle(DASH_P), PLAYER->pos);
+    display_particules(game);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     display_balls(PLAYER->balls);
+    if (game->current_map == VILLAGE_MAP || game->current_map == WILD_MAP)
+        draw_particule(get_particle(WINDOW, DESERT_P), GTV(0, 0));
     display_hud(game);
     update_game_gui(game);
     return 0;

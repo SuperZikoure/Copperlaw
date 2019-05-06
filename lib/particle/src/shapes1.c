@@ -38,7 +38,7 @@ void my_draw_square(fb_t *fb, sfVector2u pos, int size)
 {
     for (unsigned int i = pos.y; i <= pos.y + size; i++) {
         for (unsigned int j = pos.x; j <= pos.y + size; j++) {
-            fb->pixels[(i + j * fb->x) * 4 + 3] = 255;
+            fb->pixels[(i + j) * 4 + 3] = 255;
         }
     }
 }

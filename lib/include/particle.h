@@ -54,7 +54,7 @@ void my_draw_line(fb_t *fb, sfVector2i pa, sfVector2i pb, sfColor clr);
 void my_draw_line_f(fb_t *fb, sfVector2f pa, sfVector2f pb, sfColor cr);
 
 //particle/particles_system.c
-image_t *get_particle(int type);
+image_t *get_particle(window_t *window, int type);
 
 //particle/desert.c
 fb_t *desert_particle(fb_t *particle, int type);
@@ -70,5 +70,7 @@ fb_t *dash_particle(fb_t *particle, int type);
 
 //particle/trail.c
 fb_t *trail_particle(fb_t *particle, int type);
+
+void draw_particule(image_t *image, sfVector2f pos);
 
 #endif

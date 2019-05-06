@@ -21,7 +21,7 @@ const particle_types_t particle_types[MAX_PARTICLE] = {
     skill_particle
 };
 
-static image_t *load_fb_in_image(fb_t *particle)
+static image_t *load_fb_in_image(window_t *window, fb_t *particle)
 {
     image_t *image = malloc(sizeof(image_t));
 
@@ -33,7 +33,7 @@ particle->y, 0, 0);
     image->sprite = sfSprite_create();
     sfSprite_setTexture(image->sprite, image->texture, sfTrue);
     image->image = NULL;
-    image->window = NULL;
+    image->window = window;
     return image;
 }
 
@@ -50,7 +50,7 @@ static void free_fb(fb_t **fb_part)
     free(fb_part);
 }
 
-image_t *get_particle(int type)
+image_t *get_particle(window_t *window, int type)
 {
     static fb_t **fb_part = NULL;
 
@@ -63,7 +63,7 @@ image_t *get_particle(int type)
         fb_part[type] = particle_types[type](fb_part[type], type);
         if (fb_part[type] == NULL)
             return NULL;
-        return load_fb_in_image(fb_part[type]);
+        return load_fb_in_image(window, fb_part[type]);
     } else
         free_fb(fb_part);
     return NULL;

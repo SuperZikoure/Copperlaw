@@ -115,6 +115,7 @@ SRC	=	$(BUTTONS)/create_button.c \
 		$(SCRIPTS)/script_list.c \
 		$(SCRIPTS)/village.c \
 		$(SCRIPTS)/weapon.c \
+		$(UTILS)/draw_particule.c \
 		$(UTILS)/get_line.c \
 		$(UTILS)/my_srand.c \
 		$(UTILS)/quick_sftext_create.c \

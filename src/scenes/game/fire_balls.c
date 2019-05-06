@@ -29,21 +29,21 @@ void display_balls(ball_t *balls[PLAYER_BALLS])
             balls[i]->exist = 0;
         if (!balls[i]->skill)
             display_image(get_image(WHITE_BALL), balls[i]->pos);
+        else
+            display_image(get_image(GREEN_BALL), balls[i]->pos);
     }
 }
 
-static void fire_ball_2(game_t *game, int i, sfVector2f dir)
+static void fire_ball_2(game_t *game, int i, sfVector2f dir, int skill)
 {
+    player_t *player = PLAYER;
     int value = ((rand() % 100) / 50) * (rand() % 3 - 1);
 
-    PLAYER->balls[i]->speed.x = dir.x * game->player->stats[ATTACK_SPEED];
-    PLAYER->balls[i]->speed.y = dir.y * game->player->stats[ATTACK_SPEED];
+    PLAYER->balls[i]->speed.x = dir.x * STATS(ATTACK_SPEED) * (skill + 1);
+    PLAYER->balls[i]->speed.y = dir.y * STATS(ATTACK_SPEED);
     PLAYER->balls[i]->exist = 1;
     PLAYER->balls[i]->speed.x += value;
     PLAYER->balls[i]->speed.y += value;
-    PLAYER->stats[CURRENT_MP] -= 1 * PLAYER->balls[i]->skill;
-    if (PLAYER->stats[CURRENT_MP] < 0)
-        PLAYER->stats[CURRENT_MP] = 0;
 }
 
 void fire_ball(game_t *game, sfVector2f dir, int type, int skill)
@@ -55,14 +55,14 @@ void fire_ball(game_t *game, sfVector2f dir, int type, int skill)
     for (int i = 0; i < PLAYER_BALLS; i++) {
         if (PLAYER->balls[i]->exist)
             continue;
-        fire_ball_2(game, i, dir);
+        fire_ball_2(game, i, dir, skill);
         PLAYER->balls[i]->pos.x = x;
         PLAYER->balls[i]->pos.y = y;
-        PLAYER->balls[i]->damage = PLAYER->stats[DAMAGE] * skill + 1;
+        PLAYER->balls[i]->damage = PLAYER->stats[DAMAGE] * (skill + 1);
         PLAYER->balls[i]->type = type;
         PLAYER->balls[i]->skill = skill;
-        PLAYER->balls[i]->timer = PLAYER->stats[ATTACK_RANGE];
-        if (type == REVOLVER || !balls || PLAYER->stats[CURRENT_MP] < balls)
+        PLAYER->balls[i]->timer = PLAYER->stats[ATTACK_RANGE] * (skill + 1);
+        if (type == REVOLVER || !balls)
             return;
         else
             balls--;

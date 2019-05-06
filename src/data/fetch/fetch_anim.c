@@ -40,7 +40,7 @@ void update_fetch_anim(void)
 
     for (int i = 0; i < ANIM_AMOUNT; i++) {
         tmp = get_anim(i);
-        if (tmp)
+        if (tmp && i != LIFE_BAR && i != MANA_BAR)
             update_anim(tmp);
     }
 }

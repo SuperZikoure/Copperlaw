@@ -5,7 +5,9 @@
 ** manage_monster.c
 */
 
+#include <stdlib.h>
 #include "my_rpg.h"
+#include "macros.h"
 
 static void reset_velocity(sfVector2f *velocity, float rate)
 {
@@ -19,8 +21,8 @@ static void reset_velocity(sfVector2f *velocity, float rate)
         velocity->y = 0;
 }
 
-static void manage_monster_2(monster_t *monster, ball_t *balls[PLAYER_BALLS],
-                        sfVector2f pos)
+static void manage_monster_2(monster_t *monster,
+                                sfVector2f diff)
 {
     if (ABS(diff.x) <= 200 && ABS(diff.y) <= 200)
         monster->aggro = 1;
@@ -43,9 +45,9 @@ static void manage_monster_2(monster_t *monster, ball_t *balls[PLAYER_BALLS],
         display_image(monster->normal, monster->pos);
 }
 
-monster_t *create_monster(sfVector2f pos, windows_t *window)
+monster_t *create_monster(sfVector2f pos, window_t *window)
 {
-    monster_t *monster = my_realloc_array(sizeof(monster_t));
+    monster_t *monster = malloc(sizeof(monster_t));
 
     monster->pos = pos;
     monster->speed = V2F(0, 0);
@@ -65,14 +67,14 @@ void manage_monster(monster_t *monster, ball_t *balls[PLAYER_BALLS],
     for (int i = 0; i < PLAYER_BALLS; i++) {
         if (!balls[i]->exist)
             continue;
-        if ((monster->speed.x + monster->speed.y &&
-        image_intersect(balls[i]->ball, monster->hit)) ||
-        (!(monster->speed.x + monster->speed.y) &&
-        image_intersect(balls[i]->ball, monster->normal))) {
-            monster->speed = (sfVector2f){balls[i]->speed.x / 5,
-            balls[i]->speed.y / 5};
-            balls[i]->exist = 0;
-        }
+        // if ((monster->speed.x + monster->speed.y &&
+        // image_intersect(balls[i]->ball, monster->hit)) ||
+        // (!(monster->speed.x + monster->speed.y) &&
+        // image_intersect(balls[i]->ball, monster->normal))) {
+        //     monster->speed = (sfVector2f){balls[i]->speed.x / 5,
+        //     balls[i]->speed.y / 5};
+        //     balls[i]->exist = 0;
+        // }
     }
-    manage_monster_2(monster, balls, pos);
+    manage_monster_2(monster, diff);
 }

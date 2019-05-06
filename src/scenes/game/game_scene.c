@@ -9,7 +9,6 @@
 #include <math.h>
 #include "dialogues.h"
 #include "macros.h"
-#include <stdio.h>
 
 void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index);
 
@@ -51,6 +50,14 @@ static void display_hud(game_t *game)
     game->texts[BIG_TEXT]);
     display_text(DISP_STATS(CURRENT_MP, MAX_MP), GTV(170, 55),
     game->texts[BIG_TEXT]);
+    display_anim(get_anim(LIFE_BAR), GTV(0, 0));
+    display_anim(get_anim(MANA_BAR), GTV(0, 0));
+    for (int i = 0; i < (int)PLAYER->stats[CURRENT_SP]; i++) {
+        if (PLAYER->class)
+            display_anim(get_anim(SP_BALL), GTV(380 + (i * 32), 15));
+    }
+    display_text(my_itoa(game->money), GTV(600, 36), game->texts[BIG_TEXT]);
+    display_anim(get_anim(COIN), GTV(625, 30));
 }
 
 int game_scene(game_t *game)
@@ -59,12 +66,12 @@ int game_scene(game_t *game)
         return 1;
     if (CURSOR->mode != CURSOR_IDLE)
         CURSOR->mode = CURSOR_IDLE;
+    drop_coin(V2F(400, 400), game->coins, 0);
     display_image(game->maps[game->current_map]->bg, V2F(0, 0));
     display_mobs(game);
     player_management(game);
     npc_management(game);
     manage_coins(game->coins, PLAYER->pos, game);
-    display_image(get_particle(DASH_P), PLAYER->pos);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     display_balls(PLAYER->balls);
     display_hud(game);

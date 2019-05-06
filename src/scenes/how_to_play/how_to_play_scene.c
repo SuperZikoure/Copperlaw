@@ -9,8 +9,8 @@
 #include "macros.h"
 
 const char *howtoplay_txt = "[Z] to move up\n\n[S] to move down\n\n[Q] to move \
-left\n\n[D] to move right\n\n[Space] to dash\n\n[Click] to interact with \
-people\n\n[F11] to take a screenshot";
+left\n\n[D] to move right\n\n[Space] to dash\n\n[Right click] to use special \
+ability\n\n[Left click] to use shot \n\n[F11] to take a screenshot";
 
 static int analyse_main_menu_events(game_t *game, input_t *input)
 {

@@ -9,7 +9,6 @@
 #include <math.h>
 #include "dialogues.h"
 #include "macros.h"
-#include <stdio.h>
 
 void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index);
 
@@ -53,7 +52,7 @@ static void display_hud(game_t *game)
     game->texts[BIG_TEXT]);
     display_anim(get_anim(LIFE_BAR), GTV(0, 0));
     display_anim(get_anim(MANA_BAR), GTV(0, 0));
-    for (int i = 0; i < PLAYER->stats[CURRENT_SP]; i++) {
+    for (int i = 0; i < (int)PLAYER->stats[CURRENT_SP]; i++) {
         if (PLAYER->class)
             display_anim(get_anim(SP_BALL), GTV(380 + (i * 32), 15));
     }

@@ -10,7 +10,7 @@
 
 const char *credits_txt = "Credits: \n\n\nWorker 1 : Ghassane SEBAI\n\n\
 Worker 2 : Nathan BELLANGER\n\nWorker 3 : Nathan LECORCHET\n\nWorker 4 : \
-Briag FROUX\n\nThanks for playing";
+Briag FROUX\n\nVoice actor : Nicolas Cage\n\nThanks for playing";
 
 static int analyse_main_menu_events(game_t *game, input_t *input)
 {

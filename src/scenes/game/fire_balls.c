@@ -36,14 +36,15 @@ void display_balls(ball_t *balls[PLAYER_BALLS])
 
 static void fire_ball_2(game_t *game, int i, sfVector2f dir, int skill)
 {
-    int value = ((rand() % 100) / 50) * (rand() % 3 - 1);
     player_t *player = PLAYER;
+    int value = ((rand() % 100) / 50) * (rand() % 3 - 1);
 
     PLAYER->balls[i]->speed.x = dir.x * STATS(ATTACK_SPEED) * (skill + 1);
     PLAYER->balls[i]->speed.y = dir.y * STATS(ATTACK_SPEED) * (skill + 1);
     PLAYER->balls[i]->exist = 1;
     PLAYER->balls[i]->speed.x += value;
     PLAYER->balls[i]->speed.y += value;
+    STATS(CURRENT_XP)++;
 }
 
 static void fire_ball(game_t *game, sfVector2f dir, int type, int skill)

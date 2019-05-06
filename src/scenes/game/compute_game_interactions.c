@@ -50,6 +50,7 @@ void compute_game_interactions(game_t *game)
 {
     sfVector2f dir = cursor_dir(game);
     player_t *player = PLAYER;
+    input_t *input = game->input;
 
     check_input_fire(game, dir);
     dash(game->input, &PLAYER->dash, PLAYER->speed, dir);
@@ -59,7 +60,13 @@ void compute_game_interactions(game_t *game)
     STATS(CURRENT_MP) += 0.02;
     if (STATS(CURRENT_MP) > STATS(MAX_MP))
         STATS(CURRENT_MP) = STATS(MAX_MP);
-    STATS(CURRENT_SP) += 0.001;
+    STATS(CURRENT_SP) += 0.002;
     if (STATS(CURRENT_SP) > STATS(MAX_SP))
         STATS(CURRENT_SP) = STATS(MAX_SP);
+    if (player->level_up_display > 0)
+        display_text("Level Up", V2F(PLAYER->pos.x + 16, PLAYER->pos.y + 16),
+        game->texts[BIG_TEXT]);
+    player->level_up_display -= get_delta();
+    if (KEY_PRESSED(ACTION_KEY))
+        drop_coin(CURSOR->pos, game->coins, 0);
 }

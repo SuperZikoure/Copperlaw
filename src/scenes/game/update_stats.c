@@ -25,7 +25,7 @@ static void update_stats_shotgun(player_t *player, int level)
     STATS(ATTACK_COOLDOWN) -= (STATS(ATTACK_COOLDOWN) >= 1) ? 1 : 0;
     STATS(ATTACK_RANGE) += 2;
     STATS(DAMAGE) += 0.1;
-    player->level_up_display += 60;
+    player->level_up_display = 60;
 }
 
 static void update_stats_revolver(player_t *player, int level)
@@ -46,7 +46,7 @@ static void update_stats_revolver(player_t *player, int level)
     STATS(ATTACK_COOLDOWN) -= (STATS(ATTACK_COOLDOWN) >= 1) ? 1 : 0;
     STATS(ATTACK_RANGE) += 1;
     STATS(DAMAGE) += 0.05;
-    player->level_up_display += 60;
+    player->level_up_display = 60;
 }
 
 void update_stats(player_t *player)
@@ -58,7 +58,7 @@ void update_stats(player_t *player)
         else if (player->class == SHOTGUN)
             update_stats_shotgun(player, STATS(LVL));
         STATS(CURRENT_XP) = (int)STATS(CURRENT_XP) % (int)STATS(MAX_XP);
-        STATS(MAX_XP) += STATS(LVL);
+        STATS(MAX_XP) += STATS(LVL) * 10;
         STATS(CURRENT_HP) = STATS(MAX_HP);
         STATS(CURRENT_MP) = STATS(MAX_MP);
         STATS(CURRENT_SP) = STATS(MAX_SP);

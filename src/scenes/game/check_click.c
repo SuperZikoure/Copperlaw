@@ -43,7 +43,7 @@ void check_click(game_t *game, npc_t *npc, sfVector2f pos, int index)
     display_anim(get_anim(CAN_TALK), V2F(npc->pos.x + 16, npc->pos.y - 16));
     if (point_intersect(npc->display->sheet, pos.x + C_SIZE, pos.y + C_SIZE)) {
         CURSOR->mode = CURSOR_INSPECT;
-        if (MOUSE_PRESSED(sfMouseLeft) && !game->dialogue) {
+        if (MOUSE_HELD(sfMouseLeft) && !game->dialogue) {
             check_lore(index, &changed);
             game->dialogue = get_dialogue(npc_info[index].dialogue);
         }

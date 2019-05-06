@@ -23,13 +23,13 @@ static void clear_square(fb_t *particle)
 
 static void draw_particle(fb_t *particle)
 {
-    unsigned int max = (particle->x - 1) * (particle->y - 1);
+    unsigned int max = (particle->x - 5) * (particle->y - 5);
     sfVector2u pos;
     int i;
 
     for (i = 0; i < 5; i++) {
-        pos.x = (rand() % (max - particle->x + 5)) + particle->x + 5;
-        pos.y = (rand() % (max - particle->x + 5)) + particle->x + 5;
+        pos.x = (rand() % (max - particle->x * 3 + 5)) + particle->x * 3 + 5;
+        pos.y = (rand() % (max - particle->x * 3 + 5)) + particle->x * 3 + 5;
         my_draw_square(particle, pos, 3);
     }
 }

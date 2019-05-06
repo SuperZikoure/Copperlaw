@@ -64,6 +64,7 @@ int game_scene(game_t *game)
     player_management(game);
     npc_management(game);
     manage_coins(game->coins, PLAYER->pos, game);
+    display_image(get_particle(DASH_P), PLAYER->pos);
     display_image(game->maps[game->current_map]->fg, V2F(0, 0));
     display_balls(PLAYER->balls);
     display_hud(game);
